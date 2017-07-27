@@ -1,0 +1,10 @@
+<h2 md-dialog-title>Select RSS</h2>
+<md-dialog-content fxLayout="column">
+	<md-input-container>
+		<input mdInput placeholder="RSS Url" [(ngModel)]="feedUrl">
+	</md-input-container>
+</md-dialog-content>
+<md-dialog-actions align="end">
+	<button md-button color="primary" md-dialog-close="cancel">Cancel</button>
+	<button md-button color="primary" md-dialog-close="save">Save</button>
+</md-dialog-actions>

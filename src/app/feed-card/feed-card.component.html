@@ -1,5 +1,12 @@
-<md-card class="card-feed-entry" (click)="openLinkInBrowser()">
-  <md-card-title>{{feed.title}}</md-card-title>
-  <md-card-subtitle>{{feed.author}} - {{feed.pubDate | date:'dd-MM-yyyy'}}</md-card-subtitle>
-  <md-card-content>{{feed.description | stripHtmlTags}}</md-card-content>
+<md-card class="card-feed-entry">
+	<md-card-header>
+		<span fxFlex></span>
+		<button md-icon-button (click)="showCode(feed)"><md-icon>information</md-icon></button>
+	</md-card-header>
+	<md-card-title>{{feed.title}}</md-card-title>
+	<md-card-subtitle>{{feed.author}} - {{feed.pubDate | date:'dd-MM-yyyy'}}</md-card-subtitle>
+	<md-card-content>{{feed.description | stripHtmlTags | slice:0:300}}</md-card-content>
+	<md-card-actions align="end">
+		<a md-button [href]="feed.link">View Post</a>
+	</md-card-actions>
 </md-card>

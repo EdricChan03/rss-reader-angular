@@ -1,7 +1,12 @@
 <md-toolbar color="primary">
-  <span class="center">BeCompany news</span>
-  <span class="pointer-cursor"><md-icon (click)="refreshFeed()">refresh</md-icon></span>
+	RSS Reader
+	<span fxFlex></span>
+	<button md-icon-button (click)="refreshFeed()" mdTooltip="Refresh"><md-icon>refresh</md-icon></button>
+	<button md-icon-button [mdMenuTriggerFor]="moreMenu" mdTooltip="More options"><md-icon>more_vert</md-icon></button>
+	<md-menu #moreMenu="mdMenu">
+		<button md-menu-item (click)="selectRss()"><md-icon>rss_feed</md-icon> Select RSS</button>
+		<button md-menu-item (click)="settings()"><md-icon>settings</md-icon> Settings</button>
+	</md-menu>
 </md-toolbar>
-
-<app-feed-card *ngFor="let feed of feeds" [feed]="feed" ></app-feed-card>
-<app-spinner *ngIf="!feeds.length"></app-spinner>
+<md-progress-bar *ngIf="!feeds.length" mode="indeterminate" color="accent"></md-progress-bar>
+<app-feed-card *ngFor="let feed of feeds" [feed]="feed"></app-feed-card>

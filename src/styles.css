@@ -3,3 +3,7 @@
 
 /* Select Angular Material theming. */
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+[md-button], [md-raised-button] {
+	text-transform: uppercase;
+}

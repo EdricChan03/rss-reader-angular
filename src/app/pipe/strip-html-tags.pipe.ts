@@ -25,7 +25,7 @@ export class StripHtmlTagsPipe implements PipeTransform {
       oldHtml = value;
       value = value.replace(this.tagOrComment, '');
     } while (value !== oldHtml);
-    return value.replace(/</g, '&lt;');
+    return value.replace(/<[^>]+>/gm, '');
   }
 
 }
