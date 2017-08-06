@@ -1,7 +1,19 @@
-<h2 md-dialog-title>Select RSS</h2>
+<h2 md-dialog-title>RSS Url</h2>
 <md-dialog-content fxLayout="column">
-	<md-input-container>
+	<md-select [(ngModel)]="feedUrl" fxFlex placeholder="Select RSS feed">
+		<md-option *ngFor="let feed of feeds" [value]="feed.feedUrl">{{feed.name}}</md-option>
+	</md-select>
+	<p>Or enter a RSS feed url not listed above here:</p>
+	<md-input-container fxFlex>
 		<input mdInput placeholder="RSS Url" [(ngModel)]="feedUrl">
+	</md-input-container>
+	<md-checkbox [(ngModel)]="publishFeedUrl">Publish Feed URL (Requires Github)</md-checkbox>
+	<md-input-container fxFlex *ngIf="publishFeedUrl">
+		<input mdInput placeholder="RSS Channel" [(ngModel)]="feedUrlChannel">
+	</md-input-container>
+	<p>This is required. For more information and to get an api key, go <a href="https://rss2json.com" target="_blank">here</a></p>
+	<md-input-container fxFlex>
+		<input type="text" mdInput placeholder="API Key" [(ngModel)]="apiKey" required>
 	</md-input-container>
 </md-dialog-content>
 <md-dialog-actions align="end">

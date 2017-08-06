@@ -1,11 +1,18 @@
 <md-card class="card-feed-entry">
 	<md-card-header>
+		<md-card-title>{{feed.author}}</md-card-title>
+		<md-card-subtitle>{{feed.pubDate | date:'dd-MM-yyyy'}}</md-card-subtitle>
 		<span fxFlex></span>
 		<button md-icon-button (click)="showCode(feed)"><md-icon>information</md-icon></button>
 	</md-card-header>
+	<img md-card-image *ngIf="hasImage" [src]="imageSrc">
 	<md-card-title>{{feed.title}}</md-card-title>
-	<md-card-subtitle>{{feed.author}} - {{feed.pubDate | date:'dd-MM-yyyy'}}</md-card-subtitle>
-	<md-card-content>{{feed.description | stripHtmlTags | slice:0:300}}</md-card-content>
+	<md-card-content>
+		<p>{{feed.description | stripHtmlTags | slice:0:300}}</p>
+		<md-chip-list *ngIf="feed.categories.length != undefined">
+			<md-chip *ngFor="let category of feed.categories" selected="true" [innerHTML]="category"></md-chip>
+		</md-chip-list>
+	</md-card-content>
 	<md-card-actions align="end">
 		<a md-button [href]="feed.link">View Post</a>
 	</md-card-actions>

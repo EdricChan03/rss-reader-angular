@@ -1,0 +1,30 @@
+[
+	{
+		"name": "Android Police",
+		"feedUrl": "http://www.androidpolice.com/feed/"
+	},
+	{
+		"name": "Android Central",
+		"feedUrl": "http://feeds.feedburner.com/androidcentral?format=xml"
+	},
+	{
+		"name": "OSX Daily",
+		"feedUrl": "http://feeds.feedburner.com/osxdaily?format=xml"
+	},
+	{
+		"name": "CNN Most Recent",
+		"feedUrl": "http://rss.cnn.com/rss/cnn_latest.rss?format=xml"
+	},
+	{
+		"name": "Google Blog",
+		"feedUrl": "https://blog.google/rss"
+	},
+	{
+		"name": "Edric's Blog",
+		"feedUrl": "https://chanziyangedric.blogspot.com/atom.xml"
+	},
+	{
+		"name": "Github Blog - All Posts",
+		"feedUrl": "https://github.com/blog/all.atom"
+	}
+]
