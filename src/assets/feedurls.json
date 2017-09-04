@@ -26,5 +26,9 @@
 	{
 		"name": "Github Blog - All Posts",
 		"feedUrl": "https://github.com/blog/all.atom"
+	},
+	{
+		"name": "Android Studio Blog",
+		"feedUrl": "https://androidstudio.googleblog.com/feeds/posts/default"
 	}
 ]

@@ -1,14 +1,13 @@
 import { TruncatePipe } from './pipe/truncate.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 // Material design.
-import { MdCardModule, MdToolbarModule, MdButtonModule, MdIconModule, MdProgressBarModule, MdDialogModule, MdMenuModule, MdCheckboxModule, MdInputModule, MdSelectModule, MdChipsModule, MdSidenavModule } from '@angular/material';
+import { MdCardModule, MdToolbarModule, MdButtonModule, MdIconModule, MdProgressBarModule, MdDialogModule, MdMenuModule, MdCheckboxModule, MdSelectModule, MdChipsModule, MdSidenavModule, MdTooltipModule, MdFormFieldModule, MdInputModule, MdSnackBarModule, MdProgressSpinnerModule } from '@angular/material';
 import { AppComponent, SettingsDialog, FeedDialog } from './app.component';
 import { FeedCardComponent, CodeViewerDialog } from './feed-card/feed-card.component';
-import { FeedService } from './feed.service';
 import { StripHtmlTagsPipe } from './pipe/strip-html-tags.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'hammerjs';
@@ -21,10 +20,14 @@ export const MATERIAL_MODULES = [
 	MdDialogModule,
 	MdMenuModule,
 	MdCheckboxModule,
+	MdFormFieldModule,
 	MdInputModule,
 	MdSelectModule,
 	MdChipsModule,
-	MdSidenavModule
+	MdSidenavModule,
+	MdTooltipModule,
+	MdSnackBarModule,
+	MdProgressSpinnerModule
 ]
 @NgModule({
 	declarations: [
@@ -39,12 +42,12 @@ export const MATERIAL_MODULES = [
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
+		ReactiveFormsModule,
 		FormsModule,
 		FlexLayoutModule,
 		HttpModule,
 		MATERIAL_MODULES
 	],
-	providers: [FeedService],
 	bootstrap: [AppComponent],
 	entryComponents: [
 		SettingsDialog,

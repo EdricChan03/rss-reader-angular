@@ -1,22 +1,26 @@
 <h2 md-dialog-title>RSS Url</h2>
 <md-dialog-content fxLayout="column">
-	<md-select [(ngModel)]="feedUrl" fxFlex placeholder="Select RSS feed">
-		<md-option *ngFor="let feed of feeds" [value]="feed.feedUrl">{{feed.name}}</md-option>
-	</md-select>
-	<p>Or enter a RSS feed url not listed above here:</p>
-	<md-input-container fxFlex>
-		<input mdInput placeholder="RSS Url" [(ngModel)]="feedUrl">
-	</md-input-container>
-	<md-checkbox [(ngModel)]="publishFeedUrl">Publish Feed URL (Requires Github)</md-checkbox>
-	<md-input-container fxFlex *ngIf="publishFeedUrl">
-		<input mdInput placeholder="RSS Channel" [(ngModel)]="feedUrlChannel">
-	</md-input-container>
-	<p>This is required. For more information and to get an api key, go <a href="https://rss2json.com" target="_blank">here</a></p>
-	<md-input-container fxFlex>
-		<input type="text" mdInput placeholder="API Key" [(ngModel)]="apiKey" required>
-	</md-input-container>
+	<form #formCtrl="ngForm" fxLayout="column">
+		<p>Select from a built-in choice of options:</p>
+		<md-select [(ngModel)]="feedUrl" fxFlex placeholder="Select RSS feed" name="feedUrl">
+			<md-option *ngFor="let feed of feeds" [value]="feed.feedUrl">{{feed.name}}</md-option>
+		</md-select>
+		<p>Or enter a RSS feed url not listed above here:</p>
+		<md-form-field class="form-field">
+			<input mdInput placeholder="RSS Url" [(ngModel)]="feedUrl" name="feedUrl">
+		</md-form-field>
+		<md-checkbox [(ngModel)]="publishFeedUrl" name="publishFeedUrl">Publish Feed URL</md-checkbox>
+		<md-form-field class="form-field" *ngIf="publishFeedUrl">
+			<input mdInput placeholder="RSS Channel" [(ngModel)]="feedUrlChannel" name="feedUrlChannel">
+		</md-form-field>
+		<p>This is required. For more information and to get an api key, go <a href="https://rss2json.com" target="_blank">here</a></p>
+		<md-form-field class="form-field">
+			<input type="text" mdInput placeholder="API Key" [(ngModel)]="apiKey" required name="apiKey">
+			<md-error>This is required</md-error>
+		</md-form-field>
+	</form>
 </md-dialog-content>
 <md-dialog-actions align="end">
 	<button md-button color="primary" md-dialog-close="cancel">Cancel</button>
-	<button md-button color="primary" md-dialog-close="save">Save</button>
+	<button md-button color="primary" md-dialog-close="save" [disabled]="!formCtrl.valid">Save</button>
 </md-dialog-actions>
