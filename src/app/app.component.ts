@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 	apiKey: string;
 	isRefreshing: boolean = false;
 	hasError: boolean = false;
-	refreshStatus: string = "Hold up, we're getting the RSS feed for the channel you selected.";
+	refreshStatus: string = "Hold up while we're getting the RSS feed for the channel you selected.";
 	rssToJsonServiceBaseUrl: string = 'https://api.rss2json.com/v1/api.json?rss_url=';
 	rssToJsonServiceApiUrl: string = '&api_key=';
 	constructor(
