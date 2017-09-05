@@ -11,37 +11,86 @@ import 'rxjs/add/operator/map';
 	styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+	/**
+	 * Whether it's the first time that the user has used the website. (Can be reset by clearing `localStorage`)
+	 */
 	getStarted: boolean = false;
+	/**
+	 * The feed URL
+	 */
 	feedUrl: string;
+	/**
+	 * Feeds for the RSS
+	 */
 	feeds: FeedEntry[];
+	/**
+	 * The API key to do http requests with
+	 */
 	apiKey: string;
+	/**
+	 * Whether it is currently refreshing the RSS feed
+	 */
 	isRefreshing: boolean = false;
+	/**
+	 * Shows the reload button
+	 */
 	hasError: boolean = false;
+	/**
+	 * The refresh status present when refreshing the RSS
+	 */
 	refreshStatus: string = "Hold up while we're getting the RSS feed for the channel you selected.";
+	/**
+	 * The RSS2Json website base URL
+	 */
 	rssToJsonServiceBaseUrl: string = 'https://api.rss2json.com/v1/api.json?rss_url=';
+	/**
+	 * The RSS2Json website api key url
+	 */
 	rssToJsonServiceApiUrl: string = '&api_key=';
+	takingForeverToLoadTimeout: any;
 	constructor(
 		private dialog: MdDialog,
 		private snackbar: MdSnackBar,
 		private http: Http
 	) { }
+	/**
+	 * Reloads the website
+	 */
 	reload() {
 		window.location.reload(true);
 	}
-	refreshFeed() {
+	/**
+	 * Refreshes the feed
+	 * Not to be confused with {@link reload}
+	 */
+	refreshFeed(tryAgain?: boolean) {
+		if (tryAgain) {
+			clearTimeout(this.takingForeverToLoadTimeout);
+		}
+		setTimeout(this.takingForeverToLoadTimeout);
+		// Show that it is getting RSS
 		this.isRefreshing = true;
+		this.getStarted = false;
+		// Set to empty array
 		this.feeds = [];
 		let localUrl: string;
+		// Get the feed url from localstorage
 		if (window.localStorage.getItem('feedUrl')) {
 			localUrl = window.localStorage.getItem('feedUrl');
 		} else {
 			localUrl = "https://www.blog.google/rss/";
 		}
-		// Adds 1s of delay to provide user's feedback.
+		// Add 2s of delay to provide user feedback.
 		this.http.get(this.rssToJsonServiceBaseUrl + localUrl + this.rssToJsonServiceApiUrl + this.apiKey).delay(2000).map(res => res.json()).subscribe(result => {
 			this.feeds = result.items;
 			this.isRefreshing = false;
+			clearTimeout(this.takingForeverToLoadTimeout);
+			this.hasError = false;
 		}, error => {
+			/*
+			 * Error handler
+			 * Why did I even implement all this stuff? #lol
+			 */
 			this.hasError = true;
 			let status = error.status;
 			switch (status) {
@@ -66,9 +115,15 @@ export class AppComponent implements OnInit {
 			}
 		})
 	}
+	/**
+	 * Opens the settings dialog
+	 */
 	settings() {
 		this.dialog.open(SettingsDialog);
 	}
+	/**
+	 * Opens the dialog to select an RSS feed
+	 */
 	selectRss() {
 		let dialogRef = this.dialog.open(FeedDialog);
 		dialogRef.afterClosed().subscribe(result => {
@@ -102,8 +157,22 @@ export class AppComponent implements OnInit {
 			window.localStorage.setItem('hasLaunched', JSON.stringify(true));
 		}
 		this.refreshFeed();
+		this.takingForeverToLoadTimeout = setTimeout(() => {
+			// This is the *BEST* status I can put...
+			this.refreshStatus = "Oh dear. This is taking a while to load. Maybe try checking if you have an active connection or reloading?";
+			this.hasError = true;
+			// Timeout ception (#cringyprogrammerjokes #lol)
+			setTimeout(() => {
+				this.refreshStatus = "Wow. You MUST have a REALLY slow internet connection (or you're on mobile data... Sorry for that then...). Why don't you try turning your wifi off and on? Or try clicking/ tapping the refresh button.";
+				setTimeout(() => {
+					// I don't even know...
+					this.refreshStatus = "Oh, my! It's been 30 seconds and your internet is still not working. Or you did not set up your internet properly. Or other things. Why don't you go rest outside instead? Like read a book?";
+				}, 17000);
+			}, 8000);
+		}, 5000);
 	}
 }
+		
 
 @Component({
 	selector: 'settings-dialog',
@@ -112,6 +181,9 @@ export class AppComponent implements OnInit {
 export class SettingsDialog implements OnInit {
 	settings: Settings;
 	constructor(private dialogRef: MdDialogRef<SettingsDialog>) { }
+	/**
+	 * Saves the settings
+	 */
 	save() {
 		window.localStorage.setItem('settings', JSON.stringify(this.settings));
 		this.dialogRef.close();
@@ -133,10 +205,26 @@ export class SettingsDialog implements OnInit {
 	templateUrl: './feed.dialog.html'
 })
 export class FeedDialog implements OnInit {
+	/**
+	 * The feed URL
+	 */
 	feedUrl: string;
+	/**
+	 * The list of feeds
+	 * Available at {@link `/assets/feedurls.json`}
+	 */
 	feeds: RSSSource[];
+	/**
+	 * The API key
+	 */
 	apiKey: string;
+	/**
+	 * Whether to publish the feed url (basicallt opening in a google form with prefilled data)
+	 */
 	publishFeedUrl: boolean = false;
+	/**
+	 * The feed URL channel for the publishing
+	 */
 	feedUrlChannel: string;
 	constructor(private dialogRef: MdDialogRef<FeedDialog>, private http: Http) { }
 	ngOnInit() {
@@ -152,6 +240,9 @@ export class FeedDialog implements OnInit {
 		}
 	}
 }
+/**
+ * An RSS source
+ */
 export interface RSSSource {
 	name: string;
 	feedUrl: string;

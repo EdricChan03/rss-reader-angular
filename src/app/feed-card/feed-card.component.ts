@@ -1,5 +1,5 @@
 import { Settings } from './../app.component';
-import { MdDialogRef, MdDialog } from '@angular/material';
+import { MdDialogRef, MdDialog, MdSlideToggleChange } from '@angular/material';
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import * as hljs from 'highlight.js';
 
@@ -13,6 +13,7 @@ export class FeedCardComponent implements OnInit {
 	imageExts = ['jpg', 'jpeg', 'png', 'gif'];
 	imageSrc: string;
 	target: string;
+	imageChanged: boolean = false;
 	@Input() feed: any;
 	constructor(private dialog: MdDialog) { }
 	showCode(feed) {
@@ -32,19 +33,21 @@ export class FeedCardComponent implements OnInit {
 		var dataURL = canvas.toDataURL("image/png");
 		return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 	}
+	imageChange() {
+		this.imageChanged = !this.imageChanged;
+		this.hasImage = !this.hasImage;
+	}
 	ngOnInit() {
 		if (this.feed.enclosure && this.feed.enclosure.length == undefined) {
 			for (var i = 0; i < this.imageExts.length; i++) {
 				if (this.feed.enclosure.link.indexOf(this.imageExts[i]) != -1) {
-					console.log("YEAH!");
 					this.hasImage = true;
-					this.imageSrc = this.feed.enclosure.link;
+					this.imageSrc = encodeURI(this.feed.enclosure.link);
 				}
 			}
 		}
 		if (window.localStorage.getItem("settings")) {
 			let settings = <Settings> JSON.stringify(window.localStorage.getItem("settings"));
-			console.log(settings.openNewTab);
 			if (settings.openNewTab) {
 				this.target = settings.openNewTab ? '_blank' : '_self';
 			}

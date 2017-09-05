@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 // Material design.
-import { MdCardModule, MdToolbarModule, MdButtonModule, MdIconModule, MdProgressBarModule, MdDialogModule, MdMenuModule, MdCheckboxModule, MdSelectModule, MdChipsModule, MdSidenavModule, MdTooltipModule, MdFormFieldModule, MdInputModule, MdSnackBarModule, MdProgressSpinnerModule } from '@angular/material';
+import { MdCardModule, MdToolbarModule, MdButtonModule, MdIconModule, MdProgressBarModule, MdDialogModule, MdMenuModule, MdCheckboxModule, MdSelectModule, MdChipsModule, MdSidenavModule, MdTooltipModule, MdFormFieldModule, MdInputModule, MdSnackBarModule, MdProgressSpinnerModule, MdSlideToggleModule } from '@angular/material';
 import { AppComponent, SettingsDialog, FeedDialog } from './app.component';
 import { FeedCardComponent, CodeViewerDialog } from './feed-card/feed-card.component';
 import { StripHtmlTagsPipe } from './pipe/strip-html-tags.pipe';
@@ -27,7 +27,8 @@ export const MATERIAL_MODULES = [
 	MdSidenavModule,
 	MdTooltipModule,
 	MdSnackBarModule,
-	MdProgressSpinnerModule
+	MdProgressSpinnerModule,
+	MdSlideToggleModule
 ]
 @NgModule({
 	declarations: [

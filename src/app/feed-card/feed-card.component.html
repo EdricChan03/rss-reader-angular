@@ -3,7 +3,13 @@
 		<md-card-title>{{feed.author}}</md-card-title>
 		<md-card-subtitle>{{feed.pubDate | date:'dd-MM-yyyy'}}</md-card-subtitle>
 		<span fxFlex></span>
-		<button md-icon-button (click)="showCode(feed)"><md-icon>information</md-icon></button>
+		<button md-icon-button [mdMenuTriggerFor]="feedMenu"><md-icon>more_vert</md-icon></button>
+		<md-menu #feedMenu="mdMenu">
+			<button md-menu-item (click)="showCode(feed)"><md-icon>code</md-icon> Show code </button>
+			<button md-menu-item (click)="imageChange()" [disabled]="imageSrc == null">
+				<md-icon>image</md-icon>{{ imageChanged ? 'Show' : 'Hide' }} Images
+			</button>
+		</md-menu>
 	</md-card-header>
 	<img md-card-image *ngIf="hasImage" [src]="imageSrc">
 	<md-card-title>{{feed.title}}</md-card-title>

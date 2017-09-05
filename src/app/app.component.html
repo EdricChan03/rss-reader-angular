@@ -15,7 +15,11 @@
 	<div class="start" *ngIf="isRefreshing">
 		<p>{{refreshStatus}}</p>
 		<md-spinner class="start-indicator"></md-spinner>
-		<button md-button (click)="reload()" color="primary" *ngIf="hasError">Reload</button>
+		<button md-button [mdMenuTriggerFor]="moreMenu" *ngIf="hasError">Options <md-icon>arrow_drop_down</md-icon></button>
+		<md-menu #moreMenu="mdMenu">
+			<button md-menu-item (click)="reload()">Reload</button>
+			<button md-menu-item (click)="refreshFeed(true)">Try Again</button>
+		</md-menu>
 	</div>
 	<app-feed-card *ngFor="let feed of feeds" [feed]="feed"></app-feed-card>
 </md-sidenav-container>
