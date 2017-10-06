@@ -1,34 +1,47 @@
 [
 	{
 		"name": "Android Police",
-		"feedUrl": "http://www.androidpolice.com/feed/"
+		"feedUrl": "http://www.androidpolice.com/feed/",
+		"category": "android"
 	},
 	{
 		"name": "Android Central",
-		"feedUrl": "http://feeds.feedburner.com/androidcentral?format=xml"
+		"feedUrl": "http://feeds.feedburner.com/androidcentral?format=xml",
+		"category": "android"
 	},
 	{
 		"name": "OSX Daily",
-		"feedUrl": "http://feeds.feedburner.com/osxdaily?format=xml"
+		"feedUrl": "http://feeds.feedburner.com/osxdaily?format=xml",
+		"category": "apple"
 	},
 	{
 		"name": "CNN Most Recent",
-		"feedUrl": "http://rss.cnn.com/rss/cnn_latest.rss?format=xml"
+		"feedUrl": "http://rss.cnn.com/rss/cnn_latest.rss?format=xml",
+		"category": "news"
 	},
 	{
 		"name": "Google Blog",
-		"feedUrl": "https://blog.google/rss"
+		"feedUrl": "https://blog.google/rss",
+		"category": "google"
 	},
 	{
 		"name": "Edric's Blog",
-		"feedUrl": "https://chanziyangedric.blogspot.com/atom.xml"
+		"feedUrl": "https://chanziyangedric.blogspot.com/atom.xml",
+		"category": "personal"
 	},
 	{
 		"name": "Github Blog - All Posts",
-		"feedUrl": "https://github.com/blog/all.atom"
+		"feedUrl": "https://github.com/blog/all.atom",
+		"category": "github"
 	},
 	{
 		"name": "Android Studio Blog",
-		"feedUrl": "https://androidstudio.googleblog.com/feeds/posts/default"
+		"feedUrl": "https://androidstudio.googleblog.com/feeds/posts/default",
+		"category": "android"
+	},
+	{
+		"name": "G Suite Updates Blog",
+		"feedUrl": "http://feeds.feedburner.com/GoogleAppsUpdates?format=xml",
+		"category": "google"
 	}
 ]
