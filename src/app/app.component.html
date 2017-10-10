@@ -1,25 +1,41 @@
-<md-sidenav-container fullscreen>
-	<md-progress-bar mode="indeterminate" color="accent" *ngIf="!feeds"></md-progress-bar>
-	<md-toolbar color="primary">
-		RSS Reader
-		<span fxFlex></span>
-		<button md-icon-button (click)="refreshFeed()" mdTooltip="Refresh" [disabled]="isRefreshing"><md-icon>refresh</md-icon></button>
-		<button md-icon-button [mdMenuTriggerFor]="moreMenu" mdTooltip="More options"><md-icon>more_vert</md-icon></button>
-		<md-menu #moreMenu="mdMenu">
-			<button md-menu-item (click)="selectRss()"><md-icon>rss_feed</md-icon> Select RSS</button>
-			<button md-menu-item (click)="settings()"><md-icon>settings</md-icon> Settings</button>
-			<!--<button md-menu-item href=""><md-icon>message_alert</md-icon> Send Feedback</button>-->
-		</md-menu>
-	</md-toolbar>
-	<p *ngIf="getStarted">Select an RSS from the menu icon > select RSS to start.</p>
-	<div class="start" *ngIf="isRefreshing">
-		<p>{{refreshStatus}}</p>
-		<md-spinner class="start-indicator"></md-spinner>
-		<button md-button [mdMenuTriggerFor]="moreMenu" *ngIf="hasError">Options <md-icon>arrow_drop_down</md-icon></button>
-		<md-menu #moreMenu="mdMenu">
-			<button md-menu-item (click)="reload()">Reload</button>
-			<button md-menu-item (click)="refreshFeed(true)">Try Again</button>
-		</md-menu>
-	</div>
-	<app-feed-card *ngFor="let feed of feeds" [feed]="feed"></app-feed-card>
-</md-sidenav-container>
+<mat-progress-bar mode="indeterminate" color="accent" *ngIf="!feeds"></mat-progress-bar>
+<mat-toolbar color="primary">
+	RSS Reader
+	<span fxFlex></span>
+	<button mat-icon-button [matMenuTriggerFor]="moreMenu" matTooltip="More options">
+		<mat-icon>more_vert</mat-icon>
+	</button>
+	<mat-menu #moreMenu="matMenu">
+		<button mat-menu-item [matMenuTriggerFor]="reloadMenu">
+			<mat-icon>refresh</mat-icon> Reload options</button>
+		<button mat-menu-item (click)="selectRss()">
+			<mat-icon>rss_feed</mat-icon> Select RSS</button>
+		<button mat-menu-item (click)="settings()">
+			<mat-icon>settings</mat-icon> Settings</button>
+	</mat-menu>
+	<mat-menu #reloadMenu="matMenu">
+		<button mat-menu-item (click)="refreshFeed()" [disabled]="isRefreshing">
+			<mat-icon>sync</mat-icon> Refresh feed
+		</button>
+		<button mat-menu-item (click)="reload()">
+			<mat-icon>refresh</mat-icon> Reload
+		</button>
+	</mat-menu>
+</mat-toolbar>
+<p *ngIf="getStarted">Select an RSS from the menu icon > select RSS to start.</p>
+<div class="start" *ngIf="isRefreshing">
+	<p>{{refreshStatus}}</p>
+	<mat-spinner class="start-indicator"></mat-spinner>
+	<button mat-button [matMenuTriggerFor]="moreMenu" *ngIf="hasError">Options
+		<mat-icon>arrow_drop_down</mat-icon>
+	</button>
+	<mat-menu #moreMenu="matMenu">
+		<button mat-menu-item (click)="reload()">
+			<mat-icon>refresh</mat-icon>Reload page</button>
+		<button mat-menu-item (click)="refreshFeed(true)">
+			<mat-icon>sync</mat-icon>Refresh feed</button>
+		<button mat-menu-item (click)="selectRss()">
+			<mat-icon>rss_feed</mat-icon> Reselect RSS</button>
+	</mat-menu>
+</div>
+<app-feed-card *ngFor="let feed of feeds" [feed]="feed"></app-feed-card>
