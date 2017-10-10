@@ -1,35 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import 'assets/md-font/material-icons.css';
 
 /* Select Angular Material theming. */
+
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import '~highlight.js/styles/solarized-light.css';
+.mat-button,
+.mat-raised-button,
+.mat-simple-snackbar-action {
+    text-transform: uppercase;
+}
 
-[md-button], [md-raised-button] {
-	text-transform: uppercase;
-}
 body {
-	font-family: Roboto, Helevetica, sans-serif;
+    font-family: Roboto, Helevetica, sans-serif;
 }
-pre.hljs, code.hljs {
-	white-space: pre-wrap;
+
+pre.hljs,
+code.hljs {
+    white-space: pre-wrap;
 }
+
 .form-field {
-	width: 100% !important;
+    width: 100% !important;
 }
-.refreshing > div {
+
+.refreshing>div {
     position: fixed;
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
-	justify-content: center;
+    transform: translate(-50%, -50%);
+    justify-content: center;
 }
+
+
 /* Extracted from market2 */
-.start-indicator {
+
+
+/* .start-indicator {
 	width: 22px !important;
 	height: 22px !important;
+} */
+
+mat-spinner.start-indicator svg, mat-spinner.start-indicator {
+    width: 22px !important;
+    height: 22px !important;
 }
+
 .start {
     position: absolute;
     top: 0;
@@ -45,5 +63,31 @@ pre.hljs, code.hljs {
     align-items: center;
     -webkit-justify-content: center;
     justify-content: center;
-	text-align: center;
+    text-align: center;
 }
+.checkbox {
+	margin: 6px;
+}
+.custom-snackbar {
+	display: flex;
+	justify-content: space-between;
+	line-height: 20px;
+}
+.custom-snackbar-action {
+	flex-shrink: 0;
+	margin-left: 48px;
+}
+/* Styles adapted from angular.io */
+body::-webkit-scrollbar-thumb {
+	background-color: #6e6e6e;
+	outline: 1px solid #333;
+}
+body::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+}
+body::-webkit-scrollbar {
+	height: 6px;
+	width: 6px;
+}
+/* End styles */
