@@ -1,34 +1,24 @@
+import { MaterialModule } from './material.module';
+import { OrderByPipe } from './orderby.pipe';
 import { TruncatePipe } from './pipe/truncate.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-// Material design.
-import { MdCardModule, MdToolbarModule, MdButtonModule, MdIconModule, MdProgressBarModule, MdDialogModule, MdMenuModule, MdCheckboxModule, MdSelectModule, MdChipsModule, MdSidenavModule, MdTooltipModule, MdFormFieldModule, MdInputModule, MdSnackBarModule, MdProgressSpinnerModule, MdSlideToggleModule } from '@angular/material';
 import { AppComponent, SettingsDialog, FeedDialog } from './app.component';
 import { FeedCardComponent, CodeViewerDialog } from './feed-card/feed-card.component';
 import { StripHtmlTagsPipe } from './pipe/strip-html-tags.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AboutDialog, AlertDialog, ConfirmDialog, PromptDialog, SelectionDialog, Shared, CustomSnackBar } from './shared';
 import 'hammerjs';
-export const MATERIAL_MODULES = [
-	MdCardModule,
-	MdToolbarModule,
-	MdButtonModule,
-	MdIconModule,
-	MdProgressBarModule,
-	MdDialogModule,
-	MdMenuModule,
-	MdCheckboxModule,
-	MdFormFieldModule,
-	MdInputModule,
-	MdSelectModule,
-	MdChipsModule,
-	MdSidenavModule,
-	MdTooltipModule,
-	MdSnackBarModule,
-	MdProgressSpinnerModule,
-	MdSlideToggleModule
+
+const SHARED_DIALOGS = [
+	AboutDialog,
+	AlertDialog,
+	ConfirmDialog,
+	PromptDialog,
+	SelectionDialog
 ]
 @NgModule({
 	declarations: [
@@ -38,7 +28,10 @@ export const MATERIAL_MODULES = [
 		TruncatePipe,
 		SettingsDialog,
 		FeedDialog,
-		CodeViewerDialog
+		CodeViewerDialog,
+		OrderByPipe,
+		SHARED_DIALOGS,
+		CustomSnackBar
 	],
 	imports: [
 		BrowserModule,
@@ -47,13 +40,18 @@ export const MATERIAL_MODULES = [
 		FormsModule,
 		FlexLayoutModule,
 		HttpModule,
-		MATERIAL_MODULES
+		MaterialModule
 	],
 	bootstrap: [AppComponent],
+	providers: [
+		Shared
+	],
 	entryComponents: [
 		SettingsDialog,
 		FeedDialog,
-		CodeViewerDialog
+		CodeViewerDialog,
+		SHARED_DIALOGS,
+		CustomSnackBar
 	]
 })
 export class AppModule {
