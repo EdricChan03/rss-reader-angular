@@ -1,5 +1,5 @@
 import { MaterialModule } from './material.module';
-import { OrderByPipe } from './orderby.pipe';
+import { OrderByPipe } from './pipe/orderby.pipe';
 import { TruncatePipe } from './pipe/truncate.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
