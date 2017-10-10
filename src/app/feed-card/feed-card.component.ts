@@ -1,5 +1,5 @@
 import { Settings } from './../app.component';
-import { MdDialogRef, MdDialog, MdSlideToggleChange } from '@angular/material';
+import { MatDialogRef, MatDialog, MatSlideToggleChange } from '@angular/material';
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import * as hljs from 'highlight.js';
 
@@ -14,17 +14,23 @@ export class FeedCardComponent implements OnInit {
 	imageSrc: string;
 	target: string;
 	imageChanged: boolean = false;
+	settings: Settings;
 	@Input() feed: any;
-	constructor(private dialog: MdDialog) { }
+	constructor(private dialog: MatDialog) { }
+	/**
+	 * Shows how the object is structured in a dialog
+	 * @param {any} feed The feed for the code view
+	 */
 	showCode(feed) {
 		let dialogRef = this.dialog.open(CodeViewerDialog);
 		dialogRef.componentInstance.feed = feed;
 	}
-	/*
-		Solution from here:
-		https://stackoverflow.com/a/22172860/6782707
+	/**
+	 * Encodes an image
+	 * @return {any}
+	 * @desc More info at {@link https://stackoverflow.com/a/22172860/6782707}
 	*/
-	getBase64Image(img: HTMLImageElement) {
+	getBase64Image(img: HTMLImageElement): any {
 		var canvas = document.createElement("canvas");
 		canvas.width = img.width;
 		canvas.height = img.height;
@@ -33,42 +39,77 @@ export class FeedCardComponent implements OnInit {
 		var dataURL = canvas.toDataURL("image/png");
 		return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 	}
+	/**
+	 * Toggles the image changed
+	 */
 	imageChange() {
 		this.imageChanged = !this.imageChanged;
 		this.hasImage = !this.hasImage;
 	}
+	/**
+	 * Replaces the image
+	 * @param {boolean} isThumbnail Whether the image is in the thumbnail of `enclosure` object
+	 */
+	replaceImg(isThumbnail?: boolean) {
+		this.hasImage = true;
+		if (isThumbnail) {
+			if (this.feed.enclosure.thumbnail.indexOf("https://www.blog.googlehttps//") != -1) {
+				console.log("TEE");
+				let temp = this.feed.enclosure.thumbnail.replace("https://www.blog.googlehttps//", "https://");
+				this.imageSrc = encodeURI(temp);
+			} else {
+				this.imageSrc = encodeURI(this.feed.enclosure.thumbnail);
+			}
+		} else {
+			// Resolve issue with images where the RSS of the Google Blog is a bit broken
+			if (this.feed.enclosure.link.indexOf("https://www.blog.googlehttps//") != -1) {
+				console.log("TEE");
+				let temp = this.feed.enclosure.link.replace("https://www.blog.googlehttps//", "https://");
+				this.imageSrc = encodeURI(temp);
+			} else {
+				this.imageSrc = encodeURI(this.feed.enclosure.link);
+			}
+		}
+	}
+	/**
+	 * Initialisation
+	 */
 	ngOnInit() {
-		if (this.feed.enclosure && this.feed.enclosure.length == undefined) {
-			for (var i = 0; i < this.imageExts.length; i++) {
-				if (this.feed.enclosure.link.indexOf(this.imageExts[i]) != -1) {
-					this.hasImage = true;
-					this.imageSrc = encodeURI(this.feed.enclosure.link);
-				}
-			}
-		}
+		console.log(this.feed);
 		if (window.localStorage.getItem("settings")) {
-			let settings = <Settings> JSON.stringify(window.localStorage.getItem("settings"));
-			if (settings.openNewTab) {
-				this.target = settings.openNewTab ? '_blank' : '_self';
+			this.settings = <Settings>JSON.parse(window.localStorage.getItem("settings"));
+			if (this.settings.openNewTab) {
+				this.target = this.settings.openNewTab ? '_blank' : '_self';
 			}
 		}
+		console.log(this.settings.showImages);
+		if (this.feed.enclosure && this.feed.enclosure.length == undefined && this.settings.showImages) {
+			if (this.feed.enclosure.link) {
+				console.log(true);
+				this.replaceImg(false);
+			} else if (this.feed.enclosure.thumbnail) {
+				console.log(false);
+				this.replaceImg(true);
+			}
+		}
+		console.log(this.imageSrc);
 	}
 }
 
 @Component({
 	selector: 'code-dialog',
-	template: `<h2 md-dialog-title>Code View</h2>
-			   <md-dialog-content>
+	template: `<h2 matDialogTitle>Code View</h2>
+			   <mat-dialog-content>
 			  		<pre><code id="code" class="json">{{feed | json }}</code></pre>
-				</md-dialog-content>
-				<md-dialog-actions align="end">
-					<button md-button color="primary" md-dialog-close>Close</button>
-				</md-dialog-actions>
+				</mat-dialog-content>
+				<mat-dialog-actions align="end">
+					<button mat-button color="primary" matDialogClose>Close</button>
+				</mat-dialog-actions>
 			   `
 })
 export class CodeViewerDialog implements AfterViewInit {
 	feed: any;
-	constructor(public dialogRef: MdDialogRef<CodeViewerDialog>) { }
+	constructor(public dialogRef: MatDialogRef<CodeViewerDialog>) { }
 	ngAfterViewInit() {
 		hljs.highlightBlock(document.getElementById('code'));
 	}
