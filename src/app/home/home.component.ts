@@ -147,12 +147,6 @@ export class HomeComponent implements OnInit {
 		})
 	}
 	/**
-	 * Opens the settings dialog
-	 */
-	settings() {
-		this.dialog.open(SettingsDialog);
-	}
-	/**
 	 * Opens the dialog to select an RSS feed
 	 */
 	selectRss() {

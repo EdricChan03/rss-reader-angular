@@ -36,7 +36,6 @@ const SHARED_DIALOGS = [
 ]
 const DIALOGS = [
 	SHARED_DIALOGS,
-	SettingsDialog,
 	FeedDialog,
 	CodeViewerDialog,
 	ShareDialog,

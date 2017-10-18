@@ -29,40 +29,6 @@ export class AppComponent {
 }
 
 @Component({
-	selector: 'settings-dialog',
-	templateUrl: './settings.dialog.html'
-})
-export class SettingsDialog implements OnInit {
-	settings: Settings;
-	constructor(private dialogRef: MatDialogRef<SettingsDialog>, private shared: Shared) { }
-	/**
-	 * Saves the settings
-	 */
-	save() {
-		window.localStorage.setItem('settings', JSON.stringify(this.settings));
-		this.dialogRef.close();
-		let snackBarRef = this.shared.openSnackBarWithRef({ msg: "Applying settings...", action: "Don't reload", additionalOpts: { duration: 4000, horizontalPosition: "start" } });
-		let refreshTimeout = setTimeout(() => {
-			window.location.reload(true);
-		}, 4000)
-		snackBarRef.onAction().subscribe(_ => {
-			clearTimeout(refreshTimeout);
-		})
-	}
-	ngOnInit() {
-		if (window.localStorage.getItem('settings')) {
-			this.settings = JSON.parse(window.localStorage.getItem('settings'));
-		} else {
-			this.settings = {
-				multipleRss: false,
-				openNewTab: true,
-				showImages: true
-			}
-		}
-	}
-}
-
-@Component({
 	selector: 'feed-opts-dialog',
 	templateUrl: './feed.dialog.html'
 })
