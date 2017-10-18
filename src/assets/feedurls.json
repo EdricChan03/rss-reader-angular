@@ -1,47 +1,83 @@
 [
 	{
-		"name": "Android Police",
-		"feedUrl": "http://www.androidpolice.com/feed/",
-		"category": "android"
+		"name": "Android",
+		"id": "android",
+		"channels": [
+			{
+				"name": "Android Police",
+				"feedUrl": "http://www.androidpolice.com/feed/",
+				"description": "News from Android Police..."
+			},
+			{
+				"name": "Android Central",
+				"feedUrl": "http://feeds.feedburner.com/androidcentral?format=xml",
+				"description": "Why is a description required here??"
+			},
+			{
+				"name": "Android Studio Blog",
+				"feedUrl": "https://androidstudio.googleblog.com/feeds/posts/default",
+				"description": "The official Android Studio blog. Should be classified under a different category, but..."
+			}
+		]
 	},
 	{
-		"name": "Android Central",
-		"feedUrl": "http://feeds.feedburner.com/androidcentral?format=xml",
-		"category": "android"
+		"name": "Apple",
+		"id": "apple",
+		"channels": [
+			{
+				"name": "OSX Daily",
+				"feedUrl": "http://feeds.feedburner.com/osxdaily?format=xml",
+				"description": "Daily news for OSX (probably should be named macOS...)"
+			}
+		]
 	},
 	{
-		"name": "OSX Daily",
-		"feedUrl": "http://feeds.feedburner.com/osxdaily?format=xml",
-		"category": "apple"
+		"name": "Google",
+		"id": "google",
+		"channels": [
+			{
+				"name": "Google Blog",
+				"feedUrl": "https://blog.google/rss",
+				"description": "The official Google Blog."
+			},
+			{
+				"name": "G Suite Updates Blog",
+				"feedUrl": "http://feeds.feedburner.com/GoogleAppsUpdates?format=xml",
+				"description": "The latest updates for G Suite."
+			}
+		]
 	},
 	{
-		"name": "CNN Most Recent",
-		"feedUrl": "http://rss.cnn.com/rss/cnn_latest.rss?format=xml",
-		"category": "news"
+		"name": "Github",
+		"id": "github",
+		"channels": [
+			{
+				"name": "Github Blog - All Posts",
+				"feedUrl": "https://github.com/blog/all.atom",
+				"description": "All posts on Github Blog."
+			}
+		]
 	},
 	{
-		"name": "Google Blog",
-		"feedUrl": "https://blog.google/rss",
-		"category": "google"
+		"name": "News",
+		"id": "news",
+		"channels": [
+			{
+				"name": "CNN Most Recent",
+				"feedUrl": "http://rss.cnn.com/rss/cnn_latest.rss?format=xml",
+				"description": "Recently published articles on CNN."
+			}
+		]
 	},
 	{
-		"name": "Edric's Blog",
-		"feedUrl": "https://chanziyangedric.blogspot.com/atom.xml",
-		"category": "personal"
-	},
-	{
-		"name": "Github Blog - All Posts",
-		"feedUrl": "https://github.com/blog/all.atom",
-		"category": "github"
-	},
-	{
-		"name": "Android Studio Blog",
-		"feedUrl": "https://androidstudio.googleblog.com/feeds/posts/default",
-		"category": "android"
-	},
-	{
-		"name": "G Suite Updates Blog",
-		"feedUrl": "http://feeds.feedburner.com/GoogleAppsUpdates?format=xml",
-		"category": "google"
+		"name": "Personal",
+		"id": "personal",
+		"channels": [
+			{
+				"name": "Edric's Blog",
+				"feedUrl": "https://chanziyangedric.blogspot.com/atom.xml",
+				"description": "The author's blog. (self-promotion XD)"
+			}
+		]
 	}
 ]
