@@ -1,6 +1,11 @@
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { TestpageComponent } from './testpage/testpage.component';
+import { OptionsDialog } from './dialogs/options-dialog/options.dialog';
+import { SettingsComponent } from './settings/settings.component';
+import { HomeComponent } from './home/home.component';
+import { AppRouting } from './app.routing';
+import { ShareDialog } from './dialogs/index';
 import { MaterialModule } from './material.module';
-import { OrderByPipe } from './pipe/orderby.pipe';
-import { TruncatePipe } from './pipe/truncate.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,30 +13,50 @@ import { HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent, SettingsDialog, FeedDialog } from './app.component';
 import { FeedCardComponent, CodeViewerDialog } from './feed-card/feed-card.component';
-import { StripHtmlTagsPipe } from './pipe/strip-html-tags.pipe';
+import {
+	StripHtmlTagsPipe,
+	TruncatePipe,
+	OrderByPipe
+} from './pipe/index';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AboutDialog, AlertDialog, ConfirmDialog, PromptDialog, SelectionDialog, Shared, CustomSnackBar } from './shared';
+import {
+	AlertDialog,
+	ConfirmDialog,
+	PromptDialog,
+	SelectionDialog,
+	Shared
+} from './shared';
 import 'hammerjs';
 
 const SHARED_DIALOGS = [
-	AboutDialog,
 	AlertDialog,
 	ConfirmDialog,
 	PromptDialog,
 	SelectionDialog
 ]
+const DIALOGS = [
+	SHARED_DIALOGS,
+	SettingsDialog,
+	FeedDialog,
+	CodeViewerDialog,
+	ShareDialog,
+	OptionsDialog
+]
+const PIPES = [
+	StripHtmlTagsPipe,
+	TruncatePipe,
+	OrderByPipe
+]
 @NgModule({
 	declarations: [
 		AppComponent,
 		FeedCardComponent,
-		StripHtmlTagsPipe,
-		TruncatePipe,
-		SettingsDialog,
-		FeedDialog,
-		CodeViewerDialog,
-		OrderByPipe,
-		SHARED_DIALOGS,
-		CustomSnackBar
+		DIALOGS,
+		PIPES,
+		HomeComponent,
+		SettingsComponent,
+		TestpageComponent,
+		PageNotFoundComponent
 	],
 	imports: [
 		BrowserModule,
@@ -40,18 +65,15 @@ const SHARED_DIALOGS = [
 		FormsModule,
 		FlexLayoutModule,
 		HttpModule,
-		MaterialModule
+		MaterialModule,
+		AppRouting
 	],
 	bootstrap: [AppComponent],
 	providers: [
 		Shared
 	],
 	entryComponents: [
-		SettingsDialog,
-		FeedDialog,
-		CodeViewerDialog,
-		SHARED_DIALOGS,
-		CustomSnackBar
+		DIALOGS
 	]
 })
 export class AppModule {
