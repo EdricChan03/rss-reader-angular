@@ -1,4 +1,4 @@
-<h3 matDialogTitle>{{promptConfig.title ? promptConfig.title : 'Prompt'}}</h3>
+<h2 matDialogTitle>{{promptConfig.title ? promptConfig.title : 'Prompt'}}</h2>
 <mat-dialog-content fxLayout="column" class="mat-typography">
 	<p class="mat-body" *ngIf="!promptConfig.isHtml">{{promptConfig.msg}}</p>
 	<span *ngIf="promptConfig.isHtml" [innerHTML]="promptConfig.msg"></span>
