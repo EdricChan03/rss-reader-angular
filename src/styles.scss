@@ -21,10 +21,6 @@ code.hljs {
     white-space: pre-wrap;
 }
 
-.form-field {
-    width: 100% !important;
-}
-
 .refreshing>div {
     position: fixed;
     top: 50%;
@@ -77,16 +73,79 @@ mat-spinner.start-indicator svg, mat-spinner.start-indicator {
 	flex-shrink: 0;
 	margin-left: 48px;
 }
+.app-sidenav {
+	width: 220px;
+}
+.active-link {
+    color: #3F51B5 !important;
+    background-color: #e8e8e8;
+}
+.selection-dialog>mat-dialog-container>selection-dialog>mat-dialog-content {
+    padding: 0;
+}
+.text-center {
+	text-align: center;
+}
+.page-not-found-container {
+	padding: 4px;
+}
+.settings-container {
+	margin: 5%;
+}
+// Excerpt from snackbar demo on material2's demoapp
+.party {
+    animation: party 5000ms infinite;
+}
+
+@keyframes party {
+    0% {
+        background-color: #00f;
+    }
+    10% {
+        background-color: #8e44ad;
+    }
+    20% {
+        background-color: #1abc9c;
+    }
+    30% {
+        background-color: #d35400;
+    }
+    40% {
+        background-color: #00f;
+    }
+    50% {
+        background-color: #34495e;
+    }
+    60% {
+        background-color: #00f;
+    }
+    70% {
+        background-color: #2980b9;
+    }
+    80% {
+        background-color: #f1c40f;
+    }
+    90% {
+        background-color: #2980b9;
+    }
+    100% {
+        background-color: #0ff;
+    }
+}
+
+.red {
+    background-color: red;
+}
 /* Styles adapted from angular.io */
-body::-webkit-scrollbar-thumb {
+mat-sidenav-content::-webkit-scrollbar-thumb {
 	background-color: #6e6e6e;
 	outline: 1px solid #333;
 }
-body::-webkit-scrollbar-track {
+mat-sidenav-content::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 }
-body::-webkit-scrollbar {
+mat-sidenav-content::-webkit-scrollbar {
 	height: 6px;
 	width: 6px;
 }
