@@ -1,3 +1,4 @@
+import { DomSanitizer } from '@angular/platform-browser';
 import { Shared } from './shared';
 import { OrderByPipe } from './pipe/orderby.pipe';
 import { Http } from '@angular/http';
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 	templateUrl: './app.component.html'
 })
 export class AppComponent {
-	constructor(private shared: Shared){}
+	constructor(private shared: Shared, private dom: DomSanitizer){}
 	links = [
 		{
 			name: "Home",
@@ -27,12 +28,17 @@ export class AppComponent {
 		}
 	]
 	aboutThisApp() {
-		let dialogRef = this.shared.openConfirmDialog({msg: "Made by Edric.\nOriginally from BeCompany's RSS Reader.", cancel: "Visit Source Code", ok: "Close"});
-		dialogRef.afterClosed().subscribe(result => {
-			if (result == 'cancel') {
-				window.open("https://github.com/Chan4077/angular-rss-reader");
-			}
-		})
+		let aboutMsg = `
+		<div style="margin-bottom: 4px">
+		<h3 style="margin: 0">RSS Reader</h3>
+		<strong><small>Version 1.2.2</small></strong>
+		</div>
+		<p>This RSS reader app is made by Edric which is based on a fork of the original source code by BeCompany.</p>
+		<p>The forked repository is available <a href="https://github.com/becompany/angular2-rss-reader-tutorial" target="_blank">here</a> and my version is available <a href="https://github.com/Chan4077/angular-rss-reader" target="_blank">here</a>.</p>
+		<p>Hosted on Github Pages. For more info about Github Pages, visit <a href="https://pages.github.io">here</a>.</p>
+		<a href="https://github.com/Chan4077" title="Follow me on Github!" target="_blank"><img src="https://img.shields.io/github/followers/Chan4077.svg?style=social&label=Chan4077" alt="Github social badge"></a>
+		<a href="https://twitter.com/EdricChan03" title="Follow me on Twitter!" target="_blank"><img src="https://img.shields.io/twitter/follow/EdricChan03.svg?style=social&label=EdricChan03" alt="Twitter social badge"></a>`;
+		this.shared.openAlertDialog({title: "About this app", msg: this.dom.bypassSecurityTrustHtml(aboutMsg), isHtml: true});
 	}
 }
 
