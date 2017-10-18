@@ -1,0 +1,44 @@
+<mat-toolbar class="mat-elevation-z3 home-toolbar">
+	Actions
+	<span fxFlex></span>
+	<button mat-icon-button (click)="options()" matTooltip="Options">
+		<mat-icon>tune</mat-icon>
+	</button>
+	<button mat-icon-button [matMenuTriggerFor]="reloadMenu" matTooltip="Reload options" *ngIf="isSmallScreen">
+		<mat-icon>refresh</mat-icon>
+	</button>
+	<button mat-icon-button [matMenuTriggerFor]="moreMenu" matTooltip="More options">
+		<mat-icon>more_vert</mat-icon>
+	</button>
+	<mat-menu #moreMenu="matMenu">
+		<button mat-menu-item [matMenuTriggerFor]="reloadMenu" *ngIf="!isSmallScreen">
+			<mat-icon>refresh</mat-icon> Reload...</button>
+		<button mat-menu-item (click)="selectRss()">
+			<mat-icon>rss_feed</mat-icon> Select RSS</button>
+	</mat-menu>
+	<mat-menu #reloadMenu="matMenu">
+		<button mat-menu-item (click)="refreshFeed()" [disabled]="isRefreshing">
+			<mat-icon>sync</mat-icon> Refresh feed
+		</button>
+		<button mat-menu-item (click)="reload()">
+			<mat-icon>refresh</mat-icon> Reload
+		</button>
+	</mat-menu>
+</mat-toolbar>
+<p *ngIf="getStarted">Select an RSS from the menu icon > select RSS to start.</p>
+<div class="start" *ngIf="isRefreshing">
+	<p>{{refreshStatus}}</p>
+	<mat-spinner class="start-indicator"></mat-spinner>
+	<button mat-button [matMenuTriggerFor]="moreMenu" *ngIf="hasError">Options
+		<mat-icon>arrow_drop_down</mat-icon>
+	</button>
+	<mat-menu #moreMenu="matMenu">
+		<button mat-menu-item (click)="reload()">
+			<mat-icon>refresh</mat-icon>Reload page</button>
+		<button mat-menu-item (click)="refreshFeed(true)">
+			<mat-icon>sync</mat-icon>Refresh feed</button>
+		<button mat-menu-item (click)="selectRss()">
+			<mat-icon>rss_feed</mat-icon> Reselect RSS</button>
+	</mat-menu>
+</div>
+<app-feed-card *ngFor="let feed of feeds" [feed]="feed"></app-feed-card>
