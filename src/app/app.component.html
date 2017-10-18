@@ -1,41 +1,31 @@
-<mat-progress-bar mode="indeterminate" color="accent" *ngIf="!feeds"></mat-progress-bar>
-<mat-toolbar color="primary">
-	RSS Reader
-	<span fxFlex></span>
-	<button mat-icon-button [matMenuTriggerFor]="moreMenu" matTooltip="More options">
-		<mat-icon>more_vert</mat-icon>
-	</button>
-	<mat-menu #moreMenu="matMenu">
-		<button mat-menu-item [matMenuTriggerFor]="reloadMenu">
-			<mat-icon>refresh</mat-icon> Reload options</button>
-		<button mat-menu-item (click)="selectRss()">
-			<mat-icon>rss_feed</mat-icon> Select RSS</button>
-		<button mat-menu-item (click)="settings()">
-			<mat-icon>settings</mat-icon> Settings</button>
-	</mat-menu>
-	<mat-menu #reloadMenu="matMenu">
-		<button mat-menu-item (click)="refreshFeed()" [disabled]="isRefreshing">
-			<mat-icon>sync</mat-icon> Refresh feed
-		</button>
-		<button mat-menu-item (click)="reload()">
-			<mat-icon>refresh</mat-icon> Reload
-		</button>
-	</mat-menu>
-</mat-toolbar>
-<p *ngIf="getStarted">Select an RSS from the menu icon > select RSS to start.</p>
-<div class="start" *ngIf="isRefreshing">
-	<p>{{refreshStatus}}</p>
-	<mat-spinner class="start-indicator"></mat-spinner>
-	<button mat-button [matMenuTriggerFor]="moreMenu" *ngIf="hasError">Options
-		<mat-icon>arrow_drop_down</mat-icon>
-	</button>
-	<mat-menu #moreMenu="matMenu">
-		<button mat-menu-item (click)="reload()">
-			<mat-icon>refresh</mat-icon>Reload page</button>
-		<button mat-menu-item (click)="refreshFeed(true)">
-			<mat-icon>sync</mat-icon>Refresh feed</button>
-		<button mat-menu-item (click)="selectRss()">
-			<mat-icon>rss_feed</mat-icon> Reselect RSS</button>
-	</mat-menu>
-</div>
-<app-feed-card *ngFor="let feed of feeds" [feed]="feed"></app-feed-card>
+<mat-sidenav-container fullscreen>
+	<mat-sidenav #left class="app-sidenav">
+		<mat-nav-list>
+			<a mat-list-item [routerLink]="['/', link.url]" routerLinkActive="active-link" *ngFor="let link of links" (click)="left.close()">
+				<mat-icon matListIcon>{{link.icon}}</mat-icon>
+				<p matLine>{{link.name}}</p>
+			</a>
+			<h3 matSubheader>Other</h3>
+		</mat-nav-list>
+	</mat-sidenav>
+	<mat-sidenav-content>
+		<mat-toolbar color="primary" class="mat-elevation-z3">
+			<button mat-icon-button (click)="left.toggle()">
+				<mat-icon>menu</mat-icon>
+			</button>
+			RSS Reader
+			<span fxFlex></span>
+			<button mat-icon-button [matMenuTriggerFor]="aboutMenu" matTooltip="About...">
+				<mat-icon>info</mat-icon>
+			</button>
+			<mat-menu #aboutMenu="matMenu">
+				<button mat-menu-item (click)="aboutThisApp()">
+					<mat-icon>info</mat-icon>About this app</button>
+				<a mat-menu-item href="https://github.com/Chan4077/angular-rss-reader">
+					<mat-icon>code</mat-icon> View source code
+				</a>
+			</mat-menu>
+		</mat-toolbar>
+		<router-outlet></router-outlet>
+	</mat-sidenav-content>
+</mat-sidenav-container>
