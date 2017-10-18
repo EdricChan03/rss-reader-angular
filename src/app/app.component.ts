@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 	templateUrl: './app.component.html'
 })
 export class AppComponent {
+	constructor(private shared: Shared){}
 	links = [
 		{
 			name: "Home",
@@ -25,6 +26,14 @@ export class AppComponent {
 			icon: "settings"
 		}
 	]
+	aboutThisApp() {
+		let dialogRef = this.shared.openConfirmDialog({msg: "Made by Edric.\nOriginally from BeCompany's RSS Reader.", cancel: "Visit Source Code", ok: "Close"});
+		dialogRef.afterClosed().subscribe(result => {
+			if (result == 'cancel') {
+				window.open("https://github.com/Chan4077/angular-rss-reader");
+			}
+		})
+	}
 }
 
 @Component({
