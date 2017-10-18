@@ -1,5 +1,5 @@
 import { OptionsDialog } from './../dialogs/index';
-import { SettingsDialog, FeedDialog, Settings } from './../app.component';
+import { FeedDialog, Settings } from './../app.component';
 import { Router } from '@angular/router';
 import { Shared } from './../shared';
 import { Http } from '@angular/http';
