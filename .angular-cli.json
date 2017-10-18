@@ -28,8 +28,6 @@
 			}
 		}
 	],
-	"addons": [],
-	"packages": [],
 	"e2e": {
 		"protractor": {
 			"config": "./protractor.conf.js"
@@ -56,6 +54,9 @@
 		"component": {
 			"inlineStyle": true,
 			"spec": false
+		},
+		"build": {
+			"showCircularDependencies": false
 		}
 	}
 }
