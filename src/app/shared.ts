@@ -9,28 +9,28 @@ import { Title, SafeHtml } from '@angular/platform-browser';
 @Injectable()
 export class Shared {
 	private currentUser: string;
-	constructor(private snackbar: MatSnackBar, private dialog: MatDialog, private title: Title) { }
+	constructor(private snackBar: MatSnackBar, private dialog: MatDialog, private title: Title) { }
 	/**
-	 * Opens a snackbar with the specified params and no return
-	 * @param {SnackBarConfig} opts The options of the snackbar
+	 * Opens a snackBar with the specified params and no return
+	 * @param {SnackBarConfig} opts The options of the snackBar
 	 */
 	public openSnackBar(opts: SnackBarConfig) {
 		this.handleSnackBar(opts);
 	}
 	/**
-	 * Opens a snackbar with the specified params and a return of the snackbar's ref (for component)
-	 * @param {SnackBarConfig} opts The options of the snackbar
+	 * Opens a snackBar with the specified params and a return of the snackBar's ref (for component)
+	 * @param {SnackBarConfig} opts The options of the snackBar
 	 * @returns {MatSnackBarRef<any>}
 	 */
 	public openSnackBarComponent(opts: SnackBarConfig): MatSnackBarRef<any> {
 		return this.handleSnackBarWithComponent(opts);
 	}
 	/**
-	 * Opens a snackbar with the specified params and a return of the snackbar's ref (not for component)
-	 * @param {SnackBarConfig} opts The options of the snackbar
+	 * Opens a snackBar with the specified params and a return of the snackBar's ref (not for component)
+	 * @param {SnackBarConfig} opts The options of the snackBar
 	 * @returns {MatSnackBar<SimpleSnackBar>}
 	 */
-	public openSnackBarWithRef(opts: SnackBarConfig): MatSnackBarRef<CustomSnackBar|SimpleSnackBar> {
+	public openSnackBarWithRef(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar> {
 		return this.handleSnackBarWithRef(opts);
 	}
 	/**
@@ -39,22 +39,18 @@ export class Shared {
 	 * @private
 	 */
 	private handleSnackBar(opts: SnackBarConfig) {
-		console.log("YEE");
 		if (opts) {
 			if (opts.component) {
 				if (opts.additionalOpts) {
-					this.snackbar.openFromComponent(opts.component, opts.additionalOpts);
+					this.snackBar.openFromComponent(opts.component, opts.additionalOpts);
 				} else {
-					this.snackbar.openFromComponent(opts.component);
+					this.snackBar.openFromComponent(opts.component);
 				}
 			} else {
 				if (opts.action) {
-					let snackBarRef = this.snackbar.openFromComponent(CustomSnackBar);
-					snackBarRef.instance.snackBarConfig = opts;
-					snackBarRef.instance.btnAction = opts.action;
-					snackBarRef.instance.msg = opts.msg;
+					this.snackBar.open(opts.msg, opts.action, opts.additionalOpts);
 				} else {
-					this.snackbar.open(opts.msg, undefined, opts.additionalOpts);
+					this.snackBar.open(opts.msg, undefined, opts.additionalOpts);
 				}
 			}
 		} else {
@@ -62,21 +58,18 @@ export class Shared {
 		}
 	}
 	/**
-	 * Handles a snackbar with a snackbarref if the developer needs a return
-	 * @param {SnackBarConfig} opts The config for the snackbar.
+	 * Handles a snackBar with a snackBarref if the developer needs a return
+	 * @param {SnackBarConfig} opts The config for the snackBar.
 	 * @returns {MatSnackBarRef<SimpleSnackBar>}
 	 * @private
 	 */
-	private handleSnackBarWithRef(opts: SnackBarConfig): MatSnackBarRef<CustomSnackBar|SimpleSnackBar> {
+	private handleSnackBarWithRef(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar> {
 		if (opts) {
 			if (opts.action) {
-				let snackBarRef = this.snackbar.openFromComponent(CustomSnackBar);
-				snackBarRef.instance.snackBarConfig = opts;
-				snackBarRef.instance.btnAction = opts.action;
-				snackBarRef.instance.msg = opts.msg;
+				let snackBarRef = this.snackBar.open(opts.msg, opts.action, opts.additionalOpts);
 				return snackBarRef;
 			} else {
-				let snackBarRef = this.snackbar.open(opts.msg, undefined, opts.additionalOpts);
+				let snackBarRef = this.snackBar.open(opts.msg, undefined, opts.additionalOpts);
 				return snackBarRef;
 			}
 		} else {
@@ -84,17 +77,17 @@ export class Shared {
 		}
 	}
 	/**
-	 * Handles a snackbar with a component
-	 * @param {SnackBarConfig} opts The config for the snackbar
+	 * Handles a snackBar with a component
+	 * @param {SnackBarConfig} opts The config for the snackBar
 	 * @returns {MatSnackbarRef<any>}
 	 */
 	private handleSnackBarWithComponent(opts: SnackBarConfig): MatSnackBarRef<any> {
 		if (opts) {
 			if (opts.additionalOpts) {
 				if (opts.additionalOpts) {
-					return this.snackbar.openFromComponent(opts.component, opts.additionalOpts);
+					return this.snackBar.openFromComponent(opts.component, opts.additionalOpts);
 				} else {
-					return this.snackbar.openFromComponent(opts.component);
+					return this.snackBar.openFromComponent(opts.component);
 				}
 			} else {
 				this.throwError("opts.additionalOpts", "MatSnackBarConfig");
@@ -104,10 +97,10 @@ export class Shared {
 		}
 	}
 	/**
-	 * Closes the current snackbar
+	 * Closes the current snackBar
 	 */
-	public closeSnackbar() {
-		this.snackbar.dismiss();
+	public closeSnackBar() {
+		this.snackBar.dismiss();
 	}
 	/**
 	 * Opens an alert dialog with the specified parameters
@@ -163,20 +156,6 @@ export class Shared {
 			return dialogRef;
 		} else {
 			this.throwError("opts", "SelectionDialogConfig");
-		}
-	}
-	/**
-	 * Opens an about dialog
-	 * @param {AboutDialogConfig} opts The options for the about dialog
-	 * @returns {MatdialogRef<AboutDialog>}
-	 */
-	public openAboutDialog(opts: AboutDialogConfig): MatDialogRef<AboutDialog> {
-		if (opts) {
-			let dialogRef = this.dialog.open(AboutDialog);
-			dialogRef.componentInstance.aboutConfig = opts;
-			return dialogRef;
-		} else {
-			this.throwError("opts", "AboutDialogConfig");
 		}
 	}
 	/**
@@ -315,49 +294,21 @@ export class SelectionDialog implements OnInit, DoCheck {
 		this.dialogRef.close(this.selection.selectedOptions.selected);
 	}
 	ngDoCheck() {
-		console.log(this.selection);
-	}
-}
-@Component({
-	selector: 'about-dialog',
-	templateUrl: './partials/aboutdialog.shared.html'
-})
-export class AboutDialog {
-	constructor(private dialogRef: MatDialogRef<AboutDialog>) { }
-	aboutConfig: AboutDialogConfig;
-
-	close() {
-		this.dialogRef.close();
-	}
-}
-@Component({
-	selector: 'custom-snackbar',
-	templateUrl: './partials/snackbar.shared.html'
-})
-export class CustomSnackBar {
-	constructor(public snackBarRef: MatSnackBarRef<CustomSnackBar>) {
-		snackBarRef.containerInstance.snackBarConfig.extraClasses = ["custom-snackbar"];
-	}
-	snackBarConfig: SnackBarConfig;
-	msg: string;
-	btnAction: string;
-	action() {
-		this.snackBarRef.closeWithAction();
 	}
 }
 export interface SnackBarConfig {
 	/**
-	 * The message for the snackbar
+	 * The message for the snackBar
 	 * @type {string}
 	 */
 	msg: string;
 	/**
-	 * The action for the snackbar
+	 * The action for the snackBar
 	 * @type {string}
 	 */
 	action?: string;
 	/**
-	 * The custom component for the snackbar to open in
+	 * The custom component for the snackBar to open in
 	 * @type {ComponentType<any>}
 	 */
 	component?: ComponentType<any>;
@@ -480,59 +431,4 @@ export interface SelectionDialogOptions {
 	 * @type {boolean}
 	 */
 	selected?: boolean;
-}
-export interface AboutDialogConfig extends DialogConfig {
-	/**
-	 * The app's name
-	 * @type {string}
-	 */
-	appName: string;
-	/**
-	 * The app's icon
-	 * @type {string}
-	 */
-	appImg: string;
-	/**
-	 * The app's image width
-	 * @type {string}
-	 */
-	appImgWidth?: string;
-	/**
-	 * The app's image height
-	 * @type {string}
-	 */
-	appImgHeight?: string;
-	/**
-	 * The app's version
-	 * @type {string|number|any}
-	 */
-	version: string | number | any;
-
-}
-export interface Todo {
-	/**
-	 * The title of the todo
-	 * @type {string}
-	 */
-	title: string;
-	/**
-	 * The content of the todo
-	 * @type {string}
-	 */
-	content: string;
-	/**
-	 * The due date of the todo
-	 * @type {number|any}
-	 */
-	dueDate?: number | any;
-	/**
-	 * The tags of the todo
-	 * @type {string[]}
-	 */
-	tags?: string[];
-	/**
-	 * Whether the todo is done
-	 * @type {boolean}
-	 */
-	isDone?: boolean;
 }
