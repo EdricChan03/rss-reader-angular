@@ -1,0 +1,64 @@
+<div style="padding: 4px">
+	<p class="mat-body">Welcome to the test page! This page is used to test the shared functions.</p>
+	<fieldset fxLayout="column">
+		<legend>Dialog properties</legend>
+		<h4>Dialog type:</h4>
+		<mat-radio-group [(ngModel)]="dialogType" fxLayout="column">
+			<mat-radio-button *ngFor="let type of dialogTypes" [value]="type" style="padding: 1px;">{{type | titlecase}}</mat-radio-button>
+		</mat-radio-group>
+		<mat-form-field>
+			<input matInput [(ngModel)]="title" placeholder="Title of dialog">
+		</mat-form-field>
+		<mat-form-field>
+			<textarea matInput [(ngModel)]="message" placeholder="Message of dialog" rows="3"></textarea>
+			<button mat-icon-button matSuffix (click)="generateLoremIpsum()" matTooltip="Generate lorem ipsum"><mat-icon>cached</mat-icon></button>
+		</mat-form-field>
+		<mat-form-field color="accent">
+			<input matInput [(ngModel)]="okBtn" placeholder="OK button text of dialog">
+		</mat-form-field>
+		<mat-form-field color="accent">
+			<input matInput [(ngModel)]="cancelBtn" placeholder="Cancel button text of dialog">
+		</mat-form-field>
+		<div>
+			<button mat-button (click)="openDialog()" color="primary">Open Dialog</button>
+		</div>
+	</fieldset>
+	<div id="result"></div>
+	<mat-divider></mat-divider>
+	<fieldset fxLayout="column">
+		<legend>Snackbar properties</legend>
+		<mat-form-field>
+			<input matInput type="number" [(ngModel)]="duration" placeholder="Duration of snackbar">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput [(ngModel)]="action" placeholder="Action of snackbar">
+		</mat-form-field>
+		<h3>Vertical Position:</h3>
+		<mat-radio-group [(ngModel)]="verticalPosition" fxLayout="column">
+			<mat-radio-button *ngFor="let opt of verticalPos" [value]="opt">{{opt}}</mat-radio-button>
+		</mat-radio-group>
+		<h3>Horizontal Position:</h3>
+		<mat-radio-group [(ngModel)]="horizontalPosition" fxLayout="column">
+			<mat-radio-button *ngFor="let opt of horizontalPos" [value]="opt">{{opt}}</mat-radio-button>
+		</mat-radio-group>
+		<h3>Extra classes</h3>
+		<mat-form-field>
+			<mat-select [(ngModel)]="extraClass" placeholder="Extra class">
+				<mat-option>None</mat-option>
+				<mat-option value="red">
+					<code>red</code>
+				</mat-option>
+				<mat-option value="party">
+					<code>party</code>
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<div>
+			<button mat-button (click)="closeSnackBar()" color="warn">Close all snackbars</button>
+			<button mat-button (click)="snackBar()">Normal Snackbar</button>
+			<button mat-button (click)="durationSnackBar()">Duration Snackbar</button>
+			<button mat-button (click)="snackBarWithResult()">Snackbar with result</button>
+		</div>
+	</fieldset>
+	<br>
+</div>
