@@ -2,14 +2,13 @@
 	"name": "angular-rss-reader",
 	"version": "1.2.1",
 	"license": "MIT",
-	"angular-cli": {},
 	"scripts": {
 		"start": "ng serve",
 		"lint": "tslint \"src/**/*.ts\"",
 		"test": "ng test",
 		"pree2e": "webdriver-manager update",
 		"e2e": "protractor",
-		"githubPages": "ng build --prod && ngh"
+		"githubPages": "ng build --prod --base-href /angular-rss-reader/ --deploy-url /angular-rss-reader/ && ngh"
 	},
 	"private": true,
 	"dependencies": {
