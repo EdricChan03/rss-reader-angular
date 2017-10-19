@@ -32,7 +32,7 @@
 	<button mat-button [matMenuTriggerFor]="moreMenu" *ngIf="hasError">Options
 		<mat-icon>arrow_drop_down</mat-icon>
 	</button>
-	<mat-menu #moreMenu="matMenu">
+	<mat-menu [overlapTrigger]="false" #moreMenu="matMenu">
 		<button mat-menu-item (click)="reload()">
 			<mat-icon>refresh</mat-icon>Reload page</button>
 		<button mat-menu-item (click)="refreshFeed(true)">
