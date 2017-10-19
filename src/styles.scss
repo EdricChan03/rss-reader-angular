@@ -33,12 +33,6 @@ code.hljs {
 
 /* Extracted from market2 */
 
-
-/* .start-indicator {
-	width: 22px !important;
-	height: 22px !important;
-} */
-
 mat-spinner.start-indicator svg, mat-spinner.start-indicator {
     width: 22px !important;
     height: 22px !important;
@@ -50,7 +44,7 @@ mat-spinner.start-indicator svg, mat-spinner.start-indicator {
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 1;
+    z-index: -1;
     display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: column;
