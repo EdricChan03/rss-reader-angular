@@ -6,12 +6,11 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const APP_ROUTES: Routes = [
-	{ path: '', pathMatch: 'full', redirectTo: 'page-not-found'},
-	{ path: 'page-not-found', component: PageNotFoundComponent },
 	{ path: 'home', component: HomeComponent },
 	{ path: 'settings', component: SettingsComponent },
 	{ path: 'test', component: TestpageComponent },
-	{ path: '**', redirectTo: 'home'}
+	{ path: '', pathMatch: 'full', redirectTo: '/home'},
+	{ path: '**', component: PageNotFoundComponent}
 ];
 
 export const AppRouting: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);
