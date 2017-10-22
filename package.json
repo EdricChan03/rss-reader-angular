@@ -32,11 +32,11 @@
 		"zone.js": "^0.8.18"
 	},
 	"devDependencies": {
-		"@angular/cli": "^1.4.8",
+		"@angular/cli": "^1.4.9",
 		"@angular/compiler-cli": "^4.4.6",
 		"@types/hammerjs": "^2.0.35",
 		"@types/jasmine": "^2.6.0",
-		"@types/node": "^8.0.45",
+		"@types/node": "^8.0.46",
 		"codelyzer": "~3.1.2",
 		"jasmine-core": "~2.7.0",
 		"jasmine-spec-reporter": "~4.2.1",
