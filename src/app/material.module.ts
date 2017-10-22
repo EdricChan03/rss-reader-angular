@@ -1,4 +1,4 @@
-// Material design.
+//#region Material Module imports
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -17,6 +17,11 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+//#endregion
+
+//#region CDK Module imports
+import { A11yModule } from '@angular/cdk/a11y';
+//#endregion
 import { NgModule } from '@angular/core';
 const MATERIAL_MODULES = [
 	MatCardModule,
@@ -38,12 +43,17 @@ const MATERIAL_MODULES = [
 	MatListModule,
 	MatRadioModule
 ];
+const CDK_MODULES = [
+	A11yModule
+];
 @NgModule({
 	imports: [
-		MATERIAL_MODULES
+		MATERIAL_MODULES,
+		CDK_MODULES
 	],
 	exports: [
-		MATERIAL_MODULES
+		MATERIAL_MODULES,
+		CDK_MODULES
 	]
 })
 export class MaterialModule { }
