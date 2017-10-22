@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 	settings: Settings;
+	themes: any;
 	constructor(private shared: Shared) { }
 
 	reset() {
@@ -17,18 +18,23 @@ export class SettingsComponent implements OnInit {
 				let tempSettings: Settings = {
 					multipleRss: false,
 					openNewTab: true,
-					showImages: true
+					showImages: true,
+					theme: "indigo-pink"
 				}
 				window.localStorage.setItem('settings', JSON.stringify(tempSettings));
-				this.shared.openSnackBar({ msg: "Settings were reset", additionalOpts: { duration: 4000, horizontalPosition: 'start' } });
+				this.shared.openSnackBar({ msg: "Settings successfully reset", additionalOpts: { duration: 4000, horizontalPosition: 'start' } });
 			}
 		})
 	}
 	save() {
 		window.localStorage.setItem('settings', JSON.stringify(this.settings));
-		this.shared.openSnackBar({ msg: "Settings were saved", additionalOpts: { duration: 4000, horizontalPosition: 'start' } });
+		let snackBarRef = this.shared.openSnackBarWithRef({ msg: "Settings saved", action: "Reload", additionalOpts: { duration: 4000, horizontalPosition: 'start' } });
+		snackBarRef.onAction().subscribe(_ => {
+			window.location.reload(true);
+		})
 	}
 	ngOnInit() {
+		this.themes = ["indigo-pink","deeppurple-amber","pink-bluegrey","purple-green"];
 		if (window.localStorage.getItem('settings')) {
 			this.settings = <Settings>JSON.parse(window.localStorage.getItem('settings'));
 		}

@@ -1,11 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import '~@angular/material/theming';
 @import 'assets/md-font/material-icons.css';
+@import '~highlight.js/styles/solarized-light.css';
 
 /* Select Angular Material theming. */
 
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
-@import '~highlight.js/styles/solarized-light.css';
+@include mat-core();
+
+@mixin angular-rss-reader-theme($theme) {
+	$foreground: map-get($theme, foreground);
+	$accent: map-get($theme, accent);
+
+	.active-link {
+		color: mat-color($accent) !important;
+		background-color: map-get($foreground, divider);
+	}
+}
+$deeppurple-amber-primary: mat-palette($mat-deep-purple);
+$deeppurple-amber-accent: mat-palette($mat-amber);
+$deeppurple-amber-theme: mat-light-theme($deeppurple-amber-primary, $deeppurple-amber-accent);
+
+$pink-bluegrey-primary: mat-palette($mat-pink);
+$pink-bluegrey-accent: mat-palette($mat-blue-grey);
+$pink-bluegrey-theme: mat-dark-theme($pink-bluegrey-primary, $pink-bluegrey-accent);
+
+$purple-green-primary: mat-palette($mat-purple);
+$purple-green-accent: mat-palette($mat-green);
+$purple-green-theme: mat-dark-theme($purple-green-primary, $purple-green-accent);
+
+$indigo-pink-primary: mat-palette($mat-indigo);
+$indigo-pink-accent: mat-palette($mat-pink);
+$indigo-pink-theme: mat-light-theme($indigo-pink-primary, $indigo-pink-accent);
+.deeppurple-amber {
+	@include angular-material-theme($deeppurple-amber-theme);
+	@include angular-rss-reader-theme($deeppurple-amber-theme);
+}
+
+.pink-bluegrey {
+	@include angular-material-theme($pink-bluegrey-theme);
+	@include angular-rss-reader-theme($pink-bluegrey-theme);
+}
+
+.purple-green {
+	@include angular-material-theme($purple-green-theme);
+	@include angular-rss-reader-theme($purple-green-theme);
+}
+
+.indigo-pink {
+	@include angular-material-theme($indigo-pink-theme);
+	@include angular-rss-reader-theme($indigo-pink-theme);
+}
+
 .mat-button,
 .mat-raised-button,
 .mat-simple-snackbar-action {
@@ -13,8 +58,8 @@
 }
 
 body {
-	margin: 0;
-	height: 100%;
+    margin: 0;
+    height: 100%;
 }
 
 pre.hljs,
@@ -34,7 +79,8 @@ code.hljs {
 
 /* Extracted from market2 */
 
-mat-spinner.start-indicator svg, mat-spinner.start-indicator {
+mat-spinner.start-indicator svg,
+mat-spinner.start-indicator {
     width: 22px !important;
     height: 22px !important;
 }
@@ -56,37 +102,42 @@ mat-spinner.start-indicator svg, mat-spinner.start-indicator {
     justify-content: center;
     text-align: center;
 }
+
 .checkbox {
-	margin: 6px;
+    margin: 6px;
 }
+
 .custom-snackbar {
-	display: flex;
-	justify-content: space-between;
-	line-height: 20px;
+    display: flex;
+    justify-content: space-between;
+    line-height: 20px;
 }
+
 .custom-snackbar-action {
-	flex-shrink: 0;
-	margin-left: 48px;
+    flex-shrink: 0;
+    margin-left: 48px;
 }
+
 .app-sidenav {
-	width: 220px;
+    width: 220px;
 }
-.active-link {
-    color: #3F51B5 !important;
-    background-color: #e8e8e8;
-}
+
 .selection-dialog>mat-dialog-container>selection-dialog>mat-dialog-content {
     padding: 0;
 }
+
 .text-center {
-	text-align: center;
+    text-align: center;
 }
+
 .page-not-found-container {
-	padding: 4px;
+    padding: 4px;
 }
+
 .settings-container {
-	margin: 5%;
+    margin: 5%;
 }
+
 // Excerpt from snackbar demo on material2's demoapp
 .party {
     animation: party 5000ms infinite;
@@ -131,17 +182,24 @@ mat-spinner.start-indicator svg, mat-spinner.start-indicator {
 .red {
     background-color: red;
 }
+
+
 /* Styles adapted from angular.io */
+
 mat-sidenav-content::-webkit-scrollbar-thumb {
-	background-color: #6e6e6e;
-	outline: 1px solid #333;
+    background-color: #6e6e6e;
+    outline: 1px solid #333;
 }
+
 mat-sidenav-content::-webkit-scrollbar-track {
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
 }
+
 mat-sidenav-content::-webkit-scrollbar {
-	height: 6px;
-	width: 6px;
+    height: 6px;
+    width: 6px;
 }
+
+
 /* End styles */

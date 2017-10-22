@@ -9,12 +9,14 @@ import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
+import { OverlayContainer } from '@angular/cdk/overlay';
 @Component({
 	selector: 'rss-reader',
 	templateUrl: './app.component.html'
 })
-export class AppComponent {
-	constructor(private shared: Shared, private dom: DomSanitizer){}
+export class AppComponent implements OnInit {
+	constructor(private shared: Shared, private dom: DomSanitizer, private overlay: OverlayContainer) { }
+	settings: Settings;
 	links = [
 		{
 			name: "Home",
@@ -39,7 +41,24 @@ export class AppComponent {
 		<p>This repository also uses <a href="https://angular.io">Angular</a> and <a href="https://material.angular.io">Angular Material</a> which are ©Google 2017. All rights reserved.</p>
 		<a href="https://github.com/Chan4077" title="Follow me on Github!" target="_blank"><img src="https://img.shields.io/github/followers/Chan4077.svg?style=social&label=Chan4077" alt="Github social badge"></a>
 		<a href="https://twitter.com/EdricChan03" title="Follow me on Twitter!" target="_blank"><img src="https://img.shields.io/twitter/follow/EdricChan03.svg?style=social&label=EdricChan03" alt="Twitter social badge"></a>`;
-		this.shared.openAlertDialog({title: "About this app", msg: this.dom.bypassSecurityTrustHtml(aboutMsg), isHtml: true});
+		this.shared.openAlertDialog({ title: "About this app", msg: this.dom.bypassSecurityTrustHtml(aboutMsg), isHtml: true });
+	}
+	ngOnInit() {
+		console.log(window.localStorage.getItem('settings'));
+		if (window.localStorage.getItem('settings')) {
+			this.settings = <Settings>JSON.parse(window.localStorage.getItem('settings'));
+			console.log(this.settings);
+			if (this.settings.theme) {
+				console.log("TEST works");
+				document.getElementsByTagName("body")[0].classList.add(this.settings.theme);
+				this.overlay.getContainerElement().classList.add(this.settings.theme);
+				console.log(this.overlay.getContainerElement().classList);
+			} else {
+				console.warn("Theme setting was not found. Using default...");
+				document.getElementsByTagName("body")[0].classList.add("indigo-pink");
+				this.overlay.getContainerElement().classList.add("indigo-pink");
+			}
+		}
 	}
 }
 
@@ -119,4 +138,5 @@ export interface Settings {
 	 * @type {boolean}
 	 */
 	showImages?: boolean;
+	theme?: "indigo-pink" | "deeppurple-amber" | "pink-bluegrey" | "purple-green";
 }

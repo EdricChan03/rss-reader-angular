@@ -4,6 +4,12 @@
 		<mat-checkbox [(ngModel)]="settings.multipleRss" class="checkbox">Enable multiple RSS feeds</mat-checkbox>
 		<mat-checkbox [(ngModel)]="settings.openNewTab" class="checkbox">Open posts in a new tab</mat-checkbox>
 		<mat-checkbox [(ngModel)]="settings.showImages" class="checkbox">Show images</mat-checkbox>
+		<mat-form-field color="accent">
+			<mat-select placeholder="Select Theme" [(ngModel)]="settings.theme">
+				<mat-option *ngFor="let theme of themes" [value]="theme">{{theme}}</mat-option>
+			</mat-select>
+			<mat-hint>Changes will be made on reload.</mat-hint>
+		</mat-form-field>
 	</mat-card-content>
 	<mat-card-actions align="end">
 		<button mat-button (click)="reset()" color="warn">Reset</button>
