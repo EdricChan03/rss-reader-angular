@@ -17,19 +17,19 @@
 	}
 }
 $deeppurple-amber-primary: mat-palette($mat-deep-purple);
-$deeppurple-amber-accent: mat-palette($mat-amber);
+$deeppurple-amber-accent: mat-palette($mat-amber, A200, A100, A400);
 $deeppurple-amber-theme: mat-light-theme($deeppurple-amber-primary, $deeppurple-amber-accent);
 
 $pink-bluegrey-primary: mat-palette($mat-pink);
-$pink-bluegrey-accent: mat-palette($mat-blue-grey);
+$pink-bluegrey-accent: mat-palette($mat-blue-grey, A200, A100, A400);
 $pink-bluegrey-theme: mat-dark-theme($pink-bluegrey-primary, $pink-bluegrey-accent);
 
 $purple-green-primary: mat-palette($mat-purple);
-$purple-green-accent: mat-palette($mat-green);
+$purple-green-accent: mat-palette($mat-green, A200, A100, A400);
 $purple-green-theme: mat-dark-theme($purple-green-primary, $purple-green-accent);
 
 $indigo-pink-primary: mat-palette($mat-indigo);
-$indigo-pink-accent: mat-palette($mat-pink);
+$indigo-pink-accent: mat-palette($mat-pink, A200, A100, A400);
 $indigo-pink-theme: mat-light-theme($indigo-pink-primary, $indigo-pink-accent);
 .deeppurple-amber {
 	@include angular-material-theme($deeppurple-amber-theme);
