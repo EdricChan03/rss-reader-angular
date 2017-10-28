@@ -132,4 +132,4 @@ Property | Description | Type | Default value(s) | Required? | Notes
 
 ---
 # Testing
-[Testing page](https://angular-rss-reader.firebaseapp.com/test)
+[Testing page](https://chan4077.github.io/angular-rss-reader/test)

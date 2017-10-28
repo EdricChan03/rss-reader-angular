@@ -10,7 +10,7 @@ The following guide below shows you all the features and what certain functions 
 ## Settings
 
 ---
-[:arrow_left: Back to website](https://angular-rss-reader.firebaseapp.com)
+[:arrow_left: Back to website](https://chan4077.github.io/angular-rss-reader)
 
 - [Generating an API Key](./GENERATE_API_KEY.md)
 - [Getting Started **(You are here)**](./GETTING_STARTED.md)

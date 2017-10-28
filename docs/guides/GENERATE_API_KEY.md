@@ -24,7 +24,7 @@ As the RSS dialog requires you to enter an API key, this guide will show you how
    ![Navbar of the rss2json.com website (if logged in)](../img/generate_api_key/rsstojson_navbar_logged_in.jpg)
 8. When you're at the page, click on `API key` (as seen here):
    ![My account tabs](../img/generate_api_key/my_account_top.jpg)
-9. Lastly, click/ tap on the input field and copy it to the clipboard. Then head back to the [website](https://angular-rss-reader.firebaseapp.com) and fill up the API key section in the feed dialog.
+9. Lastly, click/ tap on the input field and copy it to the clipboard. Then head back to the [website](https://chan4077.github.io/angular-rss-reader) and fill up the API key section in the feed dialog.
 
 You're done!
 
@@ -34,7 +34,7 @@ Alternatively, here's one of two API keys that you can use:
 - `tu3yxir4ugxckcldog9wtnvisrqhmy8qv7vuf7pg`
 
 ---
-[:arrow_left: Back to website](https://angular-rss-reader.firebaseapp.com)
+[:arrow_left: Back to website](https://chan4077.github.io/angular-rss-reader)
 
 - [Generating an API Key **(You are here)**](./GENERATE_API_KEY.md)
 - [Getting Started](./GETTING_STARTED.md)
