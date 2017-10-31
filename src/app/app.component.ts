@@ -2,8 +2,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Shared } from './shared';
 import { OrderByPipe } from './pipe/orderby.pipe';
 import { Http } from '@angular/http';
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, MatDialog, MatSnackBar } from "@angular/material";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialogRef, MatDialog } from "@angular/material/dialog";
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSidenav } from '@angular/material/sidenav';
 import { Feed } from './model/feed';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
@@ -16,6 +18,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 })
 export class AppComponent implements OnInit {
 	constructor(private shared: Shared, private dom: DomSanitizer, private overlay: OverlayContainer) { }
+	@ViewChild('left') sidenav: MatSidenav;
 	settings: Settings;
 	links = [
 		{
@@ -29,6 +32,16 @@ export class AppComponent implements OnInit {
 			icon: "settings"
 		}
 	]
+	get isMobile() {
+		return this.shared.isMobile();
+	}
+	get isSidenavOpen() {
+		if (this.sidenav.opened) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	aboutThisApp() {
 		let aboutMsg = `
 		<div style="margin-bottom: 4px">
