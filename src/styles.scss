@@ -9,10 +9,10 @@
 
 @mixin angular-rss-reader-theme($theme) {
 	$foreground: map-get($theme, foreground);
-	$accent: map-get($theme, accent);
+	$primary: map-get($theme, primary);
 
 	.active-link {
-		color: mat-color($accent) !important;
+		color: mat-color($primary) !important;
 		background-color: map-get($foreground, divider);
 	}
 }
@@ -201,5 +201,18 @@ mat-sidenav-content::-webkit-scrollbar {
     width: 6px;
 }
 
+.post-dialog .mat-dialog-container {
+	position: absolute;
+	top: 18px;
+	bottom: 0px;
+	width: 100%;
+}
+.post-dialog {
+	position: relative;
+}
+html, body {
+	width: 100%;
+	height: 100%;
+}
 
 /* End styles */
