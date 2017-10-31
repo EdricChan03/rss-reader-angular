@@ -1,3 +1,5 @@
+import { DomSanitizer } from '@angular/platform-browser';
+import { Shared } from './../shared';
 import { ShareDialog } from './../dialogs/index';
 import { Settings } from './../app.component';
 import { MatDialogRef, MatDialog, MatSlideToggleChange } from '@angular/material';
@@ -17,7 +19,7 @@ export class FeedCardComponent implements OnInit {
 	imageChanged: boolean = false;
 	settings: Settings;
 	@Input() feed: any;
-	constructor(private dialog: MatDialog) { }
+	constructor(private dialog: MatDialog, private shared: Shared, private dom: DomSanitizer) { }
 	share(feed: any) {
 		let dialogRef = this.dialog.open(ShareDialog);
 		dialogRef.componentInstance.feed = feed;
@@ -29,6 +31,22 @@ export class FeedCardComponent implements OnInit {
 	showCode(feed) {
 		let dialogRef = this.dialog.open(CodeViewerDialog);
 		dialogRef.componentInstance.feed = feed;
+	}
+	/**
+	 * Views the current post in a dialog
+	 * @param {any} feed The current post
+	 */
+	viewInDialog(feed) {
+		console.log(feed);
+		let dialogRef = this.shared.openConfirmDialog({title: "Post", msg: this.dom.bypassSecurityTrustHtml(`<iframe src="${feed.link}" width="90%" height="90%"></iframe>`), isHtml: true, panelClass: 'post-dialog'});
+		dialogRef.afterClosed().subscribe(result => {
+			if (result == 'ok') {
+				// Open post in new tab
+				window.open(feed.link);
+			} else {
+
+			}
+		})
 	}
 	/**
 	 * Encodes an image
