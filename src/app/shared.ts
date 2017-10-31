@@ -1,3 +1,4 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Observable } from 'rxjs/Observable';
 import { Injectable, Component, OnInit, ViewChild, DoCheck } from '@angular/core';
 import { MatSnackBarConfig, MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
@@ -9,7 +10,18 @@ import { Title, SafeHtml } from '@angular/platform-browser';
 @Injectable()
 export class Shared {
 	private currentUser: string;
-	constructor(private snackBar: MatSnackBar, private dialog: MatDialog, private title: Title) { }
+	constructor(private snackBar: MatSnackBar, private dialog: MatDialog, private title: Title, private breakpointObserver: BreakpointObserver) { }
+	/**
+	 * Detects if the user is using a mobile device
+	 * @returns {boolean}
+	 */
+	public isMobile(): boolean {
+		if (this.breakpointObserver.isMatched('(max-width: 599px)')) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	/**
 	 * Opens a snackBar with the specified params and no return
 	 * @param {SnackBarConfig} opts The options of the snackBar
@@ -109,9 +121,15 @@ export class Shared {
 	 */
 	public openAlertDialog(opts: AlertDialogConfig): MatDialogRef<AlertDialog> {
 		if (opts) {
-			let dialogRef = this.dialog.open(AlertDialog);
-			dialogRef.componentInstance.alertConfig = opts;
-			return dialogRef;
+			if (opts.panelClass){
+				let dialogRef = this.dialog.open(AlertDialog, {panelClass: opts.panelClass});
+				dialogRef.componentInstance.alertConfig = opts;
+				return dialogRef;
+			} else {
+				let dialogRef = this.dialog.open(AlertDialog);
+				dialogRef.componentInstance.alertConfig = opts;
+				return dialogRef;
+			}
 		} else {
 			this.throwError("opts", "AlertDialogConfig");
 		}
@@ -123,9 +141,15 @@ export class Shared {
 	 */
 	public openConfirmDialog(opts: ConfirmDialogConfig): MatDialogRef<ConfirmDialog> {
 		if (opts) {
-			let dialogRef = this.dialog.open(ConfirmDialog);
-			dialogRef.componentInstance.confirmConfig = opts;
-			return dialogRef;
+			if (opts.panelClass) {
+				let dialogRef = this.dialog.open(ConfirmDialog, {panelClass: opts.panelClass});
+				dialogRef.componentInstance.confirmConfig = opts;
+				return dialogRef;
+			} else {
+				let dialogRef = this.dialog.open(ConfirmDialog);
+				dialogRef.componentInstance.confirmConfig = opts;
+				return dialogRef;
+			}
 		} else {
 			this.throwError("opts", "ConfirmDialogConfig");
 		}
@@ -137,9 +161,15 @@ export class Shared {
 	 */
 	public openPromptDialog(opts: PromptDialogConfig): MatDialogRef<PromptDialog> {
 		if (opts) {
-			let dialogRef = this.dialog.open(PromptDialog);
-			dialogRef.componentInstance.promptConfig = opts;
-			return dialogRef;
+			if (opts.panelClass) {
+				let dialogRef = this.dialog.open(PromptDialog, {panelClass: opts.panelClass});
+				dialogRef.componentInstance.promptConfig = opts;
+				return dialogRef;
+			} else {
+				let dialogRef = this.dialog.open(PromptDialog);
+				dialogRef.componentInstance.promptConfig = opts;
+				return dialogRef;
+			}
 		} else {
 			this.throwError("opts", "PromptDialogConfig");
 		}
