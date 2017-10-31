@@ -1,5 +1,9 @@
 <mat-sidenav-container fullscreen cdkTrapFocus>
-	<mat-sidenav #left class="app-sidenav">
+	<mat-sidenav #left class="app-sidenav" [mode]="isMobile ? 'over' : 'side'">
+		<mat-toolbar>
+			<span fxFlex></span>
+			<button mat-icon-button (click)="left.close()" matTooltip="Close Sidenav" matTooltipPosition="left"><mat-icon>keyboard_arrow_left</mat-icon></button>
+		</mat-toolbar>
 		<mat-nav-list>
 			<a mat-list-item [routerLink]="['/', link.url]" routerLinkActive="active-link" *ngFor="let link of links" (click)="left.close()">
 				<mat-icon matListIcon>{{link.icon}}</mat-icon>
@@ -14,7 +18,7 @@
 	</mat-sidenav>
 	<mat-sidenav-content>
 		<mat-toolbar color="primary" class="mat-elevation-z3">
-			<button mat-icon-button (click)="left.toggle()">
+			<button mat-icon-button (click)="left.toggle()" *ngIf="!isSidenavOpen">
 				<mat-icon>menu</mat-icon>
 			</button>
 			RSS Reader
