@@ -2,7 +2,9 @@
 	<mat-sidenav #left class="app-sidenav" [mode]="isMobile ? 'over' : 'side'">
 		<mat-toolbar>
 			<span fxFlex></span>
-			<button mat-icon-button (click)="left.close()" matTooltip="Close Sidenav" matTooltipPosition="left"><mat-icon>keyboard_arrow_left</mat-icon></button>
+			<button mat-icon-button (click)="left.close()" matTooltip="Close Sidenav" matTooltipPosition="left">
+				<mat-icon>keyboard_arrow_left</mat-icon>
+			</button>
 		</mat-toolbar>
 		<mat-nav-list>
 			<a mat-list-item [routerLink]="['/', link.url]" routerLinkActive="active-link" *ngFor="let link of links" (click)="left.close()">
