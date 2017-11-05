@@ -32,3 +32,6 @@ testem.log
 .DS_Store
 Thumbs.db
 /nbproject
+
+# Other
+src/assets/docs
