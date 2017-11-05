@@ -1,3 +1,7 @@
+import { GuideItems } from './guide-items';
+import { GuidesList } from './pages/guide-list/guide-list.component';
+import { GuideViewer } from './pages/guide-viewer/guide-viewer.component';
+import { DocViewer } from './pages/doc-viewer/doc-viewer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TestpageComponent } from './testpage/testpage.component';
 import { OptionsDialog } from './dialogs/options-dialog/options.dialog';
@@ -55,7 +59,10 @@ const PIPES = [
 		HomeComponent,
 		SettingsComponent,
 		TestpageComponent,
-		PageNotFoundComponent
+		PageNotFoundComponent,
+		DocViewer,
+		GuideViewer,
+		GuidesList
 	],
 	imports: [
 		BrowserModule,
@@ -69,7 +76,8 @@ const PIPES = [
 	],
 	bootstrap: [AppComponent],
 	providers: [
-		Shared
+		Shared,
+		GuideItems
 	],
 	entryComponents: [
 		DIALOGS
