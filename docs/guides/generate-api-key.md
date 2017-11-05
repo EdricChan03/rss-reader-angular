@@ -33,9 +33,11 @@ Alternatively, here's one of two API keys that you can use:
 - `mvbgzzsa1lyk5nbtmld2prhkbjdoywklbc56gepn`
 - `tu3yxir4ugxckcldog9wtnvisrqhmy8qv7vuf7pg`
 
+<!-- begin end links -->
 ---
 [:arrow_left: Back to website](https://chan4077.github.io/angular-rss-reader)
 
-- [Generating an API Key **(You are here)**](./GENERATE_API_KEY.md)
-- [Getting Started](./GETTING_STARTED.md)
-- [Troubleshooting](./TROUBLESHOOTING.md)
+- [Generating an API Key **(You are here)**](./generate-api-key.md)
+- [Getting Started](./getting-started.md)
+- [Troubleshooting](./troubleshooting.md)
+<!-- end links -->
