@@ -10,7 +10,7 @@ import {
 	ViewContainerRef,
 	Output,
 } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -32,7 +32,7 @@ export class DocViewer implements OnDestroy {
 	textContent = '';
 
 	constructor(private _elementRef: ElementRef,
-		private _http: Http,
+		private _http: HttpClient,
 		private _injector: Injector,
 		private _viewContainerRef: ViewContainerRef) { }
 
@@ -43,17 +43,11 @@ export class DocViewer implements OnDestroy {
 			this._documentFetchSubscription.unsubscribe();
 		}
 
-		this._documentFetchSubscription = this._http.get(url).subscribe(
-			response => {
-				// TODO(mmalerba): Trust HTML.
-				if (response.ok) {
-					this._elementRef.nativeElement.innerHTML = response.text();
-					this.textContent = this._elementRef.nativeElement.textContent;
-					this.contentLoaded.next();
-				} else {
-					this._elementRef.nativeElement.innerText =
-						`Failed to load document: ${url}. Error: ${response.status}`;
-				}
+		this._documentFetchSubscription = this._http.get(url, { responseType: 'text' }).subscribe(
+			result => {
+				this._elementRef.nativeElement.innerHTML = result;
+				this.textContent = this._elementRef.nativeElement.textContent;
+				this.contentLoaded.next();
 			},
 			error => {
 				this._elementRef.nativeElement.innerText =
