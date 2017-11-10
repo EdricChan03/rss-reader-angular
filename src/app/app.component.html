@@ -1,6 +1,7 @@
-<mat-sidenav-container fullscreen cdkTrapFocus>
+<mat-sidenav-container fullscreen>
 	<mat-sidenav #left class="app-sidenav" [mode]="isMobile ? 'over' : 'side'">
 		<mat-toolbar>
+			Links
 			<span fxFlex></span>
 			<button mat-icon-button (click)="left.close()" matTooltip="Close Sidenav" matTooltipPosition="left">
 				<mat-icon>keyboard_arrow_left</mat-icon>
