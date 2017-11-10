@@ -1,7 +1,7 @@
 import { DomSanitizer } from '@angular/platform-browser';
 import { Shared } from './shared';
 import { OrderByPipe } from './pipe/orderby.pipe';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -103,19 +103,19 @@ export class FeedDialog implements OnInit {
 	feedUrlChannel: string;
 	feedCategory: string;
 	categories: any;
-	constructor(private dialogRef: MatDialogRef<FeedDialog>, private http: Http) {
+	constructor(private dialogRef: MatDialogRef<FeedDialog>, private http: HttpClient) {
 		dialogRef.disableClose = true;
 	}
 	ngOnInit() {
 		this.http.get('assets/feedurls.json')
-			.map(res => res.json())
 			.subscribe(result => {
 				this.feeds = result;
 			},
 			err => console.error(err));
 		this.http.get('assets/feedcategories.json')
-			.map(res => res.json())
-			.subscribe(result => { this.categories = result; },
+			.subscribe(result => {
+				this.categories = result;
+			},
 			err => console.error(err));
 		if (window.localStorage.getItem('feedUrl')) {
 			this.feedUrl = window.localStorage.getItem('feedUrl');
@@ -151,5 +151,8 @@ export interface Settings {
 	 * @type {boolean}
 	 */
 	showImages?: boolean;
+	/**
+	 * The theme for the app
+	 */
 	theme?: "indigo-pink" | "deeppurple-amber" | "pink-bluegrey" | "purple-green";
 }
