@@ -2,7 +2,7 @@ import { OptionsDialog } from './../dialogs/index';
 import { FeedDialog, Settings } from './../app.component';
 import { Router } from '@angular/router';
 import { Shared } from './../shared';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
@@ -10,8 +10,7 @@ import { FeedEntry } from '../model/feed-entry';
 
 @Component({
 	selector: 'app-home',
-	templateUrl: './home.component.html',
-	styles: []
+	templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
 
@@ -57,7 +56,7 @@ export class HomeComponent implements OnInit {
 	constructor(
 		private breakpointObserver: BreakpointObserver,
 		private dialog: MatDialog,
-		private http: Http,
+		private http: HttpClient,
 		private shared: Shared,
 		private router: Router
 	) {
@@ -112,7 +111,7 @@ export class HomeComponent implements OnInit {
 
 		}
 		// Add 1s of delay to provide user feedback.
-		this.http.get(`https://api.rss2json.com/v1/api.json?rss_url=${localUrl}&api_key=${this.apiKey}`).delay(1000).map(res => res.json()).subscribe(result => {
+		this.http.get<any>(`https://api.rss2json.com/v1/api.json?rss_url=${localUrl}&api_key=${this.apiKey}`).delay(1000).subscribe(result => {
 			this.feeds = result.items;
 			this.isRefreshing = false;
 			clearTimeout(this.takingForeverToLoadTimeout);
