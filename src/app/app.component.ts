@@ -1,5 +1,5 @@
 import { DomSanitizer } from '@angular/platform-browser';
-import { Shared } from './shared';
+import { SharedInjectable } from './shared';
 import { OrderByPipe } from './pipe/orderby.pipe';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -17,7 +17,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 	templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-	constructor(private shared: Shared, private dom: DomSanitizer, private overlay: OverlayContainer) { }
+	constructor(private shared: SharedInjectable, private dom: DomSanitizer, private overlay: OverlayContainer) { }
 	@ViewChild('left') sidenav: MatSidenav;
 	settings: Settings;
 	links = [
@@ -30,8 +30,13 @@ export class AppComponent implements OnInit {
 			name: "Settings",
 			url: "settings",
 			icon: "settings"
+		},
+		{
+			name: "Guides",
+			url: "docs",
+			icon: "book"
 		}
-	]
+	];
 	get isMobile() {
 		return this.shared.isMobile();
 	}
@@ -57,20 +62,23 @@ export class AppComponent implements OnInit {
 		this.shared.openAlertDialog({ title: "About this app", msg: this.dom.bypassSecurityTrustHtml(aboutMsg), isHtml: true });
 	}
 	ngOnInit() {
-		console.log(window.localStorage.getItem('settings'));
 		if (window.localStorage.getItem('settings')) {
 			this.settings = <Settings>JSON.parse(window.localStorage.getItem('settings'));
-			console.log(this.settings);
 			if (this.settings.theme) {
-				console.log("TEST works");
 				document.getElementsByTagName("body")[0].classList.add(this.settings.theme);
 				this.overlay.getContainerElement().classList.add(this.settings.theme);
-				console.log(this.overlay.getContainerElement().classList);
 			} else {
 				console.warn("Theme setting was not found. Using default...");
 				document.getElementsByTagName("body")[0].classList.add("indigo-pink");
 				this.overlay.getContainerElement().classList.add("indigo-pink");
 			}
+		} else {
+			let tempSettings: Settings = { showImages: true, multipleRss: false, openNewTab: true };
+			window.localStorage.setItem('settings', JSON.stringify(tempSettings));
+			let snackBarRef = this.shared.openSnackBarWithRef({ msg: "Settings not found. Click on the 'Reload' button to reload.", action: "Reload", additionalOpts: { horizontalPosition: "start", extraClasses: ['mat-elevation-z3'], duration: 5000 } });
+			snackBarRef.onAction().subscribe(()=> {
+				window.location.reload(true);
+			})
 		}
 	}
 }
