@@ -1,16 +1,39 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Observable } from 'rxjs/Observable';
-import { Injectable, Component, OnInit, ViewChild, DoCheck } from '@angular/core';
-import { MatSnackBarConfig, MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
-import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
-import { MatSelectionList } from '@angular/material/list';
+import { Injectable, Component, OnInit, ViewChild, DoCheck, NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarConfig, MatSnackBar, MatSnackBarRef, SimpleSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogRef, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
+import { MatSelectionList, MatListModule } from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { ComponentType } from '@angular/cdk/portal';
 import { Title, SafeHtml } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { MatCommonModule } from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
 
 @Injectable()
-export class Shared {
-	private currentUser: string;
-	constructor(private snackBar: MatSnackBar, private dialog: MatDialog, private title: Title, private breakpointObserver: BreakpointObserver) { }
+export class SharedInjectable {
+	private _title: string = "";
+	constructor(private snackBar: MatSnackBar, private dialog: MatDialog, private documentTitle: Title, private breakpointObserver: BreakpointObserver) { }
+	/**
+	 * Sets the document's title
+	 * @param {string} title The title of the document to set
+	 */
+	set title(title: string) {
+		this._title = title;
+		if (title !== '') {
+			title = `${title} | `;
+		}
+		this.documentTitle.setTitle(`${title}Angular RSS Reader`);
+	}
+	/**
+	 * Returns the document's title
+	 */
+	get title(): string {
+		return this._title;
+	}
 	/**
 	 * Detects if the user is using a mobile device
 	 * @returns {boolean}
@@ -25,6 +48,7 @@ export class Shared {
 	/**
 	 * Opens a snackBar with the specified params and no return
 	 * @param {SnackBarConfig} opts The options of the snackBar
+	 * @deprecated Use `openSnackBarWithRef` instead
 	 */
 	public openSnackBar(opts: SnackBarConfig) {
 		this.handleSnackBar(opts);
@@ -41,6 +65,7 @@ export class Shared {
 	 * Opens a snackBar with the specified params and a return of the snackBar's ref (not for component)
 	 * @param {SnackBarConfig} opts The options of the snackBar
 	 * @returns {MatSnackBar<SimpleSnackBar>}
+	 * @todo Refactor to `openSnackBar`
 	 */
 	public openSnackBarWithRef(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar> {
 		return this.handleSnackBarWithRef(opts);
@@ -121,8 +146,8 @@ export class Shared {
 	 */
 	public openAlertDialog(opts: AlertDialogConfig): MatDialogRef<AlertDialog> {
 		if (opts) {
-			if (opts.panelClass){
-				let dialogRef = this.dialog.open(AlertDialog, {panelClass: opts.panelClass});
+			if (opts.panelClass) {
+				let dialogRef = this.dialog.open(AlertDialog, { panelClass: opts.panelClass });
 				dialogRef.componentInstance.alertConfig = opts;
 				return dialogRef;
 			} else {
@@ -142,7 +167,7 @@ export class Shared {
 	public openConfirmDialog(opts: ConfirmDialogConfig): MatDialogRef<ConfirmDialog> {
 		if (opts) {
 			if (opts.panelClass) {
-				let dialogRef = this.dialog.open(ConfirmDialog, {panelClass: opts.panelClass});
+				let dialogRef = this.dialog.open(ConfirmDialog, { panelClass: opts.panelClass });
 				dialogRef.componentInstance.confirmConfig = opts;
 				return dialogRef;
 			} else {
@@ -162,7 +187,7 @@ export class Shared {
 	public openPromptDialog(opts: PromptDialogConfig): MatDialogRef<PromptDialog> {
 		if (opts) {
 			if (opts.panelClass) {
-				let dialogRef = this.dialog.open(PromptDialog, {panelClass: opts.panelClass});
+				let dialogRef = this.dialog.open(PromptDialog, { panelClass: opts.panelClass });
 				dialogRef.componentInstance.promptConfig = opts;
 				return dialogRef;
 			} else {
@@ -224,19 +249,6 @@ export class Shared {
 	 */
 	private throwError(variable: string, type: string) {
 		throw new Error(`${variable} was not specified. Please ensure that the ${variable} property is specified and that it is of type ${type}.`);
-	}
-	/**
-	 * Sets the document's title
-	 * @param {string} title The title of the document to set
-	 */
-	public setTitle(title: string) {
-		this.title.setTitle(title);
-	}
-	/**
-	 * Returns the document's title
-	 */
-	public getTitle(): string {
-		return this.title.getTitle();
 	}
 }
 
@@ -462,3 +474,36 @@ export interface SelectionDialogOptions {
 	 */
 	selected?: boolean;
 }
+export const SHARED_DIALOGS = [
+	AlertDialog,
+	ConfirmDialog,
+	PromptDialog,
+	SelectionDialog
+];
+
+@NgModule({
+	exports: [
+		SHARED_DIALOGS
+	],
+	providers: [
+		SharedInjectable
+	],
+	imports: [
+		CommonModule,
+		FormsModule,
+		MatCommonModule,
+		MatButtonModule,
+		MatDialogModule,
+		MatFormFieldModule,
+		MatInputModule,
+		MatListModule,
+		MatSnackBarModule
+	],
+	declarations: [
+		SHARED_DIALOGS
+	],
+	entryComponents: [
+		SHARED_DIALOGS
+	]
+})
+export class SharedModule { }
