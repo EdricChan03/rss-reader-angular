@@ -1,0 +1,12 @@
+<div class="app-content">
+	<mat-nav-list>
+		<h3 matSubheader>Guides</h3>
+		<a mat-list-item *ngFor="let guideItem of guideItems" [routerLink]="['/'+guideItem.url]" >
+			<h3 matLine>{{guideItem.name}}</h3>
+		</a>
+		<h3 matSubheader>Developer Guides</h3>
+		<a mat-list-item *ngFor="let guideItem of devItems" [routerLink]="['/'+guideItem.url]" >
+			<h3 matLine>{{guideItem.name}}</h3>
+		</a>
+	</mat-nav-list>
+</div>
