@@ -1,5 +1,6 @@
 <div style="padding: 4px">
 	<p class="mat-body">Welcome to the test page! This page is used to test the shared functions.</p>
+	<span><code>isMobile?:</code> {{getMobile()}}</span>
 	<fieldset fxLayout="column">
 		<legend>Dialog properties</legend>
 		<h4>Dialog type:</h4>
@@ -10,7 +11,7 @@
 			<input matInput [(ngModel)]="title" placeholder="Title of dialog">
 		</mat-form-field>
 		<mat-form-field>
-			<textarea matInput [(ngModel)]="message" placeholder="Message of dialog" rows="3"></textarea>
+			<textarea matInput [(ngModel)]="message" placeholder="Message of dialog" rows="3" matTextareaAutosize></textarea>
 			<button mat-icon-button matSuffix (click)="generateLoremIpsum()" matTooltip="Generate lorem ipsum"><mat-icon>cached</mat-icon></button>
 		</mat-form-field>
 		<mat-form-field color="accent">
@@ -18,6 +19,12 @@
 		</mat-form-field>
 		<mat-form-field color="accent">
 			<input matInput [(ngModel)]="cancelBtn" placeholder="Cancel button text of dialog">
+		</mat-form-field>
+		<mat-form-field color="accent" *ngIf="dialogType == 'prompt'">
+			<input matInput [(ngModel)]="placeholder" placeholder="Placeholder for prompt dialog">
+		</mat-form-field>
+		<mat-form-field color="accent" *ngIf="dialogType == 'prompt'">
+			<input matInput [(ngModel)]="value" placeholder="Initial value for prompt dialog">
 		</mat-form-field>
 		<div>
 			<button mat-button (click)="openDialog()" color="primary">Open Dialog</button>
@@ -27,6 +34,10 @@
 	<mat-divider></mat-divider>
 	<fieldset fxLayout="column">
 		<legend>Snackbar properties</legend>
+		<mat-form-field>
+				<textarea matInput [(ngModel)]="snackBarMsg" placeholder="Message of snackbar" rows="3" matTextareaAutosize></textarea>
+				<button mat-icon-button matSuffix (click)="generateLoremIpsum(true)" matTooltip="Generate lorem ipsum"><mat-icon>cached</mat-icon></button>
+			</mat-form-field>
 		<mat-form-field>
 			<input matInput type="number" [(ngModel)]="duration" placeholder="Duration of snackbar">
 		</mat-form-field>
@@ -43,13 +54,15 @@
 		</mat-radio-group>
 		<h3>Extra classes</h3>
 		<mat-form-field>
-			<mat-select [(ngModel)]="extraClass" placeholder="Extra class">
-				<mat-option>None</mat-option>
+			<mat-select [(ngModel)]="extraClass" placeholder="Extra class" multiple>
 				<mat-option value="red">
 					<code>red</code>
 				</mat-option>
 				<mat-option value="party">
 					<code>party</code>
+				</mat-option>
+				<mat-option value="mat-elevation-z3">
+					Elevation
 				</mat-option>
 			</mat-select>
 		</mat-form-field>
