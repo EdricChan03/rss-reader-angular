@@ -1,7 +1,7 @@
-import { OptionsDialog } from './../dialogs/index';
-import { FeedDialog, Settings } from './../app.component';
+import { OptionsDialog } from '../dialogs/index';
+import { FeedDialog, Settings } from '../app.component';
 import { Router } from '@angular/router';
-import { Shared } from './../shared';
+import { SharedInjectable } from '../shared';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
 		private breakpointObserver: BreakpointObserver,
 		private dialog: MatDialog,
 		private http: HttpClient,
-		private shared: Shared,
+		private shared: SharedInjectable,
 		private router: Router
 	) {
 		const layoutChanges = breakpointObserver.observe('(max-width: 599px)');
@@ -185,10 +185,6 @@ export class HomeComponent implements OnInit {
 		if (!window.localStorage.getItem('hasLaunched')) {
 			this.getStarted = true;
 			window.localStorage.setItem('hasLaunched', JSON.stringify(true));
-		}
-		if (!window.localStorage.getItem('settings')) {
-			let tempSettings: Settings = { showImages: true, multipleRss: false, openNewTab: true };
-			window.localStorage.setItem('settings', JSON.stringify(tempSettings));
 		}
 		this.refreshFeed();
 		this.takingForeverToLoadTimeout = setTimeout(() => {
