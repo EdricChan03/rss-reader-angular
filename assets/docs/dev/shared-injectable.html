@@ -1,0 +1,433 @@
+<h1 id="-sharedinjectable-"><code>SharedInjectable</code></h1>
+<h2 id="description">Description</h2>
+<p>This <code>@Injectable()</code> is basically a capability to share functions with other components without manually copying and pasting source code.</p>
+<p>It also provides easily accessible code for beginners who are getting started with <a href="https://material.angular.io" class="docs-a">Angular Material</a>.</p>
+<h2 id="notices">Notices</h2>
+<ol>
+<li>Ensure that <code>SharedModule</code> is imported to your main <code>NgModule</code> under <code>imports</code> (after <code>BrowserModule</code>:<div expansion-panel>
+<pre class="hljs"><code class="lang-typescript"><span class="hljs-keyword">import</span> { NgModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { BrowserModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser'</span>;
+<span class="hljs-keyword">import</span> { SharedModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'./shared'</span>;
+<span class="hljs-meta">@NgModule</span>({
+    imports: [
+        BrowserModule,
+        SharedModule
+    ]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppModule {}
+</code></pre>
+</div></li>
+<li>Copy the whole <code>partials</code> folder at the same path as where the <code>shared.ts</code> file is.</li>
+<li>Add this style to your <code>styles.css</code>/ <code>styles.scss</code> or wherever you place your styles file:<div expansion-panel>
+<pre class="hljs"><code class="lang-css"><span class="hljs-selector-tag">selection-dialog</span>&gt;<span class="hljs-selector-tag">mat-dialog-container</span>&gt;<span class="hljs-selector-tag">selection-dialog</span>&gt;<span class="hljs-selector-tag">mat-dialog-content</span> {
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
+}
+</code></pre>
+</div></li>
+<li>Use any of the methods by adding a constructor for it.<div expansion-panel>
+<pre class="hljs"><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppComponent {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> shared: SharedInjectable</span>){}
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+</div>
+</li>
+</ol>
+<hr>
+<h1 id="methods">Methods</h1>
+<p>Here&#39;s a list of all the functions/methods.</p>
+<h2 id="-opensnackbar-sub-sup-deprecated-sup-sub-"><code>openSnackBar</code> <sub><sup>DEPRECATED</sup></sub></h2>
+<pre class="hljs"><code class="lang-typescript">openSnackBar(opts: SnackBarConfig): <span class="hljs-built_in">void</span>;
+</code></pre>
+<div expansion-panel>
+<h3 id="description">Description</h3>
+<p>Opens a snackbar with the specified params.</p>
+<p><strong>NOTE:</strong> This method does not return anything, unlike the next few methods.</p>
+<p><strong>NOTE:</strong> This method will soon be removed in favour of <code>openSnackBarWithRef</code>.</p>
+<h3 id="returns">Returns</h3>
+<p><code>void</code></p>
+<h3 id="params">Params</h3>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>opts</code></td>
+<td><code>SnackBarConfig</code></td>
+<td>The options for the snackbar</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="examples">Examples</h3>
+<h4 id="opening-a-simple-snackbar">Opening a simple snackbar</h4>
+<pre class="hljs"><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> shared: SharedInjectable</span>){}
+    showSnackBar() {
+        <span class="hljs-keyword">this</span>.shared.openSnackBar({msg: <span class="hljs-string">"I'm a really simple snackbar"</span>, additionalOpts: {duration: <span class="hljs-number">6000</span>}});
+    }
+}
+</code></pre>
+</div>
+<h2 id="-opensnackbarwithref-"><code>openSnackBarWithRef</code></h2>
+<pre class="hljs"><code class="lang-typescript">openSnackBarWithRef(opts: SnackBarConfig): MatSnackBarRef&lt;SimpleSnackBar&gt;;
+</code></pre>
+<div expansion-panel>
+<h3 id="description">Description</h3>
+<p>Opens a snackbar with the specified params.</p>
+<h3 id="returns">Returns</h3>
+<p><code>MatSnackBarRef&lt;SimpleSnackBar&gt;</code>
+The ref of the snackbar</p>
+<h3 id="params">Params</h3>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>opts</code></td>
+<td><code>SnackBarConfig</code></td>
+<td>The options for the snackbar</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="examples">Examples</h3>
+<h3 id="opening-a-simple-snackbar-with-an-action">Opening a simple snackbar with an action</h3>
+<pre class="hljs"><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> shared: SharedInjectable</span>){}
+    showSnackBar() {
+        <span class="hljs-keyword">let</span> snackBarRef = <span class="hljs-keyword">this</span>.shared.openSnackBarWithRef({msg: <span class="hljs-string">"I'm a snackbar!"</span>, action: <span class="hljs-string">"Do something"</span>, additionalOpts: {duration: <span class="hljs-number">5000</span>}});
+        snackBarRef.onAction().subscribe(<span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span> {
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"User clicked the action!"</span>);
+        })
+    }
+}
+</code></pre>
+</div>
+<h2 id="-opensnackbarcomponent-"><code>openSnackBarComponent</code></h2>
+<h2 id="-closesnackbar-"><code>closeSnackBar</code></h2>
+<h2 id="-openalertdialog-"><code>openAlertDialog</code></h2>
+<pre class="hljs"><code class="lang-typescript">openAlertDialog(opts: AlertDialogConfig): MatDialogRef&lt;AlertDialog&gt;;
+</code></pre>
+<div expansion-panel>
+<h3 id="description">Description</h3>
+<p>Opens an alert dialog with the specified params.</p>
+<h3 id="returns">Returns</h3>
+<p>The dialog ref of <code>AlertDialog</code>.</p>
+<h3 id="params">Params</h3>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>opts</code></td>
+<td><code>AlertDialogConfig</code></td>
+<td>The options for the alert dialog</td>
+<td>(None)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="examples">Examples</h3>
+<p>Standard dialog:</p>
+<pre class="hljs"><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppComponent {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> shared: SharedInjectable</span>){}
+    openAlertDialog() {
+        <span class="hljs-keyword">this</span>.shared.openAlertDialog({msg: <span class="hljs-string">"I'm an alert dialog!"</span>, title: <span class="hljs-string">"Alert"</span>});
+    }
+}
+</code></pre>
+<p>Dialog with a <code>subscribe</code> method for when the dialog is closed</p>
+<pre class="hljs"><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppComponent {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> shared: SharedInjectable</span>){}
+    openAlertDialog() {
+        <span class="hljs-keyword">let</span> dialogRef = <span class="hljs-keyword">this</span>.shared.openAlertDialog({msg: <span class="hljs-string">"I'm an alert dialog with an after closed!"</span>, title: <span class="hljs-string">"Alert"</span>});
+        dialogRef.afterClosed().subscribe(_ =&gt; {
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Dialog was closed"</span>);
+        })
+    }
+}
+</code></pre>
+</div>
+<h2 id="-openconfirmdialog-"><code>openConfirmDialog</code></h2>
+<pre class="hljs"><code class="lang-typescript">openConfirmDialog(opts: ConfirmDialogConfig): MatDialogRef&lt;ConfirmDialog&gt;;
+</code></pre>
+<p>Opens a confirm dialog with the specified params and returns the dialog&#39;s ref.</p>
+<h2 id="-openpromptdialog-"><code>openPromptDialog</code></h2>
+<h2 id="-openselectiondialog-"><code>openSelectionDialog</code></h2>
+<h2 id="-getdialogs-"><code>getDialogs</code></h2>
+<h2 id="-closealldialogs-"><code>closeAllDialogs</code></h2>
+<h2 id="-getdialogbyid-"><code>getDialogById</code></h2>
+<h2 id="-afterallclosed-"><code>afterAllClosed</code></h2>
+<pre class="hljs"><code class="lang-typescript">afterAllClosed(): Observable&lt;<span class="hljs-built_in">void</span>&gt;;
+</code></pre>
+<div expansion-panel>
+<h3 id="description">Description</h3>
+<p>An observable for when after all dialogs are closed</p>
+<h3 id="returns">Returns</h3>
+<p><code>Observable&lt;void&gt;</code>
+</div></p>
+<h2 id="-ismobile-"><code>isMobile</code></h2>
+<pre class="hljs"><code class="lang-typescript">isMobile(): <span class="hljs-built_in">boolean</span>;
+</code></pre>
+<div expansion-panel>
+<h3 id="description">Description</h3>
+<p>Whether the user is using a mobile device</p>
+<h3 id="returns">Returns</h3>
+<p><code>boolean</code></p>
+<h2 id="-end-enclose-content-"></div></h2>
+<h1 id="getters-setters">Getters &amp; Setters</h1>
+<h2 id="-title-"><code>title</code></h2>
+<p>Sets or gets the title of the document.
+<div expansion-panel></p>
+<h3 id="examples">Examples</h3>
+<pre class="hljs"><code class="lang-typescript"><span class="hljs-comment">/**
+ * Gets the document title without the text after the pipe
+ */</span>
+getTitle() {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.shared.title;
+}
+<span class="hljs-comment">/**
+ * Sets the document title
+ * @param {string} title The title to set
+ */</span>
+setTitle(title: <span class="hljs-built_in">string</span>) {
+    <span class="hljs-keyword">this</span>.shared.title = title;
+}
+</code></pre>
+<h2 id="-end-enclose-content-"></div></h2>
+<h1 id="interfaces">Interfaces</h1>
+<h2 id="-snackbarconfig-"><code>SnackBarConfig</code></h2>
+<div expansion-panel>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Type</th>
+<th>Default value(s)</th>
+<th>Required?</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>msg</code></td>
+<td>The message for the snackbar.</td>
+<td><code>string</code></td>
+<td>-</td>
+<td><code>true</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>action</code></td>
+<td>The action for the snackbar.</td>
+<td><code>string</code></td>
+<td>-</td>
+<td><code>false</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>component</code></td>
+<td>The custom component for the snackbar to open with.</td>
+<td><code>ComponentType&lt;any&gt;</code></td>
+<td>-</td>
+<td><code>false</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>additionalOpts</code></td>
+<td>Additional options</td>
+<td><code>MatSnackBarConfig</code></td>
+<td>-</td>
+<td><code>false</code></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="-dialogconfig-extends-matdialogconfig-"><code>DialogConfig</code> extends <code>MatDialogConfig</code></h2>
+<div expansion-panel>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Type</th>
+<th>Default value(s)</th>
+<th>Required?</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>msg</code></td>
+<td>The message for the dialog.</td>
+<td><code>string,SafeHtml</code></td>
+<td>-</td>
+<td><code>true</code></td>
+<td>If this property is of type <code>SafeHtml</code>, the <code>isHtml</code> property has to be set as <code>true</code>.</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>The title of the dialog.</td>
+<td><code>string</code></td>
+<td><code>Alert</code></td>
+<td><code>false</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>isHtml</code></td>
+<td>Whether the dialog&#39;s message is HTML.</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>false</code></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>*Take note that this interface extends <code>MatDialogConfig</code>.
+</div></p>
+<h2 id="-alertdialogconfig-extends-dialogconfig-"><code>AlertDialogConfig</code> extends <code>DialogConfig</code></h2>
+<div expansion-panel>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Type</th>
+<th>Default value(s)</th>
+<th>Required?</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ok</code></td>
+<td>The ok button text</td>
+<td><code>string</code></td>
+<td><code>OK</code></td>
+<td><code>false</code></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="-confirmdialogconfig-extends-dialogconfig-"><code>ConfirmDialogConfig</code> extends <code>DialogConfig</code></h2>
+<div expansion-panel>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Type</th>
+<th>Default value(s)</th>
+<th>Required?</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ok</code></td>
+<td>The ok button text</td>
+<td><code>string</code></td>
+<td><code>OK</code></td>
+<td><code>false</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>cancel</code></td>
+<td>The cancel button text</td>
+<td><code>string</code></td>
+<td><code>Cancel</code></td>
+<td><code>false</code></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="-promptdialogconfig-extends-dialogconfig-"><code>PromptDialogConfig</code> extends <code>DialogConfig</code></h2>
+<div expansion-panel>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Type</th>
+<th>Default value(s)</th>
+<th>Required?</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ok</code></td>
+<td>The ok button text</td>
+<td><code>string</code></td>
+<td><code>OK</code></td>
+<td><code>false</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>cancel</code></td>
+<td>The cancel button text</td>
+<td><code>string</code></td>
+<td><code>Cancel</code></td>
+<td><code>false</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>placeholder</code></td>
+<td>The placeholder for the input</td>
+<td><code>string</code></td>
+<td>-</td>
+<td><code>true</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>inputType</code></td>
+<td>The input type</td>
+<td><code>&quot;text&quot;,&quot;email&quot;,&quot;password&quot;,&quot;number&quot;</code></td>
+<td>-</td>
+<td><code>false</code></td>
+<td>Maybe date support?</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>The initial value of the input</td>
+<td><code>string,number</code></td>
+<td>-</td>
+<td><code>false</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td>The (divider) color of the input</td>
+<td><code>&quot;primary&quot;,&quot;accent&quot;,&quot;warn&quot;</code></td>
+<td>-</td>
+<td><code>false</code></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h1 id="testing">Testing</h1>
+<p><a href="https://chan4077.github.io/angular-rss-reader/test" class="docs-a">Testing page</a></p>

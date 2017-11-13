@@ -6,17 +6,12 @@
 			{
 				"name": "Android Police",
 				"feedUrl": "http://www.androidpolice.com/feed/",
-				"description": "News from Android Police..."
+				"description": "Looking after everything Android"
 			},
 			{
 				"name": "Android Central",
 				"feedUrl": "http://feeds.feedburner.com/androidcentral?format=xml",
-				"description": "Why is a description required here??"
-			},
-			{
-				"name": "Android Studio Blog",
-				"feedUrl": "https://androidstudio.googleblog.com/feeds/posts/default",
-				"description": "The official Android Studio blog. Should be classified under a different category, but..."
+				"description": "Android Central - Android Forums, News, Reviews, Help and Android Wallpapers"
 			}
 		]
 	},
@@ -27,7 +22,23 @@
 			{
 				"name": "OSX Daily",
 				"feedUrl": "http://feeds.feedburner.com/osxdaily?format=xml",
-				"description": "Daily news for OSX (probably should be named macOS...)"
+				"description": "News, tips, software, reviews, and more for Mac OS X, iPhone, iPad"
+			}
+		]
+	},
+	{
+		"name": "Developers",
+		"id": "developers",
+		"channels": [
+			{
+				"name": "Android Studio Blog",
+				"feedUrl": "https://androidstudio.googleblog.com/feeds/posts/default",
+				"description": "Provides official announcements for new versions of Android Studio and other Android developer tools."
+			},
+			{
+				"name": "Github Blog - All Posts",
+				"feedUrl": "https://github.com/blog/all.atom",
+				"description": "All posts on Github Blog. For developers."
 			}
 		]
 	},
@@ -36,25 +47,14 @@
 		"id": "google",
 		"channels": [
 			{
-				"name": "Google Blog",
+				"name": "The Keyword (Google)",
 				"feedUrl": "https://blog.google/rss",
-				"description": "The official Google Blog."
+				"description": "The Keyword"
 			},
 			{
 				"name": "G Suite Updates Blog",
 				"feedUrl": "http://feeds.feedburner.com/GoogleAppsUpdates?format=xml",
 				"description": "The latest updates for G Suite."
-			}
-		]
-	},
-	{
-		"name": "Github",
-		"id": "github",
-		"channels": [
-			{
-				"name": "Github Blog - All Posts",
-				"feedUrl": "https://github.com/blog/all.atom",
-				"description": "All posts on Github Blog."
 			}
 		]
 	},
@@ -65,7 +65,12 @@
 			{
 				"name": "CNN Most Recent",
 				"feedUrl": "http://rss.cnn.com/rss/cnn_latest.rss?format=xml",
-				"description": "Recently published articles on CNN."
+				"description": "CNN.com delivers up-to-the-minute news and information on the latest top stories, weather, entertainment, politics and more."
+			},
+			{
+				"name": "Vox",
+				"feedUrl": "https://www.vox.com/rss/index.xml",
+				"description": "All posts from Vox."
 			}
 		]
 	},
@@ -77,6 +82,32 @@
 				"name": "Edric's Blog",
 				"feedUrl": "https://chanziyangedric.blogspot.com/atom.xml",
 				"description": "The author's blog. (self-promotion XD)"
+			}
+		]
+	},
+	{
+		"name": "Technology",
+		"id": "technology",
+		"channels": [
+			{
+				"name": "Mashable",
+				"feedUrl": "http://feeds.mashable.com/Mashable?format=xml",
+				"description": "(Unfortunately, the description of the RSS feed is just too big...)"
+			},
+			{
+				"name": "Techcrunch",
+				"feedUrl": "http://feeds.feedburner.com/TechCrunch?format=xml",
+				"description": "TechCrunch is a group-edited blog that profiles the companies, products and events defining and transforming the new web."
+			},
+			{
+				"name": "The Next Web",
+				"feedUrl": "http://feeds2.feedburner.com/thenextweb?format=xml",
+				"description": "International technology news, business & culture"
+			},
+			{
+				"name": "The Verge",
+				"feedUrl": "https://www.theverge.com/rss/index.xml",
+				"description": "The Verge. News about the latest technology and more."
 			}
 		]
 	}
