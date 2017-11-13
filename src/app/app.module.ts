@@ -24,22 +24,14 @@ import {
 } from './pipe/index';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-	AlertDialog,
-	ConfirmDialog,
-	PromptDialog,
-	SelectionDialog,
-	Shared
+    SharedModule
 } from './shared';
 import 'hammerjs';
+import { AndroidComponent } from './devices/android/android.component';
+import { IOSComponent } from './devices/ios/ios.component';
+import { ExpansionPanelComponent } from './pages/expansion-panel/expansion-panel.component';
 
-const SHARED_DIALOGS = [
-	AlertDialog,
-	ConfirmDialog,
-	PromptDialog,
-	SelectionDialog
-]
 const DIALOGS = [
-	SHARED_DIALOGS,
 	FeedDialog,
 	CodeViewerDialog,
 	ShareDialog,
@@ -62,7 +54,10 @@ const PIPES = [
 		PageNotFoundComponent,
 		DocViewer,
 		GuideViewer,
-		GuidesList
+		GuidesList,
+		AndroidComponent,
+		IOSComponent,
+		ExpansionPanelComponent
 	],
 	imports: [
 		BrowserModule,
@@ -72,15 +67,16 @@ const PIPES = [
 		FlexLayoutModule,
 		HttpClientModule,
 		MaterialModule,
+		SharedModule,
 		AppRouting
 	],
 	bootstrap: [AppComponent],
 	providers: [
-		Shared,
 		GuideItems
 	],
 	entryComponents: [
-		DIALOGS
+		DIALOGS,
+		ExpansionPanelComponent
 	]
 })
 export class AppModule {
