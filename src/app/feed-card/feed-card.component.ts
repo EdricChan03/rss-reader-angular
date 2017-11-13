@@ -1,7 +1,7 @@
 import { DomSanitizer } from '@angular/platform-browser';
-import { Shared } from './../shared';
-import { ShareDialog } from './../dialogs/index';
-import { Settings } from './../app.component';
+import { SharedInjectable } from '../shared';
+import { ShareDialog } from '../dialogs/index';
+import { Settings } from '../app.component';
 import { MatDialogRef, MatDialog, MatSlideToggleChange } from '@angular/material';
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import * as hljs from 'highlight.js';
@@ -19,7 +19,7 @@ export class FeedCardComponent implements OnInit {
 	imageChanged: boolean = false;
 	settings: Settings;
 	@Input() feed: any;
-	constructor(private dialog: MatDialog, private shared: Shared, private dom: DomSanitizer) { }
+	constructor(private dialog: MatDialog, private shared: SharedInjectable, private dom: DomSanitizer) { }
 	share(feed: any) {
 		let dialogRef = this.dialog.open(ShareDialog);
 		dialogRef.componentInstance.feed = feed;
@@ -37,7 +37,6 @@ export class FeedCardComponent implements OnInit {
 	 * @param {any} feed The current post
 	 */
 	viewInDialog(feed) {
-		console.log(feed);
 		let dialogRef = this.shared.openConfirmDialog({title: "Post", msg: this.dom.bypassSecurityTrustHtml(`<iframe src="${feed.link}" width="90%" height="90%"></iframe>`), isHtml: true, panelClass: 'post-dialog'});
 		dialogRef.afterClosed().subscribe(result => {
 			if (result == 'ok') {

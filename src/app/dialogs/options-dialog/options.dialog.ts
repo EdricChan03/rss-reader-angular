@@ -1,5 +1,5 @@
-import { Shared } from './../../shared';
-import { FeedOptions } from './../../home/home.component';
+import { SharedInjectable } from '../../shared';
+import { FeedOptions } from '../../home/home.component';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 	templateUrl: './options.dialog.html'
 })
 export class OptionsDialog implements OnInit {
-	constructor(private dialogRef: MatDialogRef<OptionsDialog>, private shared: Shared, private dialog: MatDialog){}
+	constructor(private dialogRef: MatDialogRef<OptionsDialog>, private shared: SharedInjectable, private dialog: MatDialog){}
 	options: FeedOptions;
 	tempOptions: FeedOptions;
 	cancel() {
