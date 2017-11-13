@@ -3,22 +3,7 @@ The following guide below shows you all the features and what certain functions 
 **This guide will be coming soon. Stay tuned!**
 
 ## Feed selection
-When you first load the app, there will be a feed selection dialog asking you for which RSS feed you would like to get. You can choose from the following:
-- Android
-  - Android Central
-  - Android Police
-  - Android Studio Blog (will be reassigned to `Developers`, stay tuned)
-- Apple
-  - OSX Daily
-- Google
-  - Google Blog
-  - G Suite Updates Blog
-- Github
-  - Github Blog - All Posts (will be reassigned to `Developers`, stay tuned)
-- News
-  - CNN Most Recent
-- Personal
-  - Edric's Blog (aka my blog)
+When you first load the app, there will be a feed selection dialog asking you for which RSS feed you would like to get. You can choose from any of the following listed in the select box.
 
 Or you may manually add in a URL below the select in a form field.
 You can optionally add this feed URL which will open in a new tab a Google Form for you to comeplete once you press the `Save` button. Just check the `Publish Feed URL` checkbox to begin.
@@ -27,13 +12,17 @@ The next step is to generate an API key, which is documented [here][generate-api
 
 Once you are done, press the `Save` button to load up the app.
 
-## The sidenav
+## Sidenav
 The sidenav consists of these things:
 1. Home (Where you probably are right now)
 2. Settings
 3. Guides
 
-And an `other` list consisting of these items:
+### Apps
+1. Android (coming soon)
+2. iOS (coming soon)
+
+### More
 1. Send Feedback (Google Forms)
 
 ## Accessing settings
