@@ -1,5 +1,5 @@
-import { Shared } from './../shared';
-import { Settings } from './../app.component';
+import { SharedInjectable } from '../shared';
+import { Settings } from '../app.component';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class SettingsComponent implements OnInit {
 	settings: Settings;
 	themes: any;
-	constructor(private shared: Shared) { }
+	constructor(private shared: SharedInjectable) { }
 
 	reset() {
 		let dialogRef = this.shared.openConfirmDialog({ title: "Reset settings?", msg: "Do you want to reset your settings?" });
