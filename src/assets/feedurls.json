@@ -66,6 +66,11 @@
 				"name": "CNN Most Recent",
 				"feedUrl": "http://rss.cnn.com/rss/cnn_latest.rss?format=xml",
 				"description": "CNN.com delivers up-to-the-minute news and information on the latest top stories, weather, entertainment, politics and more."
+			},
+			{
+				"name": "Vox",
+				"feedUrl": "https://www.vox.com/rss/index.xml",
+				"description": "All posts from Vox."
 			}
 		]
 	},
