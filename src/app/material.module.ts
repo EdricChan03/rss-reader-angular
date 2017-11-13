@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -21,30 +22,33 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 //#region CDK Module imports
 import { A11yModule } from '@angular/cdk/a11y';
+import { PortalModule } from '@angular/cdk/portal';
 //#endregion
 import { NgModule } from '@angular/core';
 const MATERIAL_MODULES = [
-	MatCardModule,
-	MatToolbarModule,
 	MatButtonModule,
-	MatIconModule,
-	MatDialogModule,
-	MatMenuModule,
+	MatCardModule,
 	MatCheckboxModule,
-	MatFormFieldModule,
-	MatSelectModule,
 	MatChipsModule,
-	MatSidenavModule,
-	MatTooltipModule,
-	MatSnackBarModule,
-	MatProgressSpinnerModule,
-	MatSlideToggleModule,
+	MatDialogModule,
+	MatExpansionModule,
+	MatFormFieldModule,
+	MatIconModule,
 	MatInputModule,
 	MatListModule,
-	MatRadioModule
+	MatMenuModule,
+	MatProgressSpinnerModule,
+	MatRadioModule,
+	MatSelectModule,
+	MatSidenavModule,
+	MatSlideToggleModule,
+	MatSnackBarModule,
+	MatToolbarModule,
+	MatTooltipModule
 ];
 const CDK_MODULES = [
-	A11yModule
+	A11yModule,
+	PortalModule
 ];
 @NgModule({
 	imports: [
