@@ -40,18 +40,14 @@ It also provides easily accessible code for beginners who are getting started wi
 ---
 # Methods
 Here's a list of all the functions/methods.
-## `openSnackBar` <sub><sup>DEPRECATED</sup></sub>
+## `openSnackBar`
 ```typescript
-openSnackBar(opts: SnackBarConfig): void;
+openSnackBar(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar>;
 ```
 
 <!-- start-enclose-content -->
 ### Description
-Opens a snackbar with the specified params.
-
-**NOTE:** This method does not return anything, unlike the next few methods.
-
-**NOTE:** This method will soon be removed in favour of `openSnackBarWithRef`.
+Opens a snackbar with the specified params and returns the snackbar ref.
 
 ### Returns
 `void`
@@ -73,14 +69,16 @@ export class MyComponent {
 ```
 <!-- end-enclose-content -->
 
-## `openSnackBarWithRef`
+## `openSnackBarWithRef` <sub><sup>DEPRECATED</sup></sub>
 ```typescript
 openSnackBarWithRef(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar>;
 ```
 
 <!-- start-enclose-content -->
 ### Description
-Opens a snackbar with the specified params.
+Opens a snackbar with the specified params and returns the snackbar's ref.
+
+**NOTE:** This is deprecated in favour of `openSnackBar`.
 
 ### Returns
 `MatSnackBarRef<SimpleSnackBar>`
@@ -97,7 +95,8 @@ Param | Type | Description | Notes
 export class MyComponent {
 	constructor(private shared: SharedInjectable){}
 	showSnackBar() {
-		let snackBarRef = this.shared.openSnackBarWithRef({msg: "I'm a snackbar!", action: "Do something", additionalOpts: {duration: 5000}});
+		// Note: Using `openSnackBar` in this example as `openSnackBarWithRef` is deprecated
+		let snackBarRef = this.shared.openSnackBar({msg: "I'm a snackbar!", action: "Do something", additionalOpts: {duration: 5000}});
 		snackBarRef.onAction().subscribe(()=> {
 			console.log("User clicked the action!");
 		})

@@ -50,8 +50,8 @@ export class SharedInjectable {
 	 * @param {SnackBarConfig} opts The options of the snackBar
 	 * @deprecated Use `openSnackBarWithRef` instead
 	 */
-	public openSnackBar(opts: SnackBarConfig) {
-		this.handleSnackBar(opts);
+	public openSnackBar(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar> {
+		return this.handleSnackBar(opts);
 	}
 	/**
 	 * Opens a snackBar with the specified params and a return of the snackBar's ref (for component)
@@ -65,34 +65,10 @@ export class SharedInjectable {
 	 * Opens a snackBar with the specified params and a return of the snackBar's ref (not for component)
 	 * @param {SnackBarConfig} opts The options of the snackBar
 	 * @returns {MatSnackBar<SimpleSnackBar>}
-	 * @todo Refactor to `openSnackBar`
+	 * @deprecated Use {@link SharedInjectable#openSnackBar} instead
 	 */
 	public openSnackBarWithRef(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar> {
-		return this.handleSnackBarWithRef(opts);
-	}
-	/**
-	 * Handling of the snackBar
-	 * @param {SnackBarConfig} opts The snackBar config
-	 * @private
-	 */
-	private handleSnackBar(opts: SnackBarConfig) {
-		if (opts) {
-			if (opts.component) {
-				if (opts.additionalOpts) {
-					this.snackBar.openFromComponent(opts.component, opts.additionalOpts);
-				} else {
-					this.snackBar.openFromComponent(opts.component);
-				}
-			} else {
-				if (opts.action) {
-					this.snackBar.open(opts.msg, opts.action, opts.additionalOpts);
-				} else {
-					this.snackBar.open(opts.msg, undefined, opts.additionalOpts);
-				}
-			}
-		} else {
-			this.throwError("message", "string");
-		}
+		return this.openSnackBar(opts);
 	}
 	/**
 	 * Handles a snackBar with a snackBarref if the developer needs a return
@@ -100,7 +76,7 @@ export class SharedInjectable {
 	 * @returns {MatSnackBarRef<SimpleSnackBar>}
 	 * @private
 	 */
-	private handleSnackBarWithRef(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar> {
+	private handleSnackBar(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar> {
 		if (opts) {
 			if (opts.action) {
 				let snackBarRef = this.snackBar.open(opts.msg, opts.action, opts.additionalOpts);
