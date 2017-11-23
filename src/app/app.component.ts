@@ -37,6 +37,9 @@ export class AppComponent implements OnInit {
 			icon: "book"
 		}
 	];
+	get isOffline() {
+		return !navigator.onLine;
+	}
 	get isMobile() {
 		return this.shared.isMobile();
 	}
@@ -79,6 +82,10 @@ export class AppComponent implements OnInit {
 			snackBarRef.onAction().subscribe(()=> {
 				window.location.reload(true);
 			})
+		}
+		if (this.isOffline) {
+			console.log("User is offline");
+			this.shared.openSnackBar
 		}
 	}
 }

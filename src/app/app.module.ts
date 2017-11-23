@@ -30,6 +30,8 @@ import 'hammerjs';
 import { AndroidComponent } from './devices/android/android.component';
 import { IOSComponent } from './devices/ios/ios.component';
 import { ExpansionPanelComponent } from './pages/expansion-panel/expansion-panel.component';
+import { environment } from 'environments/environment';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 const DIALOGS = [
 	FeedDialog,
@@ -68,7 +70,9 @@ const PIPES = [
 		HttpClientModule,
 		MaterialModule,
 		SharedModule,
-		AppRouting
+		AppRouting,
+		// If the environment is in production mode, import service worker; else, import nothing
+		environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : []
 	],
 	bootstrap: [AppComponent],
 	providers: [
