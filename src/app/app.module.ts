@@ -73,8 +73,7 @@ const PIPES = [
 		MaterialModule,
 		SharedModule,
 		AppRouting,
-		// If the environment is in production mode, import service worker; else, import nothing
-		environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : []
+		ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production})
 	],
 	bootstrap: [AppComponent],
 	providers: [
