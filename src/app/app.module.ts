@@ -21,7 +21,7 @@ import {
 	StripHtmlTagsPipe,
 	TruncatePipe,
 	OrderByPipe
-} from './pipe/index';
+} from './pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     SharedModule
@@ -32,6 +32,7 @@ import { IOSComponent } from './devices/ios/ios.component';
 import { ExpansionPanelComponent } from './pages/expansion-panel/expansion-panel.component';
 import { environment } from 'environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { WebComponent } from './devices/web/web.component';
 
 const DIALOGS = [
 	FeedDialog,
@@ -59,7 +60,8 @@ const PIPES = [
 		GuidesList,
 		AndroidComponent,
 		IOSComponent,
-		ExpansionPanelComponent
+		ExpansionPanelComponent,
+		WebComponent
 	],
 	imports: [
 		BrowserModule,
