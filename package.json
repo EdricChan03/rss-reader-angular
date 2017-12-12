@@ -8,14 +8,8 @@
 		"test": "ng test",
 		"pree2e": "webdriver-manager update",
 		"e2e": "protractor",
-		"githubPages": "npm run build-ghp-ngsw  && ngh && rm -rf dist/",
-		"ngsw-config": "$(npm bin)/ngsw-config dist src/ngsw-config.json",
-		"ngsw-copy": "cp node_modules/@angular/service-worker/ngsw-worker.js dist/",
-		"build-ghp": "ng build --prod --base-href /rss-reader/ --deploy-url /rss-reader/",
-		"build-prod": "ng build --prod --watch",
-		"build-prod-ngsw": "echo \"Please ensure that you've run npm run build-prod before continuing.\" && sleep 4 && npm run ngsw-config && npm run ngsw-copy",
-		"build-ghp-ngsw": "npm run build-ghp && npm run ngsw-config && npm run ngsw-copy",
-		"serve-prod-ngsw": "npm run build-prod-ngsw && lite-server --baseDir=\"dist\""
+		"githubPages": "npm run build && ngh && rm -rf dist/",
+		"build": "ng build --prod --base-href /rss-reader/ --deploy-url /rss-reader/"
 	},
 	"private": true,
 	"dependencies": {
