@@ -34,7 +34,7 @@ To access the settings, follow these steps:
 
 <!-- begin end links -->
 ---
-[:arrow_left: Back to website](https://chan4077.github.io/angular-rss-reader)
+[:arrow_left: Back to website](https://chan4077.github.io/rss-reader)
 
 - [Generating an API Key](./generate-api-key.md)
 - [Getting Started **(You are here)**](./getting-started.md)

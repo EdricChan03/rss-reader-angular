@@ -18,7 +18,7 @@ In that case, just submit an issue [here][issue_form] and I will try to fix the 
 
 <!-- begin end links -->
 ---
-[:arrow_left: Back to website](https://chan4077.github.io/angular-rss-reader)
+[:arrow_left: Back to website](https://chan4077.github.io/rss-reader)
 
 - [Generating an API Key](./generate-api-key.md)
 - [Getting Started](./getting-started.md)

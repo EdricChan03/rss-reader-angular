@@ -264,4 +264,4 @@ Property | Description | Type | Default value(s) | Required? | Notes
 
 ---
 # Testing
-[Testing page](https://chan4077.github.io/angular-rss-reader/test)
+[Testing page](https://chan4077.github.io/rss-reader/test)

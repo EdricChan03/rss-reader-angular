@@ -7,7 +7,7 @@
 
 @include mat-core();
 
-@mixin angular-rss-reader-theme($theme) {
+@mixin rss-reader-theme($theme) {
 	@include tables-theme($theme);
 	$foreground: map-get($theme, foreground);
 	$primary: map-get($theme, primary);
@@ -77,22 +77,22 @@ $indigo-pink-accent: mat-palette($mat-pink, A200, A100, A400);
 $indigo-pink-theme: mat-light-theme($indigo-pink-primary, $indigo-pink-accent);
 .deeppurple-amber {
 	@include angular-material-theme($deeppurple-amber-theme);
-	@include angular-rss-reader-theme($deeppurple-amber-theme);
+	@include rss-reader-theme($deeppurple-amber-theme);
 }
 
 .pink-bluegrey {
 	@include angular-material-theme($pink-bluegrey-theme);
-	@include angular-rss-reader-theme($pink-bluegrey-theme);
+	@include rss-reader-theme($pink-bluegrey-theme);
 }
 
 .purple-green {
 	@include angular-material-theme($purple-green-theme);
-	@include angular-rss-reader-theme($purple-green-theme);
+	@include rss-reader-theme($purple-green-theme);
 }
 
 .indigo-pink {
 	@include angular-material-theme($indigo-pink-theme);
-	@include angular-rss-reader-theme($indigo-pink-theme);
+	@include rss-reader-theme($indigo-pink-theme);
 }
 
 .mat-button,
