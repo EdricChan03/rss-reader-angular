@@ -1,0 +1,18 @@
+.downloads-container {
+	background-color: #e0e0e0;
+	padding: 50px;
+	.download-btn {
+		padding-left: 6px;
+		mat-icon {
+			margin-right: 10px;
+			margin-left: 0;
+		}
+	}
+}
+.download-web-container {
+	padding: 5%;
+}
+.download-tile.mat-figure {
+	display: block;
+	text-align: center;
+}
