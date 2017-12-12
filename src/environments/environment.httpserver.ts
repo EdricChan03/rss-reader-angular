@@ -1,4 +1,4 @@
 export const environment = {
 	production: true,
-	swLocation: '/rss-reader/ngsw-worker.js'
-};
+	swLocation: '/ngsw-worker.js'
+}
