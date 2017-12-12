@@ -31,7 +31,7 @@ import 'hammerjs';
 import { AndroidComponent } from './devices/android/android.component';
 import { IOSComponent } from './devices/ios/ios.component';
 import { ExpansionPanelComponent } from './pages/expansion-panel/expansion-panel.component';
-import { environment } from 'environments/environment';
+import { environment } from '../environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { WebComponent } from './devices/web/web.component';
 
