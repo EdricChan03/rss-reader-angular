@@ -1,3 +1,4 @@
+import { WebComponent } from './devices/web/web.component';
 import { GuideViewer } from './pages/guide-viewer/guide-viewer.component';
 import { GuidesList } from './pages/guide-list/guide-list.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -19,6 +20,7 @@ const APP_ROUTES: Routes = [
 		path: 'devices', children: [
 			{ path: 'android', component: AndroidComponent },
 			{ path: 'ios', component: IOSComponent },
+			{ path: 'web', component: WebComponent },
 			{ path: '**', redirectTo: '/devices/android' }
 		]
 	},
