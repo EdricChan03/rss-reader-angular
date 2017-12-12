@@ -73,7 +73,7 @@ const PIPES = [
 		MaterialModule,
 		SharedModule,
 		AppRouting,
-		ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production})
+		ServiceWorkerModule.register('/rss-reader/ngsw-worker.js', {enabled: environment.production})
 	],
 	bootstrap: [AppComponent],
 	providers: [

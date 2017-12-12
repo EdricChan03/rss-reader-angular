@@ -14,7 +14,7 @@ Run `ng serve` and go to `http://localhost:4000`.
 ## Service worker
 To enable the service worker, run the following commands on the app's root directory:
 ```bash
-ng build --prod
+npm run build
 cd dist
 http-server
 ```
