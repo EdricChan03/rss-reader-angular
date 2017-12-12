@@ -12,9 +12,9 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 ## Developer mode
 Run `ng serve` and go to `http://localhost:4000`.
 ## Service worker
-To enable the service worker, run the following commands:
+To enable the service worker, run the following commands on the app's root directory:
 ```bash
-npm run build
+ng build --prod
 cd dist
 http-server
 ```
