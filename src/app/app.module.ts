@@ -1,3 +1,4 @@
+import 'hammerjs';
 import { GuideItems } from './guide-items';
 import { GuidesList } from './pages/guide-list/guide-list.component';
 import { GuideViewer } from './pages/guide-viewer/guide-viewer.component';
