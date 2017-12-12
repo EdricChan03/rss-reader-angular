@@ -36,14 +36,12 @@
 <hr>
 <h1 id="methods">Methods</h1>
 <p>Here&#39;s a list of all the functions/methods.</p>
-<h2 id="-opensnackbar-sub-sup-deprecated-sup-sub-"><code>openSnackBar</code> <sub><sup>DEPRECATED</sup></sub></h2>
-<pre class="hljs"><code class="lang-typescript">openSnackBar(opts: SnackBarConfig): <span class="hljs-built_in">void</span>;
+<h2 id="-opensnackbar-"><code>openSnackBar</code></h2>
+<pre class="hljs"><code class="lang-typescript">openSnackBar(opts: SnackBarConfig): MatSnackBarRef&lt;SimpleSnackBar&gt;;
 </code></pre>
 <div expansion-panel>
 <h3 id="description">Description</h3>
-<p>Opens a snackbar with the specified params.</p>
-<p><strong>NOTE:</strong> This method does not return anything, unlike the next few methods.</p>
-<p><strong>NOTE:</strong> This method will soon be removed in favour of <code>openSnackBarWithRef</code>.</p>
+<p>Opens a snackbar with the specified params and returns the snackbar ref.</p>
 <h3 id="returns">Returns</h3>
 <p><code>void</code></p>
 <h3 id="params">Params</h3>
@@ -75,12 +73,13 @@
 }
 </code></pre>
 </div>
-<h2 id="-opensnackbarwithref-"><code>openSnackBarWithRef</code></h2>
+<h2 id="-opensnackbarwithref-sub-sup-deprecated-sup-sub-"><code>openSnackBarWithRef</code> <sub><sup>DEPRECATED</sup></sub></h2>
 <pre class="hljs"><code class="lang-typescript">openSnackBarWithRef(opts: SnackBarConfig): MatSnackBarRef&lt;SimpleSnackBar&gt;;
 </code></pre>
 <div expansion-panel>
 <h3 id="description">Description</h3>
-<p>Opens a snackbar with the specified params.</p>
+<p>Opens a snackbar with the specified params and returns the snackbar&#39;s ref.</p>
+<p><strong>NOTE:</strong> This is deprecated in favour of <code>openSnackBar</code>.</p>
 <h3 id="returns">Returns</h3>
 <p><code>MatSnackBarRef&lt;SimpleSnackBar&gt;</code>
 The ref of the snackbar</p>
@@ -108,7 +107,8 @@ The ref of the snackbar</p>
 <pre class="hljs"><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
     <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> shared: SharedInjectable</span>){}
     showSnackBar() {
-        <span class="hljs-keyword">let</span> snackBarRef = <span class="hljs-keyword">this</span>.shared.openSnackBarWithRef({msg: <span class="hljs-string">"I'm a snackbar!"</span>, action: <span class="hljs-string">"Do something"</span>, additionalOpts: {duration: <span class="hljs-number">5000</span>}});
+        <span class="hljs-comment">// Note: Using `openSnackBar` in this example as `openSnackBarWithRef` is deprecated</span>
+        <span class="hljs-keyword">let</span> snackBarRef = <span class="hljs-keyword">this</span>.shared.openSnackBar({msg: <span class="hljs-string">"I'm a snackbar!"</span>, action: <span class="hljs-string">"Do something"</span>, additionalOpts: {duration: <span class="hljs-number">5000</span>}});
         snackBarRef.onAction().subscribe(<span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span> {
             <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"User clicked the action!"</span>);
         })
@@ -430,4 +430,4 @@ setTitle(title: <span class="hljs-built_in">string</span>) {
 </div>
 <hr>
 <h1 id="testing">Testing</h1>
-<p><a href="https://chan4077.github.io/angular-rss-reader/test" class="docs-a">Testing page</a></p>
+<p><a href="https://chan4077.github.io/rss-reader/test" class="docs-a">Testing page</a></p>
