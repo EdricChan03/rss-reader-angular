@@ -15,8 +15,13 @@ import { FormsModule } from '@angular/forms';
 
 @Injectable()
 export class SharedInjectable {
-	private _title: string = "";
-	constructor(private snackBar: MatSnackBar, private dialog: MatDialog, private documentTitle: Title, private breakpointObserver: BreakpointObserver) { }
+	private _title = '';
+	constructor(
+		private snackBar: MatSnackBar,
+		private dialog: MatDialog,
+		private documentTitle: Title,
+		private breakpointObserver: BreakpointObserver
+	) { }
 	/**
 	 * Sets the document's title
 	 * @param {string} title The title of the document to set
@@ -79,14 +84,14 @@ export class SharedInjectable {
 	private handleSnackBar(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar> {
 		if (opts) {
 			if (opts.action) {
-				let snackBarRef = this.snackBar.open(opts.msg, opts.action, opts.additionalOpts);
+				const snackBarRef = this.snackBar.open(opts.msg, opts.action, opts.additionalOpts);
 				return snackBarRef;
 			} else {
-				let snackBarRef = this.snackBar.open(opts.msg, undefined, opts.additionalOpts);
+				const snackBarRef = this.snackBar.open(opts.msg, undefined, opts.additionalOpts);
 				return snackBarRef;
 			}
 		} else {
-			this.throwError("opts", "SnackBarConfig");
+			this.throwError('opts', 'SnackBarConfig');
 		}
 	}
 	/**
@@ -103,10 +108,10 @@ export class SharedInjectable {
 					return this.snackBar.openFromComponent(opts.component);
 				}
 			} else {
-				this.throwError("opts.additionalOpts", "MatSnackBarConfig");
+				this.throwError('opts.additionalOpts', 'MatSnackBarConfig');
 			}
 		} else {
-			this.throwError("opts", "SnackBarConfig");
+			this.throwError('opts', 'SnackBarConfig');
 		}
 	}
 	/**
@@ -123,16 +128,16 @@ export class SharedInjectable {
 	public openAlertDialog(opts: AlertDialogConfig): MatDialogRef<AlertDialog> {
 		if (opts) {
 			if (opts.panelClass) {
-				let dialogRef = this.dialog.open(AlertDialog, { panelClass: opts.panelClass });
+				const dialogRef = this.dialog.open(AlertDialog, { panelClass: opts.panelClass });
 				dialogRef.componentInstance.alertConfig = opts;
 				return dialogRef;
 			} else {
-				let dialogRef = this.dialog.open(AlertDialog);
+				const dialogRef = this.dialog.open(AlertDialog);
 				dialogRef.componentInstance.alertConfig = opts;
 				return dialogRef;
 			}
 		} else {
-			this.throwError("opts", "AlertDialogConfig");
+			this.throwError('opts', 'AlertDialogConfig');
 		}
 	}
 	/**
@@ -143,16 +148,16 @@ export class SharedInjectable {
 	public openConfirmDialog(opts: ConfirmDialogConfig): MatDialogRef<ConfirmDialog> {
 		if (opts) {
 			if (opts.panelClass) {
-				let dialogRef = this.dialog.open(ConfirmDialog, { panelClass: opts.panelClass });
+				const dialogRef = this.dialog.open(ConfirmDialog, { panelClass: opts.panelClass });
 				dialogRef.componentInstance.confirmConfig = opts;
 				return dialogRef;
 			} else {
-				let dialogRef = this.dialog.open(ConfirmDialog);
+				const dialogRef = this.dialog.open(ConfirmDialog);
 				dialogRef.componentInstance.confirmConfig = opts;
 				return dialogRef;
 			}
 		} else {
-			this.throwError("opts", "ConfirmDialogConfig");
+			this.throwError('opts', 'ConfirmDialogConfig');
 		}
 	}
 	/**
@@ -163,16 +168,16 @@ export class SharedInjectable {
 	public openPromptDialog(opts: PromptDialogConfig): MatDialogRef<PromptDialog> {
 		if (opts) {
 			if (opts.panelClass) {
-				let dialogRef = this.dialog.open(PromptDialog, { panelClass: opts.panelClass });
+				const dialogRef = this.dialog.open(PromptDialog, { panelClass: opts.panelClass });
 				dialogRef.componentInstance.promptConfig = opts;
 				return dialogRef;
 			} else {
-				let dialogRef = this.dialog.open(PromptDialog);
+				const dialogRef = this.dialog.open(PromptDialog);
 				dialogRef.componentInstance.promptConfig = opts;
 				return dialogRef;
 			}
 		} else {
-			this.throwError("opts", "PromptDialogConfig");
+			this.throwError('opts', 'PromptDialogConfig');
 		}
 	}
 	/**
@@ -182,11 +187,11 @@ export class SharedInjectable {
 	 */
 	public openSelectionDialog(opts: SelectionDialogConfig): MatDialogRef<SelectionDialog> {
 		if (opts) {
-			let dialogRef = this.dialog.open(SelectionDialog, { disableClose: true, panelClass: "selection-dialog" });
+			const dialogRef = this.dialog.open(SelectionDialog, { disableClose: true, panelClass: 'selection-dialog' });
 			dialogRef.componentInstance.selectionConfig = opts;
 			return dialogRef;
 		} else {
-			this.throwError("opts", "SelectionDialogConfig");
+			this.throwError('opts', 'SelectionDialogConfig');
 		}
 	}
 	/**
@@ -224,6 +229,7 @@ export class SharedInjectable {
 	 * @private
 	 */
 	private throwError(variable: string, type: string) {
+		// tslint:disable-next-line:max-line-length
 		throw new Error(`${variable} was not specified. Please ensure that the ${variable} property is specified and that it is of type ${type}.`);
 	}
 }
@@ -233,9 +239,11 @@ export class SharedInjectable {
 	selector: 'alert-dialog',
 	templateUrl: './partials/alertdialog.shared.html'
 })
+// tslint:disable-next-line:component-class-suffix
 export class AlertDialog implements OnInit {
 	constructor(private dialogRef: MatDialogRef<AlertDialog>) {
 	}
+	// tslint:disable-next-line:member-ordering
 	alertConfig: AlertDialogConfig;
 	close() {
 		this.dialogRef.close();
@@ -250,16 +258,18 @@ export class AlertDialog implements OnInit {
 	selector: 'confirm-dialog',
 	templateUrl: './partials/confirmdialog.shared.html'
 })
+// tslint:disable-next-line:component-class-suffix
 export class ConfirmDialog implements OnInit {
 	constructor(private dialogRef: MatDialogRef<ConfirmDialog>) {
 
 	}
+	// tslint:disable-next-line:member-ordering
 	confirmConfig: ConfirmDialogConfig;
 	cancel() {
-		this.dialogRef.close("cancel");
+		this.dialogRef.close('cancel');
 	}
 	ok() {
-		this.dialogRef.close("ok");
+		this.dialogRef.close('ok');
 	}
 	ngOnInit() {
 		if (this.confirmConfig.disableClose) {
@@ -271,13 +281,16 @@ export class ConfirmDialog implements OnInit {
 	selector: 'prompt-dialog',
 	templateUrl: './partials/promptdialog.shared.html'
 })
+// tslint:disable-next-line:component-class-suffix
 export class PromptDialog implements OnInit {
 	constructor(private dialogRef: MatDialogRef<PromptDialog>) {
 	}
+	// tslint:disable-next-line:member-ordering
 	promptConfig: PromptDialogConfig;
+	// tslint:disable-next-line:member-ordering
 	input: string | number;
 	cancel() {
-		this.dialogRef.close("cancel");
+		this.dialogRef.close('cancel');
 	}
 	ok() {
 		this.dialogRef.close(this.input);
@@ -295,10 +308,12 @@ export class PromptDialog implements OnInit {
 	selector: 'selection-dialog',
 	templateUrl: './partials/selectiondialog.shared.html'
 })
+// tslint:disable-next-line:component-class-suffix
 export class SelectionDialog implements OnInit, DoCheck {
 	@ViewChild('selection') selection: MatSelectionList;
 	constructor(private dialogRef: MatDialogRef<SelectionDialog>) {
 	}
+	// tslint:disable-next-line:member-ordering
 	selectionConfig: SelectionDialogConfig;
 	ngOnInit() {
 		if (this.selectionConfig.disableClose) {
@@ -306,7 +321,7 @@ export class SelectionDialog implements OnInit, DoCheck {
 		}
 	}
 	cancel() {
-		this.dialogRef.close("cancel");
+		this.dialogRef.close('cancel');
 	}
 	ok() {
 		this.dialogRef.close(this.selection.selectedOptions.selected);
@@ -314,7 +329,7 @@ export class SelectionDialog implements OnInit, DoCheck {
 	ngDoCheck() {
 	}
 }
-export interface SnackBarConfig {
+export class SnackBarConfig {
 	/**
 	 * The message for the snackBar
 	 * @type {string}
@@ -336,7 +351,7 @@ export interface SnackBarConfig {
 	 */
 	additionalOpts?: MatSnackBarConfig;
 }
-export interface DialogConfig extends MatDialogConfig {
+export class DialogConfig extends MatDialogConfig {
 	/**
 	 * The message of the dialog
 	 * @type {string|SafeHtml}
@@ -353,7 +368,7 @@ export interface DialogConfig extends MatDialogConfig {
 	 */
 	isHtml?: boolean;
 }
-export interface AlertDialogConfig extends DialogConfig {
+export class AlertDialogConfig extends DialogConfig {
 	/**
 	 * The ok button text
 	 * @type {string}
@@ -361,7 +376,7 @@ export interface AlertDialogConfig extends DialogConfig {
 	ok?: string;
 }
 
-export interface ConfirmDialogConfig extends DialogConfig {
+export class ConfirmDialogConfig extends DialogConfig {
 	/**
 	 * The ok button text
 	 * @type {string}
@@ -374,7 +389,7 @@ export interface ConfirmDialogConfig extends DialogConfig {
 	cancel?: string;
 }
 
-export interface PromptDialogConfig extends DialogConfig {
+export class PromptDialogConfig extends DialogConfig {
 	/**
 	 * The ok button text
 	 * @type {string}
@@ -394,7 +409,7 @@ export interface PromptDialogConfig extends DialogConfig {
 	 * The input type
 	 * @type {"text"|"email"|"password"|"number"}
 	 */
-	inputType?: "text" | "email" | "password" | "number";
+	inputType?: 'text' | 'email' | 'password' | 'number';
 	/**
 	 * The initial value of the input
 	 * @type {string|number}
@@ -404,9 +419,9 @@ export interface PromptDialogConfig extends DialogConfig {
 	 * The color of the input
 	 * @type {"primary"|"accent"|"warn"}
 	 */
-	color?: "primary" | "accent" | "warn";
+	color?: 'primary' | 'accent' | 'warn';
 }
-export interface SelectionDialogConfig extends DialogConfig {
+export class SelectionDialogConfig extends DialogConfig {
 	/**
 	 * The ok button text
 	 * @type {string}
@@ -423,7 +438,7 @@ export interface SelectionDialogConfig extends DialogConfig {
 	 */
 	options: SelectionDialogOptions[];
 }
-export interface SelectionDialogOptions {
+export class SelectionDialogOptions {
 	/**
 	 * The title of the selection list item
 	 * @type {string}
@@ -443,7 +458,7 @@ export interface SelectionDialogOptions {
 	 * The checkbox position of the selection list item
 	 * @type {"before"|"after"}
 	 */
-	checkboxPosition?: "before" | "after";
+	checkboxPosition?: 'before' | 'after';
 	/**
 	 * Whether the selection list item is initially selected
 	 * @type {boolean}
