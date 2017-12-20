@@ -35,7 +35,7 @@ $rss-reader-typography: mat-typography-config( $font-family: 'Lato, sans-serif')
         }
     }
     mat-sidenav-content::-webkit-scrollbar {
-        background-color: mat-color($foreground, text);
+        background-color: if($is-dark-theme, mat-color(mat-palette($mat-grey, 900)), mat-color(mat-palette($mat-grey, 200)));
         border: 1px solid mat-color($foreground, text);
     }
     .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
