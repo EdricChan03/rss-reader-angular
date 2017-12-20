@@ -1,0 +1,27 @@
+<div cdkTrapFocus class="onboarding-div">
+	<button mat-fab matTooltip="Previous" class="onboarding-left-fab" color="primary" [class.no-visible]="index == 0" (click)="prevIndex()" aria-label="Previous" [@enterAnimation]="index == 0 ? 'enter' : 'leave'">
+		<mat-icon>arrow_backward</mat-icon>
+	</button>
+	<mat-card
+		class="onboarding-card" [style.backgroundColor]="content[index].color">
+		<img mat-card-image [src]="content[index].imgSrc" *ngIf="content[index].imgSrc">
+		<mat-card-content class="onboarding-content" [class.onboarding-content-center]="content[index].imgSrc == null">
+			<div *ngIf="index == 0" class="app-div">
+				<img src="/assets/favicon/icon-100x100-nocolor.png" width="100px" height="100px">
+				<div>
+					<p class="app-title">RSS Reader</p>
+					<small class="app-beta">BETA</small>
+				</div>
+			</div>
+			<br *ngIf="index == 0">
+			<p *ngIf="index == 0">The news reader that you will need</p>
+			<p>{{content[index].content}}</p>
+		</mat-card-content>
+	</mat-card>
+	<button mat-fab [matTooltip]="nextFABTooltip" class="onboarding-right-fab" [color]="nextFABColor" (click)="nextIndex()" aria-label="Next">
+		<mat-icon>{{nextFABIcon}}</mat-icon>
+	</button>
+</div>
+<div class="indicators">
+	<span class="indicator" [class.indicator-active]="item === index" *ngFor="let item of [0, 1, 2, 3]" (click)="goToIndex(item)"></span>
+</div>

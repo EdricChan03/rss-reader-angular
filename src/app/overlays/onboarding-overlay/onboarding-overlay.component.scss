@@ -1,0 +1,78 @@
+.onboarding-card {
+	width: 800px;
+	height: 600px;
+	transition: all 0.3s ease-in-out !important;
+	border-radius: 20px !important;
+	margin-left: 50px;
+	margin-right: 50px;
+	&.extra-margin-left {
+		margin-left: 156px !important;
+	}
+	&.extra-margin-right {
+		margin-right: 156px !important;
+	}
+	.mat-card-image {
+		height: 380px;
+	}
+}
+.no-visible {
+	visibility: hidden;
+}
+.onboarding-progress-bar {
+	width: 200px !important;
+	margin: auto;
+}
+.onboarding-div {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.onboarding-left-fab {
+	margin-left: 50px;
+}
+.onboarding-right-fab {
+	margin-right: 50px;
+}
+.onboarding-content {
+	font-size: 30px;
+	line-height: 30px;
+	padding: 60px;
+	height: 100%;
+	margin: auto;
+}
+.app-div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	.app-title {
+		font-size: 40px;
+	}
+	.app-beta {
+		font-size: 25px;
+		font-weight: 300;
+		float: right;
+	}
+}
+.onboarding-content-center {
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+	flex-direction: column;
+}
+.indicator {
+	border-radius: 50%;
+	display: block;
+	margin: 4px;
+	width: 10px;
+	height: 10px;
+	transition: all 0.2s ease-in-out;
+}
+.indicators {
+	display: flex;
+	margin: auto;
+	flex-direction: row;
+	vertical-align: middle;
+	align-items: center;
+	width: fit-content;
+	padding-top: 6px;
+}
