@@ -127,7 +127,7 @@ export class AppComponent implements OnInit, OnDestroy {
 			const tempSettings: Settings = { showImages: true, multipleRss: false, openNewTab: true };
 			window.localStorage.setItem('settings', JSON.stringify(tempSettings));
 			// tslint:disable-next-line:max-line-length
-			const snackBarRef = this.shared.openSnackBarWithRef({ msg: 'Settings not found. Click on the \'Reload\' button to reload.', action: 'Reload', additionalOpts: { horizontalPosition: 'start', extraClasses: ['mat-elevation-z3'], duration: 5000 } });
+			const snackBarRef = this.shared.openSnackBar({ msg: 'Settings not found. Click on the \'Reload\' button to reload.', action: 'Reload', additionalOpts: { horizontalPosition: 'start', extraClasses: ['mat-elevation-z3'], duration: 5000 } });
 			snackBarRef.onAction().subscribe(() => {
 				window.location.reload(true);
 			});

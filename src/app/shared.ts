@@ -51,7 +51,7 @@ export class SharedInjectable implements OnInit {
 				this.activateUpdate();
 			});
 
-		})
+		});
 	}
 	/**
 	 * Checks for updates (ngsw)
@@ -72,7 +72,7 @@ export class SharedInjectable implements OnInit {
 			window.location.reload(true);
 		}).catch(err => {
 			console.error(err);
-		})
+		});
 	}
 	/**
 	 * Detects if the user is using a mobile device

@@ -29,7 +29,7 @@ export class SettingsComponent implements OnInit {
 	save() {
 		window.localStorage.setItem('settings', JSON.stringify(this.settings));
 		// tslint:disable-next-line:max-line-length
-		const snackBarRef = this.shared.openSnackBarWithRef({ msg: 'Settings saved', action: 'Reload', additionalOpts: { duration: 4000, horizontalPosition: 'start' } });
+		const snackBarRef = this.shared.openSnackBar({ msg: 'Settings saved', action: 'Reload', additionalOpts: { duration: 4000, horizontalPosition: 'start' } });
 		snackBarRef.onAction().subscribe(_ => {
 			window.location.reload(true);
 		});
