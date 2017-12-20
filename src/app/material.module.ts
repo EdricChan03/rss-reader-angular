@@ -23,6 +23,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 //#region CDK Module imports
 import { A11yModule } from '@angular/cdk/a11y';
+import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 //#endregion
 import { NgModule } from '@angular/core';
@@ -50,6 +51,7 @@ const MATERIAL_MODULES = [
 ];
 const CDK_MODULES = [
 	A11yModule,
+	OverlayModule,
 	PortalModule
 ];
 @NgModule({
