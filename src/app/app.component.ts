@@ -107,7 +107,12 @@ export class AppComponent implements OnInit, OnDestroy {
 		this.overlayService.destroyOverlay();
 	}
 	ngOnInit() {
-		this.showOnboardingOverlay();
+		if (window.localStorage.getItem('hasLaunched')) {
+			if (!JSON.parse(window.localStorage.getItem('hasLaunched'))) {
+				window.localStorage.setItem('hasLaunched', JSON.stringify(true));
+				this.showOnboardingOverlay();
+			}
+		}
 		if (window.localStorage.getItem('settings')) {
 			this.settings = <Settings>JSON.parse(window.localStorage.getItem('settings'));
 			if (this.settings.theme) {
