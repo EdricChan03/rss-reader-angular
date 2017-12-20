@@ -10,7 +10,7 @@ const markdownOptions = {
 	highlight: (code: string, language: string): string => {
 		if (language) {
 			// highlight.js expects "typescript" written out, while Github supports "ts".
-			let lang = language.toLowerCase() === 'ts' ? 'typescript' : language;
+			const lang = language.toLowerCase() === 'ts' ? 'typescript' : language;
 			return hljs.highlight(lang, code).value;
 		}
 
@@ -40,7 +40,7 @@ task('docs-dev', () => {
 task('docs-img', () => {
 	return src('docs/img/**')
 		.pipe(dest('src/assets/docs/img'));
-})
+});
 
 /**
  * Transforms the Markdown files
@@ -65,13 +65,13 @@ function transformMarkdownFiles(content: string, file: any): Buffer | string {
 		`${head} src="${fixMarkdownDocImgs(link)}"`
 	);
 	content = content.replace(':arrow_left:', '⬅️');
-	content = content.replace(PRE_PATTERN, (_match: string, head: string) => 
+	content = content.replace(PRE_PATTERN, (_match: string, head: string) =>
 		`${head} class="hljs"`
 	);
 	content = content.replace(START_COMMENT_PATTERN, '<div expansion-panel>');
 	content = content.replace(END_COMMENT_PATTERN, '</div>');
 	return content;
-};
+}
 
 function fixMarkdownDocLinks(link: string, filePath: string): string {
 	// As for now, only markdown links that are relative and inside of the guides/ directory
@@ -81,14 +81,14 @@ function fixMarkdownDocLinks(link: string, filePath: string): string {
 	}
 
 
-	let baseName = path.basename(link, path.extname(link));
+	const baseName = path.basename(link, path.extname(link));
 
 	// Temporary link the file to the /guide URL because that's the route where the
 	// guides can be loaded in the Material docs.
 	return `doc/guides/${baseName}`;
 }
 function fixMarkdownDocImgs(link: string): string {
-	link = link.replace('..', 'assets/docs')
+	link = link.replace('..', 'assets/docs');
 	return link;
 }
-process.on('unhandledRejection', up => { throw up })
+process.on('unhandledRejection', up => { throw up; });

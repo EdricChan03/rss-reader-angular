@@ -11,9 +11,8 @@ export class PageNotFoundComponent implements OnInit {
 	constructor(public router: Router, private actionItemService: ActionIconService) { }
 
 	ngOnInit() {
-		this.actionItemService.addActionIcon({title: "Go back", icon: "arrow_back", onClickListener: ()=> {
+		this.actionItemService.addActionIcon({title: 'Go back', icon: 'arrow_back', onClickListener: () => {
 			window.history.back();
 		}, showAsAction: true});
-	};
-
+	}
 }

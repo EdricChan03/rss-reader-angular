@@ -9,11 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 // tslint:disable-next-line:component-class-suffix
 export class OptionsDialog implements OnInit {
-	constructor(private dialogRef: MatDialogRef<OptionsDialog>, private shared: SharedInjectable, private dialog: MatDialog) { }
-	// tslint:disable-next-line:member-ordering
 	options: FeedOptions;
-	// tslint:disable-next-line:member-ordering
 	tempOptions: FeedOptions;
+	constructor(private dialogRef: MatDialogRef<OptionsDialog>, private shared: SharedInjectable, private dialog: MatDialog) { }
 	cancel() {
 		this.dialogRef.close();
 	}
