@@ -57,6 +57,9 @@
 			"spec": false,
 			"inlineStyle": true
 		},
+		"service": {
+			"spec": false
+		},
 		"build": {
 			"showCircularDependencies": false
 		}
