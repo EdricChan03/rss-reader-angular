@@ -59,7 +59,7 @@ export class OnboardingOverlayComponent {
 	}
 	get nextFABTooltip(): string {
 		if (this.index === 3) {
-			return 'Done';
+			return 'Get started!';
 		} else {
 			return 'Next';
 		}
