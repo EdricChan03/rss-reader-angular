@@ -33,7 +33,7 @@ export class OverlayService {
 		this.destroyOverlay();
 	}
 	/**
-	 * 
+	 * Creates an overlay with the specified parameters
 	 * @param {ComponentPortal<any>} portal The portal to attach to the overlay's ref. For more info, visit {@link Overlay#create}
 	 * @param {OverlayConfig} config The configuration of the overlay. See {@link OverlayConfig} for more properties.
 	 * @param {boolean} backdropClickClosesOverlay Whether when the overlay's backdrop is clicked and it will close the overlay

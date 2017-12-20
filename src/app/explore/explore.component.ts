@@ -38,7 +38,7 @@ export class ExploreComponent implements OnInit, OnDestroy {
 	@ViewChild('filterOverlayBtn') filterOverlayBtn: MatButton;
 	getNewsSources() {
 		this.http.get<SourceAPI>(this.newsApiSourcesEndpoint).subscribe(result => {
-			if (result.status == 'error') {
+			if (result.status === 'error') {
 				if (result.code && result.message) {
 					// tslint:disable-next-line:max-line-length
 					const snackBarRef = this.shared.openSnackBar({ msg: `Error ${result.code}: ${result.message}`, action: 'Retry', additionalOpts: { duration: 5000, extraClasses: ['mat-elevation-z2'] } });
@@ -75,6 +75,7 @@ export class ExploreComponent implements OnInit, OnDestroy {
 	}
 	private _createOverlay() {
 		this._overlayRef = this.overlay.create({
+			// tslint:disable-next-line:max-line-length
 			positionStrategy: this.overlay.position().connectedTo(this.filterOverlayBtn._elementRef, { originX: 'end', originY: 'bottom' }, { overlayX: 'end', overlayY: 'top' })
 		});
 		const filterOptionsPortal = new ComponentPortal(FilterOverlayComponent);
