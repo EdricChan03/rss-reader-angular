@@ -1,4 +1,5 @@
-import 'hammerjs';
+import { OverlayService } from './overlay.service';
+import { ActionIconsModule } from './actionitem.service';
 import { GuideItems } from './guide-items';
 import { GuidesList } from './pages/guide-list/guide-list.component';
 import { GuideViewer } from './pages/guide-viewer/guide-viewer.component';
@@ -25,7 +26,7 @@ import {
 } from './pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-    SharedModule
+	SharedModule
 } from './shared';
 import 'hammerjs';
 import { AndroidComponent } from './devices/android/android.component';
@@ -34,18 +35,21 @@ import { ExpansionPanelComponent } from './pages/expansion-panel/expansion-panel
 import { environment } from '../environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { WebComponent } from './devices/web/web.component';
+import { ExploreComponent } from './explore/explore.component';
+import { FilterOverlayComponent } from './overlays/filter-overlay/filter-overlay.component';
+import { OnboardingOverlayComponent } from './overlays/onboarding-overlay/onboarding-overlay.component';
 
 const DIALOGS = [
 	FeedDialog,
 	CodeViewerDialog,
 	ShareDialog,
 	OptionsDialog
-]
+];
 const PIPES = [
 	StripHtmlTagsPipe,
 	TruncatePipe,
 	OrderByPipe
-]
+];
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -62,7 +66,10 @@ const PIPES = [
 		AndroidComponent,
 		IOSComponent,
 		ExpansionPanelComponent,
-		WebComponent
+		WebComponent,
+		ExploreComponent,
+		FilterOverlayComponent,
+		OnboardingOverlayComponent
 	],
 	imports: [
 		BrowserModule,
@@ -74,15 +81,19 @@ const PIPES = [
 		MaterialModule,
 		SharedModule,
 		AppRouting,
-		ServiceWorkerModule.register(environment.swLocation, {enabled: environment.production})
+		ServiceWorkerModule.register(environment.swLocation, { enabled: environment.production }),
+		ActionIconsModule
 	],
 	bootstrap: [AppComponent],
 	providers: [
-		GuideItems
+		GuideItems,
+		OverlayService
 	],
 	entryComponents: [
 		DIALOGS,
-		ExpansionPanelComponent
+		ExpansionPanelComponent,
+		FilterOverlayComponent,
+		OnboardingOverlayComponent
 	]
 })
 export class AppModule {
