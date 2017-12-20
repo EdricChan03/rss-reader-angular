@@ -12,18 +12,16 @@
 				<mat-icon matListIcon>{{link.icon}}</mat-icon>
 				<h3 matLine>{{link.name}}</h3>
 			</a>
-			<h3 matSubheader>Apps (coming soon)</h3>
+			<h3 matSubheader>Platforms (coming soon)</h3>
 			<a mat-list-item routerLink="/devices/web" routerLinkActive="active-link">
 				<mat-icon matListIcon>web</mat-icon>
-				<h3 matLine>Web app</h3>
-				<p matLine>Native version</p>
-				<span fxFlex></span>
-				<mat-icon matTooltip="new!">new_releases</mat-icon>
+				<h3 matLine>Native web app</h3>
+				<p matLine>Coming soon</p>
 			</a>
 			<a mat-list-item routerLink="/devices/android" routerLinkActive="active-link">
 				<mat-icon matListIcon>android</mat-icon>
 				<h3 matLine>Android app</h3>
-				<p matLine>Not available yet</p>
+				<p matLine>Coming soon</p>
 			</a>
 			<a mat-list-item routerLink="/devices/ios" routerLinkActive="active-link">
 				<mat-icon matListIcon>
@@ -39,6 +37,13 @@
 			<a mat-list-item href="https://goo.gl/forms/hopvyFXOqHfpA1kq2">
 				<mat-icon matListIcon>feedback</mat-icon>
 				<h3 matLine>Send Feedback</h3>
+				<p matLine>(Google Forms)</p>
+				<span fxFlex></span>
+				<mat-icon class="open-in-new-icon">open_in_new</mat-icon>
+			</a>
+			<a mat-list-item routerLink="/test" *ngIf="!environment.production" routerLinkActive="active-link">
+				<mat-icon matListIcon>build</mat-icon>
+				<h3 matLine>Testing</h3>
 			</a>
 		</mat-nav-list>
 	</mat-sidenav>
@@ -49,16 +54,7 @@
 			</button>
 			RSS Reader
 			<span fxFlex></span>
-			<button mat-icon-button [matMenuTriggerFor]="aboutMenu" matTooltip="About..." aria-label="Open about menu">
-				<mat-icon>info</mat-icon>
-			</button>
-			<mat-menu #aboutMenu="matMenu">
-				<button mat-menu-item (click)="aboutThisApp()">
-					<mat-icon>info</mat-icon>About this app</button>
-				<a mat-menu-item href="https://github.com/Chan4077/rss-reader" override>
-					<mat-icon>code</mat-icon> View source code
-				</a>
-			</mat-menu>
+			<app-actionicons></app-actionicons>
 		</mat-toolbar>
 		<router-outlet></router-outlet>
 	</mat-sidenav-content>
