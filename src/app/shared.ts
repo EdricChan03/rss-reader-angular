@@ -12,15 +12,17 @@ import { Title, SafeHtml } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { MatCommonModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
+import { SwUpdate } from '@angular/service-worker';
 
 @Injectable()
-export class SharedInjectable {
+export class SharedInjectable implements OnInit {
 	private _title = '';
 	constructor(
 		private snackBar: MatSnackBar,
 		private dialog: MatDialog,
 		private documentTitle: Title,
-		private breakpointObserver: BreakpointObserver
+		private breakpointObserver: BreakpointObserver,
+		private swUpdate: SwUpdate
 	) { }
 	/**
 	 * Sets the document's title
@@ -39,6 +41,39 @@ export class SharedInjectable {
 	get title(): string {
 		return this._title;
 	}
+	ngOnInit() {
+		this.swUpdate.available.subscribe(event => {
+			console.log('[App] Update available: current version is', event.current, 'available version is', event.available);
+			// tslint:disable-next-line:max-line-length
+			const snackBarRef = this.openSnackBar({ msg: 'A newer version of this app is available!', action: 'Update & Refresh', additionalOpts: { extraClasses: ['mat-elevation-z3'], horizontalPosition: 'start' } });
+
+			snackBarRef.onAction().subscribe(() => {
+				this.activateUpdate();
+			});
+
+		})
+	}
+	/**
+	 * Checks for updates (ngsw)
+	 */
+	public checkForUpdates() {
+		this.swUpdate.checkForUpdate().then(() => {
+			console.log('[App] Done checking for updates');
+		}).catch(err => {
+			console.error(err);
+		});
+	}
+	/**
+	 * Activates the update (ngsw)
+	 */
+	public activateUpdate() {
+		this.swUpdate.activateUpdate().then(() => {
+			console.log('[App] Done activating update.');
+			window.location.reload(true);
+		}).catch(err => {
+			console.error(err);
+		})
+	}
 	/**
 	 * Detects if the user is using a mobile device
 	 * @returns {boolean}
@@ -53,7 +88,6 @@ export class SharedInjectable {
 	/**
 	 * Opens a snackBar with the specified params and no return
 	 * @param {SnackBarConfig} opts The options of the snackBar
-	 * @deprecated Use `openSnackBarWithRef` instead
 	 */
 	public openSnackBar(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar> {
 		return this.handleSnackBar(opts);
@@ -65,15 +99,6 @@ export class SharedInjectable {
 	 */
 	public openSnackBarComponent(opts: SnackBarConfig): MatSnackBarRef<any> {
 		return this.handleSnackBarWithComponent(opts);
-	}
-	/**
-	 * Opens a snackBar with the specified params and a return of the snackBar's ref (not for component)
-	 * @param {SnackBarConfig} opts The options of the snackBar
-	 * @returns {MatSnackBar<SimpleSnackBar>}
-	 * @deprecated Use {@link SharedInjectable#openSnackBar} instead
-	 */
-	public openSnackBarWithRef(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar> {
-		return this.openSnackBar(opts);
 	}
 	/**
 	 * Handles a snackBar with a snackBarref if the developer needs a return

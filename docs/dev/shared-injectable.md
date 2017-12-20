@@ -40,6 +40,31 @@ It also provides easily accessible code for beginners who are getting started wi
 ---
 # Methods
 Here's a list of all the functions/methods.
+## `checkForUpdates`
+```typescript
+checkForUpdates(): void;
+```
+
+<!-- start-enclose-content -->
+### Description
+Checks for updates (NGSW).
+
+### Returns
+`void`
+<!-- end-enclose-content -->
+## `activateUpdate`
+```typescript
+activateUpdate(): void;
+```
+
+<!-- start-enclose-content -->
+### Description
+Activates the update (NGSW).
+
+### Returns
+`void`
+<!-- end-enclose-content -->
+
 ## `openSnackBar`
 ```typescript
 openSnackBar(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar>;
