@@ -8,7 +8,9 @@
 		"test": "ng test",
 		"pree2e": "webdriver-manager update",
 		"e2e": "protractor",
-		"githubPages": "npm run build && ngh && rm -rf dist/",
+		"githubPages": "npm run genDocs && npm run build && ngh && rm -rf dist/",
+		"githubPages2": "npm run build && ngh && rm -rf dist/",
+		"genDocs": "gulp docs",
 		"build": "ng build --prod --env=prod --base-href /rss-reader/ --deploy-url /rss-reader/",
 		"build-prod-local": "ng build --env=httpserver --prod && cd dist && http-server"
 	},
