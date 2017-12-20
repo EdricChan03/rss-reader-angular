@@ -2,13 +2,18 @@ import { SharedInjectable, SelectionDialogOptions } from '../shared';
 import { Component } from '@angular/core';
 import { MatSnackBarVerticalPosition, MatSnackBarHorizontalPosition } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ActionIconService, ActionIcon } from '../actionitem.service';
 
 @Component({
 	selector: 'app-testpage',
 	templateUrl: './testpage.component.html'
 })
 export class TestpageComponent {
-	constructor(private shared: SharedInjectable, private dom: DomSanitizer) { }
+	constructor(
+		private shared: SharedInjectable,
+		private dom: DomSanitizer,
+		private actionItemService: ActionIconService
+	) { }
 	dialogTypes = ["alert", "confirm", "prompt", "selection"];
 	dialogType: string = "alert";
 	title: string;
@@ -58,6 +63,9 @@ export class TestpageComponent {
 			case "selection":
 				this.selectionDialog();
 				break;
+			default:
+				console.log("Hmm...");
+				this.alertDialog();
 		}
 	}
 	alertDialog() {
@@ -88,6 +96,27 @@ export class TestpageComponent {
 		dialogRef.afterClosed().subscribe((result) => {
 			this.outputResult(result);
 		})
+	}
+	removeActionIcons() {
+		this.actionItemService.removeActionIcons();
+	}
+	getActionIcons(): ActionIcon[] {
+		return this.actionItemService.getActionIcons();
+	}
+	addActionIcon(title: string, icon?: string, isRouterLink?: boolean, href?: string, showAsAction?: boolean) {
+		if (title != "") {
+			if (isRouterLink && href) {
+				this.actionItemService.addActionIcon({title: title, icon: icon, routerLink: href, showAsAction: showAsAction});
+			} else if (href) {
+				this.actionItemService.addActionIcon({title: title, icon: icon, href: href, showAsAction: showAsAction});
+			} else {
+				this.actionItemService.addActionIcon({title: title, icon: icon, onClickListener: (ev: Event)=> {
+					console.log("TEST works.");
+				}, showAsAction: showAsAction});
+			}
+		} else {
+			console.error("Title required.");
+		}
 	}
 	/**
 	 * Outputs the result of a function
