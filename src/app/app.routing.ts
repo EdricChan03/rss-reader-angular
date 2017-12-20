@@ -9,6 +9,7 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AndroidComponent } from './devices/android/android.component';
 import { IOSComponent } from './devices/ios/ios.component';
+import { ExploreComponent } from './explore/explore.component';
 
 const APP_ROUTES: Routes = [
 	{ path: 'home', component: HomeComponent },
@@ -24,6 +25,7 @@ const APP_ROUTES: Routes = [
 			{ path: '**', redirectTo: '/devices/android' }
 		]
 	},
+	{ path: 'explore', component: ExploreComponent },
 	{ path: '', pathMatch: 'full', redirectTo: '/home' },
 	{ path: '**', component: PageNotFoundComponent }
 ];
