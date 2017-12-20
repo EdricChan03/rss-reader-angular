@@ -1,42 +1,68 @@
+import { OverlayService } from './overlay.service';
+import { OnboardingOverlayComponent } from './overlays/onboarding-overlay/onboarding-overlay.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SharedInjectable } from './shared';
 import { OrderByPipe } from './pipe/orderby.pipe';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialogRef, MatDialog } from "@angular/material/dialog";
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Feed } from './model/feed';
-import 'rxjs/add/operator/delay';
-import 'rxjs/add/operator/map';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Router } from '@angular/router';
-import { OverlayContainer } from '@angular/cdk/overlay';
+import { Router, NavigationStart } from '@angular/router';
+import { ComponentPortal } from '@angular/cdk/portal';
+import { OverlayContainer, Overlay } from '@angular/cdk/overlay';
+import { environment } from '../environments/environment';
+import { ActionIconService, ActionIcon } from './actionitem.service';
+
 @Component({
 	selector: 'rss-reader',
 	templateUrl: './app.component.html'
 })
-export class AppComponent implements OnInit {
-	constructor(private shared: SharedInjectable, private dom: DomSanitizer, private overlay: OverlayContainer) { }
+export class AppComponent implements OnInit, OnDestroy {
 	@ViewChild('left') sidenav: MatSidenav;
 	settings: Settings;
+	environment = environment;
 	links = [
 		{
-			name: "Home",
-			url: "home",
-			icon: "home"
+			name: 'Home',
+			url: 'home',
+			icon: 'home'
 		},
 		{
-			name: "Settings",
-			url: "settings",
-			icon: "settings"
+			name: 'Settings',
+			url: 'settings',
+			icon: 'settings'
 		},
 		{
-			name: "Guides",
-			url: "docs",
-			icon: "book"
+			name: 'Guides',
+			url: 'docs',
+			icon: 'book'
+		},
+		{
+			name: 'Explore',
+			url: 'explore',
+			icon: 'explore'
 		}
 	];
+	constructor(
+		private shared: SharedInjectable,
+		private dom: DomSanitizer,
+		private overlayContainer: OverlayContainer,
+		private overlayService: OverlayService,
+		private actionItemService: ActionIconService,
+		private router: Router,
+		private overlay: Overlay
+	) {
+		router.events.subscribe(event => {
+			if (event instanceof NavigationStart) {
+				if (router.url === '/home') {
+					this.actionItemService.removeActionItemByTitle('Configure RSS');
+				}
+			}
+		});
+	}
 	get isOffline() {
 		return !navigator.onLine;
 	}
@@ -51,7 +77,7 @@ export class AppComponent implements OnInit {
 		}
 	}
 	aboutThisApp() {
-		let aboutMsg = `
+		const aboutMsg = `
 		<div style="margin-bottom: 4px">
 		<h3 style="margin: 0">RSS Reader</h3>
 		<strong><small>Version 1.2.2</small></strong>
@@ -62,31 +88,65 @@ export class AppComponent implements OnInit {
 		<p>This repository also uses <a href="https://angular.io">Angular</a> and <a href="https://material.angular.io">Angular Material</a> which are ©Google 2017. All rights reserved.</p>
 		<a href="https://github.com/Chan4077" title="Follow me on Github!" target="_blank"><img src="https://img.shields.io/github/followers/Chan4077.svg?style=social&label=Chan4077" alt="Github social badge"></a>
 		<a href="https://twitter.com/EdricChan03" title="Follow me on Twitter!" target="_blank"><img src="https://img.shields.io/twitter/follow/EdricChan03.svg?style=social&label=EdricChan03" alt="Twitter social badge"></a>`;
-		this.shared.openAlertDialog({ title: "About this app", msg: this.dom.bypassSecurityTrustHtml(aboutMsg), isHtml: true });
+		this.shared.openAlertDialog({ title: 'About this app', msg: this.dom.bypassSecurityTrustHtml(aboutMsg), isHtml: true });
+	}
+	showOnboardingOverlay() {
+		this._createOverlay();
+	}
+	private _createOverlay() {
+		this.overlayService.createOverlay(new ComponentPortal(OnboardingOverlayComponent), {
+			positionStrategy: this.overlay.position()
+				.global()
+				.centerHorizontally()
+				.centerVertically(),
+			hasBackdrop: true,
+			backdropClass: 'dark-backdrop'
+		}, true);
+	}
+	ngOnDestroy() {
+		this.overlayService.destroyOverlay();
 	}
 	ngOnInit() {
+		this.showOnboardingOverlay();
 		if (window.localStorage.getItem('settings')) {
 			this.settings = <Settings>JSON.parse(window.localStorage.getItem('settings'));
 			if (this.settings.theme) {
-				document.getElementsByTagName("body")[0].classList.add(this.settings.theme);
-				this.overlay.getContainerElement().classList.add(this.settings.theme);
+				document.getElementsByTagName('body')[0].classList.add(this.settings.theme);
+				this.overlayContainer.getContainerElement().classList.add(this.settings.theme);
 			} else {
-				console.warn("Theme setting was not found. Using default...");
-				document.getElementsByTagName("body")[0].classList.add("indigo-pink");
-				this.overlay.getContainerElement().classList.add("indigo-pink");
+				console.warn('Theme setting was not found. Using default...');
+				document.getElementsByTagName('body')[0].classList.add('indigo-pink');
+				this.overlayContainer.getContainerElement().classList.add('indigo-pink');
 			}
 		} else {
-			let tempSettings: Settings = { showImages: true, multipleRss: false, openNewTab: true };
+			const tempSettings: Settings = { showImages: true, multipleRss: false, openNewTab: true };
 			window.localStorage.setItem('settings', JSON.stringify(tempSettings));
-			let snackBarRef = this.shared.openSnackBarWithRef({ msg: "Settings not found. Click on the 'Reload' button to reload.", action: "Reload", additionalOpts: { horizontalPosition: "start", extraClasses: ['mat-elevation-z3'], duration: 5000 } });
-			snackBarRef.onAction().subscribe(()=> {
+			// tslint:disable-next-line:max-line-length
+			const snackBarRef = this.shared.openSnackBarWithRef({ msg: 'Settings not found. Click on the \'Reload\' button to reload.', action: 'Reload', additionalOpts: { horizontalPosition: 'start', extraClasses: ['mat-elevation-z3'], duration: 5000 } });
+			snackBarRef.onAction().subscribe(() => {
 				window.location.reload(true);
-			})
+			});
 		}
 		if (this.isOffline) {
-			console.log("User is offline");
-			this.shared.openSnackBar
+			console.log('User is offline');
+			// tslint:disable-next-line:max-line-length
+			const snackBarRef = this.shared.openSnackBar({ msg: 'You are currently offline. Some features may not be available.', action: 'Retry', additionalOpts: { extraClasses: ['mat-elevation-z2'], horizontalPosition: 'start' } });
+			snackBarRef.onAction().subscribe(() => {
+				window.location.reload(true);
+			});
 		}
+
+		this.actionItemService.addActionIcon({
+			title: 'Reload', icon: 'refresh', showAsAction: true, onClickListener: (ev: Event) => {
+				// tslint:disable-next-line:max-line-length
+				const dialogRef = this.shared.openConfirmDialog({ title: 'Reload?', msg: 'Ensure that changes are saved before continuing!', disableClose: true });
+				dialogRef.afterClosed().subscribe((result) => {
+					if (result === 'ok') {
+						window.location.reload(true);
+					}
+				});
+			}
+		});
 	}
 }
 
@@ -94,6 +154,7 @@ export class AppComponent implements OnInit {
 	selector: 'feed-opts-dialog',
 	templateUrl: './feed.dialog.html'
 })
+// tslint:disable-next-line:component-class-suffix
 export class FeedDialog implements OnInit {
 	/**
 	 * The feed URL
@@ -111,7 +172,7 @@ export class FeedDialog implements OnInit {
 	/**
 	 * Whether to publish the feed url (basicallt opening in a google form with prefilled data)
 	 */
-	publishFeedUrl: boolean = false;
+	publishFeedUrl = false;
 	/**
 	 * The feed URL channel for the publishing
 	 */
@@ -143,13 +204,13 @@ export class FeedDialog implements OnInit {
 /**
  * An RSS source
  */
-export interface RSSSource {
+export class RSSSource {
 	name: string;
 	feedUrl: string;
 	type?: string;
 	category: string;
 }
-export interface Settings {
+export class Settings {
 	/**
 	 * Whether to allow multiple RSS feeds
 	 * @todo Start actual implementation
@@ -169,5 +230,9 @@ export interface Settings {
 	/**
 	 * The theme for the app
 	 */
-	theme?: "indigo-pink" | "deeppurple-amber" | "pink-bluegrey" | "purple-green";
+	theme?: 'indigo-pink' | 'deeppurple-amber' | 'pink-bluegrey' | 'purple-green';
+	/**
+	 * Whether to show the offline snackbar
+	 */
+	showOfflineSnackBar?: boolean;
 }
