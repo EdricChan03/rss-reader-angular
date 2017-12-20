@@ -12,29 +12,30 @@ export class SettingsComponent implements OnInit {
 	constructor(private shared: SharedInjectable) { }
 
 	reset() {
-		let dialogRef = this.shared.openConfirmDialog({ title: "Reset settings?", msg: "Do you want to reset your settings?" });
+		const dialogRef = this.shared.openConfirmDialog({ title: 'Reset settings?', msg: 'Do you want to reset your settings?' });
 		dialogRef.afterClosed().subscribe(result => {
-			if (result == 'ok') {
-				let tempSettings: Settings = {
+			if (result === 'ok') {
+				const tempSettings: Settings = {
 					multipleRss: false,
 					openNewTab: true,
 					showImages: true,
-					theme: "indigo-pink"
-				}
+					theme: 'indigo-pink'
+				};
 				window.localStorage.setItem('settings', JSON.stringify(tempSettings));
-				this.shared.openSnackBar({ msg: "Settings successfully reset", additionalOpts: { duration: 4000, horizontalPosition: 'start' } });
+				this.shared.openSnackBar({ msg: 'Settings successfully reset', additionalOpts: { duration: 4000, horizontalPosition: 'start' } });
 			}
-		})
+		});
 	}
 	save() {
 		window.localStorage.setItem('settings', JSON.stringify(this.settings));
-		let snackBarRef = this.shared.openSnackBarWithRef({ msg: "Settings saved", action: "Reload", additionalOpts: { duration: 4000, horizontalPosition: 'start' } });
+		// tslint:disable-next-line:max-line-length
+		const snackBarRef = this.shared.openSnackBarWithRef({ msg: 'Settings saved', action: 'Reload', additionalOpts: { duration: 4000, horizontalPosition: 'start' } });
 		snackBarRef.onAction().subscribe(_ => {
 			window.location.reload(true);
-		})
+		});
 	}
 	ngOnInit() {
-		this.themes = ["indigo-pink","deeppurple-amber","pink-bluegrey","purple-green"];
+		this.themes = ['indigo-pink', 'deeppurple-amber', 'pink-bluegrey', 'purple-green'];
 		if (window.localStorage.getItem('settings')) {
 			this.settings = <Settings>JSON.parse(window.localStorage.getItem('settings'));
 		}
