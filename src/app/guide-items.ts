@@ -9,44 +9,57 @@ export interface GuideItem {
 
 const GUIDES: GuideItem[] = [
 	{
-		id: "getting-started",
-		document: "assets/docs/guides/getting-started.html",
-		url: "doc/guides/getting-started",
-		name: "Getting Started"
+		id: 'getting-started',
+		document: 'assets/docs/guides/getting-started.html',
+		url: 'doc/guides/getting-started',
+		name: 'Getting Started'
 	},
 	{
-		id: "generate-api-key",
-		document: "assets/docs/guides/generate-api-key.html",
-		url: "doc/guides/generate-api-key",
-		name: "Generating an API Key"
+		id: 'generate-api-key',
+		document: 'assets/docs/guides/generate-api-key.html',
+		url: 'doc/guides/generate-api-key',
+		name: 'Generating an API Key'
 	},
 	{
-		id: "troubleshooting",
-		document: "assets/docs/guides/troubleshooting.html",
-		url: "doc/guides/troubleshooting",
-		name: "Troubleshooting"
+		id: 'troubleshooting',
+		document: 'assets/docs/guides/troubleshooting.html',
+		url: 'doc/guides/troubleshooting',
+		name: 'Troubleshooting'
 	}
 ];
 const DEV_GUIDES: GuideItem[] = [
 	{
-		id: "coding-standards",
-		document: "assets/docs/dev/coding-standards.html",
-		url: "doc/dev/coding-standards",
-		name: "Coding standards"
+		id: 'coding-standards',
+		document: 'assets/docs/dev/coding-standards.html',
+		url: 'doc/dev/coding-standards',
+		name: 'Coding standards'
 	},
 	{
-		id: "contributing",
-		document: "assets/docs/dev/contributing.html",
-		url: "doc/dev/contributing",
-		name: "Contributing"
+		id: 'contributing',
+		document: 'assets/docs/dev/contributing.html',
+		url: 'doc/dev/contributing',
+		name: 'Contributing'
 	},
 	{
-		id: "shared-injectable",
-		document: "assets/docs/dev/shared-injectable.html",
-		url: "doc/dev/shared-injectable",
-		name: "SharedInjectable (Injectable)"
+		id: 'shared-injectable',
+		document: 'assets/docs/dev/shared-injectable.html',
+		url: 'doc/dev/shared-injectable',
+		name: 'SharedInjectable (Injectable service)'
+	},
+	{
+		id: 'actionitem-service',
+		document: 'assets/docs/dev/actionitem-service.html',
+		url: 'doc/dev/actionitem-service',
+		name: 'ActionIconService (Injectable service)'
+	},
+	{
+		id: 'overlay-service',
+		document: 'assets/docs/dev/overlay-service.html',
+		url: 'doc/dev/overlay-service',
+		name: 'OverlayService (Injectable service)'
 	}
-]
+];
+
 @Injectable()
 export class GuideItems {
 	getAllItems(): GuideItem[] {
