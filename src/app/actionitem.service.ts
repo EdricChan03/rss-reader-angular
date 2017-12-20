@@ -53,7 +53,7 @@ export class ActionIconService {
 		try {
 			this.actionItems.splice(
 				this.actionItems.findIndex((actionIcon: ActionIcon) => {
-					return actionIcon.title == title;
+					return actionIcon.title === title;
 				}), 1);
 		} catch (e) {
 			this.throwTitleNotFoundError(title);
@@ -176,7 +176,7 @@ export class ActionIcon {
 			</a>
 		</span>
 	</mat-menu>
-	
+
 				`
 
 })
@@ -187,8 +187,8 @@ export class ActionIconsComponent {
 	}
 	get showMoreMenu() {
 		return this.actionItemService.getActionIcons().find((actionItem: ActionIcon): boolean => {
-			return actionItem.showAsAction != true;
-		})
+			return actionItem.showAsAction !== true;
+		});
 	}
 }
 
