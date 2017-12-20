@@ -2,7 +2,7 @@
 <mat-dialog-content fxLayout="column">
 	<form #formCtrl="ngForm" fxLayout="column">
 		<p>Select from a built-in choice of options:</p>
-		<mat-form-field>
+		<mat-form-field color="accent">
 			<mat-select [(ngModel)]="feedUrl" placeholder="Select RSS feed" name="feedUrl">
 				<mat-optgroup [label]="feed.name" *ngFor="let feed of feeds">
 					<mat-option *ngFor="let channel of feed.channels" [value]="channel.feedUrl">
