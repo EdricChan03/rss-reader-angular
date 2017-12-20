@@ -1,0 +1,75 @@
+<h1 id="-overlayservice-"><code>OverlayService</code></h1>
+<h2 id="what-it-does">What it does</h2>
+<p>It&#39;s basically just an easier way of handling <code>Overlay</code>s that are currently opened.</p>
+<h2 id="notices">Notices</h2>
+<ol>
+<li><code>OverlayModule</code> and <code>PortalModule</code> must be imported from <code>@angular/cdk/overlay</code> and <code>@angular/cdk/portal</code> in order for the service to work.</li>
+<li>Ensure that <code>OverlayService</code> is imported and placed under the <code>providers</code> array in your app&#39;s module file:<pre class="hljs"><code class="lang-typescript"><span class="hljs-keyword">import</span> { OverlayService } <span class="hljs-keyword">from</span> <span class="hljs-string">'./path/to/overlay.service'</span>;
+<span class="hljs-meta">@NgModule</span>({
+ providers: [
+     OverlayService
+ ]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppModule {}
+</code></pre>
+</li>
+</ol>
+<h1 id="methods">Methods</h1>
+<h2 id="-destroyoverlay-"><code>destroyOverlay</code></h2>
+<p>Destroys the currently opened overlay.</p>
+<h2 id="-close-"><code>close</code></h2>
+<p>The same method as <code>destroyOverlay</code>, just an alias.</p>
+<h2 id="-createoverlay-"><code>createOverlay</code></h2>
+<p>Creates an overlay with the specified parameters.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required?</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>portal</code></td>
+<td><code>ComponentPortal&lt;any&gt;</code></td>
+<td><code>true</code></td>
+<td>The portal for the overlay to attach to. (Requires to be initialized with the <code>new</code> keyword)</td>
+</tr>
+<tr>
+<td><code>config</code></td>
+<td><code>OverlayConfig</code></td>
+<td><code>false</code></td>
+<td>The configuration for the overlay.</td>
+</tr>
+<tr>
+<td><code>backdropClickClosesOverlay</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Whether when the backdrop is clicked will it close the overlay.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="examples">Examples</h1>
+<div expansion-panel>
+<h2 id="creating-an-overlay">Creating an overlay</h2>
+<pre class="hljs"><code class="lang-typescript">
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> overlayService: OverlayService</span>){}
+    createOverlay() {
+        <span class="hljs-keyword">this</span>.overlayService.createOverlay(<span class="hljs-keyword">new</span> ComponentPortal(MyOverlayComponent), {hasBackdrop: <span class="hljs-literal">true</span>}, <span class="hljs-literal">true</span>);
+    }
+}
+</code></pre>
+<h2 id="closing-an-overlay-from-the-overlay-itself">Closing an overlay from the overlay itself</h2>
+<pre class="hljs"><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnotherOverlayComponent {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> overlayService: OverlayService</span>){}
+    closeOverlay() {
+        <span class="hljs-keyword">this</span>.overlayService.close();
+    }
+}
+</code></pre>
+</div>
+<h1 id="report-a-bug">Report a bug</h1>
+<p>If there&#39;s any problems with the service, please report it on this <a href="https://docs.google.com/forms/d/e/1FAIpQLSfU5LZGOBu8xpWKI1v1Yo7qT2a_8n_-3CqoQsuH2VMhGahiwQ/viewform?usp=pp_url&amp;entry.133779622&amp;entry.510084869=Bug+report" class="docs-a">Google Form</a>. Thanks! :smile:</p>
