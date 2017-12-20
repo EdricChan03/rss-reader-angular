@@ -21,7 +21,9 @@ export class OnboardingOverlayComponent {
 	index: 0 | 1 | 2 | 3 = 0;
 	content = [
 		{
-
+			color: '',
+			content: '',
+			imgSrc: ''
 		},
 		{
 			color: '#FFC107',
