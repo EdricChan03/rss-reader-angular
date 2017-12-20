@@ -69,20 +69,15 @@ export class MyComponent {
 ```
 <!-- end-enclose-content -->
 
-## `openSnackBarWithRef` <sub><sup>DEPRECATED</sup></sub>
-```typescript
-openSnackBarWithRef(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar>;
-```
+## `openSnackBarComponent`
 
 <!-- start-enclose-content -->
 ### Description
-Opens a snackbar with the specified params and returns the snackbar's ref.
-
-**NOTE:** This is deprecated in favour of `openSnackBar`.
+Opens a snackbar component.
 
 ### Returns
-`MatSnackBarRef<SimpleSnackBar>`
-The ref of the snackbar
+`MatSnackBarRef<any>`
+The snackbar's ref.
 
 ### Params
 Param | Type | Description | Notes
@@ -90,24 +85,30 @@ Param | Type | Description | Notes
 `opts` | `SnackBarConfig` | The options for the snackbar | -
 
 ### Examples
-### Opening a simple snackbar with an action
+#### Opening a custom snackbar component with a duration of 5 seconds
 ```typescript
 export class MyComponent {
 	constructor(private shared: SharedInjectable){}
 	showSnackBar() {
-		// Note: Using `openSnackBar` in this example as `openSnackBarWithRef` is deprecated
-		let snackBarRef = this.shared.openSnackBar({msg: "I'm a snackbar!", action: "Do something", additionalOpts: {duration: 5000}});
-		snackBarRef.onAction().subscribe(()=> {
-			console.log("User clicked the action!");
-		})
+		this.shared.openSnackBarComponent({component: MyComponent, additionalOpts: {duration: 5000}});
 	}
 }
 ```
+
+For more info about custom snackbars, visit the official [docs](https://material.angular.io/components/snackbar/overview).
 <!-- end-enclose-content -->
 
-## `openSnackBarComponent`
-
 ## `closeSnackBar`
+```typescript
+closeSnackBar(): void;
+```
+<!-- start-enclose-content -->
+### Description
+Closes the currently opened snackbar.
+
+### Returns
+`void`
+<!-- end-enclose-content -->
 
 ## `openAlertDialog`
 
@@ -214,7 +215,7 @@ setTitle(title: string) {
 ```
 <!-- end-enclose-content -->
 ---
-# Interfaces
+# Other classes
 ## `SnackBarConfig`
 <!-- start-enclose-content -->
 Property | Description | Type | Default value(s) | Required? | Notes
@@ -232,7 +233,7 @@ Property | Description | Type | Default value(s) | Required? | Notes
 `msg` | The message for the dialog. | `string,SafeHtml` | - | `true` | If this property is of type `SafeHtml`, the `isHtml` property has to be set as `true`.
 `title` | The title of the dialog. | `string` | `Alert` | `false` | -
 `isHtml` | Whether the dialog's message is HTML. | `boolean` | `false` | `false` | -
-*Take note that this interface extends `MatDialogConfig`.
+*Take note that this class extends `MatDialogConfig`.
 <!-- end-enclose-content -->
 
 ## `AlertDialogConfig` extends `DialogConfig`
