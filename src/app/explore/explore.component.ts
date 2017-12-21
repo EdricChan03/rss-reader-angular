@@ -41,13 +41,13 @@ export class ExploreComponent implements OnInit, OnDestroy {
 			if (result.status === 'error') {
 				if (result.code && result.message) {
 					// tslint:disable-next-line:max-line-length
-					const snackBarRef = this.shared.openSnackBar({ msg: `Error ${result.code}: ${result.message}`, action: 'Retry', additionalOpts: { duration: 5000, extraClasses: ['mat-elevation-z2'] } });
+					const snackBarRef = this.shared.openSnackBar({ msg: `Error ${result.code}: ${result.message}`, action: 'Retry', additionalOpts: { duration: 5000, panelClass: ['mat-elevation-z2'] } });
 					snackBarRef.onAction().subscribe(() => {
 						this.getNewsSources();
 					});
 				} else {
 					// tslint:disable-next-line:max-line-length
-					const snackBarRef = this.shared.openSnackBar({ msg: 'Error: An unknown error occured. Try refreshing!', additionalOpts: { duration: 5000, extraClasses: ['mat-elevation-z2'] } });
+					const snackBarRef = this.shared.openSnackBar({ msg: 'Error: An unknown error occured. Try refreshing!', additionalOpts: { duration: 5000, panelClass: ['mat-elevation-z2'] } });
 					snackBarRef.onAction().subscribe(() => {
 						this.getNewsSources();
 					});

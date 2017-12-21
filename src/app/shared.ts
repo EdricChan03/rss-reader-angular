@@ -45,7 +45,7 @@ export class SharedInjectable implements OnInit {
 		this.swUpdate.available.subscribe(event => {
 			console.log('[App] Update available: current version is', event.current, 'available version is', event.available);
 			// tslint:disable-next-line:max-line-length
-			const snackBarRef = this.openSnackBar({ msg: 'A newer version of this app is available!', action: 'Update & Refresh', additionalOpts: { extraClasses: ['mat-elevation-z3'], horizontalPosition: 'start' } });
+			const snackBarRef = this.openSnackBar({ msg: 'A newer version of this app is available!', action: 'Update & Refresh', additionalOpts: { panelClass: ['mat-elevation-z3'], horizontalPosition: 'start' } });
 
 			snackBarRef.onAction().subscribe(() => {
 				this.activateUpdate();

@@ -143,21 +143,21 @@ export class TestpageComponent {
 	 */
 	snackBar() {
 		// tslint:disable-next-line:max-line-length
-		this.shared.openSnackBar({ msg: this.snackBarMsg ? this.snackBarMsg : 'I\'m a snackbar!', additionalOpts: { horizontalPosition: this.horizontalPosition, verticalPosition: this.verticalPosition, extraClasses: this.extraClass } });
+		this.shared.openSnackBar({ msg: this.snackBarMsg ? this.snackBarMsg : 'I\'m a snackbar!', additionalOpts: { horizontalPosition: this.horizontalPosition, verticalPosition: this.verticalPosition, panelClass: this.extraClass } });
 	}
 	/**
 	 * Opens a snackbar with a duration
 	 */
 	durationSnackBar() {
 		// tslint:disable-next-line:max-line-length
-		this.shared.openSnackBar({ msg: this.snackBarMsg ? this.snackBarMsg : 'I\'m a duration snackbar!', additionalOpts: { duration: this.duration ? this.duration : 5000, horizontalPosition: this.horizontalPosition, verticalPosition: this.verticalPosition, extraClasses: this.extraClass } });
+		this.shared.openSnackBar({ msg: this.snackBarMsg ? this.snackBarMsg : 'I\'m a duration snackbar!', additionalOpts: { duration: this.duration ? this.duration : 5000, horizontalPosition: this.horizontalPosition, verticalPosition: this.verticalPosition, panelClass: this.extraClass } });
 	}
 	/**
 	 * Opens a snackbar with a result
 	 */
 	snackBarWithResult() {
 		// tslint:disable-next-line:max-line-length
-		const snackBarRef = this.shared.openSnackBar({ msg: this.snackBarMsg ? this.snackBarMsg : 'I\'m a snackbar with an action!', action: this.action, additionalOpts: { horizontalPosition: this.horizontalPosition, verticalPosition: this.verticalPosition, extraClasses: this.extraClass } });
+		const snackBarRef = this.shared.openSnackBar({ msg: this.snackBarMsg ? this.snackBarMsg : 'I\'m a snackbar with an action!', action: this.action, additionalOpts: { horizontalPosition: this.horizontalPosition, verticalPosition: this.verticalPosition, panelClass: this.extraClass } });
 		snackBarRef.onAction().subscribe(() => {
 			this.shared.openAlertDialog({ msg: `You clicked on the "${this.action}" button.` });
 		});
