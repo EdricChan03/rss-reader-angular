@@ -5,7 +5,7 @@
 	<mat-card
 		class="onboarding-card" [style.backgroundColor]="content[index].color">
 		<img mat-card-image [src]="content[index].imgSrc" *ngIf="content[index].imgSrc">
-		<mat-card-content class="onboarding-content" [class.onboarding-content-center]="content[index].imgSrc == null">
+		<mat-card-content class="onboarding-content" [class.onboarding-content-center]="content[index].imgSrc == ''">
 			<div *ngIf="index == 0" class="app-div">
 				<img src="assets/favicon/icon-100x100-nocolor.png" width="100px" height="100px">
 				<div>
