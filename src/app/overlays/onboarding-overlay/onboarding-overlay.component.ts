@@ -28,17 +28,17 @@ export class OnboardingOverlayComponent {
 		{
 			color: '#FFC107',
 			content: 'Multiple news sources. One reader.',
-			imgSrc: '/assets/img/News Article.png'
+			imgSrc: 'assets/img/News Article.png'
 		},
 		{
 			color: '#FF5722',
 			content: 'Customizable. Tons of options.',
-			imgSrc: '/assets/img/Customizing UI.png'
+			imgSrc: 'assets/img/Customizing UI.png'
 		},
 		{
 			color: '#F06292',
 			content: 'Many news sources to explore!',
-			imgSrc: '/assets/img/Explore News Sources.png'
+			imgSrc: 'assets/img/Explore News Sources.png'
 		}];
 
 	constructor(
