@@ -10,38 +10,69 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Injectable()
 /**
- * A menu item service for the toolbar.
+ * A action icon service for the toolbar.
  */
 export class ActionIconService {
 
-	private actionItems: ActionIcon[] = [];
+	private actionIcons: ActionIcon[] = [];
 	/**
-	 * Adds a menu item
-	 * @param {ActionIcon} actionItem The menu item
+	 * Adds an action icon
+	 * @param {ActionIcon} actionIcon The action icon
 	 */
-	addActionIcon(actionItem: ActionIcon) {
-		this.actionItems.push(actionItem);
+	addActionIcon(actionIcon: ActionIcon) {
+		this.actionIcons.push(actionIcon);
 	}
 	/**
-	 * Gets menu items
+	 * Adds an action icon toggle
+	 * @param {ActionIconToggle} actionIcon The action icon
+	 */
+	addActionIconToggle(actionIcon: ActionIconToggle) {
+		actionIcon.onClickListener = () => {
+			actionIcon.toggleBind = !actionIcon.toggleBind;
+		};
+		this.actionIcons.push(actionIcon);
+	}
+	/**
+	 * Updates an action icon by its index
+	 * @param {number} index The index of the action icon
+	 * @param {ActionIcon} actionIcon The action icon
+	 */
+	updateActionIconByIndex(index: number, actionIcon: ActionIcon) {
+		try {
+			this.actionIcons[index] = actionIcon;
+		} catch (e) {
+			this.throwIdNotFoundError(index);
+		}
+	}
+	/**
+	 * An alias of {@link ActionIconService#updateActionIconByIndex} to prevent apps from breaking
+	 * @param {number} index The index of the action icon
+	 * @param {ActionIcon} actionIcon The action icon
+	 */
+	updateActionIcon(index: number, actionIcon: ActionIcon) {
+		this.updateActionIconByIndex(index, actionIcon);
+	}
+	/**
+	 * Gets action icons
 	 * @returns {ActionIcon[]}
 	 */
 	getActionIcons(): ActionIcon[] {
-		return this.actionItems;
+		return this.actionIcons;
 	}
 	/**
 	 * An alias of {@link ActionIconService#removeActionIconByIndex} to prevent apps from breaking
+	 * @param {number} id The index of the action icon to remove
 	 */
 	removeActionIcon(id: number) {
 		this.removeActionIconByIndex(id);
 	}
 	/**
-	 * Removes a menu item
-	 * @param {number} id The index of the menu item to remove
+	 * Removes a action icon
+	 * @param {number} id The index of the action icon to remove
 	 */
 	removeActionIconByIndex(id: number) {
 		try {
-			this.actionItems.splice(id, 1);
+			this.actionIcons.splice(id, 1);
 		} catch (e) {
 			this.throwIdNotFoundError(id);
 		}
@@ -51,8 +82,8 @@ export class ActionIconService {
 	 */
 	removeActionItemByTitle(title: string) {
 		try {
-			this.actionItems.splice(
-				this.actionItems.findIndex((actionIcon: ActionIcon) => {
+			this.actionIcons.splice(
+				this.actionIcons.findIndex((actionIcon: ActionIcon) => {
 					return actionIcon.title === title;
 				}), 1);
 		} catch (e) {
@@ -60,31 +91,31 @@ export class ActionIconService {
 		}
 	}
 	/**
-	 * Removes all menu items
+	 * Removes all action icons
 	 */
 	removeActionIcons() {
-		this.actionItems = [];
+		this.actionIcons = [];
 	}
 	/**
-	 * Gets a menu item by its index
-	 * @param {number} id The index of the menu item to get
+	 * Gets a action icon by its index
+	 * @param {number} id The index of the action icon to get
 	 */
 	getActionIconById(id: number): ActionIcon {
 		try {
-			return this.actionItems[id];
+			return this.actionIcons[id];
 		} catch (e) {
 			this.throwIdNotFoundError(id);
 		}
 	}
 	/**
-	 * Adds a menu item on click listener to the specified menu item
+	 * Adds a action icon on click listener to the specified action icon
 	 * Note: This can also be declared manually
-	 * @param {number} id The id of the menu item
-	 * @param {Function} callback The callback when the menu item is clicked (has to be arrow function)
+	 * @param {number} id The id of the action icon
+	 * @param {Function} callback The callback when the action icon is clicked (has to be arrow function)
 	 */
 	addActionIconOnClickListener(id: number, callback: (ev?: Event) => void) {
 		try {
-			this.actionItems[id].onClickListener = callback;
+			this.actionIcons[id].onClickListener = callback;
 		} catch (e) {
 			this.throwIdNotFoundError(id);
 		}
@@ -94,30 +125,30 @@ export class ActionIconService {
 	 * @private
 	 */
 	private throwIdNotFoundError(id: number) {
-		throw new Error(`Could not find a menu item with index ${id}`);
+		throw new Error(`Could not find a action icon with index ${id}`);
 	}
 	/**
 	 * Throws an error where the title couldn't be found
 	 */
 	private throwTitleNotFoundError(title: string) {
-		throw new Error(`Could not find a menu item with title ${title}`);
+		throw new Error(`Could not find a action icon with title ${title}`);
 	}
 }
 
 /**
- * A menu item
+ * An action icon
  */
 export class ActionIcon {
 	/**
-	 * The title of the menu item
+	 * The title of the action icon
 	 */
 	title: string;
 	/**
-	 * The icon of the menu item
+	 * The icon of the action icon
 	 */
 	icon?: string;
 	/**
-	 * The href of the menu item
+	 * The href of the action icon
 	 * NOTE: If `routerLink` is specified, don't use `href`.
 	 */
 	href?: string;
@@ -126,34 +157,47 @@ export class ActionIcon {
 	 */
 	showAsAction?: boolean;
 	/**
-	 * The router link of the menu item
+	 * The router link of the action icon
 	 * NOTE: If `href` is specified, don't use `routerLink`.
 	 */
 	routerLink?: string;
 	/**
-	 * The on click listener of the menu item
+	 * The on click listener of the action icon
 	 * Note: This can also be set by {@link ActionIconService#addActionIconOnClickListener}
 	 */
 	onClickListener?: (ev?: Event) => void;
 	/**
-	 * The submenu of the menu item
+	 * The submenu of the action icon
 	 */
 	subMenu?: ActionIcon[];
 
+	// tslint:disable-next-line:max-line-length
 	constructor(title: string, icon?: string, href?: string, showAsAction?: boolean, routerLink?: string, onClickListener?: (ev?: Event) => void, subMenu?: ActionIcon[]) { }
+}
+/**
+ * An action icon toggle
+ */
+export class ActionIconToggle extends ActionIcon {
+	/**
+	 * The toggle boolean to bind to
+	 */
+	toggleBind: boolean;
+
+	// tslint:disable-next-line:max-line-length
+	constructor(title: string, toggleBind: boolean, icon?: string, showAsAction?: boolean) { super(title, icon, null, showAsAction); }
 }
 
 @Component({
 	selector: 'app-actionicons',
 	template: `
 	<span id="more-btns" *ngFor="let actionItem of actionItems">
-		<button mat-icon-button *ngIf="actionItem.showAsAction && actionItem.href == null" (click)="actionItem.onClickListener($event)" [matTooltip]="actionItem.title">
-			<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
-		</button>
-		<a mat-icon-button *ngIf="actionItem.showAsAction && actionItem.href" [href]="actionItem.href" [matTooltip]="actionItem.title">
-			<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
-		</a>
-		<a mat-icon-button *ngIf="actionItem.showAsAction && actionItem.routerLink" [routerLink]="[actionItem.routerLink]" [matTooltip]="actionItem.title">
+	<button mat-icon-button *ngIf="actionItem.showAsAction && actionItem.href == null" (click)="actionItem.onClickListener($event)" [matTooltip]="actionItem.title">
+	<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
+	</button>
+	<a mat-icon-button *ngIf="actionItem.showAsAction && actionItem.href" [href]="actionItem.href" [matTooltip]="actionItem.title">
+	<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
+	</a>
+	<a mat-icon-button *ngIf="actionItem.showAsAction && actionItem.routerLink" [routerLink]="[actionItem.routerLink]" [matTooltip]="actionItem.title">
 			<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
 		</a>
 	</span>
@@ -162,7 +206,7 @@ export class ActionIcon {
 	</button>
 	<mat-menu #moreMenu="matMenu">
 		<span *ngFor="let actionItem of actionItems">
-			<button mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.href == null">
+			<button mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.href == null" (click)="actionItem.onClickListener()">
 				<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
 				{{actionItem.title}}
 			</button>
