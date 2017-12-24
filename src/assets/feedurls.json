@@ -59,9 +59,35 @@
 		]
 	},
 	{
+		"name": "Music",
+		"id": "music",
+		"channels": [
+			{
+				"name": "Billboard.com Music News",
+				"feedUrl": "https://www.billboard.com/articles/rss.xml",
+				"description": "Billboard - Music Charts, Music News, Artist Photo Gallery &amp; Free Video"
+			},
+			{
+				"name": "Billboard's Hot 100 Chart",
+				"feedUrl": "https://www.billboard.com/rss/charts/hot-100",
+				"description": "This week's most popular songs across all genres, ranked by radio airplay audience impressions as measured by Nielsen Music, sales data as compiled by Nielsen Music and streaming activity data provided by online music sources."
+			},
+			{
+				"name": "Billboard - Billboard 200 Chart",
+				"feedUrl": "https://www.billboard.com/rss/charts/billboard-200",
+				"description": "The Billboard 200 chart ranks the most popular albums of the week, as compiled by Nielsen Music, based on multi-metric consumption (blending traditional album sales, track equivalent albums, and streaming equivalent albums)."
+			}
+		]
+	},
+	{
 		"name": "News",
 		"id": "news",
 		"channels": [
+			{
+				"name": "BBC's Top Stories",
+				"feedUrl": "http://feeds.bbci.co.uk/news/rss.xml",
+				"description": "BBC News - Home"
+			},
 			{
 				"name": "CNN Most Recent",
 				"feedUrl": "http://rss.cnn.com/rss/cnn_latest.rss?format=xml",
