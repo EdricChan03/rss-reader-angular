@@ -1,0 +1,64 @@
+<mat-card style="min-width: 250px" cdkTrapFocus>
+	<mat-card-title style="text-align: center">{{showMore ? 'More apps': 'Apps'}}</mat-card-title>
+	<mat-grid-list cols="2" *ngIf="!showMore">
+		<a href="https://chan4077.github.io/rss-reader" style="color: #fb9e3a">
+			<mat-grid-tile matRipple matRippleColor="rgba(251, 158, 58, 0.3)" class="app-link-tile" (click)="closeOverlay()">
+				<div class="app-link-div">
+					<mat-icon class="app-link-icon">rss_feed</mat-icon>
+					<h3>RSS Reader</h3>
+				</div>
+			</mat-grid-tile>
+		</a>
+		<a href="https://studybuddy-e5f46.firebaseapp.com" style="color: #3f51b5">
+			<mat-grid-tile matRipple matRippleColor="rgba(63, 81, 181, 0.3)" class="app-link-tile" (click)="closeOverlay()">
+				<div class="app-link-div">
+					<mat-icon class="app-link-icon">book</mat-icon>
+					<h3>StudyBuddy</h3>
+				</div>
+			</mat-grid-tile>
+		</a>
+		<a href="https://market2-ed1e4.firebaseapp.com" style="color: #1e88e5">
+			<mat-grid-tile matRipple matRippleColor="rgba(30, 136, 229, 0.3)" class="app-link-tile" (click)="closeOverlay()">
+				<div class="app-link-div">
+					<mat-icon class="app-link-icon">shopping_cart</mat-icon>
+					<h3>market2</h3>
+				</div>
+			</mat-grid-tile>
+		</a>
+		<a href="https://chan4077.github.io" style="color: #ff4081">
+			<mat-grid-tile matRipple matRippleColor="rgba(255, 64, 129, 0.3)" class="app-link-tile" (click)="closeOverlay()">
+				<div class="app-link-div">
+					<mat-icon class="app-link-icon">home</mat-icon>
+					<h3>Home page</h3>
+				</div>
+			</mat-grid-tile>
+		</a>
+	</mat-grid-list>
+	<mat-grid-list cols="2" *ngIf="showMore">
+		<a href="https://chan4077.github.io/res" style="color: #673ab7">
+			<mat-grid-tile matRipple matRippleColor="rgba(103, 58, 183, 0.3)" class="app-link-tile" (click)="closeOverlay()">
+				<div class="app-link-div">
+					<mat-icon class="app-link-icon">information</mat-icon>
+					<h3>Resources</h3>
+				</div>
+			</mat-grid-tile>
+		</a>
+		<a href="https://chan4077.github.io/mat-emoji-picker" style="color: #3f51b5">
+			<mat-grid-tile matRipple matRippleColor="rgba(63, 81, 181, 0.3)" class="app-link-tile" (click)="closeOverlay()">
+				<div class="app-link-div">
+					<mat-icon class="app-link-icon">insert_emoticon</mat-icon>
+					<h3>Emoji Picker</h3>
+				</div>
+			</mat-grid-tile>
+		</a>
+		<a href="https://chan4077.github.io/First-Mod" style="color: #673ab7">
+			<mat-grid-tile matRipple matRippleColor="rgba(103, 58, 183, 0.3)" class="app-link-tile" (click)="closeOverlay()">
+				<div class="app-link-div">
+					<mat-icon class="app-link-icon">gamepads</mat-icon>
+					<h3>First-Mod</h3>
+				</div>
+			</mat-grid-tile>
+		</a>
+	</mat-grid-list>
+	<button mat-button (click)="showMore = !showMore" style="width: 100%">{{showMore ? 'Show fewer' : 'Show more'}}</button>
+</mat-card>

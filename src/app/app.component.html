@@ -67,6 +67,13 @@
 			RSS Reader
 			<span fxFlex></span>
 			<app-actionicons></app-actionicons>
+			<span style="width: 25px"></span>
+			<button mat-icon-button (click)="showAppsOverlay()" aria-label="Show apps" matTooltip="Apps" #appsBtn>
+				<mat-icon>apps</mat-icon>
+			</button>
+			<button mat-icon-button (click)="showNotificationsOverlay()" aria-label="Show notifications" matTooltip="Notifications" #notificationsBtn>
+				<mat-icon>notifications</mat-icon>
+			</button>
 		</mat-toolbar>
 		<router-outlet></router-outlet>
 	</mat-sidenav-content>

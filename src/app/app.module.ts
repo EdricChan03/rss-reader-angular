@@ -38,12 +38,22 @@ import { WebComponent } from './devices/web/web.component';
 import { ExploreComponent } from './explore/explore.component';
 import { FilterOverlayComponent } from './overlays/filter-overlay/filter-overlay.component';
 import { OnboardingOverlayComponent } from './overlays/onboarding-overlay/onboarding-overlay.component';
+import { RSSChannelInfoDialog } from './dialogs/rss-channel-info-dialog/rss-channel-info.dialog';
+import { AppsOverlayComponent } from './overlays/apps-overlay/apps-overlay.component';
+import { NotificationsOverlayComponent } from './overlays/notifications-overlay/notifications-overlay.component';
 
 const DIALOGS = [
 	FeedDialog,
 	CodeViewerDialog,
 	ShareDialog,
-	OptionsDialog
+	OptionsDialog,
+	RSSChannelInfoDialog
+];
+const OVERLAYS = [
+	FilterOverlayComponent,
+	OnboardingOverlayComponent,
+	AppsOverlayComponent,
+	NotificationsOverlayComponent
 ];
 const PIPES = [
 	StripHtmlTagsPipe,
@@ -68,8 +78,7 @@ const PIPES = [
 		ExpansionPanelComponent,
 		WebComponent,
 		ExploreComponent,
-		FilterOverlayComponent,
-		OnboardingOverlayComponent
+		OVERLAYS
 	],
 	imports: [
 		BrowserModule,
@@ -91,9 +100,8 @@ const PIPES = [
 	],
 	entryComponents: [
 		DIALOGS,
-		ExpansionPanelComponent,
-		FilterOverlayComponent,
-		OnboardingOverlayComponent
+		OVERLAYS,
+		ExpansionPanelComponent
 	]
 })
 export class AppModule {

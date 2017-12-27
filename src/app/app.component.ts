@@ -1,3 +1,5 @@
+import { MatButton } from '@angular/material/button';
+import { AppsOverlayComponent } from './overlays/apps-overlay/apps-overlay.component';
 import { OverlayService } from './overlay.service';
 import { OnboardingOverlayComponent } from './overlays/onboarding-overlay/onboarding-overlay.component';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -22,6 +24,8 @@ import { ActionIconService, ActionIcon } from './actionitem.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
 	@ViewChild('left') sidenav: MatSidenav;
+	@ViewChild('appsBtn') appsBtn: MatButton;
+	@ViewChild('notificationsBtn') notificationsBtn: MatButton;
 	settings: Settings;
 	environment = environment;
 	links = [
@@ -58,7 +62,10 @@ export class AppComponent implements OnInit, OnDestroy {
 		router.events.subscribe(event => {
 			if (event instanceof NavigationStart) {
 				if (router.url === '/home') {
-					this.actionItemService.removeActionItemByTitle('Configure RSS');
+					this.actionItemService.removeActionItemByTitle('Select RSS...');
+					this.actionItemService.removeActionItemByTitle('RSS Options...');
+					this.actionItemService.removeActionItemByTitle('Refresh feed');
+					this.actionItemService.removeActionItemByTitle('Toggle view');
 				}
 			}
 		});
@@ -92,17 +99,27 @@ export class AppComponent implements OnInit, OnDestroy {
 		this.shared.openAlertDialog({ title: 'About this app', msg: this.dom.bypassSecurityTrustHtml(aboutMsg), isHtml: true });
 	}
 	showOnboardingOverlay() {
-		this._createOverlay();
+		this._createOnboardingOverlay();
 	}
-	private _createOverlay() {
+	private _createOnboardingOverlay() {
 		this.overlayService.createOverlay(new ComponentPortal(OnboardingOverlayComponent), {
-			positionStrategy: this.overlay.position()
-				.global()
-				.centerHorizontally()
-				.centerVertically(),
+			positionStrategy: this.overlayService.createCenterOverlayPositionStrategy(),
 			hasBackdrop: true,
 			backdropClass: 'dark-backdrop'
 		}, true);
+	}
+	showAppsOverlay() {
+		this._createAppsOverlay();
+	}
+	private _createAppsOverlay() {
+		this.overlayService.createOverlay(new ComponentPortal(AppsOverlayComponent), {
+			// tslint:disable-next-line:max-line-length
+			positionStrategy: this.overlayService.createBelowPosElPositionStrategy(this.appsBtn._elementRef, { originX: 'end', originY: 'bottom' }, { overlayX: 'end', overlayY: 'top' }),
+			hasBackdrop: true
+		}, true);
+	}
+	showNotificationsOverlay() {
+
 	}
 	ngOnDestroy() {
 		this.overlayService.destroyOverlay();
