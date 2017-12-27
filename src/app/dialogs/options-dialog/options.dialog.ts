@@ -16,7 +16,7 @@ export class OptionsDialog implements OnInit {
 		this.dialogRef.close();
 	}
 	save() {
-		this.dialogRef.close();
+		this.dialogRef.close(this.options);
 		window.localStorage.setItem('feedOptions', JSON.stringify(this.options));
 		const snackBarRef = this.shared.openSnackBar({ msg: 'Options saved', action: 'Undo' });
 		snackBarRef.onAction().subscribe(() => {
