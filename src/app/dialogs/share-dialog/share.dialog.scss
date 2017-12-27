@@ -1,3 +1,25 @@
+.share-icon {
+	font-size: 30px;
+	width: 30px;
+	height: 30px;
+}
+.svg-icon > svg {
+	width: 30px !important;
+	height: 30px !important;
+}
+.share-div {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	user-select: none;
+}
+.share-tile {
+	cursor: pointer;
+}
+
+.android-btn {
+	color: #A4C639 !important;
+}
 .facebook-btn {
 	color: #3b5998 !important;
 }

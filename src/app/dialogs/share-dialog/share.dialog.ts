@@ -16,8 +16,7 @@ export class ShareDialog implements OnInit {
 		this.url = this.feed.link;
 	}
 	shareToFacebook() {
-		// tslint:disable-next-line:max-line-length
-		window.open(`https://www.facebook.com/dialog/share?app_id=1192450764220117&display=popup&href=${encodeURI(this.feed.link)}&redirect_uri=https://chan4077.github.io/rss-reader&quote=${encodeURI('Check out this blogpost by ' + this.feed.author + ' published on ' + this.feed.pubDate + ' titled "' + this.feed.title + '"!')}`, '');
+		window.open(`https://www.facebook.com/sharer.php?u=${encodeURI(this.feed.link)}`, '');
 	}
 	shareToTwitter() {
 
@@ -39,10 +38,7 @@ export class ShareDialog implements OnInit {
 			alert('To share natively, please enable the \'Experimental Web Platform Features\' flag in chrome://flags. Otherwise, it might not be supported on your platform right now.');
 		}
 	}
-	cancel() {
+	dismiss() {
 		this.dialogRef.close();
-	}
-	share() {
-
 	}
 }
