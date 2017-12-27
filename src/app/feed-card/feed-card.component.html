@@ -3,7 +3,6 @@
 		<mat-card-title>{{feed.author}}</mat-card-title>
 		<mat-card-subtitle>{{feed.pubDate | date:'dd-MM-yyyy'}}</mat-card-subtitle>
 		<span fxFlex></span>
-		<button mat-icon-button (click)="share(feed)" matTooltip="Share" aria-label="Share current post"><mat-icon>share</mat-icon></button>
 		<button mat-icon-button [matMenuTriggerFor]="feedMenu"><mat-icon>more_vert</mat-icon></button>
 		<mat-menu #feedMenu="matMenu">
 			<button mat-menu-item (click)="showCode(feed)"><mat-icon>code</mat-icon> Show code </button>
@@ -20,8 +19,11 @@
 			<mat-chip *ngFor="let category of feed.categories" [innerHTML]="category"></mat-chip>
 		</mat-chip-list>
 	</mat-card-content>
+	<mat-divider></mat-divider>
 	<mat-card-actions align="end">
 		<!-- <button mat-button (click)="viewInDialog(feed)" aria-label="View current post in a dialog" color="primary">View in dialog <mat-icon>open_in_browser</mat-icon></button> -->
-		<a mat-button [href]="feed.link" [target]="target" color="primary" aria-label="Open full post in a new tab or window">Read full article <mat-icon>open_in_new</mat-icon></a>
+		<button mat-icon-button (click)="share(feed)" matTooltip="Share post"><mat-icon>share</mat-icon></button>
+		<button mat-icon-button matTooltip="Add to read later"><mat-icon>bookmark_border</mat-icon></button>
+		<a mat-icon-button [href]="feed.link" [target]="target" color="primary" aria-label="View post in a new tab" matTooltip="View post in a new tab"><mat-icon>open_in_new</mat-icon></a>
 	</mat-card-actions>
 </mat-card>
