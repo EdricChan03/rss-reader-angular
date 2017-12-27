@@ -51,7 +51,6 @@ export class HomeComponent implements OnInit {
 	 * The RSS2Json website api key url
 	 */
 	rssToJsonServiceApiUrl = '&api_key=';
-	takingForeverToLoadTimeout: any;
 	isSmallScreen: boolean;
 	constructor(
 		private breakpointObserver: BreakpointObserver,
@@ -71,8 +70,16 @@ export class HomeComponent implements OnInit {
 		});
 		// this.isSmallScreen = breakpointObserver.isMatched('(max-width: 599px)');
 	}
+	get isMobile() {
+		return this.shared.isMobile();
+	}
 	options() {
-		this.dialog.open(OptionsDialog);
+		const dialogRef = this.dialog.open(OptionsDialog);
+		dialogRef.afterClosed().subscribe(result => {
+			if (result !== null) {
+				this.refreshFeed();
+			}
+		});
 	}
 	/**
 	 * Reloads the website
@@ -90,66 +97,69 @@ export class HomeComponent implements OnInit {
 	 * Not to be confused with {@link reload}
 	 * @param tryAgain
 	 */
-	refreshFeed(tryAgain?: boolean) {
-		if (tryAgain) {
-			clearTimeout(this.takingForeverToLoadTimeout);
-		}
-		setTimeout(this.takingForeverToLoadTimeout);
+	refreshFeed() {
 		// Show that it is getting RSS
 		this.isRefreshing = true;
 		this.getStarted = false;
 		// Set to empty array
 		this.feeds = [];
+		let feedOpts: FeedOptions;
+		if (window.localStorage.getItem('feedOptions')) {
+			feedOpts = <FeedOptions>JSON.parse(window.localStorage.getItem('feedOptions'));
+		}
+		if (feedOpts) {
+			this._getFeedWithOpts(feedOpts);
+		} else {
+			this._getFeedWithNoOpts();
+		}
+	}
+	private _getFeedUrl(): string {
 		let localUrl: string;
-		let feedOpts: FeedOptions | any;
 		// Get the feed url from localstorage
 		if (window.localStorage.getItem('feedUrl')) {
 			localUrl = window.localStorage.getItem('feedUrl');
 		} else {
 			localUrl = 'https://www.blog.google/rss/';
 		}
-		if (window.localStorage.getItem('feedOptions')) {
-			feedOpts = <FeedOptions> JSON.parse(window.localStorage.getItem('feedOptions'));
-		} else {
-
+		return localUrl;
+	}
+	private _getFeedWithOpts(opts: FeedOptions) {
+		if (opts) {
+			if (opts.amount) {
+				// Add 1s of delay to provide user feedback.
+				// tslint:disable-next-line:max-line-length
+				this.http.get<any>(`https://api.rss2json.com/v1/api.json?rss_url=${this._getFeedUrl()}&api_key=${this.apiKey}&count=${opts.amount}`).subscribe(result => {
+					this.feeds = result.items;
+					this.isRefreshing = false;
+					this.hasError = false;
+				}, error => {
+					this.hasError = true;
+					console.error(error);
+					// tslint:disable-next-line:max-line-length
+					const snackBarRef = this.shared.openSnackBar({ msg: `Error ${error.code}: ${error.message}`, action: 'Retry', additionalOpts: { panelClass: 'mat-elevation-z3' } });
+					snackBarRef.onAction().subscribe(() => {
+						this.refreshFeed();
+					});
+				});
+			}
 		}
+	}
+	private _getFeedWithNoOpts() {
 		// Add 1s of delay to provide user feedback.
-		this.http.get<any>(`https://api.rss2json.com/v1/api.json?rss_url=${localUrl}&api_key=${this.apiKey}`).subscribe(result => {
+		this.http.get<any>(`https://api.rss2json.com/v1/api.json?rss_url=${this._getFeedUrl()}&api_key=${this.apiKey}`).subscribe(result => {
 			this.feeds = result.items;
 			this.isRefreshing = false;
-			clearTimeout(this.takingForeverToLoadTimeout);
 			this.hasError = false;
 		}, error => {
-			/*
-			 * Error handler
-			 * Why did I even implement all this stuff? #lol
-			 */
 			this.hasError = true;
-			const status = error.status;
-			switch (status) {
-				case 404 || 410:
-					// tslint:disable-next-line:max-line-length
-					this.refreshStatus = 'Oh no. An error 404 has occured. Do you have an internet connection? Alternatively, the website may be down now.';
-					break;
-				case 403:
-					this.refreshStatus = 'Oh no. Looks like the server just rejected you. Please try again.';
-					break;
-				case 400:
-					// tslint:disable-next-line:max-line-length
-					this.refreshStatus = 'Looks like there was something wrong with the way the request was constructed. Please contact the developer @EdricChan03 (Twitter) for help.';
-					break;
-				case 407:
-					this.refreshStatus = 'Looks like you did not authenticate with the servers. Please try again.';
-					break;
-				case 500:
-					// tslint:disable-next-line:max-line-length
-					this.refreshStatus = 'Oh oh! Looks like there was something wrong with the server. It\'s not your fault, though. Try clicking on the refresh button again.';
-					break;
-				case 0:
-					this.refreshStatus = '?? I have no idea what I should put here. But, you should probably check your internet connection.';
-					break;
-			}
+			console.error(error);
+			// tslint:disable-next-line:max-line-length
+			const snackBarRef = this.shared.openSnackBar({ msg: `Error${error.code ? ' ' + error.code + ':' : ':'} ${error.message}`, action: 'Retry', additionalOpts: { panelClass: 'mat-elevation-z3', horizontalPosition: 'start' } });
+			snackBarRef.onAction().subscribe(() => {
+				this.refreshFeed();
+			});
 		});
+
 	}
 	/**
 	 * Opens the dialog to select an RSS feed
@@ -194,24 +204,24 @@ export class HomeComponent implements OnInit {
 			window.localStorage.setItem('hasLaunched', JSON.stringify(true));
 		}
 		this.refreshFeed();
-		this.takingForeverToLoadTimeout = setTimeout(() => {
-			// This is the *BEST* status I can put...
-			this.refreshStatus = 'Oh dear. This is taking a while to load. Maybe try checking if you have an active connection or reloading?';
-			this.hasError = true;
-			// Timeout ception (#cringyprogrammerjokes #lol)
-			setTimeout(() => {
-				// tslint:disable-next-line:max-line-length
-				this.refreshStatus = 'Wow. You MUST have a REALLY slow internet connection (or you\'re on mobile data... Sorry for that then...). Why don\'t you try turning your wifi off and on? Or try clicking/ tapping the refresh button.';
-				setTimeout(() => {
-					// I don't even know...
-					// tslint:disable-next-line:max-line-length
-					this.refreshStatus = 'Oh, my! It\'s been 30 seconds and your internet is still not working. Or you did not set up your internet properly. Or other things. Why don\'t you go rest outside instead? Like read a book?';
-				}, 17000);
-			}, 8000);
-		}, 5000);
-		this.actionIconService.addActionIcon({title: 'Configure RSS', icon: 'rss_feed', showAsAction: true, onClickListener: () => {
-			this.selectRss();
-		}});
+		this.actionIconService.addActionIcon({
+			title: 'Select RSS...', icon: 'rss_feed', showAsAction: true, onClickListener: () => {
+				this.selectRss();
+			}
+		});
+		this.actionIconService.addActionIcon({
+			title: 'Toggle view', icon: 'view_module', showAsAction: true
+		});
+		this.actionIconService.addActionIcon({
+			title: 'RSS Options...', icon: 'tune', onClickListener: () => {
+				this.options();
+			}
+		});
+		this.actionIconService.addActionIcon({
+			title: 'Refresh feed', icon: 'sync', onClickListener: () => {
+				this.refreshFeed();
+			}
+		});
 	}
 
 }
