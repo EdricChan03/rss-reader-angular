@@ -117,6 +117,15 @@ $indigo-pink-theme: mat-light-theme($indigo-pink-primary, $indigo-pink-accent);
     @import url('https://chan4077.github.io/res/material-light.css');
 }
 
+.rss-reader-card {
+	width: 350px;
+    box-sizing: border-box;
+    margin: 16px;
+}
+.rss-reader-cards-container {
+	display: flex;
+	flex-flow: row wrap;
+}
 .cdk-overlay-backdrop.cdk-overlay-backdrop-showing.dark-backdrop {
     background: #000;
 }
