@@ -82,8 +82,11 @@ export class OnboardingOverlayComponent {
 		console.log(index);
 		this.index = index;
 	}
+	closeOverlay() {
+		this.overlayService.close();
+	}
 	gettingStarted() {
 		this.router.navigate(['/home']);
-		this.overlayService.close();
+		this.closeOverlay();
 	}
 }
