@@ -22,14 +22,15 @@ export class SettingsComponent implements OnInit {
 					theme: 'indigo-pink'
 				};
 				window.localStorage.setItem('settings', JSON.stringify(tempSettings));
-				this.shared.openSnackBar({ msg: 'Settings successfully reset', additionalOpts: { duration: 4000, horizontalPosition: 'start' } });
+				// tslint:disable-next-line:max-line-length
+				this.shared.openSnackBar({ msg: 'Settings successfully reset', additionalOpts: { duration: 4000, horizontalPosition: 'start', panelClass: 'mat-elevation-z3' } });
 			}
 		});
 	}
 	save() {
 		window.localStorage.setItem('settings', JSON.stringify(this.settings));
 		// tslint:disable-next-line:max-line-length
-		const snackBarRef = this.shared.openSnackBar({ msg: 'Settings saved', action: 'Reload', additionalOpts: { duration: 4000, horizontalPosition: 'start' } });
+		const snackBarRef = this.shared.openSnackBar({ msg: 'Settings saved', action: 'Reload', additionalOpts: { duration: 4000, horizontalPosition: 'start', panelClass: 'mat-elevation-z3' } });
 		snackBarRef.onAction().subscribe(_ => {
 			window.location.reload(true);
 		});

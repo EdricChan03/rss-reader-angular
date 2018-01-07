@@ -2,6 +2,7 @@
 	<mat-card>
 		<mat-card-title>Settings</mat-card-title>
 		<mat-card-content fxLayout="column">
+			<h3 class="mat-subheader">General</h3>
 			<mat-checkbox [(ngModel)]="settings.multipleRss" class="checkbox">Enable multiple RSS feeds</mat-checkbox>
 			<mat-checkbox [(ngModel)]="settings.openNewTab" class="checkbox">Open posts in a new tab</mat-checkbox>
 			<mat-checkbox [(ngModel)]="settings.showImages" class="checkbox">Show images</mat-checkbox>
@@ -12,6 +13,16 @@
 				</mat-select>
 				<mat-hint>Changes will be made on reload.</mat-hint>
 			</mat-form-field>
+			<h3 class="mat-subheader">Notifications</h3>
+			<mat-checkbox [(ngModel)]="settings.notifications" class="checkbox">Enable notifications</mat-checkbox>
+			<mat-checkbox [(ngModel)]="settings.pushNotifications" class="checkbox" [disabled]="settings.notifications ? false : true" color="warn">Enable push notifications (experimental)</mat-checkbox>
+			<div fxLayout="row" style="align-items: center">
+				<span style="margin-right: 4px">Max notifications:</span>
+				<mat-slider [(ngModel)]="settings.maxNotifications" min="1" max="50" thumbLabel tickInterval="1" fxFlex [disabled]="settings.notifications ? false : true"></mat-slider>
+				<mat-form-field color="accent" fxFlex="7">
+					<input matInput [(ngModel)]="settings.maxNotifications" type="number" [disabled]="settings.notifications ? false : true" min="1" max="50">
+				</mat-form-field>
+			</div>
 		</mat-card-content>
 		<mat-card-actions align="end">
 			<button mat-button (click)="reset()" color="warn">Reset</button>
