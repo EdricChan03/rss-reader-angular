@@ -85,7 +85,9 @@ export class ExploreComponent implements OnInit, OnDestroy {
 		this.getNewsSources();
 	}
 	ngOnDestroy() {
-		this._overlayRef.dispose();
+		if (this._overlayRef) {
+			this._overlayRef.dispose();
+		}
 	}
 
 }
