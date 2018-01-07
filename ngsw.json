@@ -8,10 +8,10 @@
       "updateMode": "prefetch",
       "urls": [
         "/rss-reader/index.html",
-        "/rss-reader/inline.1e756c19d012cb5901bb.bundle.js",
-        "/rss-reader/main.443f8192946095750785.bundle.js",
-        "/rss-reader/polyfills.e4a69375b2fac30f4e7d.bundle.js",
-        "/rss-reader/styles.44f355954da81d04fa31.bundle.css"
+        "/rss-reader/inline.3f1774a674c5939697a8.bundle.js",
+        "/rss-reader/main.7c3175e1b62f62f7294a.bundle.js",
+        "/rss-reader/polyfills.198449e648e384140232.bundle.js",
+        "/rss-reader/styles.52b6429d93e1bfbf0ca5.bundle.css"
       ],
       "patterns": []
     },
@@ -65,15 +65,15 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/rss-reader/inline.1e756c19d012cb5901bb.bundle.js": "61ce1b89f8912fb06a48417d21a6990678988b1a",
+    "/rss-reader/inline.3f1774a674c5939697a8.bundle.js": "37e77803bda7552fc2fc6d88c9d289de3063a697",
     "/rss-reader/assets/feedcategories.json": "52a05b2713d6924b8cec57de384ec633893fac26",
-    "/rss-reader/main.443f8192946095750785.bundle.js": "25f638403e777994464f9ca8b05f00abbb63c5dd",
+    "/rss-reader/main.7c3175e1b62f62f7294a.bundle.js": "cf6ce0a7a443522b6e7ff186de80cdd0180ca07c",
     "/rss-reader/assets/feedurls.json": "d654f12885853de5f45f30cf2aa1c7813ef78ab0",
-    "/rss-reader/polyfills.e4a69375b2fac30f4e7d.bundle.js": "3bde4c410830d6dde0fc2aa311375b02314873a6",
+    "/rss-reader/polyfills.198449e648e384140232.bundle.js": "ac54a5a6da1b5147f1a0d508d2e4944f1351c20b",
     "/rss-reader/assets/docs/dev/actionicon-service.html": "4285354e8898b6f7a6f4d6c4d74608bb48152a55",
-    "/rss-reader/styles.44f355954da81d04fa31.bundle.css": "9a3740794a41da3fe4198881c975ad06b8f4b8fe",
+    "/rss-reader/styles.52b6429d93e1bfbf0ca5.bundle.css": "b439755ed01bf78c3e4a47f11e33676c749cc303",
     "/rss-reader/assets/docs/dev/actionitem-service.html": "19d0c0ecbe55d90d0a7e31f6d6c128222b462f0a",
-    "/rss-reader/index.html": "b50a2c7670a80eff85ef0fd7eb7d9e6e863acd4e",
+    "/rss-reader/index.html": "fabd51202e93cac4d2b1080b1da11d9a1292834c",
     "/rss-reader/assets/docs/dev/coding-standards.html": "858d59861846100c03430ee4ff447af9cbd969ea",
     "/rss-reader/assets/docs/dev/contributing.html": "36041eb5fc14573681add578c9e1c59ec83fe06c",
     "/rss-reader/assets/docs/dev/menuitem-injectable.html": "d3f58a53bb6893e21cc20743069bf06036346d45",
