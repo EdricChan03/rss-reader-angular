@@ -17,7 +17,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatRippleModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSliderModule } from '@angular/material/slider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -48,7 +48,7 @@ const MATERIAL_MODULES = [
 	MatRippleModule,
 	MatSelectModule,
 	MatSidenavModule,
-	MatSlideToggleModule,
+	MatSliderModule,
 	MatSnackBarModule,
 	MatToolbarModule,
 	MatTooltipModule
