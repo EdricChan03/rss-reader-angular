@@ -1,5 +1,6 @@
+import { RSSChannelInfoDialog } from '../dialogs/rss-channel-info-dialog/rss-channel-info.dialog';
 import { ActionIconService } from '../actionitem.service';
-import { OptionsDialog } from '../dialogs/index';
+import { OptionsDialog } from '../dialogs';
 import { FeedDialog, Settings } from '../app.component';
 import { Router } from '@angular/router';
 import { SharedInjectable } from '../shared';
@@ -80,6 +81,9 @@ export class HomeComponent implements OnInit {
 				this.refreshFeed();
 			}
 		});
+	}
+	openRSSInfoDialog() {
+		this.dialog.open(RSSChannelInfoDialog);
 	}
 	/**
 	 * Reloads the website
@@ -210,9 +214,6 @@ export class HomeComponent implements OnInit {
 			}
 		});
 		this.actionIconService.addActionIcon({
-			title: 'Toggle view', icon: 'view_module', showAsAction: true
-		});
-		this.actionIconService.addActionIcon({
 			title: 'RSS Options...', icon: 'tune', onClickListener: () => {
 				this.options();
 			}
@@ -222,6 +223,13 @@ export class HomeComponent implements OnInit {
 				this.refreshFeed();
 			}
 		});
+		if (window.localStorage.getItem('feedUrl')) {
+			this.actionIconService.addActionIcon({
+				title: 'RSS Channel info.', icon: 'information', onClickListener: () => {
+					this.openRSSInfoDialog();
+				}
+			});
+		}
 	}
 
 }
