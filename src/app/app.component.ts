@@ -1,7 +1,11 @@
 import { MatButton } from '@angular/material/button';
-import { AppsOverlayComponent } from './overlays/apps-overlay/apps-overlay.component';
+import {
+	AppsOverlayComponent,
+	FilterOverlayComponent,
+	OnboardingOverlayComponent,
+	NotificationsOverlayComponent
+} from './overlays';
 import { OverlayService } from './overlay.service';
-import { OnboardingOverlayComponent } from './overlays/onboarding-overlay/onboarding-overlay.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SharedInjectable } from './shared';
 import { OrderByPipe } from './pipe/orderby.pipe';
@@ -65,7 +69,9 @@ export class AppComponent implements OnInit, OnDestroy {
 					this.actionItemService.removeActionItemByTitle('Select RSS...');
 					this.actionItemService.removeActionItemByTitle('RSS Options...');
 					this.actionItemService.removeActionItemByTitle('Refresh feed');
-					this.actionItemService.removeActionItemByTitle('Toggle view');
+					if (window.localStorage.getItem('feedUrl')) {
+						this.actionItemService.removeActionItemByTitle('RSS Channel info');
+					}
 				}
 			}
 		});
@@ -119,6 +125,14 @@ export class AppComponent implements OnInit, OnDestroy {
 		}, true);
 	}
 	showNotificationsOverlay() {
+		this._createNotificationsOverlay();
+	}
+	private _createNotificationsOverlay() {
+		this.overlayService.createOverlay(new ComponentPortal(NotificationsOverlayComponent), {
+			// tslint:disable-next-line:max-line-length
+			positionStrategy: this.overlayService.createBelowPosElPositionStrategy(this.notificationsBtn._elementRef, { originX: 'end', originY: 'bottom' }, { overlayX: 'end', overlayY: 'top' }),
+			hasBackdrop: true
+		}, true);
 
 	}
 	ngOnDestroy() {
@@ -142,13 +156,10 @@ export class AppComponent implements OnInit, OnDestroy {
 				this.overlayContainer.getContainerElement().classList.add('indigo-pink');
 			}
 		} else {
-			const tempSettings: Settings = { showImages: true, multipleRss: false, openNewTab: true };
+			const tempSettings: Settings = { showImages: true, multipleRss: false, openNewTab: true, theme: 'indigo-pink' };
+			document.getElementsByTagName('body')[0].classList.add('indigo-pink');
+			this.overlayContainer.getContainerElement().classList.add('indigo-pink');
 			window.localStorage.setItem('settings', JSON.stringify(tempSettings));
-			// tslint:disable-next-line:max-line-length
-			const snackBarRef = this.shared.openSnackBar({ msg: 'Settings not found. Click on the \'Reload\' button to reload.', action: 'Reload', additionalOpts: { horizontalPosition: 'start', panelClass: ['mat-elevation-z3'], duration: 5000 } });
-			snackBarRef.onAction().subscribe(() => {
-				window.location.reload(true);
-			});
 		}
 		if (this.isOffline) {
 			console.log('User is offline');
@@ -158,18 +169,6 @@ export class AppComponent implements OnInit, OnDestroy {
 				window.location.reload(true);
 			});
 		}
-
-		this.actionItemService.addActionIcon({
-			title: 'Reload', icon: 'refresh', showAsAction: true, onClickListener: (ev: Event) => {
-				// tslint:disable-next-line:max-line-length
-				const dialogRef = this.shared.openConfirmDialog({ title: 'Reload?', msg: 'Ensure that changes are saved before continuing!', disableClose: true });
-				dialogRef.afterClosed().subscribe((result) => {
-					if (result === 'ok') {
-						window.location.reload(true);
-					}
-				});
-			}
-		});
 	}
 }
 
@@ -258,4 +257,16 @@ export class Settings {
 	 * Whether to show the offline snackbar
 	 */
 	showOfflineSnackBar?: boolean;
+	/**
+	 * Whether to enable push notifications
+	 */
+	pushNotifications?: boolean;
+	/**
+	 * Whether to enable notifications
+	 */
+	notifications?: boolean;
+	/**
+	 * The maximum number of notifications to show
+	 */
+	maxNotifications?: number | any;
 }
