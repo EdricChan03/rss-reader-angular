@@ -1,1 +1,59 @@
-<p>You're all done!</p>
+<mat-card>
+	<div fxLayout="row" class="notifications-title-div">
+		<a mat-icon-button (click)="closeOverlay()" matTooltip="Notification settings" routerLink="/settings"><mat-icon>settings</mat-icon></a>
+		<span fxFlex></span>
+		<h3 class="notifications-title">Notifications</h3>
+		<span fxFlex></span>
+		<button mat-icon-button matTooltip="Clear notifications">
+			<mat-icon>clear_all</mat-icon>
+		</button>
+	</div>
+	<mat-card-content>
+		<mat-list>
+			<mat-list-item>
+				<mat-icon matListIcon>bookmark</mat-icon>
+				<h3 matLine>Notification #1</h3>
+				<p matLine>Lorem ipsum dolor sit amet...</p>
+				<button mat-icon-button>
+					<mat-icon>clear</mat-icon>
+				</button>
+			</mat-list-item>
+			<mat-divider inset></mat-divider>
+			<mat-list-item>
+				<mat-icon matListIcon>today</mat-icon>
+				<h3 matLine>Notification #1</h3>
+				<p matLine>Lorem ipsum dolor sit amet...</p>
+				<button mat-icon-button>
+					<mat-icon>clear</mat-icon>
+				</button>
+			</mat-list-item>
+			<mat-divider inset></mat-divider>
+			<mat-list-item>
+				<mat-icon matListIcon>notifications</mat-icon>
+				<h3 matLine>Notification #1</h3>
+				<p matLine>Lorem ipsum dolor sit amet...</p>
+				<button mat-icon-button>
+					<mat-icon>clear</mat-icon>
+				</button>
+			</mat-list-item>
+			<mat-divider inset></mat-divider>
+			<mat-list-item>
+				<mat-icon matListIcon>edit</mat-icon>
+				<h3 matLine>Notification #1</h3>
+				<p matLine>Lorem ipsum dolor sit amet...</p>
+				<button mat-icon-button>
+					<mat-icon>clear</mat-icon>
+				</button>
+			</mat-list-item>
+			<mat-divider inset></mat-divider>
+			<mat-list-item>
+				<mat-icon matListIcon>information</mat-icon>
+				<h3 matLine>Notification #1</h3>
+				<button mat-icon-button>
+					<mat-icon>clear</mat-icon>
+				</button>
+				<p matLine>Lorem ipsum dolor sit amet...</p>
+			</mat-list-item>
+		</mat-list>
+	</mat-card-content>
+</mat-card>

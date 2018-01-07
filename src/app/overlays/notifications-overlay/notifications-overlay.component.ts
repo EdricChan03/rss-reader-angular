@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { OverlayService } from '../../overlay.service';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-notifications-overlay',
-  templateUrl: './notifications-overlay.component.html',
-  styles: []
+	selector: 'app-notifications-overlay',
+	templateUrl: './notifications-overlay.component.html',
+	styleUrls: ['./notifications-overlay.component.scss']
 })
-export class NotificationsOverlayComponent implements OnInit {
+export class NotificationsOverlayComponent {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+	constructor(private overlayService: OverlayService) { }
+	closeOverlay() {
+		this.overlayService.close();
+	}
 }
