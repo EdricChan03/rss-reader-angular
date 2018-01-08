@@ -1,4 +1,4 @@
-import { SharedInjectable } from '../shared';
+import { SharedService } from '../shared.service';
 import { Settings } from '../app.component';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class SettingsComponent implements OnInit {
 	settings: Settings;
 	themes: any;
-	constructor(private shared: SharedInjectable) { }
+	constructor(private shared: SharedService) { }
 
 	reset() {
 		const dialogRef = this.shared.openConfirmDialog({ title: 'Reset settings?', msg: 'Do you want to reset your settings?' });

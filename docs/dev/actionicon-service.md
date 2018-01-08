@@ -1,7 +1,7 @@
 # `ActionIconService`
 ## Description
 This `@Injectable()` makes it easier to add menu items to a toolbar, similar to like Android. (For those of you who don't know, those icons on that toolbar are known as menu item just shown as action buttons and the toolbar's also known as an `ActionBar`.) Anyways, enough of Android and Material Design and whatever.
-In the future, this will be revisited and may be integrated with `SharedInjectable`.
+In the future, this will be revisited and may be integrated with `SharedService`.
 
 ## Notices
 Ensure that `ActionIconsModule` is imported to your main app's module under the `imports` array:

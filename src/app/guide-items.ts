@@ -41,10 +41,10 @@ const DEV_GUIDES: GuideItem[] = [
 		name: 'Contributing'
 	},
 	{
-		id: 'shared-injectable',
-		document: 'assets/docs/dev/shared-injectable.html',
-		url: 'doc/dev/shared-injectable',
-		name: 'SharedInjectable (Injectable service)'
+		id: 'shared-service',
+		document: 'assets/docs/dev/shared-service.html',
+		url: 'doc/dev/shared-service',
+		name: 'SharedService (Injectable service)'
 	},
 	{
 		id: 'actionitem-service',

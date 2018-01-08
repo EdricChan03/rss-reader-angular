@@ -3,7 +3,7 @@ import { ActionIconService } from '../actionitem.service';
 import { OptionsDialog } from '../dialogs';
 import { FeedDialog, Settings } from '../app.component';
 import { Router } from '@angular/router';
-import { SharedInjectable } from '../shared';
+import { SharedService } from '../shared.service';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
 		private breakpointObserver: BreakpointObserver,
 		private dialog: MatDialog,
 		private http: HttpClient,
-		private shared: SharedInjectable,
+		private shared: SharedService,
 		private router: Router,
 		private actionIconService: ActionIconService
 	) {

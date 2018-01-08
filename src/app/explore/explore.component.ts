@@ -1,6 +1,6 @@
 import { FilterOverlayComponent } from '../overlays/filter-overlay/filter-overlay.component';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { SharedInjectable } from '../shared';
+import { SharedService } from '../shared.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { forkJoin } from 'rxjs/observable/forkJoin';
@@ -16,7 +16,7 @@ export class ExploreComponent implements OnInit, OnDestroy {
 
 	constructor(
 		private http: HttpClient,
-		private shared: SharedInjectable,
+		private shared: SharedService,
 		private overlay: Overlay) { }
 	// tslint:disable-next-line:member-ordering
 	isInputFocused = false;

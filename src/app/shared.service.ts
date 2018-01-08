@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { SwUpdate } from '@angular/service-worker';
 
 @Injectable()
-export class SharedInjectable implements OnInit {
+export class SharedService implements OnInit {
 	private _title = '';
 	constructor(
 		private snackBar: MatSnackBar,
@@ -502,7 +502,7 @@ export const SHARED_DIALOGS = [
 		SHARED_DIALOGS
 	],
 	providers: [
-		SharedInjectable
+		SharedService
 	],
 	imports: [
 		CommonModule,

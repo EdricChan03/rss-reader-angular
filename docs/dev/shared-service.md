@@ -1,4 +1,4 @@
-# `SharedInjectable`
+# `SharedService`
 ## Description
 This `@Injectable()` is basically a capability to share functions with other components without manually copying and pasting source code.
 
@@ -9,7 +9,7 @@ It also provides easily accessible code for beginners who are getting started wi
    ```typescript
    import { NgModule } from '@angular/core';
    import { BrowserModule } from '@angular/platform-browser';
-   import { SharedModule } from './shared';
+   import { SharedModule } from './shared.service';
    @NgModule({
 	   imports: [
 		   BrowserModule,
@@ -32,7 +32,7 @@ It also provides easily accessible code for beginners who are getting started wi
    <!-- start-enclose-content -->
    ```typescript
    export class AppComponent {
-	   constructor(private shared: SharedInjectable){}
+	   constructor(private shared: SharedService){}
 	   // ...
    }
    ```
@@ -86,7 +86,7 @@ Param | Type | Description | Notes
 #### Opening a simple snackbar
 ```typescript
 export class MyComponent {
-	constructor(private shared: SharedInjectable){}
+	constructor(private shared: SharedService){}
 	showSnackBar() {
 		this.shared.openSnackBar({msg: "I'm a really simple snackbar", additionalOpts: {duration: 6000}});
 	}
@@ -113,7 +113,7 @@ Param | Type | Description | Notes
 #### Opening a custom snackbar component with a duration of 5 seconds
 ```typescript
 export class MyComponent {
-	constructor(private shared: SharedInjectable){}
+	constructor(private shared: SharedService){}
 	showSnackBar() {
 		this.shared.openSnackBarComponent({component: MyComponent, additionalOpts: {duration: 5000}});
 	}
@@ -156,7 +156,7 @@ Param | Type | Description | Notes
 Standard dialog:
 ```typescript
 export class AppComponent {
-	constructor(private shared: SharedInjectable){}
+	constructor(private shared: SharedService){}
 	openAlertDialog() {
 		this.shared.openAlertDialog({msg: "I'm an alert dialog!", title: "Alert"});
 	}
@@ -165,7 +165,7 @@ export class AppComponent {
 Dialog with a `subscribe` method for when the dialog is closed
 ```typescript
 export class AppComponent {
-	constructor(private shared: SharedInjectable){}
+	constructor(private shared: SharedService){}
 	openAlertDialog() {
 		let dialogRef = this.shared.openAlertDialog({msg: "I'm an alert dialog with an after closed!", title: "Alert"});
 		dialogRef.afterClosed().subscribe(_ => {

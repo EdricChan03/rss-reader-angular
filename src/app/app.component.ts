@@ -7,7 +7,7 @@ import {
 } from './overlays';
 import { OverlayService } from './overlay.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { SharedInjectable } from './shared';
+import { SharedService } from './shared.service';
 import { OrderByPipe } from './pipe/orderby.pipe';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
@@ -55,7 +55,7 @@ export class AppComponent implements OnInit, OnDestroy {
 		}
 	];
 	constructor(
-		private shared: SharedInjectable,
+		private shared: SharedService,
 		private dom: DomSanitizer,
 		private overlayContainer: OverlayContainer,
 		private overlayService: OverlayService,

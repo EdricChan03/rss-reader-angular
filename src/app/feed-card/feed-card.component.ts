@@ -1,5 +1,5 @@
 import { DomSanitizer } from '@angular/platform-browser';
-import { SharedInjectable } from '../shared';
+import { SharedService } from '../shared.service';
 import { ShareDialog } from '../dialogs/index';
 import { Settings } from '../app.component';
 import { MatDialogRef, MatDialog, MatSlideToggleChange } from '@angular/material';
@@ -19,7 +19,7 @@ export class FeedCardComponent implements OnInit {
 	imageChanged = false;
 	settings: Settings;
 	@Input() feed: any;
-	constructor(private dialog: MatDialog, private shared: SharedInjectable, private dom: DomSanitizer) { }
+	constructor(private dialog: MatDialog, private shared: SharedService, private dom: DomSanitizer) { }
 	share(feed: any) {
 		const dialogRef = this.dialog.open(ShareDialog);
 		dialogRef.componentInstance.feed = feed;

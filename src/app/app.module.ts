@@ -27,7 +27,7 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
 	SharedModule
-} from './shared';
+} from './shared.service';
 import 'hammerjs';
 import { AndroidComponent } from './devices/android/android.component';
 import { IOSComponent } from './devices/ios/ios.component';

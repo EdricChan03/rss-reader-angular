@@ -1,4 +1,4 @@
-import { SharedInjectable, SelectionDialogOptions } from '../shared';
+import { SharedService, SelectionDialogOptions } from '../shared.service';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBarVerticalPosition, MatSnackBarHorizontalPosition } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -40,7 +40,7 @@ export class TestpageComponent implements OnInit {
 	verticalPos = ['top', 'bottom'];
 	horizontalPos = ['start', 'center', 'end', 'left', 'right'];
 	constructor(
-		private shared: SharedInjectable,
+		private shared: SharedService,
 		private dom: DomSanitizer,
 		private actionItemService: ActionIconService
 	) { }
