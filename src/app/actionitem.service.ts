@@ -25,8 +25,10 @@ export class ActionIconService {
 	/**
 	 * Adds an action icon toggle
 	 * @param {ActionIconToggle} actionIcon The action icon
+	 * @experimental Do not use!
 	 */
 	addActionIconToggle(actionIcon: ActionIconToggle) {
+		console.warn('%cThis method is experimental and may break. Continue at your own risk.', 'font-weight: 600');
 		actionIcon.onClickListener = () => {
 			actionIcon.toggleBind = !actionIcon.toggleBind;
 		};
@@ -125,13 +127,13 @@ export class ActionIconService {
 	 * @private
 	 */
 	private throwIdNotFoundError(id: number) {
-		throw new Error(`Could not find a action icon with index ${id}`);
+		throw new Error(`Could not find an action icon with index ${id}`);
 	}
 	/**
 	 * Throws an error where the title couldn't be found
 	 */
 	private throwTitleNotFoundError(title: string) {
-		throw new Error(`Could not find a action icon with title ${title}`);
+		throw new Error(`Could not find an action icon with title ${title}`);
 	}
 }
 
