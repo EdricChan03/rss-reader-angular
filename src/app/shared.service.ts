@@ -56,7 +56,7 @@ export class SharedService implements OnInit {
 	/**
 	 * Checks for updates (ngsw)
 	 */
-	public checkForUpdates() {
+	checkForUpdates() {
 		this.swUpdate.checkForUpdate().then(() => {
 			console.log('[App] Done checking for updates');
 		}).catch(err => {
@@ -66,7 +66,7 @@ export class SharedService implements OnInit {
 	/**
 	 * Activates the update (ngsw)
 	 */
-	public activateUpdate() {
+	activateUpdate() {
 		this.swUpdate.activateUpdate().then(() => {
 			console.log('[App] Done activating update.');
 			window.location.reload(true);
@@ -78,7 +78,7 @@ export class SharedService implements OnInit {
 	 * Detects if the user is using a mobile device
 	 * @returns {boolean}
 	 */
-	public isMobile(): boolean {
+	isMobile(): boolean {
 		if (this.breakpointObserver.isMatched('(max-width: 599px)')) {
 			return true;
 		} else {
@@ -89,7 +89,7 @@ export class SharedService implements OnInit {
 	 * Opens a snackBar with the specified params and no return
 	 * @param {SnackBarConfig} opts The options of the snackBar
 	 */
-	public openSnackBar(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar> {
+	openSnackBar(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar> {
 		return this.handleSnackBar(opts);
 	}
 	/**
@@ -97,7 +97,7 @@ export class SharedService implements OnInit {
 	 * @param {SnackBarConfig} opts The options of the snackBar
 	 * @returns {MatSnackBarRef<any>}
 	 */
-	public openSnackBarComponent(opts: SnackBarConfig): MatSnackBarRef<any> {
+	openSnackBarComponent(opts: SnackBarConfig): MatSnackBarRef<any> {
 		return this.handleSnackBarWithComponent(opts);
 	}
 	/**
@@ -142,7 +142,7 @@ export class SharedService implements OnInit {
 	/**
 	 * Closes the current snackBar
 	 */
-	public closeSnackBar() {
+	closeSnackBar() {
 		this.snackBar.dismiss();
 	}
 	/**
@@ -150,7 +150,7 @@ export class SharedService implements OnInit {
 	 * @param {AlertDialogConfig} opts The options for the dialog
 	 * @returns {MatDialogRef<AlertDialog>}
 	 */
-	public openAlertDialog(opts: AlertDialogConfig): MatDialogRef<AlertDialog> {
+	openAlertDialog(opts: AlertDialogConfig): MatDialogRef<AlertDialog> {
 		if (opts) {
 			if (opts.panelClass) {
 				const dialogRef = this.dialog.open(AlertDialog, { panelClass: opts.panelClass });
@@ -170,7 +170,7 @@ export class SharedService implements OnInit {
 	 * @param {ConfirMatialogConfig} opts The options for the dialog
 	 * @return {MatDialogRef<ConfirMatialog>}
 	 */
-	public openConfirmDialog(opts: ConfirmDialogConfig): MatDialogRef<ConfirmDialog> {
+	openConfirmDialog(opts: ConfirmDialogConfig): MatDialogRef<ConfirmDialog> {
 		if (opts) {
 			if (opts.panelClass) {
 				const dialogRef = this.dialog.open(ConfirmDialog, { panelClass: opts.panelClass });
@@ -190,7 +190,7 @@ export class SharedService implements OnInit {
 	 * @param {PromptDialogConfig} opts The options for the dialog
 	 * @return {MatDialogRef<PromptDialog>}
 	 */
-	public openPromptDialog(opts: PromptDialogConfig): MatDialogRef<PromptDialog> {
+	openPromptDialog(opts: PromptDialogConfig): MatDialogRef<PromptDialog> {
 		if (opts) {
 			if (opts.panelClass) {
 				const dialogRef = this.dialog.open(PromptDialog, { panelClass: opts.panelClass });
@@ -210,7 +210,7 @@ export class SharedService implements OnInit {
 	 * @param {SelectionDialogConfig} opts The options for the dialog
 	 * @returns {MatDialogRef<SelectionDialog>}
 	 */
-	public openSelectionDialog(opts: SelectionDialogConfig): MatDialogRef<SelectionDialog> {
+	openSelectionDialog(opts: SelectionDialogConfig): MatDialogRef<SelectionDialog> {
 		if (opts) {
 			const dialogRef = this.dialog.open(SelectionDialog, { disableClose: true, panelClass: 'selection-dialog' });
 			dialogRef.componentInstance.selectionConfig = opts;
@@ -223,13 +223,13 @@ export class SharedService implements OnInit {
 	 * Gets all opens dialogs
 	 * @returns {MatDialogRef<any>[]}
 	 */
-	public getDialogs(): MatDialogRef<any>[] {
+	getDialogs(): MatDialogRef<any>[] {
 		return this.dialog.openDialogs;
 	}
 	/**
 	 * Closes all dialogs
 	 */
-	public closeAllDialogs() {
+	closeAllDialogs() {
 		this.dialog.closeAll();
 	}
 	/**
@@ -237,14 +237,14 @@ export class SharedService implements OnInit {
 	 * @param {string} id The ID of the dialog
 	 * @returns {MatDialogRef<any>}
 	 */
-	public getDialogById(id: string): MatDialogRef<any> {
+	getDialogById(id: string): MatDialogRef<any> {
 		return this.dialog.getDialogById(id);
 	}
 	/**
 	 * Observable for after all dialogs have been closed
 	 * @returns {Observable<void>}
 	 */
-	public afterAllClosed(): Observable<void> {
+	afterAllClosed(): Observable<void> {
 		return this.dialog.afterAllClosed;
 	}
 	/**
