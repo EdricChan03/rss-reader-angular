@@ -97,7 +97,7 @@ export class AppComponent implements OnInit, OnDestroy {
 		</div>
 		<p>This RSS reader app is made by Edric which is based on a fork of the original source code by BeCompany.</p>
 		<p>The forked repository is available <a href="https://github.com/becompany/angular2-rss-reader-tutorial" target="_blank">here</a> and my version is available <a href="https://github.com/Chan4077/rss-reader" target="_blank">here</a>.</p>
-		<p>This repository is hosted on Github Pages. For more info about Github Pages, visit <a href="https://pages.github.io">here</a>.</p>
+		<p>This repository is hosted on Github Pages. For more info about Github Pages, visit <a href="https://pages.github.com">here</a>.</p>
 		<p>This repository also uses <a href="https://angular.io">Angular</a> and <a href="https://material.angular.io">Angular Material</a> which are ©Google 2017. All rights reserved.</p>
 		<p>Social icons in Share dialog are from <a href="https://materialdesignicons.com">MaterialDesignIcons</a>. All other icons are from <a href="https://google.github.io/material-design-icons">Google's Material Icons</a>.</p>
 		<a href="https://github.com/Chan4077" title="Follow me on Github!" target="_blank"><img src="https://img.shields.io/github/followers/Chan4077.svg?style=social&label=Chan4077" alt="Github social badge"></a>
