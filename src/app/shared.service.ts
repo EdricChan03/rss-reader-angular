@@ -1,17 +1,18 @@
+import { Component, DoCheck, Injectable, NgModule, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatListModule, MatSelectionList } from '@angular/material/list';
+import { MatSnackBar, MatSnackBarConfig, MatSnackBarModule, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
+import { SafeHtml, Title } from '@angular/platform-browser';
+
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Observable } from 'rxjs/Observable';
-import { Injectable, Component, OnInit, ViewChild, DoCheck, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ComponentType } from '@angular/cdk/portal';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSnackBarConfig, MatSnackBar, MatSnackBarRef, SimpleSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatDialog, MatDialogRef, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
-import { MatSelectionList, MatListModule } from '@angular/material/list';
+import { MatCommonModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ComponentType } from '@angular/cdk/portal';
-import { Title, SafeHtml } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
-import { MatCommonModule } from '@angular/material/core';
-import { FormsModule } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
 import { SwUpdate } from '@angular/service-worker';
 
 @Injectable()
@@ -262,7 +263,16 @@ export class SharedService implements OnInit {
 
 @Component({
 	selector: 'alert-dialog',
-	templateUrl: './partials/alertdialog.shared.html'
+	template: `
+	<h2 matDialogTitle>{{alertConfig.title ? alertConfig.title : 'Alert'}}</h2>
+	<mat-dialog-content fxLayout="column" class="mat-typography">
+		<p class="mat-body" *ngIf="!alertConfig.isHtml">{{alertConfig.msg}}</p>
+		<span *ngIf="alertConfig.isHtml" [innerHTML]="alertConfig.msg"></span>
+	</mat-dialog-content>
+	<mat-dialog-actions align="end">
+		<button mat-button color="primary" (click)="close()">{{alertConfig.ok ? alertConfig.ok : 'Dismiss'}}</button>
+	</mat-dialog-actions>
+	`
 })
 // tslint:disable-next-line:component-class-suffix
 export class AlertDialog implements OnInit {
@@ -281,7 +291,17 @@ export class AlertDialog implements OnInit {
 }
 @Component({
 	selector: 'confirm-dialog',
-	templateUrl: './partials/confirmdialog.shared.html'
+	template: `
+	<h2 matDialogTitle>{{confirmConfig.title ? confirmConfig.title : 'Confirm'}}</h2>
+	<mat-dialog-content fxLayout="column" class="mat-typography">
+		<p class="mat-body" *ngIf="!confirmConfig.isHtml">{{confirmConfig.msg}}</p>
+		<span *ngIf="confirmConfig.isHtml" [innerHTML]="confirmConfig.msg"></span>
+	</mat-dialog-content>
+	<mat-dialog-actions align="end">
+		<button mat-button (click)="cancel()" color="primary">{{confirmConfig.cancel ? confirmConfig.cancel : 'Cancel'}}</button>
+		<button mat-button (click)="ok()" color="primary">{{confirmConfig.ok ? confirmConfig.ok : 'OK'}}</button>
+	</mat-dialog-actions>
+	`
 })
 // tslint:disable-next-line:component-class-suffix
 export class ConfirmDialog implements OnInit {
@@ -304,7 +324,23 @@ export class ConfirmDialog implements OnInit {
 }
 @Component({
 	selector: 'prompt-dialog',
-	templateUrl: './partials/promptdialog.shared.html'
+	template: `
+	<h2 matDialogTitle>{{promptConfig.title ? promptConfig.title : 'Prompt'}}</h2>
+	<mat-dialog-content fxLayout="column" class="mat-typography">
+		<p class="mat-body" *ngIf="!promptConfig.isHtml">{{promptConfig.msg}}</p>
+		<span *ngIf="promptConfig.isHtml" [innerHTML]="promptConfig.msg"></span>
+		<form #form="ngForm">
+			<mat-form-field color="{{promptConfig.color ? promptConfig.color : 'primary'}}" style="width:100%">
+				<input matInput [(ngModel)]="input" placeholder="{{promptConfig.placeholder}}" type="{{promptConfig.inputType ? promptConfig.inputType : 'text'}}" required name="input">
+				<mat-error>This is required.</mat-error>
+			</mat-form-field>
+		</form>
+	</mat-dialog-content>
+	<mat-dialog-actions align="end">
+		<button mat-button (click)="cancel()" color="primary">{{promptConfig.cancel ? promptConfig.cancel : 'Cancel'}}</button>
+		<button mat-button (click)="ok()" color="primary" [disabled]="form.invalid">{{promptConfig.ok ? promptConfig.ok : 'OK'}}</button>
+	</mat-dialog-actions>
+	`
 })
 // tslint:disable-next-line:component-class-suffix
 export class PromptDialog implements OnInit {
@@ -331,10 +367,23 @@ export class PromptDialog implements OnInit {
 }
 @Component({
 	selector: 'selection-dialog',
-	templateUrl: './partials/selectiondialog.shared.html'
+	template: `
+	<h2 matDialogTitle>{{selectionConfig.title ? selectionConfig.title : 'Select options from the list'}}</h2>
+	<mat-dialog-content fxLayout="column" class="mat-typography">
+		<mat-selection-list #selection>
+			<mat-list-option *ngFor="let option of selectionConfig.options" [disabled]="option.disabled" [value]="option.value" [checkboxPosition]="option.checkboxPosition ? option.checkboxPosition : 'before'" [selected]="option.selected">
+				{{option.content}}
+			</mat-list-option>
+		</mat-selection-list>
+	</mat-dialog-content>
+	<mat-dialog-actions align="end">
+		<button mat-button color="primary" (click)="cancel()">{{selectionConfig.cancel ? selectionConfig.cancel : 'Cancel'}}</button>
+		<button mat-button color="primary" (click)="ok()" [disabled]="selection.selectedOptions.selected.length < 1">{{selectionConfig.ok ? selectionConfig.ok : 'OK'}}</button>
+	</mat-dialog-actions>
+	`
 })
 // tslint:disable-next-line:component-class-suffix
-export class SelectionDialog implements OnInit, DoCheck {
+export class SelectionDialog implements OnInit {
 	@ViewChild('selection') selection: MatSelectionList;
 	constructor(private dialogRef: MatDialogRef<SelectionDialog>) {
 	}
@@ -350,8 +399,6 @@ export class SelectionDialog implements OnInit, DoCheck {
 	}
 	ok() {
 		this.dialogRef.close(this.selection.selectedOptions.selected);
-	}
-	ngDoCheck() {
 	}
 }
 export class SnackBarConfig {
