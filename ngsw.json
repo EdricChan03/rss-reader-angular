@@ -8,10 +8,10 @@
       "updateMode": "prefetch",
       "urls": [
         "/rss-reader/index.html",
-        "/rss-reader/inline.a190a6371112622cd7c5.bundle.js",
-        "/rss-reader/main.6c893e2ee53b41492061.bundle.js",
-        "/rss-reader/polyfills.edf95f3e20bef50f0514.bundle.js",
-        "/rss-reader/styles.f3e9c26178554eb332e9.bundle.css"
+        "/rss-reader/inline.9718b45d5994a146209e.bundle.js",
+        "/rss-reader/main.2489d906b427c2af2170.bundle.js",
+        "/rss-reader/polyfills.cbc2d43f2ee0a0db24ee.bundle.js",
+        "/rss-reader/styles.6d6257206cc4cdfd621f.bundle.css"
       ],
       "patterns": []
     },
@@ -66,15 +66,15 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/rss-reader/inline.a190a6371112622cd7c5.bundle.js": "0aa0ffac6b0ca1d03826b45ac10a3bb7f6efc054",
+    "/rss-reader/inline.9718b45d5994a146209e.bundle.js": "ba60c87cacc10a38a346b6e1bf873252f9158b55",
     "/rss-reader/assets/feedcategories.json": "52a05b2713d6924b8cec57de384ec633893fac26",
-    "/rss-reader/main.6c893e2ee53b41492061.bundle.js": "5de78728ba5728e9b7476d04fd12f430ff43f985",
-    "/rss-reader/assets/feedurls.json": "d654f12885853de5f45f30cf2aa1c7813ef78ab0",
-    "/rss-reader/polyfills.edf95f3e20bef50f0514.bundle.js": "39cd5adca7f6f818fb3fab83a5fa3b011b9ee5d8",
+    "/rss-reader/main.2489d906b427c2af2170.bundle.js": "d50d6fad0749bd4ab5fde89c73b8e54355aff49c",
+    "/rss-reader/assets/feedurls.json": "4962a12b3ccff072a9bc12a72cb70db4390301b3",
+    "/rss-reader/polyfills.cbc2d43f2ee0a0db24ee.bundle.js": "0af68321c56b0581e7a66487cfeb425c257897ed",
     "/rss-reader/assets/docs/dev/actionicon-service.html": "4c86ffc84c70cf28e848cd537962c1c4edd87647",
-    "/rss-reader/styles.f3e9c26178554eb332e9.bundle.css": "1364fc41155abac7e77e6c622dc9432cc4376cfc",
+    "/rss-reader/styles.6d6257206cc4cdfd621f.bundle.css": "54a1e680a2ccb78368e4c90faaa68343330a76d7",
     "/rss-reader/assets/docs/dev/actionitem-service.html": "19d0c0ecbe55d90d0a7e31f6d6c128222b462f0a",
-    "/rss-reader/index.html": "61a129d02911de968fe623f22a8491adbbfa7bc9",
+    "/rss-reader/index.html": "921af9c490c23f09239980124f0b40374c748d87",
     "/rss-reader/assets/docs/dev/coding-standards.html": "858d59861846100c03430ee4ff447af9cbd969ea",
     "/rss-reader/assets/docs/dev/contributing.html": "36041eb5fc14573681add578c9e1c59ec83fe06c",
     "/rss-reader/assets/docs/dev/menuitem-injectable.html": "d3f58a53bb6893e21cc20743069bf06036346d45",
