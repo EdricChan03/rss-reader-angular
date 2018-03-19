@@ -12,6 +12,11 @@
 				"name": "Android Central",
 				"feedUrl": "http://feeds.feedburner.com/androidcentral?format=xml",
 				"description": "Android Central - Android Forums, News, Reviews, Help and Android Wallpapers"
+			},
+			{
+				"name": "LineageOS Status",
+				"feedUrl": "https://status.lineageos.org/state_feed/feed.atom",
+				"description": "Status updates of LineageOS (website, Gerrit, etc.)"
 			}
 		]
 	},
@@ -19,6 +24,11 @@
 		"name": "Apple",
 		"id": "apple",
 		"channels": [
+			{
+				"name": "Macworld",
+				"feedUrl": "https://www.macworld.com/index.rss",
+				"description": ""
+			},
 			{
 				"name": "OSX Daily",
 				"feedUrl": "http://feeds.feedburner.com/osxdaily?format=xml",
