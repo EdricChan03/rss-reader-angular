@@ -26,7 +26,6 @@
 		"@angular/material": "github:angular/material2-builds",
 		"@angular/platform-browser": "^6.0.0-beta.8",
 		"@angular/platform-browser-dynamic": "^6.0.0-beta.8",
-		"@angular/platform-server": "^6.0.0-beta.8",
 		"@angular/router": "^6.0.0-beta.8",
 		"@angular/service-worker": "^6.0.0-beta.8",
 		"@types/highlight.js": "^9.12.2",
