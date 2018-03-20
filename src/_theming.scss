@@ -1,0 +1,93 @@
+@import 'hljs';
+// Dedicated file for theming the app
+@mixin rss-reader-theme($theme) {
+	@include tables-theme($theme);
+    $foreground: map-get($theme, foreground);
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+	$is-dark-theme: map-get($theme, is-dark);
+	// Check if the theme is dark
+	@if ($is-dark-theme) {
+		// Apply highlight.js dark styles available in _hljs.scss
+		@include hljs-dark();
+	} @else {
+		// Apply highlight.js light styles available in _hljs.scss
+		@include hljs-light();
+	}
+	// Shows the current link. Used in the sidenav
+    .active-link {
+        color: mat-color($primary) !important;
+        background-color: map-get($foreground, divider) !important;
+	}
+	// Warning icon color
+    .warning-icon {
+		color: mat-color($warn) !important;
+	}
+	// WIP page icon
+    .build-icon {
+		color: mat-color($accent) !important;
+	}
+	// Anchor links
+    .docs-a, .docs-anchor {
+		color: mat-color($primary) !important;
+	}
+	.mat-list-item-content mat-icon, .icon {
+		color: map-get($foreground, icon);
+	}
+	// Override styling of previous style
+	.active-link mat-icon {
+		color: mat-color($primary) !important;
+	}
+    mat-sidenav-content::-webkit-scrollbar-thumb {
+		background-color: mat-color($accent);
+        &:hover {
+			background-color: mat-color($accent, A400);
+        }
+    }
+    mat-sidenav-content::-webkit-scrollbar {
+        background-color: if($is-dark-theme, mat-color(mat-palette($mat-grey, 900)), mat-color(mat-palette($mat-grey, 200)));
+        border: 1px solid mat-color($foreground, text);
+    }
+    .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+        color: mat-color($primary);
+    }
+    .mat-accent .mat-option.mat-selected:not(.mat-option-disabled) {
+        color: mat-color($accent);
+    }
+    .mat-warn .mat-option.mat-selected:not(.mat-option-disabled) {
+        color: mat-color($warn);
+    }
+    .onboarding-content {
+        color: if($is-dark-theme, #FFF, #000);
+    }
+    .onboarding-card {
+        background-color: if($is-dark-theme, #303030, #FAFAFA);
+    }
+    .indicator-active {
+        background-color: mat-color($accent) !important;
+    }
+    .indicator {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+}
+
+// Mixin from material docs site
+@mixin tables-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+    $is-dark-theme: map-get($theme, is-dark);
+    $tableBorderOpacity: if($is-dark-theme, 0.08, 0.03);
+    table {
+        color: mat-color($foreground, text);
+    }
+    th {
+        background: mat-color($background, app-bar);
+    }
+    td {
+        border: 1px solid rgba(mat-color($foreground, secondary-text), $tableBorderOpacity);
+    }
+}

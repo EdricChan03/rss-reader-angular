@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import 'theming';
 @import '~@angular/material/theming';
 @import 'assets/md-font/material-icons.css';
 
@@ -7,79 +8,8 @@
 
 $rss-reader-typography: mat-typography-config( $font-family: 'Lato, sans-serif');
 @include mat-core($rss-reader-typography);
-@mixin rss-reader-theme($theme) {
-    @include tables-theme($theme);
-    $foreground: map-get($theme, foreground);
-    $primary: map-get($theme, primary);
-    $accent: map-get($theme, accent);
-    $warn: map-get($theme, warn);
-    $is-dark-theme: map-get($theme, is-dark);
-    .active-link {
-        color: mat-color($primary) !important;
-        background-color: map-get($foreground, divider) !important;
-    }
-    .warning-icon {
-        color: mat-color($warn) !important;
-    }
-    .build-icon {
-        color: mat-color($accent) !important;
-    }
-    .docs-a {
-        color: mat-color($primary) !important;
-    }
-    mat-sidenav-content::-webkit-scrollbar-thumb {
-        background-color: mat-color($accent);
-        &:hover {
-            background-color: mat-color($accent, A400);
-        }
-    }
-    mat-sidenav-content::-webkit-scrollbar {
-        background-color: if($is-dark-theme, mat-color(mat-palette($mat-grey, 900)), mat-color(mat-palette($mat-grey, 200)));
-        border: 1px solid mat-color($foreground, text);
-    }
-    .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
-        color: mat-color($primary);
-    }
-    .mat-accent .mat-option.mat-selected:not(.mat-option-disabled) {
-        color: mat-color($accent);
-    }
-    .mat-warn .mat-option.mat-selected:not(.mat-option-disabled) {
-        color: mat-color($warn);
-    }
-    .onboarding-content {
-        color: if($is-dark-theme, #FFF, #000);
-    }
-    .onboarding-card {
-        background-color: if($is-dark-theme, #303030, #FAFAFA);
-    }
-    .indicator-active {
-        background-color: mat-color($accent) !important;
-    }
-    .indicator {
-        background-color: rgba(255, 255, 255, 0.5);
-    }
-}
 
-// Mixin from material docs site
-@mixin tables-theme($theme) {
-    $primary: map-get($theme, primary);
-    $accent: map-get($theme, accent);
-    $warn: map-get($theme, warn);
-    $background: map-get($theme, background);
-    $foreground: map-get($theme, foreground);
-    $is-dark-theme: map-get($theme, is-dark);
-    $tableBorderOpacity: if($is-dark-theme, 0.08, 0.03);
-    table {
-        color: mat-color($foreground, text);
-    }
-    th {
-        background: mat-color($background, app-bar);
-    }
-    td {
-        border: 1px solid rgba(mat-color($foreground, secondary-text), $tableBorderOpacity);
-    }
-}
-
+// TODO: Remove the following lines
 $deeppurple-amber-primary: mat-palette($mat-deep-purple);
 $deeppurple-amber-accent: mat-palette($mat-amber, A200, A100, A400);
 $deeppurple-amber-theme: mat-light-theme($deeppurple-amber-primary, $deeppurple-amber-accent);
@@ -93,8 +23,8 @@ $indigo-pink-primary: mat-palette($mat-indigo);
 $indigo-pink-accent: mat-palette($mat-pink, A200, A100, A400);
 $indigo-pink-theme: mat-light-theme($indigo-pink-primary, $indigo-pink-accent);
 .deeppurple-amber {
-    @include angular-material-theme($deeppurple-amber-theme);
     @include rss-reader-theme($deeppurple-amber-theme);
+    @include angular-material-theme($deeppurple-amber-theme);
     /** Adapted from https://github.com/atom-material/atom-material-syntax-light */
     .hljs {
         display: block;
@@ -174,290 +104,19 @@ $indigo-pink-theme: mat-light-theme($indigo-pink-primary, $indigo-pink-accent);
 }
 
 .pink-bluegrey {
-    @include angular-material-theme($pink-bluegrey-theme);
     @include rss-reader-theme($pink-bluegrey-theme);
-    /*
-Orginal Style from https://github.com/Kelbster/highlightjs-material-dark-theme  (c) Kelby Gassmanl <kelby.gassman@gmail.com>
-*/
-    .hljs {
-        display: block;
-        overflow-x: auto;
-        padding: 1em;
-        background: #2B2B2D;
-        color: #CDD3D8;
-        -webkit-font-smoothing: antialiased;
-        text-size-adjust: 100%;
-        font: 300 100%/1 Roboto Mono, monospace;
-        font-size: 14px;
-    }
-    .hljs>*::selection {
-        background-color: #3e4451;
-    }
-    .hljs-comment {
-        color: #656565;
-        font-style: italic;
-    }
-    .hljs-selector-tag {
-        color: #C792EA;
-    }
-    .hljs-string,
-    .hljs-subst {
-        color: #9ccc65;
-    }
-    .hljs-number,
-    .hljs-regexp,
-    .hljs-variable,
-    .hljs-template-variable {
-        color: #F77669;
-    }
-    .hljs-keyword {
-        color: #C792EA;
-    }
-    .hljs-function>.hljs-title {
-        color: #75A5FF;
-    }
-    .hljs-tag {
-        color: #ce93d8;
-    }
-    .hljs-name {
-        color: #4dd0e1;
-    }
-    .hljs-type {
-        color: #da4939;
-    }
-    .hljs-attribute {
-        color: #80CBBF;
-    }
-    .hljs-symbol,
-    .hljs-bullet,
-    .hljs-built_in,
-    .hljs-builtin-name,
-    .hljs-link {
-        color: #C792EA;
-    }
-    .hljs-params {
-        color: #EEFFF7;
-    }
-    .hljs-meta {
-        color: #75A5FF;
-    }
-    .hljs-title {
-        color: #75A5FF;
-    }
-    .hljs-section {
-        color: #ffc66d;
-    }
-    .hljs-addition {
-        background-color: #144212;
-        color: #e6e1dc;
-        display: inline-block;
-        width: 100%;
-    }
-    .hljs-deletion {
-        background-color: #600;
-        color: #e6e1dc;
-        display: inline-block;
-        width: 100%;
-    }
-    .hljs-selector-class {
-        color: #FFCB68;
-    }
-    .hljs-selector-id {
-        color: #F77669;
-    }
-    .hljs-emphasis {
-        font-style: italic;
-    }
-    .hljs-strong {
-        font-weight: bold;
-    }
-    .hljs-link {
-        text-decoration: underline;
-    }
+    @include angular-material-theme($pink-bluegrey-theme);
 }
 
 .purple-green {
-    @include angular-material-theme($purple-green-theme);
     @include rss-reader-theme($purple-green-theme);
-    /*
-Orginal Style from https://github.com/Kelbster/highlightjs-material-dark-theme  (c) Kelby Gassmanl <kelby.gassman@gmail.com>
-*/
-    .hljs {
-        display: block;
-        overflow-x: auto;
-        padding: 1em;
-        background: #2B2B2D;
-        color: #CDD3D8;
-        -webkit-font-smoothing: antialiased;
-        text-size-adjust: 100%;
-        font: 300 100%/1 Roboto Mono, monospace;
-        font-size: 14px;
-    }
-    .hljs>*::selection {
-        background-color: #3e4451;
-    }
-    .hljs-comment {
-        color: #656565;
-        font-style: italic;
-    }
-    .hljs-selector-tag {
-        color: #C792EA;
-    }
-    .hljs-string,
-    .hljs-subst {
-        color: #9ccc65;
-    }
-    .hljs-number,
-    .hljs-regexp,
-    .hljs-variable,
-    .hljs-template-variable {
-        color: #F77669;
-    }
-    .hljs-keyword {
-        color: #C792EA;
-    }
-    .hljs-function>.hljs-title {
-        color: #75A5FF;
-    }
-    .hljs-tag {
-        color: #ce93d8;
-    }
-    .hljs-name {
-        color: #4dd0e1;
-    }
-    .hljs-type {
-        color: #da4939;
-    }
-    .hljs-attribute {
-        color: #80CBBF;
-    }
-    .hljs-symbol,
-    .hljs-bullet,
-    .hljs-built_in,
-    .hljs-builtin-name,
-    .hljs-link {
-        color: #C792EA;
-    }
-    .hljs-params {
-        color: #EEFFF7;
-    }
-    .hljs-meta {
-        color: #75A5FF;
-    }
-    .hljs-title {
-        color: #75A5FF;
-    }
-    .hljs-section {
-        color: #ffc66d;
-    }
-    .hljs-addition {
-        background-color: #144212;
-        color: #e6e1dc;
-        display: inline-block;
-        width: 100%;
-    }
-    .hljs-deletion {
-        background-color: #600;
-        color: #e6e1dc;
-        display: inline-block;
-        width: 100%;
-    }
-    .hljs-selector-class {
-        color: #FFCB68;
-    }
-    .hljs-selector-id {
-        color: #F77669;
-    }
-    .hljs-emphasis {
-        font-style: italic;
-    }
-    .hljs-strong {
-        font-weight: bold;
-    }
-    .hljs-link {
-        text-decoration: underline;
-    }
+    @include angular-material-theme($purple-green-theme);
 }
 
 .indigo-pink {
-    @include angular-material-theme($indigo-pink-theme);
     @include rss-reader-theme($indigo-pink-theme);
-    /** Adapted from https://github.com/atom-material/atom-material-syntax-light */
-    .hljs {
-        display: block;
-        overflow-x: auto;
-        padding: 1em;
-        background: #FAFAFA;
-        color: #37474f;
-        -webkit-font-smoothing: antialiased;
-        text-size-adjust: 100%;
-        font: 300 100%/1 Roboto Mono, monospace;
-        font-size: 14px;
-    }
-    .hljs>*::selection,
-    .hljs-section {
-        background-color: #D6EDEA;
-    }
-    .hljs-comment {
-        color: #B0BEC5;
-        font-style: italic;
-    }
-    .hljs-tag,
-    .hljs-selector-tag,
-    .hljs-regexp,
-    .hljs-meta {
-        color: #9c27b0;
-    }
-    .hljs-string,
-    .hljs-subst {
-        color: #0d904f;
-    }
-    .hljs-number,
-    .hljs-variable,
-    .hljs-template-variable {
-        color: #80CBC4;
-    }
-    .hljs-name,
-    .hljs-keyword,
-    .hljs-type,
-    .hljs-attribute {
-        color: #3b78e7;
-    }
-    .hljs-title,
-    .hljs-function>.hljs-title,
-    .hljs-symbol,
-    .hljs-bullet,
-    .hljs-built_in,
-    .hljs-builtin-name,
-    .hljs-link {
-        color: #6182B8;
-    }
-    .hljs-params {
-        color: #d81b60;
-    }
-    .hljs-addition {
-        color: #3b78e7;
-        display: inline-block;
-        width: 100%;
-    }
-    .hljs-deletion {
-        color: #E53935;
-        display: inline-block;
-        width: 100%;
-    }
-    .hljs-selector-id,
-    .hljs-selector-class {
-        color: #8796B0;
-    }
-    .hljs-emphasis {
-        font-style: italic;
-    }
-    .hljs-strong {
-        font-weight: bold;
-    }
-    .hljs-link {
-        text-decoration: underline;
-    }
+    @include angular-material-theme($indigo-pink-theme);
+    
 }
 
 .rss-reader-card {
