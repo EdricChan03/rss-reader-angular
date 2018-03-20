@@ -1,15 +1,18 @@
-import { MatDialogRef } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 
+import { MatDialogRef } from '@angular/material';
+
 @Component({
-	selector: 'share-dialog',
-	templateUrl: './share.dialog.html',
-	styleUrls: ['./share.dialog.scss']
+	selector: 'app-share-dialog',
+	templateUrl: './share-dialog.component.html',
+	styleUrls: ['./share-dialog.component.scss']
 })
 export class ShareDialog implements OnInit {
 	url: string;
 	feed: any;
-	constructor(private dialogRef: MatDialogRef<ShareDialog>) {
+	constructor(
+		private dialogRef: MatDialogRef<ShareDialog>
+	) {
 		dialogRef.disableClose = true;
 	}
 	ngOnInit() {

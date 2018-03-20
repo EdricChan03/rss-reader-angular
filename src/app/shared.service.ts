@@ -18,6 +18,7 @@ import { SwUpdate } from '@angular/service-worker';
 @Injectable()
 export class SharedService implements OnInit {
 	private _title = '';
+	private readonly _version = '1.3.0';
 	constructor(
 		private snackBar: MatSnackBar,
 		private dialog: MatDialog,
@@ -25,6 +26,12 @@ export class SharedService implements OnInit {
 		private breakpointObserver: BreakpointObserver,
 		private swUpdate: SwUpdate
 	) { }
+	/**
+	 * Gets the version of the app
+	 */
+	get version(): string {
+		return this._version;
+	}
 	/**
 	 * Sets the document's title
 	 * @param {string} title The title of the document to set

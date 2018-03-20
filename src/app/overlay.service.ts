@@ -1,6 +1,7 @@
+import { ConnectedPositionStrategy, GlobalPositionStrategy, OriginConnectionPosition, Overlay, OverlayConfig, OverlayConnectionPosition, OverlayRef } from '@angular/cdk/overlay';
+import { ElementRef, Injectable } from '@angular/core';
+
 import { ComponentPortal } from '@angular/cdk/portal';
-import { OverlayRef, Overlay, OverlayConfig, GlobalPositionStrategy, OriginConnectionPosition, OverlayConnectionPosition, ConnectedPositionStrategy } from '@angular/cdk/overlay';
-import { Injectable, ElementRef } from '@angular/core';
 
 @Injectable()
 export class OverlayService {
@@ -26,7 +27,7 @@ export class OverlayService {
 		}
 	}
 	/**
-	 * Closes the overlay currently opened (alias)
+	 * Closes the overlay currently opened (alias of {@link OverlayService#destroyOverlay})
 	 * @see {@link OverlayService#destroyOverlay}
 	 */
 	close(): void {
@@ -77,7 +78,7 @@ export class OverlayService {
 		this._attachPortal();
 		if (backdropClickClosesOverlay && config.hasBackdrop) {
 			this._overlayRef.backdropClick().subscribe(() => {
-				this.close();
+				this.destroyOverlay();
 			});
 		}
 		return this._overlayRef;

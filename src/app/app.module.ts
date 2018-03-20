@@ -1,53 +1,59 @@
-import { OverlayService } from './overlay.service';
-import { ActionIconsModule } from './actionitem.service';
-import { GuideItems } from './guide-items';
-import { GuidesList } from './pages/guide-list/guide-list.component';
-import { GuideViewer } from './pages/guide-viewer/guide-viewer.component';
-import { DocViewer } from './pages/doc-viewer/doc-viewer.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { TestpageComponent } from './testpage/testpage.component';
-import { OptionsDialog } from './dialogs/options-dialog/options.dialog';
-import { SettingsComponent } from './settings/settings.component';
-import { HomeComponent } from './home/home.component';
-import { AppRouting } from './app.routing';
-import { ShareDialog } from './dialogs/index';
-import { MaterialModule } from './material.module';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import 'hammerjs';
+
+import { CodeViewerDialog, FeedCardComponent } from './feed-card/feed-card.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { AppComponent, FeedDialog } from './app.component';
-import { FeedCardComponent, CodeViewerDialog } from './feed-card/feed-card.component';
 import {
+	OrderByPipe,
 	StripHtmlTagsPipe,
-	TruncatePipe,
-	OrderByPipe
+	TruncatePipe
 } from './pipe';
+import { ActionIconsModule } from './actionitem.service';
+import { AndroidComponent } from './devices/android/android.component';
+import { AppComponent } from './app.component';
+import { AppRouting } from './app.routing';
+import { AppsOverlayComponent } from './overlays/apps-overlay/apps-overlay.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { DocViewer } from './pages/doc-viewer/doc-viewer.component';
+import { ExpansionPanelComponent } from './pages/expansion-panel/expansion-panel.component';
+import { ExploreComponent } from './explore/explore.component';
+import { FilterOverlayComponent } from './overlays/filter-overlay/filter-overlay.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { GuideItems } from './guide-items';
+import { GuideViewer } from './pages/guide-viewer/guide-viewer.component';
+import { GuidesList } from './pages/guide-list/guide-list.component';
+import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
+import { IOSComponent } from './devices/ios/ios.component';
+import { MaterialModule } from './material.module';
+import { NgModule } from '@angular/core';
+import { NotificationsOverlayComponent } from './overlays/notifications-overlay/notifications-overlay.component';
+import { OnboardingOverlayComponent } from './overlays/onboarding-overlay/onboarding-overlay.component';
+import { OverlayService } from './overlay.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { SettingsComponent } from './settings/settings.component';
+import {
+	AboutDialog,
+	FeedDialog,
+	OptionsDialog,
+	RSSChannelInfoDialog,
+	ShareDialog
+} from './dialogs';
 import {
 	SharedModule
 } from './shared.service';
-import 'hammerjs';
-import { AndroidComponent } from './devices/android/android.component';
-import { IOSComponent } from './devices/ios/ios.component';
-import { ExpansionPanelComponent } from './pages/expansion-panel/expansion-panel.component';
-import { environment } from '../environments/environment';
-import { ServiceWorkerModule } from '@angular/service-worker';
+import { TestpageComponent } from './testpage/testpage.component';
 import { WebComponent } from './devices/web/web.component';
-import { ExploreComponent } from './explore/explore.component';
-import { FilterOverlayComponent } from './overlays/filter-overlay/filter-overlay.component';
-import { OnboardingOverlayComponent } from './overlays/onboarding-overlay/onboarding-overlay.component';
-import { RSSChannelInfoDialog } from './dialogs/rss-channel-info-dialog/rss-channel-info.dialog';
-import { AppsOverlayComponent } from './overlays/apps-overlay/apps-overlay.component';
-import { NotificationsOverlayComponent } from './overlays/notifications-overlay/notifications-overlay.component';
+import { environment } from '../environments/environment';
 
 const DIALOGS = [
 	FeedDialog,
 	CodeViewerDialog,
 	ShareDialog,
 	OptionsDialog,
-	RSSChannelInfoDialog
+	RSSChannelInfoDialog,
+	AboutDialog
 ];
 const OVERLAYS = [
 	FilterOverlayComponent,

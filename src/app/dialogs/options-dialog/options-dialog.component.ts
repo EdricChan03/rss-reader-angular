@@ -4,8 +4,8 @@ import { MatDialogRef, MatDialog } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-	selector: 'options-dialog',
-	templateUrl: './options.dialog.html'
+	selector: 'app-options-dialog',
+	templateUrl: './options-dialog.component.html'
 })
 // tslint:disable-next-line:component-class-suffix
 export class OptionsDialog implements OnInit {

@@ -1,14 +1,16 @@
-import { RSSChannelInfoDialog } from '../dialogs/rss-channel-info-dialog/rss-channel-info.dialog';
+import { Component, OnInit } from '@angular/core';
+
 import { ActionIconService } from '../actionitem.service';
-import { OptionsDialog } from '../dialogs';
-import { FeedDialog, Settings } from '../app.component';
-import { Router } from '@angular/router';
-import { SharedService } from '../shared.service';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { FeedDialog } from '../dialogs/feed-dialog/feed-dialog.component';
+import { FeedEntry } from '../model/feed-entry';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
-import { FeedEntry } from '../model/feed-entry';
+import { OptionsDialog } from '../dialogs';
+import { RSSChannelInfoDialog } from '../dialogs/rss-channel-info-dialog/rss-channel-info.dialog';
+import { Router } from '@angular/router';
+import { Settings } from '../model/settings';
+import { SharedService } from '../shared.service';
 
 @Component({
 	selector: 'app-home',

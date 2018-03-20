@@ -1,10 +1,12 @@
-import { DomSanitizer } from '@angular/platform-browser';
-import { SharedService } from '../shared.service';
-import { ShareDialog } from '../dialogs/index';
-import { Settings } from '../app.component';
-import { MatDialogRef, MatDialog, MatSlideToggleChange } from '@angular/material';
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import * as hljs from 'highlight.js';
+
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef, MatSlideToggleChange } from '@angular/material';
+
+import { DomSanitizer } from '@angular/platform-browser';
+import { Settings } from '../model/settings';
+import { ShareDialog } from '../dialogs/index';
+import { SharedService } from '../shared.service';
 
 @Component({
 	selector: 'app-feed-card',

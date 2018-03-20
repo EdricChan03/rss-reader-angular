@@ -1,4 +1,7 @@
+//#region CDK Module imports
+import { A11yModule } from '@angular/cdk/a11y';
 //#region Material Module imports
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -22,14 +25,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 //#endregion
-
-//#region CDK Module imports
-import { A11yModule } from '@angular/cdk/a11y';
+import { NgModule } from '@angular/core';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 //#endregion
-import { NgModule } from '@angular/core';
+
 const MATERIAL_MODULES = [
+	MatAutocompleteModule,
 	MatButtonModule,
 	MatCardModule,
 	MatCheckboxModule,
