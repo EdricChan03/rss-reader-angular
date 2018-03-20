@@ -78,11 +78,22 @@ export class FeedCardComponent implements OnInit {
 	replaceImg(isThumbnail?: boolean) {
 		this.hasImage = true;
 		if (isThumbnail) {
-			if (this.feed.enclosure.thumbnail.indexOf('https://www.blog.googlehttps//') !== -1) {
-				const temp = this.feed.enclosure.thumbnail.replace('https://www.blog.googlehttps//', 'https://');
-				this.imageSrc = encodeURI(temp);
-			} else {
-				this.imageSrc = encodeURI(this.feed.enclosure.thumbnail);
+			if (this.feed.enclosure.thumbnail) {
+				// Resolve issue with images where the RSS of the Google Blog is a bit broken
+				if (this.feed.enclosure.thumbnail.indexOf('https://www.blog.googlehttps//') !== -1) {
+					const temp = this.feed.enclosure.thumbnail.replace('https://www.blog.googlehttps//', 'https://');
+					this.imageSrc = encodeURI(temp);
+				} else {
+					this.imageSrc = encodeURI(this.feed.enclosure.thumbnail);
+				}
+			} else if (this.feed.thumbnail) {
+				// Resolve issue with images where the RSS of the Google Blog is a bit broken
+				if (this.feed.thumbnail.indexOf('https://www.blog.googlehttps//') !== -1) {
+					const temp = this.feed.thumbnail.replace('https://www.blog.googlehttps//', 'https://');
+					this.imageSrc = encodeURI(temp);
+				} else {
+					this.imageSrc = encodeURI(this.feed.thumbnail);
+				}
 			}
 		} else {
 			// Resolve issue with images where the RSS of the Google Blog is a bit broken
@@ -107,7 +118,7 @@ export class FeedCardComponent implements OnInit {
 		if (this.feed.enclosure && this.feed.enclosure.length === undefined && this.settings.showImages) {
 			if (this.feed.enclosure.link) {
 				this.replaceImg(false);
-			} else if (this.feed.enclosure.thumbnail) {
+			} else if (this.feed.enclosure.thumbnail || this.feed.thumbnail) {
 				this.replaceImg(true);
 			}
 		}
