@@ -1,23 +1,23 @@
 <h2 matDialogTitle>RSS Url</h2>
 <mat-dialog-content fxLayout="column">
-	<form #formCtrl="ngForm" fxLayout="column">
+	<form [formGroup]="rssFeedForm" fxLayout="column">
 		<p>Select from one of the options or enter a RSS feed url:</p>
 		<mat-form-field color="accent">
-			<input placeholder="RSS feed" aria-label="RSS feed" matInput [formControl]="feedControl" [matAutocomplete]="rssFeedAuto" name="feedUrl">
+			<input placeholder="RSS feed" aria-label="RSS feed" matInput [matAutocomplete]="rssFeedAuto" name="feedUrl" formControlName="feedUrl">
 			<mat-autocomplete #rssFeedAuto="matAutocomplete" [displayWith]="displayFn">
 				<mat-optgroup [label]="feed.name" *ngFor="let feed of filteredOptions | async">
 					<mat-option *ngFor="let channel of feed.channels" [value]="channel.feedUrl">
-						{{channel.name}}
+						{{channel.name}} - {{channel.feedUrl}}
 					</mat-option>
 				</mat-optgroup>
 			</mat-autocomplete>
 		</mat-form-field>
-		<mat-checkbox [(ngModel)]="publishFeedUrl" name="publishFeedUrl">Publish Feed URL</mat-checkbox>
-		<mat-form-field *ngIf="publishFeedUrl">
-			<input matInput placeholder="RSS Channel" [(ngModel)]="feedUrlChannel" name="feedUrlChannel">
+		<mat-checkbox formControlName="publishFeedUrl">Publish Feed URL</mat-checkbox>
+		<mat-form-field *ngIf="rssFeedForm.get('publishFeedUrl').value">
+			<input matInput placeholder="RSS Channel" formControlName="feedUrlChannel">
 		</mat-form-field>
-		<mat-form-field *ngIf="publishFeedUrl">
-			<mat-select [(ngModel)]="feedCategory" name="feedCategory" placeholder="Feed category">
+		<mat-form-field *ngIf="rssFeedForm.get('publishFeedUrl').value">
+			<mat-select formControlName="feedCategory" placeholder="Feed category">
 				<mat-option *ngFor="let category of categories" [value]="category">{{category}}</mat-option>
 			</mat-select>
 		</mat-form-field>
@@ -25,7 +25,7 @@
 			<a href="https://github.com/Chan4077/rss-reader/blob/master/docs/guides/GENERATE_API_KEY.md" target="_blank">here</a>
 		</p>
 		<mat-form-field>
-			<input type="text" matInput placeholder="API Key" [(ngModel)]="apiKey" required name="apiKey">
+			<input type="text" matInput placeholder="API Key" formControlName="apiKey">
 			<mat-error>This is required</mat-error>
 			<a mat-icon-button matSuffix routerLink="/doc/guides/generate-api-key" matTooltip="How to generate a key" target="_blank">
 				<mat-icon>help</mat-icon>
@@ -35,5 +35,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
 	<button mat-button color="primary" matDialogClose="cancel">Cancel</button>
-	<button mat-button color="primary" matDialogClose="save" [disabled]="!formCtrl.valid">Save</button>
+	<button mat-button color="primary" matDialogClose="save" [disabled]="rssFeedForm.invalid">Save</button>
 </mat-dialog-actions>

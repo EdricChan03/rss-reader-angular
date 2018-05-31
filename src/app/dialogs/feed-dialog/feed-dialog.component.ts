@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FeedUrl } from '../../model/feed-urls';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { startWith } from 'rxjs/operators/startWith';
+import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 
 @Component({
 	selector: 'app-feed-dialog',
@@ -39,35 +40,51 @@ export class FeedDialog implements OnInit {
 	feedCategory: string;
 	categories: any;
 	filteredOptions: Observable<FeedUrl[]>;
-	constructor(private dialogRef: MatDialogRef<FeedDialog>, private http: HttpClient) {
+	feedUrlValue: string = '';
+	rssFeedForm: FormGroup;
+	feedData: AngularFirestoreDocument<FeedUrl>;
+	constructor(
+		private dialogRef: MatDialogRef<FeedDialog>,
+		private http: HttpClient,
+		private fb: FormBuilder,
+		private afFs: AngularFirestore
+	) {
 		dialogRef.disableClose = true;
+		this.rssFeedForm = fb.group({
+			feedUrl: ['', Validators.required],
+			publishFeedUrl: false,
+			feedUrlChannel: '',
+			feedCategory: '',
+			apiKey: ['', [Validators.required, Validators.maxLength(40), Validators.minLength(40)]]
+		})
 	}
 	ngOnInit() {
-		this.http.get<FeedUrl[]>('assets/feedurls.json')
-			.subscribe(result => {
-				this.feeds = result;
-				this.filteredOptions = this.feedControl.valueChanges
-					.pipe(
-						startWith(''),
-						map(value => this.filter(value))
-					);
-			},
-				err => console.error(err));
+		this.feedData = this.afFs.doc('data/feed');
+		this.feedData.valueChanges().subscribe((result) => {
+			this.filteredOptions = this.rssFeedForm.get('feedUrl').valueChanges
+				.pipe(
+					startWith(''),
+					map(value => this.filter(value))
+				);
+		})
 		this.http.get('assets/feedcategories.json')
 			.subscribe(result => {
 				this.categories = result;
 			},
 				err => console.error(err));
 		if (window.localStorage.getItem('feedUrl')) {
-			this.feedUrl = window.localStorage.getItem('feedUrl');
+			this.rssFeedForm.setValue({ feedUrl: window.localStorage.getItem('feedUrl') });
 		}
 		if (window.localStorage.getItem('apiKey')) {
-			this.apiKey = window.localStorage.getItem('apiKey');
+			this.rssFeedForm.setValue({ apiKey: window.localStorage.getItem('apiKey') });
 		}
+		setTimeout(() => {
+			console.log(this.filter('lineage')[0]);
+		}, 10000);
 	}
 	filter(name: string): FeedUrl[] {
 		return this.feeds.filter(option => {
-			return option.channels.filter(option2 => {
+			option.channels.filter(option2 => {
 				option2.name.toLowerCase().indexOf(name.toLowerCase()) === 0 ||
 					option2.feedUrl.toLowerCase().indexOf(name.toLowerCase()) === 0;
 			})
