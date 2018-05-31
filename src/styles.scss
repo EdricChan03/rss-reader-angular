@@ -22,6 +22,7 @@ $purple-green-theme: mat-dark-theme($purple-green-primary, $purple-green-accent)
 $indigo-pink-primary: mat-palette($mat-indigo);
 $indigo-pink-accent: mat-palette($mat-pink, A200, A100, A400);
 $indigo-pink-theme: mat-light-theme($indigo-pink-primary, $indigo-pink-accent);
+
 .deeppurple-amber {
     @include rss-reader-theme($deeppurple-amber-theme);
     @include angular-material-theme($deeppurple-amber-theme);
