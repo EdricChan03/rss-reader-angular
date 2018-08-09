@@ -8,7 +8,7 @@ Ensure that `ActionIconsModule` is imported to your main app's module under the 
 ```typescript
 import { ActionIconsModule } from 'path/to/actionitem.service';
 @NgModule({
-	imports: [ActionIconsModule]
+  imports: [ActionIconsModule]
 })
 ```
 That's it! There's nothing else there is! On to the documentation then...
@@ -108,7 +108,7 @@ Param | Type | Description | Notes
 `my-app.component.html`:
 ```html
 <mat-toolbar>
-	<app-actionicons></app-actionicons>
+  <app-actionicons></app-actionicons>
 </mat-toolbar>
 ```
 ## Setting up the toolbar with the service (method 2)
@@ -122,63 +122,63 @@ Snippet of code:
  * @returns {ActionIcon[]} The menu items
  */
 get actionItems: ActionIcon[] {
-	return this.actionItemService.getActionIcons();
+  return this.actionItemService.getActionIcons();
 }
 ```
 ```html
 <div id="more-btns" *ngFor="let actionItem of actionItems">
-	<button mat-icon-button *ngIf="actionItem.showAsAction && actionItem.href == null" (click)="actionItem.onClickListener($event)" [matTooltip]="actionItem.title">
-		<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
-	</button>
-	<a mat-icon-button *ngIf="actionItem.showAsAction && actionItem.href" [href]="actionItem.href" [matTooltip]="actionItem.title">
-		<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
-	</a>
-	<a mat-icon-button *ngIf="actionItem.showAsAction && actionItem.routerLink" [routerLink]="[actionItem.routerLink]" [matTooltip]="actionItem.title">
-		<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
-	</a>
+  <button mat-icon-button *ngIf="actionItem.showAsAction && actionItem.href == null" (click)="actionItem.onClickListener($event)" [matTooltip]="actionItem.title">
+    <mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
+  </button>
+  <a mat-icon-button *ngIf="actionItem.showAsAction && actionItem.href" [href]="actionItem.href" [matTooltip]="actionItem.title">
+    <mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
+  </a>
+  <a mat-icon-button *ngIf="actionItem.showAsAction && actionItem.routerLink" [routerLink]="[actionItem.routerLink]" [matTooltip]="actionItem.title">
+    <mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
+  </a>
 </div>
 <button mat-icon-button *ngIf="showMoreMenu" [matMenuTriggerFor]="moreMenu">
-	<mat-icon>more_vert</mat-icon>
+  <mat-icon>more_vert</mat-icon>
 </button>
 <mat-menu #moreMenu="matMenu">
-	<div *ngFor="let actionItem of actionItems">
-		<button mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.href == null">
-			<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
-			{{actionItem.title}}
-		</button>
-		<a mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.href" [href]="actionItem.href">
-			<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
-			{{actionItem.title}}
-		</a>
-		<a mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.routerLink" [routerLink]="[actionItem.routerLink]">
-			<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
-			{{actionItem.title}}
-		</a>
-	</div>
+  <div *ngFor="let actionItem of actionItems">
+    <button mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.href == null">
+      <mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
+      {{actionItem.title}}
+    </button>
+    <a mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.href" [href]="actionItem.href">
+      <mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
+      {{actionItem.title}}
+    </a>
+    <a mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.routerLink" [routerLink]="[actionItem.routerLink]">
+      <mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
+      {{actionItem.title}}
+    </a>
+  </div>
 </mat-menu>
 ```
 ## Adding menu items
 ```typescript
 export class MyComponent implements OnInit {
-	constructor(private actionItemService: ActionIconService){}
-	ngOnInit() {
-		this.actionItemService.addActionIcon({title: "Reload", icon: "refresh", onClickListener: (ev: Event)=> {
-			console.log("Reload was clicked");
-			window.location.reload(true);
-		}})
-	}
+  constructor(private actionItemService: ActionIconService){}
+  ngOnInit() {
+    this.actionItemService.addActionIcon({title: "Reload", icon: "refresh", onClickListener: (ev: Event)=> {
+      console.log("Reload was clicked");
+      window.location.reload(true);
+    }})
+  }
 }
 ```
 ## Adding onclick listeners to a menu item
 ```typescript
 export class MyComponent implements OnInit {
-	constructor(private actionItemService: ActionIconService){}
-	ngOnInit() {
-		this.actionItemService.addActionIcon({title: "Open sidenav", icon: "menu"});
-		this.actionItemService.addActionIconOnClickListener(0, (ev: Event)=> {
-			console.log("Clicked");
-		})
-	}
+  constructor(private actionItemService: ActionIconService){}
+  ngOnInit() {
+    this.actionItemService.addActionIcon({title: "Open sidenav", icon: "menu"});
+    this.actionItemService.addActionIconOnClickListener(0, (ev: Event)=> {
+      console.log("Clicked");
+    })
+  }
 }
 ```
 

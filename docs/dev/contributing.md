@@ -27,6 +27,6 @@ ng serve
 <!-- end-enclose-content -->
 4. Changes you make will be saved live.
 5. After you're done making changes to a file(s), add the files to `git`, add a commit message and `push` it. (If you don't understand what I meant... Well, good luck.)
-	1. For those who use Github Desktop, you should know how to do these simple stuff. Or else you're really screwed or you're a new user. Anyways, here's a [guide](https://example.com) on How-To Github Desktop.
+  1. For those who use Github Desktop, you should know how to do these simple stuff. Or else you're really screwed or you're a new user. Anyways, here's a [guide](https://example.com) on How-To Github Desktop.
 
 Done!

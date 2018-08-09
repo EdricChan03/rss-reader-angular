@@ -8,9 +8,9 @@ It's basically just an easier way of handling `Overlay`s that are currently open
 ```typescript
 import { OverlayService } from './path/to/overlay.service';
 @NgModule({
-	providers: [
-		OverlayService
-	]
+  providers: [
+    OverlayService
+  ]
 })
 export class AppModule {}
 ```
@@ -37,19 +37,19 @@ Parameter | Type | Required? | Notes
 ```typescript
 
 export class MyComponent {
-	constructor(private overlayService: OverlayService){}
-	createOverlay() {
-		this.overlayService.createOverlay(new ComponentPortal(MyOverlayComponent), {hasBackdrop: true}, true);
-	}
+  constructor(private overlayService: OverlayService){}
+  createOverlay() {
+    this.overlayService.createOverlay(new ComponentPortal(MyOverlayComponent), {hasBackdrop: true}, true);
+  }
 }
 ```
 ## Closing an overlay from the overlay itself
 ```typescript
 export class AnotherOverlayComponent {
-	constructor(private overlayService: OverlayService){}
-	closeOverlay() {
-		this.overlayService.close();
-	}
+  constructor(private overlayService: OverlayService){}
+  closeOverlay() {
+    this.overlayService.close();
+  }
 }
 ```
 <!-- end-enclose-content -->
