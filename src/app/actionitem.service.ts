@@ -192,39 +192,76 @@ export class ActionIconToggle extends ActionIcon {
 @Component({
 	selector: 'app-actionicons',
 	template: `
-	<span id="more-btns" *ngFor="let actionItem of actionItems">
-	<button mat-icon-button *ngIf="actionItem.showAsAction && actionItem.href == null" (click)="actionItem.onClickListener($event)" [matTooltip]="actionItem.title">
-	<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
-	</button>
-	<a mat-icon-button *ngIf="actionItem.showAsAction && actionItem.href" [href]="actionItem.href" [matTooltip]="actionItem.title">
-	<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
-	</a>
-	<a mat-icon-button *ngIf="actionItem.showAsAction && actionItem.routerLink" [routerLink]="[actionItem.routerLink]" [matTooltip]="actionItem.title">
+	<ng-container id="more-btns" *ngFor="let actionItem of actionItems">
+		<ng-container *ngIf="!isEmpty(actionItem.icon)">
+			<button mat-icon-button *ngIf="actionItem.showAsAction && actionItem.href == null" (click)="actionItem.onClickListener($event)" [matTooltip]="actionItem.title">
 			<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
-		</a>
-	</span>
-	<button mat-icon-button *ngIf="showMoreMenu" [matMenuTriggerFor]="moreMenu">
-		<mat-icon>more_vert</mat-icon>
-	</button>
-	<mat-menu #moreMenu="matMenu">
-		<span *ngFor="let actionItem of actionItems">
-			<button mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.href == null" (click)="actionItem.onClickListener()">
+			</button>
+			<a mat-icon-button *ngIf="actionItem.showAsAction && actionItem.href" [href]="actionItem.href" [matTooltip]="actionItem.title">
+			<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
+			</a>
+			<a mat-icon-button *ngIf="actionItem.showAsAction && actionItem.routerLink" [routerLink]="[actionItem.routerLink]" [matTooltip]="actionItem.title">
+					<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
+				</a>
+			<button mat-icon-button *ngIf="showMoreMenu" [matMenuTriggerFor]="moreMenu">
+				<mat-icon>more_vert</mat-icon>
+			</button>
+			<mat-menu #moreMenu="matMenu">
+				<ng-template matMenuContent>
+					<ng-container *ngFor="let actionItem of actionItems">
+						<button mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.href == null" (click)="actionItem.onClickListener()">
+							<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
+							{{actionItem.title}}
+						</button>
+						<a mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.href" [href]="actionItem.href">
+							<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
+							{{actionItem.title}}
+						</a>
+						<a mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.routerLink" [routerLink]="[actionItem.routerLink]">
+							<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
+							{{actionItem.title}}
+						</a>
+					</ng-container>
+				</ng-template>
+			</mat-menu>
+		</ng-container>
+		<ng-container *ngIf="isEmpty(actionItem.showAsAction)">
+			<button mat-button *ngIf="isEmpty(actionItem.href)" (click)="actionItem.onClickListener($event)">
 				<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
 				{{actionItem.title}}
 			</button>
-			<a mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.href" [href]="actionItem.href">
+			<a mat-button *ngIf="actionItem.href" [href]="actionItem.href">
 				<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
 				{{actionItem.title}}
 			</a>
-			<a mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.routerLink" [routerLink]="[actionItem.routerLink]">
+			<a mat-button *ngIf="actionItem.routerLink" [routerLink]="[actionItem.routerLink]">
 				<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
 				{{actionItem.title}}
 			</a>
-		</span>
-	</mat-menu>
-
-				`
-
+			<button mat-icon-button *ngIf="showMoreMenu" [matMenuTriggerFor]="moreMenu">
+				<mat-icon>more_vert</mat-icon>
+			</button>
+			<mat-menu #moreMenu="matMenu">
+				<ng-template matMenuContent>
+					<ng-container *ngFor="let actionItem of actionItems">
+						<button mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.href == null" (click)="actionItem.onClickListener()">
+							<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
+							{{actionItem.title}}
+						</button>
+						<a mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.href" [href]="actionItem.href">
+							<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
+							{{actionItem.title}}
+						</a>
+						<a mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.routerLink" [routerLink]="[actionItem.routerLink]">
+							<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
+							{{actionItem.title}}
+						</a>
+					</ng-container>
+				</ng-template>
+			</mat-menu>
+		</ng-container>
+	</ng-container>
+	`
 })
 export class ActionIconsComponent {
 	constructor(private actionItemService: ActionIconService) { }
@@ -233,8 +270,11 @@ export class ActionIconsComponent {
 	}
 	get showMoreMenu() {
 		return this.actionItemService.getActionIcons().find((actionItem: ActionIcon): boolean => {
-			return actionItem.showAsAction !== true;
+			return !actionItem.showAsAction;
 		});
+	}
+	isEmpty(str: string): boolean {
+		return (!str || 0 === str.length);
 	}
 }
 
