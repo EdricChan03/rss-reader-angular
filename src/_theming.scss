@@ -1,48 +1,48 @@
 @import 'hljs';
 // Dedicated file for theming the app
 @mixin rss-reader-theme($theme) {
-	@include tables-theme($theme);
+  @include tables-theme($theme);
     $foreground: map-get($theme, foreground);
     $primary: map-get($theme, primary);
     $accent: map-get($theme, accent);
     $warn: map-get($theme, warn);
-	$is-dark-theme: map-get($theme, is-dark);
-	// Check if the theme is dark
-	@if ($is-dark-theme) {
-		// Apply highlight.js dark styles available in _hljs.scss
-		@include hljs-dark();
-	} @else {
-		// Apply highlight.js light styles available in _hljs.scss
-		@include hljs-light();
-	}
-	// Shows the current link. Used in the sidenav
+  $is-dark-theme: map-get($theme, is-dark);
+  // Check if the theme is dark
+  @if ($is-dark-theme) {
+    // Apply highlight.js dark styles available in _hljs.scss
+    @include hljs-dark();
+  } @else {
+    // Apply highlight.js light styles available in _hljs.scss
+    @include hljs-light();
+  }
+  // Shows the current link. Used in the sidenav
     .active-link {
         color: mat-color($primary) !important;
         background-color: map-get($foreground, divider) !important;
-	}
-	// Warning icon color
+  }
+  // Warning icon color
     .warning-icon {
-		color: mat-color($warn) !important;
-	}
-	// WIP page icon
+    color: mat-color($warn) !important;
+  }
+  // WIP page icon
     .build-icon {
-		color: mat-color($accent) !important;
-	}
-	// Anchor links
+    color: mat-color($accent) !important;
+  }
+  // Anchor links
     .docs-a, .docs-anchor {
-		color: mat-color($primary) !important;
-	}
-	.mat-list-item-content mat-icon, .icon {
-		color: map-get($foreground, icon);
-	}
-	// Override styling of previous style
-	.active-link mat-icon {
-		color: mat-color($primary) !important;
-	}
+    color: mat-color($primary) !important;
+  }
+  .mat-list-item-content mat-icon, .icon {
+    color: map-get($foreground, icon);
+  }
+  // Override styling of previous style
+  .active-link mat-icon {
+    color: mat-color($primary) !important;
+  }
     mat-sidenav-content::-webkit-scrollbar-thumb {
-		background-color: mat-color($accent);
+    background-color: mat-color($accent);
         &:hover {
-			background-color: mat-color($accent, A400);
+      background-color: mat-color($accent, A400);
         }
     }
     mat-sidenav-content::-webkit-scrollbar {

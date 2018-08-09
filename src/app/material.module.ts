@@ -31,46 +31,46 @@ import { PortalModule } from '@angular/cdk/portal';
 //#endregion
 
 const MATERIAL_MODULES = [
-	MatAutocompleteModule,
-	MatButtonModule,
-	MatCardModule,
-	MatCheckboxModule,
-	MatChipsModule,
-	MatDialogModule,
-	MatDividerModule,
-	MatExpansionModule,
-	MatFormFieldModule,
-	MatGridListModule,
-	MatIconModule,
-	MatInputModule,
-	MatListModule,
-	MatMenuModule,
-	MatProgressSpinnerModule,
-	MatRadioModule,
-	MatRippleModule,
-	MatSelectModule,
-	MatSidenavModule,
-	MatSliderModule,
-	MatSnackBarModule,
-	MatToolbarModule,
-	MatTooltipModule
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatExpansionModule,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSnackBarModule,
+  MatToolbarModule,
+  MatTooltipModule
 ];
 const CDK_MODULES = [
-	A11yModule,
-	OverlayModule,
-	PortalModule
+  A11yModule,
+  OverlayModule,
+  PortalModule
 ];
 @NgModule({
-	imports: [
-		MATERIAL_MODULES,
-		CDK_MODULES
-	],
-	exports: [
-		MATERIAL_MODULES,
-		CDK_MODULES
-	],
-	providers: [
-		{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'standard' } }
-	]
+  imports: [
+    MATERIAL_MODULES,
+    CDK_MODULES
+  ],
+  exports: [
+    MATERIAL_MODULES,
+    CDK_MODULES
+  ],
+  providers: [
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'standard' } }
+  ]
 })
 export class MaterialModule { }

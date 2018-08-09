@@ -12,22 +12,22 @@ import { IOSComponent } from './devices/ios/ios.component';
 import { ExploreComponent } from './explore/explore.component';
 
 const APP_ROUTES: Routes = [
-	{ path: 'home', component: HomeComponent },
-	{ path: 'settings', component: SettingsComponent },
-	{ path: 'test', component: TestpageComponent },
-	{ path: 'docs', component: GuidesList },
-	{ path: 'doc/:docTypeId/:docId', component: GuideViewer },
-	{
-		path: 'devices', children: [
-			{ path: 'android', component: AndroidComponent },
-			{ path: 'ios', component: IOSComponent },
-			{ path: 'web', component: WebComponent },
-			{ path: '**', redirectTo: '/devices/android' }
-		]
-	},
-	{ path: 'explore', component: ExploreComponent },
-	{ path: '', pathMatch: 'full', redirectTo: '/home' },
-	{ path: '**', component: PageNotFoundComponent }
+  { path: 'home', component: HomeComponent },
+  { path: 'settings', component: SettingsComponent },
+  { path: 'test', component: TestpageComponent },
+  { path: 'docs', component: GuidesList },
+  { path: 'doc/:docTypeId/:docId', component: GuideViewer },
+  {
+    path: 'devices', children: [
+      { path: 'android', component: AndroidComponent },
+      { path: 'ios', component: IOSComponent },
+      { path: 'web', component: WebComponent },
+      { path: '**', redirectTo: '/devices/android' }
+    ]
+  },
+  { path: 'explore', component: ExploreComponent },
+  { path: '', pathMatch: 'full', redirectTo: '/home' },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 export const AppRouting: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);

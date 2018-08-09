@@ -4,9 +4,9 @@ import { environment } from './environments/environment';
 import { AppModule } from './app/app.module';
 
 if (environment.production) {
-	enableProdMode();
+  enableProdMode();
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule, {
-	defaultEncapsulation: ViewEncapsulation.None
+  defaultEncapsulation: ViewEncapsulation.None
 });

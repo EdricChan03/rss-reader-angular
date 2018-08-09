@@ -1,51 +1,51 @@
 <div class="search-input-container">
-	<div class="search-input" [class.search-input-focused]="isInputFocused">
-		<mat-icon aria-hidden="true" class="search-btn-left">search</mat-icon>
-		<input type="search" [(ngModel)]="search" placeholder="Search everything" (blur)="isInputFocused = false" (keyup.enter)="searchEverything(search)"
-		 (focus)="isInputFocused = true" title="Press enter to search. Alternatively, press the search button.">
-		 <button mat-icon-button (click)="searchEverything(search)" matTooltip="Search" *ngIf="search">
-			 <mat-icon aria-hidden="true">search</mat-icon>
-		 </button>
-		<button mat-icon-button (click)="toggleFilterOverlay()" matTooltip="Filter" aria-label="Show filter overlay" #filterOverlayBtn>
-			<mat-icon aria-hidden="true">filter_list</mat-icon>
-		</button>
-		<button mat-icon-button (click)="search = ''" matTooltip="Clear" *ngIf="search" aria-label="Clear input">
-			<mat-icon aria-hidden="true">close</mat-icon>
-		</button>
-	</div>
+  <div class="search-input" [class.search-input-focused]="isInputFocused">
+    <mat-icon aria-hidden="true" class="search-btn-left">search</mat-icon>
+    <input type="search" [(ngModel)]="search" placeholder="Search everything" (blur)="isInputFocused = false" (keyup.enter)="searchEverything(search)"
+     (focus)="isInputFocused = true" title="Press enter to search. Alternatively, press the search button.">
+     <button mat-icon-button (click)="searchEverything(search)" matTooltip="Search" *ngIf="search">
+       <mat-icon aria-hidden="true">search</mat-icon>
+     </button>
+    <button mat-icon-button (click)="toggleFilterOverlay()" matTooltip="Filter" aria-label="Show filter overlay" #filterOverlayBtn>
+      <mat-icon aria-hidden="true">filter_list</mat-icon>
+    </button>
+    <button mat-icon-button (click)="search = ''" matTooltip="Clear" *ngIf="search" aria-label="Clear input">
+      <mat-icon aria-hidden="true">close</mat-icon>
+    </button>
+  </div>
 </div>
 <div style="padding: 5%" *ngIf="search == ''">
-	<mat-nav-list>
-		<a mat-list-item [href]="source.url" *ngFor="let source of newsSources">
-			<h3 matLine>{{source.name}}</h3>
-			<br>
-			<mat-icon>public</mat-icon> {{source.country}}
-		</a>
-	</mat-nav-list>
+  <mat-nav-list>
+    <a mat-list-item [href]="source.url" *ngFor="let source of newsSources">
+      <h3 matLine>{{source.name}}</h3>
+      <br>
+      <mat-icon>public</mat-icon> {{source.country}}
+    </a>
+  </mat-nav-list>
 </div>
 <div style="padding: 5%" *ngIf="search != '' && filteredNewsSources">
-	<mat-nav-list>
-		<h3 matSubheader>By category</h3>
-		<a mat-list-item [href]="source.url" *ngFor="let source of filteredNewsSources[0].sources">
-			<h3 matLine>{{source.name}}</h3>
-			<br>
-			<mat-icon>public</mat-icon> {{source.country}}
-		</a>
-		<h3 matSubheader>By language</h3>
-		<a mat-list-item [href]="source.url" *ngFor="let source of filteredNewsSources[1].sources">
-			<h3 matLine>{{source.name}}</h3>
-			<br>
-			<mat-icon>public</mat-icon> {{source.country}}
-		</a>
-		<h3 matSubheader>By country</h3>
-		<a mat-list-item [href]="source.url" *ngFor="let source of filteredNewsSources[2].sources">
-			<h3 matLine>{{source.name}}</h3>
-			<br>
-			<mat-icon>public</mat-icon> {{source.country}}
-		</a>
-	</mat-nav-list>
+  <mat-nav-list>
+    <h3 matSubheader>By category</h3>
+    <a mat-list-item [href]="source.url" *ngFor="let source of filteredNewsSources[0].sources">
+      <h3 matLine>{{source.name}}</h3>
+      <br>
+      <mat-icon>public</mat-icon> {{source.country}}
+    </a>
+    <h3 matSubheader>By language</h3>
+    <a mat-list-item [href]="source.url" *ngFor="let source of filteredNewsSources[1].sources">
+      <h3 matLine>{{source.name}}</h3>
+      <br>
+      <mat-icon>public</mat-icon> {{source.country}}
+    </a>
+    <h3 matSubheader>By country</h3>
+    <a mat-list-item [href]="source.url" *ngFor="let source of filteredNewsSources[2].sources">
+      <h3 matLine>{{source.name}}</h3>
+      <br>
+      <mat-icon>public</mat-icon> {{source.country}}
+    </a>
+  </mat-nav-list>
 </div>
 <footer>
-	<p>Explore is powered by
-		<a href="https://newsapi.org">NewsAPI.org</a>.</p>
+  <p>Explore is powered by
+    <a href="https://newsapi.org">NewsAPI.org</a>.</p>
 </footer>

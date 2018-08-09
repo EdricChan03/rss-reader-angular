@@ -1,80 +1,80 @@
 <mat-sidenav-container fullscreen>
-	<mat-sidenav #left class="app-sidenav" [mode]="isMobile ? 'over' : 'side'">
-		<mat-toolbar>
-			Links
-			<span fxFlex></span>
-			<button mat-icon-button (click)="left.close()" matTooltip="Close Sidenav" matTooltipPosition="left">
-				<mat-icon>keyboard_arrow_left</mat-icon>
-			</button>
-		</mat-toolbar>
-		<mat-nav-list>
-			<a mat-list-item [routerLink]="['/', link.url]" routerLinkActive="active-link" *ngFor="let link of links">
-				<mat-icon matListIcon>{{link.icon}}</mat-icon>
-				<h3 matLine>{{link.name}}</h3>
-			</a>
-			<h3 matSubheader>Platforms (coming soon)</h3>
-			<a mat-list-item routerLink="/devices/web" routerLinkActive="active-link">
-				<mat-icon matListIcon>web</mat-icon>
-				<h3 matLine>Native web app</h3>
-				<p matLine>Coming soon</p>
-			</a>
-			<a mat-list-item routerLink="/devices/android" routerLinkActive="active-link">
-				<mat-icon matListIcon>android</mat-icon>
-				<h3 matLine>Android app</h3>
-				<p matLine>Coming soon</p>
-			</a>
-			<a mat-list-item routerLink="/devices/ios" routerLinkActive="active-link">
-				<mat-icon matListIcon>
-					<svg width="24px" height="24px" viewBox="0 0 24 24">
-						<path d="M20,9V7H16A2,2 0 0,0 14,9V11A2,2 0 0,0 16,13H18V15H14V17H18A2,2 0 0,0 20,15V13A2,2 0 0,0 18,11H16V9M11,15H9V9H11M11,7H9A2,2 0 0,0 7,9V15A2,2 0 0,0 9,17H11A2,2 0 0,0 13,15V9A2,2 0 0,0 11,7M4,17H6V11H4M4,9H6V7H4V9Z"
-						/>
-					</svg>
-				</mat-icon>
-				<h3 matLine>iOS app</h3>
-				<p matLine>Not available yet</p>
-			</a>
-			<h3 matSubheader>More</h3>
-			<a mat-list-item href="https://goo.gl/forms/hopvyFXOqHfpA1kq2">
-				<mat-icon matListIcon>feedback</mat-icon>
-				<h3 matLine>Send Feedback</h3>
-				<p matLine>(Google Forms)</p>
-				<span fxFlex></span>
-				<mat-icon class="open-in-new-icon">open_in_new</mat-icon>
-			</a>
-			<a mat-list-item routerLink="/test" *ngIf="!environment.production" routerLinkActive="active-link">
-				<mat-icon matListIcon>build</mat-icon>
-				<h3 matLine>Testing</h3>
-			</a>
-			<a mat-list-item href="https://github.com/Chan4077/rss-reader">
-				<mat-icon matListIcon>code</mat-icon>
-				<h3 matLine>View source code</h3>
-			</a>
-			<mat-list-item (click)="showOnboardingOverlay()">
-				<mat-icon matListIcon>open_in_browser</mat-icon>
-				<h3 matLine>Show onboarding</h3>
-			</mat-list-item>
-			<mat-list-item (click)="aboutThisApp()">
-				<mat-icon matListIcon>info</mat-icon>
-				<h3 matLine>About</h3>
-			</mat-list-item>
-		</mat-nav-list>
-	</mat-sidenav>
-	<mat-sidenav-content>
-		<mat-toolbar color="primary" class="mat-elevation-z3">
-			<button mat-icon-button (click)="left.toggle()" *ngIf="!isSidenavOpen" aria-label="Toggle left sidenav">
-				<mat-icon>menu</mat-icon>
-			</button>
-			RSS Reader
-			<span fxFlex></span>
-			<app-actionicons></app-actionicons>
-			<span style="width: 25px"></span>
-			<button mat-icon-button (click)="showAppsOverlay()" aria-label="Show apps" matTooltip="Apps" #appsBtn>
-				<mat-icon>apps</mat-icon>
-			</button>
-			<button mat-icon-button (click)="showNotificationsOverlay()" aria-label="Show notifications" matTooltip="Notifications" #notificationsBtn>
-				<mat-icon>notifications</mat-icon>
-			</button>
-		</mat-toolbar>
-		<router-outlet></router-outlet>
-	</mat-sidenav-content>
+  <mat-sidenav #left class="app-sidenav" [mode]="isMobile ? 'over' : 'side'">
+    <mat-toolbar>
+      Links
+      <span fxFlex></span>
+      <button mat-icon-button (click)="left.close()" matTooltip="Close Sidenav" matTooltipPosition="left">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['/', link.url]" routerLinkActive="active-link" *ngFor="let link of links">
+        <mat-icon matListIcon>{{link.icon}}</mat-icon>
+        <h3 matLine>{{link.name}}</h3>
+      </a>
+      <h3 matSubheader>Platforms (coming soon)</h3>
+      <a mat-list-item routerLink="/devices/web" routerLinkActive="active-link">
+        <mat-icon matListIcon>web</mat-icon>
+        <h3 matLine>Native web app</h3>
+        <p matLine>Coming soon</p>
+      </a>
+      <a mat-list-item routerLink="/devices/android" routerLinkActive="active-link">
+        <mat-icon matListIcon>android</mat-icon>
+        <h3 matLine>Android app</h3>
+        <p matLine>Coming soon</p>
+      </a>
+      <a mat-list-item routerLink="/devices/ios" routerLinkActive="active-link">
+        <mat-icon matListIcon>
+          <svg width="24px" height="24px" viewBox="0 0 24 24">
+            <path d="M20,9V7H16A2,2 0 0,0 14,9V11A2,2 0 0,0 16,13H18V15H14V17H18A2,2 0 0,0 20,15V13A2,2 0 0,0 18,11H16V9M11,15H9V9H11M11,7H9A2,2 0 0,0 7,9V15A2,2 0 0,0 9,17H11A2,2 0 0,0 13,15V9A2,2 0 0,0 11,7M4,17H6V11H4M4,9H6V7H4V9Z"
+            />
+          </svg>
+        </mat-icon>
+        <h3 matLine>iOS app</h3>
+        <p matLine>Not available yet</p>
+      </a>
+      <h3 matSubheader>More</h3>
+      <a mat-list-item href="https://goo.gl/forms/hopvyFXOqHfpA1kq2">
+        <mat-icon matListIcon>feedback</mat-icon>
+        <h3 matLine>Send Feedback</h3>
+        <p matLine>(Google Forms)</p>
+        <span fxFlex></span>
+        <mat-icon class="open-in-new-icon">open_in_new</mat-icon>
+      </a>
+      <a mat-list-item routerLink="/test" *ngIf="!environment.production" routerLinkActive="active-link">
+        <mat-icon matListIcon>build</mat-icon>
+        <h3 matLine>Testing</h3>
+      </a>
+      <a mat-list-item href="https://github.com/Chan4077/rss-reader">
+        <mat-icon matListIcon>code</mat-icon>
+        <h3 matLine>View source code</h3>
+      </a>
+      <mat-list-item (click)="showOnboardingOverlay()">
+        <mat-icon matListIcon>open_in_browser</mat-icon>
+        <h3 matLine>Show onboarding</h3>
+      </mat-list-item>
+      <mat-list-item (click)="aboutThisApp()">
+        <mat-icon matListIcon>info</mat-icon>
+        <h3 matLine>About</h3>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="mat-elevation-z3">
+      <button mat-icon-button (click)="left.toggle()" *ngIf="!isSidenavOpen" aria-label="Toggle left sidenav">
+        <mat-icon>menu</mat-icon>
+      </button>
+      RSS Reader
+      <span fxFlex></span>
+      <app-actionicons></app-actionicons>
+      <span style="width: 25px"></span>
+      <button mat-icon-button (click)="showAppsOverlay()" aria-label="Show apps" matTooltip="Apps" #appsBtn>
+        <mat-icon>apps</mat-icon>
+      </button>
+      <button mat-icon-button (click)="showNotificationsOverlay()" aria-label="Show notifications" matTooltip="Notifications" #notificationsBtn>
+        <mat-icon>notifications</mat-icon>
+      </button>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
 </mat-sidenav-container>

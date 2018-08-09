@@ -3,9 +3,9 @@ import 'hammerjs';
 import { CodeViewerDialog, FeedCardComponent } from './feed-card/feed-card.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-	OrderByPipe,
-	StripHtmlTagsPipe,
-	TruncatePipe
+  OrderByPipe,
+  StripHtmlTagsPipe,
+  TruncatePipe
 } from './pipe';
 import { ActionIconsModule } from './actionitem.service';
 import { AndroidComponent } from './devices/android/android.component';
@@ -34,14 +34,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { SettingsComponent } from './settings/settings.component';
 import {
-	AboutDialog,
-	FeedDialog,
-	OptionsDialog,
-	RSSChannelInfoDialog,
-	ShareDialog
+  AboutDialog,
+  FeedDialog,
+  OptionsDialog,
+  RSSChannelInfoDialog,
+  ShareDialog
 } from './dialogs';
 import {
-	SharedModule
+  SharedModule
 } from './shared.service';
 import { TestpageComponent } from './testpage/testpage.component';
 import { WebComponent } from './devices/web/web.component';
@@ -51,70 +51,70 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 const DIALOGS = [
-	FeedDialog,
-	CodeViewerDialog,
-	ShareDialog,
-	OptionsDialog,
-	RSSChannelInfoDialog,
-	AboutDialog
+  FeedDialog,
+  CodeViewerDialog,
+  ShareDialog,
+  OptionsDialog,
+  RSSChannelInfoDialog,
+  AboutDialog
 ];
 const OVERLAYS = [
-	FilterOverlayComponent,
-	OnboardingOverlayComponent,
-	AppsOverlayComponent,
-	NotificationsOverlayComponent
+  FilterOverlayComponent,
+  OnboardingOverlayComponent,
+  AppsOverlayComponent,
+  NotificationsOverlayComponent
 ];
 const PIPES = [
-	StripHtmlTagsPipe,
-	TruncatePipe,
-	OrderByPipe
+  StripHtmlTagsPipe,
+  TruncatePipe,
+  OrderByPipe
 ];
 @NgModule({
-	declarations: [
-		AppComponent,
-		FeedCardComponent,
-		DIALOGS,
-		PIPES,
-		HomeComponent,
-		SettingsComponent,
-		TestpageComponent,
-		PageNotFoundComponent,
-		DocViewer,
-		GuideViewer,
-		GuidesList,
-		AndroidComponent,
-		IOSComponent,
-		ExpansionPanelComponent,
-		WebComponent,
-		ExploreComponent,
-		OVERLAYS
-	],
-	imports: [
-		BrowserModule,
-		BrowserAnimationsModule,
-		ReactiveFormsModule,
-		FormsModule,
-		FlexLayoutModule,
-		HttpClientModule,
-		MaterialModule,
-		SharedModule,
-		AppRouting,
-		ServiceWorkerModule.register(environment.swLocation, { enabled: environment.production }),
-		AngularFireModule.initializeApp(environment.firebase),
-		AngularFirestoreModule.enablePersistence(),
-		AngularFireAuthModule,
-		ActionIconsModule
-	],
-	bootstrap: [AppComponent],
-	providers: [
-		GuideItems,
-		OverlayService
-	],
-	entryComponents: [
-		DIALOGS,
-		OVERLAYS,
-		ExpansionPanelComponent
-	]
+  declarations: [
+    AppComponent,
+    FeedCardComponent,
+    DIALOGS,
+    PIPES,
+    HomeComponent,
+    SettingsComponent,
+    TestpageComponent,
+    PageNotFoundComponent,
+    DocViewer,
+    GuideViewer,
+    GuidesList,
+    AndroidComponent,
+    IOSComponent,
+    ExpansionPanelComponent,
+    WebComponent,
+    ExploreComponent,
+    OVERLAYS
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule,
+    FlexLayoutModule,
+    HttpClientModule,
+    MaterialModule,
+    SharedModule,
+    AppRouting,
+    ServiceWorkerModule.register(environment.swLocation, { enabled: environment.production }),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule.enablePersistence(),
+    AngularFireAuthModule,
+    ActionIconsModule
+  ],
+  bootstrap: [AppComponent],
+  providers: [
+    GuideItems,
+    OverlayService
+  ],
+  entryComponents: [
+    DIALOGS,
+    OVERLAYS,
+    ExpansionPanelComponent
+  ]
 })
 export class AppModule {
 }

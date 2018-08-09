@@ -1,5 +1,5 @@
 export interface FeedChannel {
-	name: string;
-	feedUrl: string;
-	description?: string;
+  name: string;
+  feedUrl: string;
+  description?: string;
 }
