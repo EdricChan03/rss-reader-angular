@@ -13,8 +13,8 @@
     "forin": true,
     "indent": [
       true,
-      "tabs",
-      4
+      "spaces",
+      2
     ],
     "label-position": true,
     "max-line-length": [

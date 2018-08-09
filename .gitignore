@@ -35,3 +35,5 @@ Thumbs.db
 
 # Other
 src/assets/docs
+# AngularDoc config
+.angulardoc.json
