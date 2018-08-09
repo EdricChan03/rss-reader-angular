@@ -1,13 +1,15 @@
-<div cdkTrapFocus class="onboarding-div">
-	<button mat-fab matTooltip="Previous" class="onboarding-left-fab" color="primary" [class.no-visible]="index == 0" (click)="prevIndex()" aria-label="Previous" [@enterAnimation]="index == 0 ? 'enter' : 'leave'">
+<div cdkTrapFocus class="onboarding-div" [@enterAnimation]="enterAnimationState">
+	<button mat-fab matTooltip="Previous" class="onboarding-fab onboarding-left-fab" [class.no-visible]="index == 0" (click)="prevIndex()" aria-label="Previous" [@enterAnimation]="index == 0 ? 'leave' : 'enter'" color>
 		<mat-icon>arrow_backward</mat-icon>
 	</button>
 	<mat-card
-		class="onboarding-card" [style.backgroundColor]="content[index].color">
+		class="onboarding-card">
 		<img mat-card-image [src]="content[index].imgSrc" *ngIf="content[index].imgSrc">
-		<mat-card-content class="onboarding-content" [class.onboarding-content-center]="content[index].imgSrc == ''">
+		<mat-card-content
+			class="onboarding-card-content"
+			[class.onboarding-card-content-center]="content[index].imgSrc == ''">
 			<div *ngIf="index == 0" class="app-div">
-				<img src="assets/favicon/icon-100x100-nocolor.png" width="100px" height="100px">
+				<img src="assets/icon-no-color.svg" width="100px" height="100px">
 				<div>
 					<p class="app-title">RSS Reader</p>
 					<small class="app-beta">BETA</small>
@@ -17,9 +19,14 @@
 			<p *ngIf="index == 0">The news reader that you will need</p>
 			<p>{{content[index].content}}</p>
 		</mat-card-content>
+		<mat-card-actions fxLayout="row" class="onboarding-card-actions">
+			<span fxFlex></span>
+			<button mat-raised-button (click)="gettingStarted()">Get Started</button>
+			<span fxFlex></span>
+		</mat-card-actions>
 	</mat-card>
-	<button mat-fab [matTooltip]="nextFABTooltip" class="onboarding-right-fab" [color]="nextFABColor" (click)="nextIndex()" aria-label="Next">
-		<mat-icon>{{nextFABIcon}}</mat-icon>
+	<button mat-fab matTooltip="Next" class="onboarding-fab onboarding-right-fab" (click)="nextIndex()" aria-label="Next" [@enterAnimation]="index == 3 ? 'leave' : 'enter'" [class.no-visible]="index == 3" color>
+		<mat-icon>arrow_forward</mat-icon>
 	</button>
 </div>
 <div class="indicators">
