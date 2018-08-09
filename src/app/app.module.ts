@@ -46,6 +46,9 @@ import {
 import { TestpageComponent } from './testpage/testpage.component';
 import { WebComponent } from './devices/web/web.component';
 import { environment } from '../environments/environment';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 const DIALOGS = [
 	FeedDialog,
@@ -97,6 +100,9 @@ const PIPES = [
 		SharedModule,
 		AppRouting,
 		ServiceWorkerModule.register(environment.swLocation, { enabled: environment.production }),
+		AngularFireModule.initializeApp(environment.firebase),
+		AngularFirestoreModule.enablePersistence(),
+		AngularFireAuthModule,
 		ActionIconsModule
 	],
 	bootstrap: [AppComponent],
