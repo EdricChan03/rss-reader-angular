@@ -1,4 +1,4 @@
-<div cdkTrapFocus class="onboarding-div" [@enterAnimation]="enterAnimationState">
+<div cdkTrapFocus class="onboarding-div">
   <button mat-fab matTooltip="Previous" class="onboarding-fab onboarding-left-fab" [class.no-visible]="index == 0" (click)="prevIndex()" aria-label="Previous" [@enterAnimation]="index == 0 ? 'leave' : 'enter'" color>
     <mat-icon>arrow_backward</mat-icon>
   </button>
@@ -9,7 +9,7 @@
       class="onboarding-card-content"
       [class.onboarding-card-content-center]="content[index].imgSrc == ''">
       <div *ngIf="index == 0" class="app-div">
-        <img src="assets/icon-no-color.svg" width="100px" height="100px">
+        <img src="assets/favicon/icon-100x100-nocolor.png" width="100px" height="100px">
         <div>
           <p class="app-title">RSS Reader</p>
           <small class="app-beta">BETA</small>
