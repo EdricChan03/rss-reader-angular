@@ -37,3 +37,4 @@ Thumbs.db
 src/assets/docs
 # AngularDoc config
 .angulardoc.json
+.vscode/settings.json
