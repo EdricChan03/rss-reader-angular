@@ -1,4 +1,5 @@
 # List of guides
-- [Generating an API Key](./GENERATE_API_KEY.md)
-- [Getting Started](./GETTING_STARTED.md)
-- [Troubleshooting](./TROUBLESHOOTING.md)
+
+- [Generating an API Key](./generate-api-key.md)
+- [Getting Started](./getting-started.md)
+- [Troubleshooting](./troubleshooting.md)
