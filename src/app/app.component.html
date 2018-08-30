@@ -12,7 +12,7 @@
         <mat-icon matListIcon>{{link.icon}}</mat-icon>
         <h3 matLine>{{link.name}}</h3>
       </a>
-      <h3 matSubheader>Platforms (coming soon)</h3>
+      <!-- <h3 matSubheader>Platforms (coming soon)</h3>
       <a mat-list-item routerLink="/devices/web" routerLinkActive="active-link">
         <mat-icon matListIcon>web</mat-icon>
         <h3 matLine>Native web app</h3>
@@ -32,9 +32,9 @@
         </mat-icon>
         <h3 matLine>iOS app</h3>
         <p matLine>Not available yet</p>
-      </a>
+      </a> -->
       <h3 matSubheader>More</h3>
-      <a mat-list-item href="https://goo.gl/forms/hopvyFXOqHfpA1kq2">
+      <a mat-list-item href="https://goo.gl/forms/hopvyFXOqHfpA1kq2" target="_blank">
         <mat-icon matListIcon>feedback</mat-icon>
         <h3 matLine>Send Feedback</h3>
         <p matLine>(Google Forms)</p>
@@ -71,9 +71,9 @@
       <button mat-icon-button (click)="showAppsOverlay()" aria-label="Show apps" matTooltip="Apps" #appsBtn>
         <mat-icon>apps</mat-icon>
       </button>
-      <button mat-icon-button (click)="showNotificationsOverlay()" aria-label="Show notifications" matTooltip="Notifications" #notificationsBtn>
+      <!-- <button mat-icon-button (click)="showNotificationsOverlay()" aria-label="Show notifications" matTooltip="Notifications" #notificationsBtn>
         <mat-icon>notifications</mat-icon>
-      </button>
+      </button> -->
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
