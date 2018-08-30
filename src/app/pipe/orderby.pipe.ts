@@ -1,10 +1,10 @@
-import { Pipe } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: "orderby"
+  name: 'orderby'
   })
-  export class OrderByPipe {
-  transform(array: Array<string>, args: string): Array<string> {
+  export class OrderByPipe implements PipeTransform {
+  transform(array: string[], args: string): string[] {
     array.sort((a: any, b: any) => {
     if (a < b) {
       return -1;
