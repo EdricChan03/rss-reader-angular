@@ -1,5 +1,14 @@
 export interface FeedChannel {
-  name: string;
+  /**
+   * The name of the RSS channel
+   */
+  feedName: string;
+  /**
+   * The RSS feed URL of the RSS channel
+   */
   feedUrl: string;
-  description?: string;
+  /**
+   * More info about the RSS channel
+   */
+  feedDescription?: string;
 }
