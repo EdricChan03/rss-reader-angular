@@ -40,7 +40,7 @@ export class FeedDialog implements OnInit {
   feedCategory: string;
   categories: any;
   filteredOptions: Observable<FeedUrl[]>;
-  feedUrlValue: string = '';
+  feedUrlValue = '';
   rssFeedForm: FormGroup;
   feedData: AngularFirestoreDocument<FeedUrl>;
   constructor(
@@ -56,7 +56,7 @@ export class FeedDialog implements OnInit {
       feedUrlChannel: '',
       feedCategory: '',
       apiKey: ['', [Validators.required, Validators.maxLength(40), Validators.minLength(40)]]
-    })
+    });
   }
   ngOnInit() {
     this.feedData = this.afFs.doc('data/feed');
@@ -66,7 +66,7 @@ export class FeedDialog implements OnInit {
           startWith(''),
           map(value => this.filter(value))
         );
-    })
+    });
     this.http.get('assets/feedcategories.json')
       .subscribe(result => {
         this.categories = result;
@@ -85,10 +85,10 @@ export class FeedDialog implements OnInit {
   filter(name: string): FeedUrl[] {
     return this.feeds.filter(option => {
       option.channels.filter(option2 => {
-        option2.name.toLowerCase().indexOf(name.toLowerCase()) === 0 ||
+        option2.feedName.toLowerCase().indexOf(name.toLowerCase()) === 0 ||
           option2.feedUrl.toLowerCase().indexOf(name.toLowerCase()) === 0;
-      })
-    })
+      });
+    });
   }
   displayFn(feedUrl?: FeedUrl): string | undefined {
     return feedUrl ? feedUrl.name : undefined;
