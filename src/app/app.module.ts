@@ -11,7 +11,6 @@ import { ActionIconsModule } from './actionitem.service';
 import { AndroidComponent } from './devices/android/android.component';
 import { AppComponent } from './app.component';
 import { AppRouting } from './app.routing';
-import { AppsOverlayComponent } from './overlays/apps-overlay/apps-overlay.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { DocViewer } from './pages/doc-viewer/doc-viewer.component';
@@ -61,7 +60,6 @@ const DIALOGS = [
 const OVERLAYS = [
   FilterOverlayComponent,
   OnboardingOverlayComponent,
-  AppsOverlayComponent,
   NotificationsOverlayComponent
 ];
 const PIPES = [
