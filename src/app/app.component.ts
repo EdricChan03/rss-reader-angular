@@ -1,6 +1,5 @@
 import { ActionIcon, ActionIconService } from './actionitem.service';
 import {
-  AppsOverlayComponent,
   FilterOverlayComponent,
   NotificationsOverlayComponent,
   OnboardingOverlayComponent
@@ -31,10 +30,49 @@ import { environment } from '../environments/environment';
 })
 export class AppComponent implements OnInit, OnDestroy {
   @ViewChild('left') sidenav: MatSidenav;
-  @ViewChild('appsBtn') appsBtn: MatButton;
-  @ViewChild('notificationsBtn') notificationsBtn: MatButton;
   settings: Settings;
   environment = environment;
+  projects = [
+    {
+      subheaderName: 'Projects',
+      subheaderProjects: [
+        {
+          name: 'RSS Reader',
+          url: 'https://chan4077.github.io/rss-reader',
+          icon: 'rss_feed'
+        },
+        {
+          name: 'StudyBuddy',
+          url: 'https://studybuddy-e5f46.firebaseapp.com',
+          icon: 'book'
+        },
+        {
+          name: 'Market2',
+          url: 'https://market2-ed1e4.firebaseapp.com',
+          icon: 'shopping_cart'
+        },
+        {
+          name: 'Chan4077.GitHub.io',
+          url: 'https://chan4077.github.io',
+          icon: 'home'
+        },
+        {
+          name: 'First-Mod',
+          url: 'https://chan4077.github.io/First-Mod',
+          icon: 'gamepads'
+        }]
+    },
+    {
+      subheaderName: 'Libraries',
+      subheaderProjects: [
+        {
+          name: 'ngx-ytd-api',
+          url: 'https://ngx-ytd-api.firebaseapp.com/master',
+          icon: ''
+        }
+      ]
+    }
+  ];
   links = [
     {
       name: 'Home',
@@ -105,17 +143,7 @@ export class AppComponent implements OnInit, OnDestroy {
       hasBackdrop: true
     }, true);
   }
-  showAppsOverlay() {
-    this._createAppsOverlay();
-  }
-  private _createAppsOverlay() {
-    this.overlayService.createOverlay(new ComponentPortal(AppsOverlayComponent), {
-      // tslint:disable-next-line:max-line-length
-      positionStrategy: this.overlayService.createBelowPosElPositionStrategy(this.appsBtn._elementRef, { originX: 'end', originY: 'bottom' }, { overlayX: 'end', overlayY: 'top' }),
-      hasBackdrop: true
-    }, true);
-  }
-  showNotificationsOverlay() {
+  /* showNotificationsOverlay() {
     this._createNotificationsOverlay();
   }
   private _createNotificationsOverlay() {
@@ -125,7 +153,7 @@ export class AppComponent implements OnInit, OnDestroy {
       hasBackdrop: true
     }, true);
 
-  }
+  } */
   ngOnDestroy() {
     this.overlayService.destroyOverlay();
   }
