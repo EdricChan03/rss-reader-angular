@@ -285,16 +285,34 @@ export class MyComponent {
 
 ## `openSelectionDialog`
 
+```typescript
+openSelectionDialog(opts: SelectionDialogConfig): MatDialogRef<SelectionDialog>;
+```
+
 ## `getDialogs`
+
+```typescript
+getDialogs(): MatDialogRef<any>;
+```
 
 ## `closeAllDialogs`
 
+```typescript
+closeAllDialogs(): void;
+```
+
 ## `getDialogById`
 
+```typescript
+getDialogById(id: string): MatDialogRef<any>;
+```
+
 ## `afterAllClosed`
+
 ```typescript
 afterAllClosed(): Observable<void>;
 ```
+
 <!-- start-enclose-content -->
 ### Description
 An observable for when after all dialogs are closed
@@ -304,17 +322,23 @@ An observable for when after all dialogs are closed
 <!-- end-enclose-content -->
 
 ## `isMobile`
+
 ```typescript
 isMobile(): boolean;
 ```
+
 <!-- start-enclose-content -->
+
 ### Description
 Whether the user is using a mobile device
 
 ### Returns
 `boolean`
+
 <!-- end-enclose-content -->
+
 ---
+
 # Getters & Setters
 
 ## `title`
@@ -354,6 +378,7 @@ Property | Description | Type | Default value(s) | Required?
 <!-- end-enclose-content -->
 
 ## `DialogConfig` extends `MatDialogConfig`
+
 <!-- start-enclose-content -->
 Property | Description | Type | Default value(s) | Required? | Notes
 ---|---|---|---|---|---
@@ -364,6 +389,7 @@ Property | Description | Type | Default value(s) | Required? | Notes
 <!-- end-enclose-content -->
 
 ## `AlertDialogConfig` extends `DialogConfig`
+
 <!-- start-enclose-content -->
 Property | Description | Type | Default value(s) | Required? | Notes
 ---|---|---|---|---|---
@@ -371,6 +397,7 @@ Property | Description | Type | Default value(s) | Required? | Notes
 <!-- end-enclose-content -->
 
 ## `ConfirmDialogConfig` extends `DialogConfig`
+
 <!-- start-enclose-content -->
 Property | Description | Type | Default value(s) | Required? | Notes
 ---|---|---|---|---|---
