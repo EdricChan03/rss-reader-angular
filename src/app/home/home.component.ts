@@ -173,18 +173,21 @@ export class HomeComponent implements OnInit {
   selectRss() {
     const dialogRef = this.dialog.open(FeedDialog);
     dialogRef.afterClosed().subscribe(result => {
-      const url = dialogRef.componentInstance.feedUrl;
-      this.apiKey = dialogRef.componentInstance.apiKey;
-      const publishFeedUrl = dialogRef.componentInstance.publishFeedUrl;
+      const rssFeedForm = dialogRef.componentInstance.rssFeedForm;
+      // const url = dialogRef.componentInstance.feedUrl;
+      // this.apiKey = dialogRef.componentInstance.apiKey;
+      // const publishFeedUrl = dialogRef.componentInstance.publishFeedUrl;
       if (result === 'save') {
-        window.localStorage.setItem('feedUrl', url);
-        window.localStorage.setItem('apiKey', this.apiKey);
+        window.localStorage.setItem('feedUrl', rssFeedForm.get('feedUrl')!.value);
+        window.localStorage.setItem('apiKey', rssFeedForm.get('apiKey')!.value);
         this.refreshFeed();
-        if (publishFeedUrl) {
-          this.shared.openSnackBar({ msg: 'Adding new channel RSS url...', additionalOpts: { duration: 2000, horizontalPosition: 'start' } });
-          alert('Please make sure that you have enabled pop-ups in your browser settings.');
+        if (rssFeedForm.get('publishFeedUrl')!.value) {
+          this.shared.openSnackBar({
+            msg: 'Adding new channel RSS url... (Please make sure that you\'ve enabled popups in your browser settings.',
+            additionalOpts: { duration: 2000, horizontalPosition: 'start' }
+          });
           let feedUrl, feedUrlChannel, feedCategory;
-          feedUrl = dialogRef.componentInstance.feedUrl;
+          feedUrl = rssFeedForm.get('feedUrl')!.value;
           feedUrlChannel = dialogRef.componentInstance.feedUrlChannel;
           try {
             feedCategory = dialogRef.componentInstance.feedCategory;
