@@ -6,23 +6,29 @@
       "installMode": "prefetch",
       "resources": {
         "files": [
+          "/manifest.json",
           "/favicon.ico",
-          "/index.html"
-        ],
-        "versionedFiles": [
-          "/*.bundle.css",
-          "/*.bundle.js",
-          "/*.chunk.js"
+          "/index.html",
+          "/*.css",
+          "/*.js"
         ]
       }
-    },
-    {
+    }, {
       "name": "assets",
       "installMode": "lazy",
       "updateMode": "prefetch",
       "resources": {
         "files": [
           "/assets/**"
+        ]
+      }
+    }, {
+      "name": "fonts",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "urls": [
+          "https://fonts.googleapis.com/**"
         ]
       }
     }
