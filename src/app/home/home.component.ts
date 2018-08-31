@@ -79,7 +79,7 @@ export class HomeComponent implements OnInit {
   options() {
     const dialogRef = this.dialog.open(OptionsDialog);
     dialogRef.afterClosed().subscribe(result => {
-      if (result !== null) {
+      if (result !== undefined) {
         this.refreshFeed();
       }
     });
