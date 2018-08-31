@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FeedUrl } from '../../model/feed-urls';
+import { FeedCategory } from '../../model/feed-category';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -8,6 +8,8 @@ import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { startWith } from 'rxjs/operators/startWith';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { Feed } from '../../model/feed';
+import { FeedChannel } from '../../model/feed-channel';
 
 @Component({
   selector: 'app-feed-dialog',
@@ -15,34 +17,21 @@ import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firesto
 })
 // tslint:disable-next-line:component-class-suffix
 export class FeedDialog implements OnInit {
-  feedControl = new FormControl();
-  /**
-   * The feed URL
-   */
-  feedUrl: string;
   /**
    * The list of feeds
    * Available at {@link `/assets/feedurls.json`}
    */
-  feeds: FeedUrl[];
-  /**
-   * The API key
-   */
-  apiKey: string;
-  /**
-   * Whether to publish the feed url (basicallt opening in a google form with prefilled data)
-   */
-  publishFeedUrl = false;
+  feeds: FeedCategory[];
   /**
    * The feed URL channel for the publishing
    */
   feedUrlChannel: string;
   feedCategory: string;
   categories: any;
-  filteredOptions: Observable<FeedUrl[]>;
+  filteredOptions: Observable<FeedCategory[]>;
   feedUrlValue = '';
   rssFeedForm: FormGroup;
-  feedData: AngularFirestoreDocument<FeedUrl>;
+  feedData: AngularFirestoreDocument<FeedCategory>;
   constructor(
     private dialogRef: MatDialogRef<FeedDialog>,
     private http: HttpClient,
@@ -59,38 +48,54 @@ export class FeedDialog implements OnInit {
     });
   }
   ngOnInit() {
-    this.feedData = this.afFs.doc('data/feed');
-    this.feedData.valueChanges().subscribe((result) => {
+    this.http.get('assets/feedcategories.json')
+      .subscribe(result => {
+        this.categories = result;
+      },
+        err => console.error(err));
+    this.http.get<Feed>('assets/feedurls.json')
+      .subscribe(result => {
+        console.log(result);
+        console.log(result.feedUrls);
+        this.feeds = result.feedUrls;
+      },
+        err => console.error(err));
+    // this.feedData = this.afFs.doc('data/feed');
+    setTimeout(() => {
       this.filteredOptions = this.rssFeedForm.get('feedUrl').valueChanges
         .pipe(
           startWith(''),
           map(value => this.filter(value))
         );
     });
-    this.http.get('assets/feedcategories.json')
-      .subscribe(result => {
-        this.categories = result;
-      },
-        err => console.error(err));
     if (window.localStorage.getItem('feedUrl')) {
-      this.rssFeedForm.setValue({ feedUrl: window.localStorage.getItem('feedUrl') });
+      this.rssFeedForm.patchValue({ feedUrl: window.localStorage.getItem('feedUrl') });
     }
     if (window.localStorage.getItem('apiKey')) {
-      this.rssFeedForm.setValue({ apiKey: window.localStorage.getItem('apiKey') });
+      this.rssFeedForm.patchValue({ apiKey: window.localStorage.getItem('apiKey') });
     }
-    setTimeout(() => {
-      console.log(this.filter('lineage')[0]);
-    }, 10000);
+    // setTimeout(() => {
+    //   console.log(this.filter('lineage')[0]);
+    // }, 10000);
   }
-  filter(name: string): FeedUrl[] {
-    return this.feeds.filter(option => {
-      option.channels.filter(option2 => {
-        option2.feedName.toLowerCase().indexOf(name.toLowerCase()) === 0 ||
-          option2.feedUrl.toLowerCase().indexOf(name.toLowerCase()) === 0;
-      });
-    });
+  filter(name: string): FeedCategory[] {
+    // console.log(this.feeds);
+    // console.log(name);
+    // this.feeds.filter(feedUrls => {
+    //   return feedUrls.channels.filter(feedChannel => {
+    //     console.log(feedChannel);
+    //     // return feedChannel.feedName.toLowerCase().indexOf(name.toLowerCase()) === 0 ||
+    //     // feedChannel.feedUrl.toLowerCase().indexOf(name.toLowerCase()) === 0;
+    //     return feedChannel.feedUrl.toLowerCase().includes(name.toLowerCase());
+    //   });
+    // });
+    // tslint:disable-next-line:max-line-length
+    return this.feeds.filter((element) => 	element.channels.some((subElement) => subElement.feedUrl.includes(name) || subElement.feedName.includes(name)));
   }
-  displayFn(feedUrl?: FeedUrl): string | undefined {
-    return feedUrl ? feedUrl.name : undefined;
+  private _filterGroup(value: string): FeedCategory[] {
+    return this.feeds;
   }
+  // displayFn(feedChannel?: FeedChannel): string | undefined {
+  //   return feedChannel ? feedChannel.feedName : undefined;
+  // }
 }

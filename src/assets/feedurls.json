@@ -8,17 +8,17 @@
         {
           "feedName": "Android Police",
           "feedUrl": "https://www.androidpolice.com/feed/",
-          "description": "Looking after everything Android"
+          "feedDescription": "Looking after everything Android"
         },
         {
           "feedName": "Android Central",
           "feedUrl": "http://feeds.feedburner.com/androidcentral?format=xml",
-          "description": "Android Central - Android Forums, News, Reviews, Help and Android Wallpapers"
+          "feedDescription": "Android Central - Android Forums, News, Reviews, Help and Android Wallpapers"
         },
         {
           "feedName": "LineageOS Status",
           "feedUrl": "https://status.lineageos.org/state_feed/feed.atom",
-          "description": "Status updates of LineageOS (website, Gerrit, etc.)"
+          "feedDescription": "Status updates of LineageOS (website, Gerrit, etc.)"
         }
       ]
     },
@@ -29,12 +29,12 @@
         {
           "feedName": "Macworld",
           "feedUrl": "https://www.macworld.com/index.rss",
-          "description": ""
+          "feedDescription": ""
         },
         {
           "feedName": "OSX Daily",
           "feedUrl": "http://feeds.feedburner.com/osxdaily?format=xml",
-          "description": "News, tips, software, reviews, and more for Mac OS X, iPhone, iPad"
+          "feedDescription": "News, tips, software, reviews, and more for Mac OS X, iPhone, iPad"
         }
       ]
     },
@@ -45,12 +45,12 @@
         {
           "feedName": "Android Studio Blog",
           "feedUrl": "https://androidstudio.googleblog.com/feeds/posts/default",
-          "description": "Provides official announcements for new versions of Android Studio and other Android developer tools."
+          "feedDescription": "Provides official announcements for new versions of Android Studio and other Android developer tools."
         },
         {
           "feedName": "The GitHub Blog",
           "feedUrl": "https://blog.github.com/all.atom",
-          "description": "(No description)"
+          "feedDescription": "(No description)"
         },
         {
           "feedName": "The GitHub Blog Changelog",
@@ -65,12 +65,12 @@
         {
           "feedName": "The Keyword (Google)",
           "feedUrl": "https://blog.google/rss",
-          "description": "The Keyword"
+          "feedDescription": "The Keyword"
         },
         {
           "feedName": "G Suite Updates Blog",
           "feedUrl": "http://feeds.feedburner.com/GoogleAppsUpdates?format=xml",
-          "description": "The latest updates for G Suite."
+          "feedDescription": "The latest updates for G Suite."
         }
       ]
     },
@@ -81,17 +81,17 @@
         {
           "feedName": "Billboard.com Music News",
           "feedUrl": "https://www.billboard.com/articles/rss.xml",
-          "description": "Billboard - Music Charts, Music News, Artist Photo Gallery &amp; Free Video"
+          "feedDescription": "Billboard - Music Charts, Music News, Artist Photo Gallery &amp; Free Video"
         },
         {
           "feedName": "Billboard's Hot 100 Chart",
           "feedUrl": "https://www.billboard.com/rss/charts/hot-100",
-          "description": "This week's most popular songs across all genres, ranked by radio airplay audience impressions as measured by Nielsen Music, sales data as compiled by Nielsen Music and streaming activity data provided by online music sources."
+          "feedDescription": "This week's most popular songs across all genres, ranked by radio airplay audience impressions as measured by Nielsen Music, sales data as compiled by Nielsen Music and streaming activity data provided by online music sources."
         },
         {
           "feedName": "Billboard - Billboard 200 Chart",
           "feedUrl": "https://www.billboard.com/rss/charts/billboard-200",
-          "description": "The Billboard 200 chart ranks the most popular albums of the week, as compiled by Nielsen Music, based on multi-metric consumption (blending traditional album sales, track equivalent albums, and streaming equivalent albums)."
+          "feedDescription": "The Billboard 200 chart ranks the most popular albums of the week, as compiled by Nielsen Music, based on multi-metric consumption (blending traditional album sales, track equivalent albums, and streaming equivalent albums)."
         }
       ]
     },
@@ -102,17 +102,17 @@
         {
           "feedName": "BBC's Top Stories",
           "feedUrl": "http://feeds.bbci.co.uk/news/rss.xml",
-          "description": "BBC News - Home"
+          "feedDescription": "BBC News - Home"
         },
         {
           "feedName": "CNN Most Recent",
           "feedUrl": "http://rss.cnn.com/rss/cnn_latest.rss?format=xml",
-          "description": "CNN.com delivers up-to-the-minute news and information on the latest top stories, weather, entertainment, politics and more."
+          "feedDescription": "CNN.com delivers up-to-the-minute news and information on the latest top stories, weather, entertainment, politics and more."
         },
         {
           "feedName": "Vox",
           "feedUrl": "https://www.vox.com/rss/index.xml",
-          "description": "All posts from Vox."
+          "feedDescription": "All posts from Vox."
         }
       ]
     },
@@ -123,22 +123,22 @@
         {
           "feedName": "Mashable",
           "feedUrl": "http://feeds.mashable.com/Mashable?format=xml",
-          "description": "(Unfortunately, the description of the RSS feed is just too big...)"
+          "feedDescription": "(Unfortunately, the feedDescription of the RSS feed is just too big...)"
         },
         {
           "feedName": "Techcrunch",
           "feedUrl": "http://feeds.feedburner.com/TechCrunch?format=xml",
-          "description": "TechCrunch is a group-edited blog that profiles the companies, products and events defining and transforming the new web."
+          "feedDescription": "TechCrunch is a group-edited blog that profiles the companies, products and events defining and transforming the new web."
         },
         {
           "feedName": "The Next Web",
           "feedUrl": "http://feeds2.feedburner.com/thenextweb?format=xml",
-          "description": "International technology news, business & culture"
+          "feedDescription": "International technology news, business & culture"
         },
         {
           "feedName": "The Verge",
           "feedUrl": "https://www.theverge.com/rss/index.xml",
-          "description": "The Verge. News about the latest technology and more."
+          "feedDescription": "The Verge. News about the latest technology and more."
         }
       ]
     }

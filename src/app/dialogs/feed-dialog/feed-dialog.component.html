@@ -4,10 +4,11 @@
     <p>Select from one of the options or enter a RSS feed url:</p>
     <mat-form-field color="accent">
       <input placeholder="RSS feed" aria-label="RSS feed" matInput [matAutocomplete]="rssFeedAuto" name="feedUrl" formControlName="feedUrl">
-      <mat-autocomplete #rssFeedAuto="matAutocomplete" [displayWith]="displayFn">
-        <mat-optgroup [label]="feed.name" *ngFor="let feed of filteredOptions | async">
-          <mat-option *ngFor="let channel of feed.channels" [value]="channel.feedUrl">
-            {{channel.name}} - {{channel.feedUrl}}
+      <mat-autocomplete #rssFeedAuto="matAutocomplete">
+        <mat-optgroup [label]="feed.categoryName" *ngFor="let feed of filteredOptions | async">
+          <mat-option *ngFor="let channel of feed.channels" [value]="channel.feedUrl" class="autocomplete-option">
+            <span>{{channel?.feedName}}</span> |
+            <span>{{channel?.feedUrl}}</span>
           </mat-option>
         </mat-optgroup>
       </mat-autocomplete>
