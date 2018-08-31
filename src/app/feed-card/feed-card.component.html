@@ -1,12 +1,12 @@
 <mat-card class="feed-card">
   <mat-card-header>
     <mat-card-title>{{feed.author}}</mat-card-title>
-    <mat-card-subtitle>{{feed.pubDate | date:'dd-MM-yyyy'}}</mat-card-subtitle>
+    <mat-card-subtitle>{{feed.pubDate | date:'medium'}}</mat-card-subtitle>
     <span fxFlex></span>
     <button mat-icon-button [matMenuTriggerFor]="feedMenu" class="icon"><mat-icon>more_vert</mat-icon></button>
     <mat-menu #feedMenu="matMenu">
       <button mat-menu-item (click)="showCode(feed)"><mat-icon>code</mat-icon> Show code </button>
-      <button mat-menu-item (click)="imageChange()" [disabled]="imageSrc == null">
+      <button mat-menu-item (click)="imageChange()" [disabled]="imageSrc === undefined">
         <mat-icon>image</mat-icon>{{ imageChanged ? 'Show' : 'Hide' }} Images
       </button>
     </mat-menu>
@@ -23,7 +23,7 @@
   <mat-card-actions align="end">
     <!-- <button mat-button (click)="viewInDialog(feed)" aria-label="View current post in a dialog" color="primary">View in dialog <mat-icon>open_in_browser</mat-icon></button> -->
     <button mat-icon-button (click)="share(feed)" matTooltip="Share post" class="icon"><mat-icon>share</mat-icon></button>
-    <button mat-icon-button matTooltip="Add to read later" class="icon"><mat-icon>bookmark_border</mat-icon></button>
+    <!-- <button mat-icon-button matTooltip="Add to read later" class="icon"><mat-icon>bookmark_border</mat-icon></button> -->
     <a mat-icon-button [href]="feed.link" [target]="target" color="primary" aria-label="View post in a new tab" matTooltip="View post in a new tab"><mat-icon>open_in_new</mat-icon></a>
   </mat-card-actions>
 </mat-card>
