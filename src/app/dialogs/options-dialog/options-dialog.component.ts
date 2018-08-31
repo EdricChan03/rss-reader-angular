@@ -11,7 +11,11 @@ import { Component, OnInit } from '@angular/core';
 export class OptionsDialog implements OnInit {
   options: FeedOptions;
   tempOptions: FeedOptions;
-  constructor(private dialogRef: MatDialogRef<OptionsDialog>, private shared: SharedService, private dialog: MatDialog) { }
+  constructor(
+    private dialogRef: MatDialogRef<OptionsDialog>,
+    private shared: SharedService,
+    private dialog: MatDialog
+  ) { }
   cancel() {
     this.dialogRef.close();
   }
