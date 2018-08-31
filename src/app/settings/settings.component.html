@@ -8,7 +8,8 @@
       <mat-checkbox [(ngModel)]="settings.showImages" class="checkbox">Show images</mat-checkbox>
       <mat-checkbox [(ngModel)]="settings.showOfflineSnackBar" class="checkbox">Show offline snack bar</mat-checkbox>
       <mat-form-field color="accent">
-        <mat-select placeholder="Select Theme" [(ngModel)]="settings.theme">
+        <mat-label>Theme</mat-label>
+        <mat-select [(ngModel)]="settings.theme">
           <mat-option *ngFor="let theme of themes" [value]="theme">{{theme}}</mat-option>
         </mat-select>
         <mat-hint>Changes will be made on reload.</mat-hint>
