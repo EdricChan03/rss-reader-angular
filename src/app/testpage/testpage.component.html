@@ -1,28 +1,19 @@
-<div style="padding: 5%">
-  <p class="mat-body">Welcome to the test page! This page is used to test the shared functions.</p>
-  <span><code>isMobile?:</code> {{getMobile()}}</span>
-  <fieldset fxLayout="column">
-    <legend>Menu item properties</legend>
-    <form #actionItemForm="ngForm" fxLayout="column">
-      <mat-form-field>
-        <input matInput [(ngModel)]="menuItem.title" placeholder="Title" required name="menuTitle">
-        <mat-error>This is required</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput [(ngModel)]="menuItem.icon" placeholder="Icon" name="icon">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput [(ngModel)]="menuItem.href" placeholder="Href" name="href">
-      </mat-form-field>
-      <mat-checkbox [(ngModel)]="menuItem.isRouterLink" name="isRouterLink">Is router link?</mat-checkbox>
-      <mat-checkbox [(ngModel)]="menuItem.showAsAction" name="showAsAction">Show as action?</mat-checkbox>
-      <div>
-        <button mat-button (click)="addActionIcon()" [disabled]="actionItemForm.invalid" color="primary">Add menu item</button>
-        <button mat-button (click)="removeActionIcons()" color="warn">Remove menu items</button>
-      </div>
-    </form>
+<div class="padding-container">
+  <p>Welcome to the test page! This page is used to test the shared functions.</p>
+  <fieldset>
+    <legend>Buttons</legend>
+    <div fxLayout="row">
+      <ng-container *ngFor="let button of buttons">
+        <button mat-button *ngIf="button.btnType == 'normal'" [color]="button.color">{{button.title ? button.title : 'Button'}}</button>
+        <button mat-flat-button *ngIf="button.btnType == 'flat'" [color]="button.color">{{button.title ? button.title : 'Button'}}</button>
+        <button mat-stroked-button *ngIf="button.btnType == 'stroked'" [color]="button.color">{{button.title ? button.title : 'Button'}}</button>
+        <button mat-raised-button *ngIf="button.btnType == 'raised'" [color]="button.color">{{button.title ? button.title : 'Button'}}</button>
+        <button mat-icon-button *ngIf="button.btnType == 'icon'" [color]="button.color" [matTooltip]="button.tooltip"><mat-icon>{{button.icon ? button.icon : 'close'}}</mat-icon></button>
+        <button mat-fab *ngIf="button.btnType == 'fab'" [color]="button.color ? button.color : 'accent'" [matTooltip]="button.tooltip"><mat-icon>{{button.icon ? button.icon : 'close'}}</mat-icon></button>
+        <button mat-mini-fab *ngIf="button.btnType == 'mini-fab'" [color]="button.color ? button.color : 'accent'" [matTooltip]="button.tooltip"><mat-icon>{{button.icon ? button.icon : 'close'}}</mat-icon></button>
+      </ng-container>
+    </div>
   </fieldset>
-  <pre class="hljs"><code>{{getActionIcons() | json}}</code></pre>
   <fieldset fxLayout="column">
     <legend>Dialog properties</legend>
     <h4>Dialog type:</h4>
@@ -34,7 +25,9 @@
     </mat-form-field>
     <mat-form-field>
       <textarea matInput [(ngModel)]="dialog.message" placeholder="Message of dialog" rows="3" matTextareaAutosize></textarea>
-      <button mat-icon-button matSuffix (click)="generateLoremIpsum()" matTooltip="Generate lorem ipsum"><mat-icon>cached</mat-icon></button>
+      <button mat-icon-button matSuffix (click)="generateLoremIpsum()" matTooltip="Generate lorem ipsum">
+        <mat-icon>cached</mat-icon>
+      </button>
     </mat-form-field>
     <mat-form-field color="accent">
       <input matInput [(ngModel)]="dialog.okBtn" placeholder="OK button text of dialog">
@@ -57,9 +50,11 @@
   <fieldset fxLayout="column">
     <legend>Snackbar properties</legend>
     <mat-form-field>
-        <textarea matInput [(ngModel)]="snackbar.snackBarMsg" placeholder="Message of snackbar" rows="3" matTextareaAutosize></textarea>
-        <button mat-icon-button matSuffix (click)="generateLoremIpsum(true)" matTooltip="Generate lorem ipsum"><mat-icon>cached</mat-icon></button>
-      </mat-form-field>
+      <textarea matInput [(ngModel)]="snackbar.snackBarMsg" placeholder="Message of snackbar" rows="3" matTextareaAutosize></textarea>
+      <button mat-icon-button matSuffix (click)="generateLoremIpsum(true)" matTooltip="Generate lorem ipsum">
+        <mat-icon>cached</mat-icon>
+      </button>
+    </mat-form-field>
     <mat-form-field>
       <input matInput type="number" [(ngModel)]="snackbar.duration" placeholder="Duration of snackbar">
     </mat-form-field>
@@ -91,9 +86,10 @@
     <div>
       <button mat-button (click)="closeSnackBar()" color="warn">Close all snackbars</button>
       <button mat-button (click)="snackBar()" color="primary">Normal Snackbar</button>
+      <button mat-button (click)="errorSnackBar()" color="primary">Error Snackbar</button>
       <button mat-button (click)="durationSnackBar()" color="primary">Duration Snackbar</button>
       <button mat-button (click)="snackBarWithResult()" color="primary">Snackbar with result</button>
     </div>
   </fieldset>
-  <br>
+
 </div>

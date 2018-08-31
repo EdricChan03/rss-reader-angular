@@ -1,15 +1,16 @@
 import { SharedService, SelectionDialogOptions } from '../shared.service';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBarVerticalPosition, MatSnackBarHorizontalPosition } from '@angular/material/snack-bar';
+import { ThemePalette } from '@angular/material/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActionIconService, ActionIcon } from '../actionitem.service';
 
-interface TestMenuItem {
+type TestButtonType = 'normal' | 'stroked' | 'flat' | 'icon' | 'fab' | 'mini-fab' | 'raised';
+interface TestButton {
+  color?: ThemePalette;
   title?: string;
+  tooltip?: string;
+  btnType?: TestButtonType;
   icon?: string;
-  href?: string;
-  isRouterLink?: boolean;
-  showAsAction?: boolean;
 }
 interface TestDialog {
   dialogType?: 'alert' | 'confirm' | 'prompt' | 'selection';
@@ -33,7 +34,7 @@ interface TestSnackBar {
   templateUrl: './testpage.component.html'
 })
 export class TestpageComponent implements OnInit {
-  menuItem: TestMenuItem = {};
+  buttons: TestButton[] = [];
   dialogTypes = ['alert', 'confirm', 'prompt', 'selection'];
   dialog: TestDialog = {};
   snackbar: TestSnackBar = {};
@@ -41,22 +42,57 @@ export class TestpageComponent implements OnInit {
   horizontalPos = ['start', 'center', 'end', 'left', 'right'];
   constructor(
     private shared: SharedService,
-    private dom: DomSanitizer,
-    private actionItemService: ActionIconService
-  ) { }
-  ngOnInit() {
-    this.dialog.dialogType = 'alert';
+    private dom: DomSanitizer
+  ) {
+    shared.title = 'Test page';
   }
   /**
-   * Gets whether the user is on a mobile device
-   * @returns {boolean}
+   * Sets the default value
+   * @param varToSet The variable to set
+   * @param defaultVal Default variable
    */
-  getMobile(): boolean {
-    return this.shared.isMobile();
+  private setDefaultValue(varToSet: any, defaultVal: any): any {
+    return varToSet ? varToSet : defaultVal;
+  }
+  ngOnInit() {
+    this.dialog.dialogType = 'alert';
+    this.buttons = [
+      {
+        color: 'primary',
+        title: 'Button',
+        btnType: 'normal'
+      },
+      {
+        color: 'accent',
+        title: 'Accent!',
+        btnType: 'raised'
+      },
+      {
+        color: 'warn',
+        title: 'Flat button',
+        btnType: 'flat'
+      },
+      {
+        color: 'primary',
+        btnType: 'icon',
+        icon: 'done_all',
+        tooltip: 'Mark all as done'
+      },
+      {
+        btnType: 'fab',
+        icon: 'add'
+      },
+      {
+        color: 'warn',
+        btnType: 'mini-fab',
+        icon: 'close',
+        tooltip: 'Close'
+      }
+    ];
   }
   /**
    * Generates lorem ipsum text
-   * @param {boolean} isSnackBar Whether to generate lorem ipsum for the snackbar message
+   * @param isSnackBar Whether to generate lorem ipsum for the snackbar message
    */
   generateLoremIpsum(isSnackBar?: boolean) {
     // tslint:disable-next-line:max-line-length
@@ -82,76 +118,73 @@ export class TestpageComponent implements OnInit {
         this.selectionDialog();
         break;
       default:
-        console.log('Hmm...');
         this.alertDialog();
+        break;
     }
   }
   alertDialog() {
-    // tslint:disable-next-line:max-line-length
-    this.shared.openAlertDialog({ title: this.dialog.title ? this.dialog.title : 'Alert', msg: this.dialog.message ? this.dialog.message : 'I\'m an alert message made with code!', ok: this.dialog.okBtn ? this.dialog.okBtn : 'Got it' });
+    this.shared.openAlertDialog({
+      title: this.setDefaultValue(this.dialog.title, 'Alert'),
+      msg: this.setDefaultValue(this.dialog.message, 'I\'m an alert message made with code!'),
+      ok: this.setDefaultValue(this.dialog.okBtn, 'OK')
+    });
     this.clearOptions(this.dialog);
   }
   confirmDialog() {
-    // tslint:disable-next-line:max-line-length
-    this.shared.openConfirmDialog({ title: this.dialog.title ? this.dialog.title : 'Confirmation', msg: this.dialog.message ? this.dialog.message : 'I\'m a confirm message made with code!', cancel: this.dialog.cancelBtn ? this.dialog.cancelBtn : 'Nah', ok: this.dialog.okBtn ? this.dialog.okBtn : 'Yeah' }).afterClosed().subscribe((result) => {
+    this.shared.openConfirmDialog({
+      title: this.setDefaultValue(this.dialog.title, 'Confirmation'),
+      msg: this.setDefaultValue(this.dialog.message, 'I\'m a confirm message made with code!'),
+      cancel: this.setDefaultValue(this.dialog.cancelBtn, 'Cancel'),
+      ok: this.dialog.okBtn ? this.dialog.okBtn : 'OK'
+    }).afterClosed().subscribe((result) => {
       this.outputResult(result);
     });
     this.clearOptions(this.dialog);
   }
   promptDialog() {
-    // tslint:disable-next-line:max-line-length
-    this.shared.openPromptDialog({ title: this.dialog.title ? this.dialog.title : 'Prompt', msg: this.dialog.message ? this.dialog.message : 'I\'m a prompt message prepopulated with a value!', cancel: this.dialog.cancelBtn ? this.dialog.cancelBtn : 'Nah', ok: this.dialog.okBtn ? this.dialog.okBtn : 'Yeah', inputType: 'text', placeholder: this.dialog.placeholder ? this.dialog.placeholder : 'A value goes here', value: this.dialog.value ? this.dialog.value : 'Something here', color: 'accent' }).afterClosed().subscribe((result) => {
+    this.shared.openPromptDialog({
+      title: this.setDefaultValue(this.dialog.title, 'Prompt'),
+      msg: this.setDefaultValue(this.dialog.message, 'Enter your name:'),
+      cancel: this.setDefaultValue(this.dialog.cancelBtn, 'Cancel'),
+      ok: this.setDefaultValue(this.dialog.okBtn, 'OK'),
+      inputType: 'text',
+      placeholder: this.setDefaultValue(this.dialog.placeholder, 'Name'),
+      value: this.setDefaultValue(this.dialog.value, null)
+    }).afterClosed().subscribe((result) => {
       this.outputResult(result);
     });
     this.clearOptions(this.dialog);
   }
   selectionDialog() {
-    const tempVar = [];
-    for (let i = 0; i < 10; i++) {
-      if (i === 1) {
-        tempVar.push({ content: 'Item 1', disabled: true, value: 'item-1' });
-      } else if (i === 8) {
-        tempVar.push({ content: 'Item 8', value: 'item-8', selected: true });
-      } else {
-        tempVar.push({ content: `Item ${i}`, value: `item-${i}` });
-      }
-    }
-    // tslint:disable-next-line:max-line-length
-    const dialogRef = this.shared.openSelectionDialog({ title: this.dialog.title ? this.dialog.title : 'Select', msg: this.dialog.message ? this.dialog.message : 'Select from tons of options', ok: this.dialog.okBtn ? this.dialog.okBtn : 'Yeah', cancel: this.dialog.cancelBtn ? this.dialog.cancelBtn : 'Nah', options: tempVar });
+    const selectionDialogOptions: SelectionDialogOptions[] = [];
+    // for (let i = 0; i < 10; i++) {
+    //   if (i === 1) {
+    //     tempVar.push({ content: 'Item 1', disabled: true, value: 'item-1' });
+    //   } else if (i === 8) {
+    //     tempVar.push({ content: 'Item 8', value: 'item-8', selected: true });
+    //   } else {
+    //     tempVar.push({ content: `Item ${i}`, value: `item-${i}` });
+    //   }
+    // }
+    selectionDialogOptions.push({ content: 'Critical alerts', value: 'critical_alerts', selected: true, disabled: true });
+    selectionDialogOptions.push({ content: 'Weekly summary', value: 'weekly_summary' });
+    selectionDialogOptions.push({ content: 'New features', value: 'new_features' });
+    selectionDialogOptions.push({ content: 'Uncategorised', value: 'uncategorised', selected: true, disabled: true });
+    const dialogRef = this.shared.openSelectionDialog({
+      title: this.setDefaultValue(this.dialog.title, 'Notification preferences'),
+      msg: this.setDefaultValue(this.dialog.message, 'Show preferences for the following'),
+      ok: this.setDefaultValue(this.dialog.okBtn, 'Save'),
+      cancel: this.setDefaultValue(this.dialog.cancelBtn, 'Cancel'),
+      options: selectionDialogOptions
+    });
     dialogRef.afterClosed().subscribe((result) => {
-      this.outputResult(result);
+      this.outputResult(JSON.stringify(result));
     });
     this.clearOptions(this.dialog);
   }
-  removeActionIcons() {
-    this.actionItemService.removeActionIcons();
-  }
-  getActionIcons(): ActionIcon[] {
-    return this.actionItemService.getActionIcons();
-  }
-  addActionIcon() {
-    if (this.menuItem.title !== '') {
-      if (this.menuItem.isRouterLink && this.menuItem.href) {
-        // tslint:disable-next-line:max-line-length
-        this.actionItemService.addActionIcon({ title: this.menuItem.title, icon: this.menuItem.icon, routerLink: this.menuItem.href, showAsAction: this.menuItem.showAsAction });
-      } else if (this.menuItem.href) {
-        // tslint:disable-next-line:max-line-length
-        this.actionItemService.addActionIcon({ title: this.menuItem.title, icon: this.menuItem.icon, href: this.menuItem.href, showAsAction: this.menuItem.showAsAction });
-      } else {
-        this.actionItemService.addActionIcon({
-          title: this.menuItem.title, icon: this.menuItem.icon, onClickListener: (ev: Event) => {
-            console.log('TEST works.');
-          }, showAsAction: this.menuItem.showAsAction
-        });
-      }
-    } else {
-      console.error('Title required.');
-    }
-    this.clearOptions(this.menuItem);
-  }
   /**
    * Outputs the result of a function
-   * @param {any} result The result of a function
+   * @param result The result of a function
    * @private
    */
   private outputResult(result: any) {
@@ -162,7 +195,7 @@ export class TestpageComponent implements OnInit {
    * Resets a value to an undefined {@link Object}
    * @param opts The options to clear
    */
-  private clearOptions(opts: TestMenuItem | TestDialog | TestSnackBar | any) {
+  private clearOptions(opts: TestDialog | TestSnackBar | any) {
     opts = {};
   }
   /**
@@ -175,24 +208,56 @@ export class TestpageComponent implements OnInit {
    * Opens a snackbar
    */
   snackBar() {
-    // tslint:disable-next-line:max-line-length
-    this.shared.openSnackBar({ msg: this.snackbar.snackBarMsg ? this.snackbar.snackBarMsg : 'I\'m a snackbar!', additionalOpts: { horizontalPosition: this.snackbar.horizontalPosition, verticalPosition: this.snackbar.verticalPosition, panelClass: this.snackbar.panelClass } });
+    this.shared.openSnackBar({
+      msg: this.setDefaultValue(this.snackbar.snackBarMsg, 'I\'m a snackbar!'),
+      additionalOpts: {
+        horizontalPosition: this.snackbar.horizontalPosition,
+        verticalPosition: this.snackbar.verticalPosition,
+        panelClass: this.snackbar.panelClass
+      }
+    });
     this.clearOptions(this.snackbar);
+  }
+  /**
+   * Opens an error snackbar
+   */
+  errorSnackBar() {
+    this.shared.openSnackBar({
+      msg: this.setDefaultValue(this.snackbar.snackBarMsg, 'Error: Something happened'),
+      additionalOpts: {
+        duration: 5000
+      }
+    });
   }
   /**
    * Opens a snackbar with a duration
    */
   durationSnackBar() {
-    // tslint:disable-next-line:max-line-length
-    this.shared.openSnackBar({ msg: this.snackbar.snackBarMsg ? this.snackbar.snackBarMsg : 'I\'m a duration snackbar!', additionalOpts: { duration: this.snackbar.duration ? this.snackbar.duration : 5000, horizontalPosition: this.snackbar.horizontalPosition, verticalPosition: this.snackbar.verticalPosition, panelClass: this.snackbar.panelClass } });
+    this.shared.openSnackBar({
+      msg: this.setDefaultValue(this.snackbar.snackBarMsg, 'I\'m a duration snackbar!'),
+      additionalOpts: {
+        duration: this.snackbar.duration ? this.snackbar.duration : 5000,
+        horizontalPosition: this.snackbar.horizontalPosition,
+        verticalPosition: this.snackbar.verticalPosition,
+        panelClass: this.snackbar.panelClass
+      }
+    });
     this.clearOptions(this.snackbar);
   }
   /**
    * Opens a snackbar with a result
    */
   snackBarWithResult() {
-    // tslint:disable-next-line:max-line-length
-    const snackBarRef = this.shared.openSnackBar({ msg: this.snackbar.snackBarMsg ? this.snackbar.snackBarMsg : 'I\'m a snackbar with an action!', action: this.snackbar.action, additionalOpts: { horizontalPosition: this.snackbar.horizontalPosition, verticalPosition: this.snackbar.verticalPosition, panelClass: this.snackbar.panelClass } });
+    const snackBarRef = this.shared.openSnackBar({
+      msg: this.setDefaultValue(this.snackbar.snackBarMsg, 'I\'m a snackbar with an action!'),
+      action: this.snackbar.action,
+      additionalOpts:
+      {
+        horizontalPosition: this.snackbar.horizontalPosition,
+        verticalPosition: this.snackbar.verticalPosition,
+        panelClass: this.snackbar.panelClass
+      }
+    });
     snackBarRef.onAction().subscribe(() => {
       this.shared.openAlertDialog({ msg: `You clicked on the "${this.snackbar.action}" button.` });
     });
