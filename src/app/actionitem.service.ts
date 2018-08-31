@@ -242,7 +242,6 @@ export class ActionIconsComponent {
       return actionItem.showAsAction !== true;
     });
   }
->>>>>>> parent of 8b1e310... chore: use `ng-container` instead of `span`
 }
 
 @NgModule({
