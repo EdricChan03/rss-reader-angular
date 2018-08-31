@@ -4,6 +4,7 @@ import * as path from 'path';
 const markdown = require('gulp-markdown');
 const transform = require('gulp-transform');
 const hljs = require('highlight.js');
+const rename = require('gulp-rename');
 
 const markdownOptions = {
   // Add syntax highlight using highlight.js
@@ -29,12 +30,18 @@ task('docs-guides', () => {
   return src('docs/guides/**/!(README.md)')
     .pipe(markdown(markdownOptions))
     .pipe(transform('utf8', transformMarkdownFiles))
+    .pipe(rename(function(path) {
+      path.extname = '.html';
+    }))
     .pipe(dest('src/assets/docs/guides'));
 });
 task('docs-dev', () => {
   return src('docs/dev/**/!(README.md)')
     .pipe(markdown(markdownOptions))
     .pipe(transform('utf8', transformMarkdownFiles))
+    .pipe(rename(function(path) {
+      path.extname = '.html';
+    }))
     .pipe(dest('src/assets/docs/dev'));
 });
 task('docs-img', () => {
