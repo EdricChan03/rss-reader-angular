@@ -1,29 +1,62 @@
-<mat-card class="feed-card">
-  <mat-card-header>
-    <mat-card-title>{{feed.author}}</mat-card-title>
-    <mat-card-subtitle>{{feed.pubDate | date:'medium'}}</mat-card-subtitle>
-    <span fxFlex></span>
-    <button mat-icon-button [matMenuTriggerFor]="feedMenu" class="icon"><mat-icon>more_vert</mat-icon></button>
-    <mat-menu #feedMenu="matMenu">
-      <button mat-menu-item (click)="showCode(feed)"><mat-icon>code</mat-icon> Show code </button>
-      <button mat-menu-item (click)="imageChange()" [disabled]="imageSrc === undefined">
-        <mat-icon>image</mat-icon>{{ imageChanged ? 'Show' : 'Hide' }} Images
-      </button>
-    </mat-menu>
-  </mat-card-header>
-  <img mat-card-image *ngIf="hasImage" [src]="imageSrc">
-  <mat-card-title class="feed-title">{{feed.title}}</mat-card-title>
-  <mat-card-content>
-    <p>{{feed.description | stripHtmlTags | slice:0:300}}&#8230;</p>
-    <mat-chip-list *ngIf="feed.categories.length != undefined">
-      <mat-chip *ngFor="let category of feed.categories" [innerHTML]="category"></mat-chip>
-    </mat-chip-list>
-  </mat-card-content>
-  <mat-divider></mat-divider>
-  <mat-card-actions align="end">
-    <!-- <button mat-button (click)="viewInDialog(feed)" aria-label="View current post in a dialog" color="primary">View in dialog <mat-icon>open_in_browser</mat-icon></button> -->
-    <button mat-icon-button (click)="share(feed)" matTooltip="Share post" class="icon"><mat-icon>share</mat-icon></button>
-    <!-- <button mat-icon-button matTooltip="Add to read later" class="icon"><mat-icon>bookmark_border</mat-icon></button> -->
-    <a mat-icon-button [href]="feed.link" [target]="target" color="primary" aria-label="View post in a new tab" matTooltip="View post in a new tab"><mat-icon>open_in_new</mat-icon></a>
-  </mat-card-actions>
-</mat-card>
+<ng-container *ngIf="headline && !feed">
+  <mat-card class="feed-card">
+    <mat-card-header>
+      <mat-card-title>
+        <span *ngIf="headline?.author && !headline?.source">{{headline?.author}}</span>
+        <span *ngIf="headline?.source && !headline?.author">{{headline?.source?.name}}</span>
+      </mat-card-title>
+      <mat-card-subtitle>{{headline?.publishedAt | date:'medium'}}</mat-card-subtitle>
+      <span fxFlex></span>
+      <button mat-icon-button [matMenuTriggerFor]="feedMenu" class="icon"><mat-icon>more_vert</mat-icon></button>
+      <mat-menu #feedMenu="matMenu">
+        <button mat-menu-item (click)="showCode(headline)"><mat-icon>code</mat-icon> Show code </button>
+        <button mat-menu-item (click)="imageChange()" [disabled]="!headline?.urlToImage">
+          <mat-icon>image</mat-icon>{{ imageChanged ? 'Show' : 'Hide' }} Images
+        </button>
+      </mat-menu>
+    </mat-card-header>
+    <img mat-card-image *ngIf="headline?.urlToImage && hasImage" [src]="headline?.urlToImage">
+    <mat-card-title class="feed-title">{{headline?.title}}</mat-card-title>
+    <mat-card-content>
+      <p>{{headline?.description | stripHtmlTags | slice:0:300}}&#8230;</p>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions align="end">
+      <!-- <button mat-button (click)="viewInDialog(feed)" aria-label="View current post in a dialog" color="primary">View in dialog <mat-icon>open_in_browser</mat-icon></button> -->
+      <button mat-icon-button (click)="share(headline)" matTooltip="Share post" class="icon"><mat-icon>share</mat-icon></button>
+      <!-- <button mat-icon-button matTooltip="Add to read later" class="icon"><mat-icon>bookmark_border</mat-icon></button> -->
+      <a mat-icon-button [href]="headline?.link" [target]="target" color="primary" aria-label="View post in a new tab" matTooltip="View post in a new tab"><mat-icon>open_in_new</mat-icon></a>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>
+<ng-container *ngIf="feed && !headline">
+  <mat-card class="feed-card">
+    <mat-card-header>
+      <mat-card-title>{{feed?.author}}</mat-card-title>
+      <mat-card-subtitle>{{feed?.pubDate | date:'medium'}}</mat-card-subtitle>
+      <span fxFlex></span>
+      <button mat-icon-button [matMenuTriggerFor]="feedMenu" class="icon"><mat-icon>more_vert</mat-icon></button>
+      <mat-menu #feedMenu="matMenu">
+        <button mat-menu-item (click)="showCode(feed)"><mat-icon>code</mat-icon> Show code </button>
+        <button mat-menu-item (click)="imageChange()" [disabled]="!feed?.thumbnail">
+          <mat-icon>image</mat-icon>{{ imageChanged ? 'Show' : 'Hide' }} Images
+        </button>
+      </mat-menu>
+    </mat-card-header>
+    <img mat-card-image *ngIf="feed?.thumbnail && hasImage" [src]="imageSrc">
+    <mat-card-title class="feed-title">{{feed?.title}}</mat-card-title>
+    <mat-card-content>
+      <p>{{feed?.description | stripHtmlTags | slice:0:300}}&#8230;</p>
+      <mat-chip-list *ngIf="feed?.categories.length != undefined">
+        <mat-chip *ngFor="let category of feed?.categories" [innerHTML]="category"></mat-chip>
+      </mat-chip-list>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions align="end">
+      <!-- <button mat-button (click)="viewInDialog(feed)" aria-label="View current post in a dialog" color="primary">View in dialog <mat-icon>open_in_browser</mat-icon></button> -->
+      <button mat-icon-button (click)="share(feed)" matTooltip="Share post" class="icon"><mat-icon>share</mat-icon></button>
+      <!-- <button mat-icon-button matTooltip="Add to read later" class="icon"><mat-icon>bookmark_border</mat-icon></button> -->
+      <a mat-icon-button [href]="feed?.link" [target]="target" color="primary" aria-label="View post in a new tab" matTooltip="View post in a new tab"><mat-icon>open_in_new</mat-icon></a>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>

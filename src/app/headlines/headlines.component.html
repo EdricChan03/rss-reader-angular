@@ -1,0 +1,3 @@
+<div class="rss-reader-cards-container">
+  <app-feed-card *ngFor="let headline of (headlines | async)?.articles" [headline]="headline" class="rss-reader-card"></app-feed-card>
+</div>

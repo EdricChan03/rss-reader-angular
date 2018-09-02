@@ -1,4 +1,4 @@
-import { ActionIcon, ActionIconService } from './actionitem.service';
+import { ActionItemService } from './actionitem.service';
 import {
   FilterOverlayComponent,
   NotificationsOverlayComponent,
@@ -9,7 +9,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { NavigationStart, Router } from '@angular/router';
 import { Overlay, OverlayContainer } from '@angular/cdk/overlay';
 
-import { AboutDialog } from './dialogs/about-dialog/about-dialog.component';
+import { AboutDialogComponent } from './dialogs';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -80,9 +80,10 @@ export class AppComponent implements OnInit, OnDestroy {
       icon: 'home'
     },
     {
-      name: 'Settings',
-      url: 'settings',
-      icon: 'settings'
+      name: 'Headlines',
+      url: 'headlines',
+      icon: 'newspaper',
+      isSvgIcon: true
     },
     {
       name: 'Guides',
@@ -93,27 +94,27 @@ export class AppComponent implements OnInit, OnDestroy {
       name: 'Explore',
       url: 'explore',
       icon: 'explore'
+    },
+    {
+      name: 'Settings',
+      url: 'settings',
+      icon: 'settings'
     }
   ];
   constructor(
-    private shared: SharedService,
+    public shared: SharedService,
     private dom: DomSanitizer,
     private overlayContainer: OverlayContainer,
     private overlayService: OverlayService,
-    private actionItemService: ActionIconService,
+    private actionItemService: ActionItemService,
     private router: Router,
     private overlay: Overlay,
     private dialog: MatDialog
   ) {
     router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
-        if (router.url === '/home') {
-          this.actionItemService.removeActionItemByTitle('Select RSS...');
-          this.actionItemService.removeActionItemByTitle('RSS Options...');
-          this.actionItemService.removeActionItemByTitle('Refresh feed');
-          if (window.localStorage.getItem('feedUrl')) {
-            this.actionItemService.removeActionItemByTitle('RSS Channel info');
-          }
+        if (router.url === '/home' || router.url === '/headlines') {
+          this.actionItemService.removeActionItems();
         }
       }
     });
@@ -132,7 +133,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
   aboutThisApp() {
-    this.dialog.open(AboutDialog);
+    this.dialog.open(AboutDialogComponent);
   }
   showOnboardingOverlay() {
     this._createOnboardingOverlay();

@@ -1,0 +1,33 @@
+<h2 matDialogTitle>Headlines options</h2>
+<mat-dialog-content>
+  <form [formGroup]="headlineOptForm" fxLayout="column">
+    <mat-form-field>
+      <mat-label>API Key</mat-label>
+      <input matInput formControlName="apiKey">
+      <a mat-icon-button href="https://newsapi.org/register" target="_blank" matTooltip="Get API Key" matSuffix><mat-icon>open_in_new</mat-icon></a>
+      <mat-error>This is required.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Country</mat-label>
+      <input matInput formControlName="country" [matAutocomplete]="countryAutocomplete">
+      <mat-autocomplete #countryAutocomplete="matAutocomplete">
+        <mat-option *ngFor="let country of filteredOptions | async" [value]="country?.alpha2Code" class="autocomplete-option">
+          <img class="autocomplete-option-img" aria-hidden [src]="country?.flag" height="25">
+          <span>{{country?.name}}</span>
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error *ngIf="headlineOptForm.get('country')?.hasError('required')">This is required.</mat-error>
+      <mat-error *ngIf="headlineOptForm.get('country')?.hasError('minLength') || headlineOptForm.get('country')?.hasError('maxLength')">Please enter a valid country code.</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Topic</mat-label>
+      <input matInput formControlName="topic">
+      <mat-error>This is required.</mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button color="primary" matDialogClose="cancel">Cancel</button>
+  <button mat-button color="primary" matDialogClose="save" [disabled]="headlineOptForm.invalid">Save</button>
+</mat-dialog-actions>

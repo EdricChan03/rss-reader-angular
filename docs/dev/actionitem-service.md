@@ -1,4 +1,4 @@
-# `ActionIconService`
+# `ActionItemService`
 
 ## Description
 
@@ -8,12 +8,12 @@ This service makes it easier to add menu items to a toolbar, similar to like And
 
 ## Prerequisites
 
-Ensure that `ActionIconsModule` is imported to your main app's module under the `imports` array:
+Ensure that `ActionItemsModule` is imported to your main app's module under the `imports` array:
 
 ```typescript
-import { ActionIconsModule } from 'path/to/actionitem.service';
+import { ActionItemsModule } from 'path/to/actionitem.service';
 @NgModule({
-  imports: [ActionIconsModule]
+  imports: [ActionItemsModule]
 })
 ```
 
@@ -21,10 +21,10 @@ import { ActionIconsModule } from 'path/to/actionitem.service';
 
 # Methods
 
-## `addActionIcon`
+## `addActionItem`
 
 ```typescript
-addActionIcon(actionItem: ActionIcon): void;
+addActionItem(actionItem: ActionItem): void;
 ```
 
 <!-- start-enclose-content -->
@@ -38,14 +38,15 @@ Adds a menu item.
 
 Param | Type | Description | Notes
 ---|---|---|---
-`actionItem` | `ActionIcon` | The menu item to add | -
+`actionItem` | `ActionItem` | The menu item to add | -
+
 <!-- end-enclose-content -->
 
 
-## `getActionIcons`
+## `getActionItems`
 
 ```typescript
-getActionIcons(): ActionIcon[];
+getActionItems(): ActionItem[];
 ```
 
 <!-- start-enclose-content -->
@@ -54,17 +55,13 @@ getActionIcons(): ActionIcon[];
 
 Gets the menu items.
 
-
-### Returns
-
-`ActionIcon[]`
 <!-- end-enclose-content -->
 
 
-## `removeActionIcon`
+## `removeActionItem`
 
 ```typescript
-removeActionIcon(id: number): void;
+removeActionItem(id: number): void;
 ```
 
 <!-- start-enclose-content -->
@@ -78,14 +75,15 @@ Removes the specified menu item at the index.
 
 Param | Type | Description | Notes
 ---|---|---|---
-`id` | `number` | The index of the menu item | -
+`id` | `number` | The index of the menu item to remove | -
 <!-- end-enclose-content -->
 
-## `removeActionIcons`
+## `removeActionItems`
 
 ```typescript
-removeActionIcons(): void;
+removeActionItems(): void;
 ```
+
 <!-- start-enclose-content -->
 
 ### Description
@@ -93,10 +91,10 @@ removeActionIcons(): void;
 Removes all menu items.
 <!-- end-enclose-content -->
 
-## `getActionIconById`
+## `getActionItemById`
 
 ```typescript
-getActionIconById(id: number): ActionIcon;
+getActionItemById(id: number): ActionItem;
 ```
 <!-- start-enclose-content -->
 
@@ -106,7 +104,7 @@ Gets a menu item by its index.
 
 ### Returns
 
-`ActionIcon`
+`ActionItem`
 
 ### Params
 
@@ -115,10 +113,10 @@ Param | Type | Description | Notes
 `id` | `number` | The index of the menu item to get | -
 <!-- end-enclose-content -->
 
-## `addActionIconOnClickListener`
+## `addActionItemOnClickListener`
 
 ```typescript
-addActionIconOnClickListener(id: number, callback: (ev?: Event) => void): void;
+addActionItemOnClickListener(id: number, callback: (ev?: Event) => void): void;
 ```
 <!-- start-enclose-content -->
 
@@ -128,7 +126,7 @@ Adds an onclick listener to the specified menu item.
 
 ### Returns
 
-`ActionIcon`
+`ActionItem`
 
 ### Params
 
@@ -147,9 +145,10 @@ Param | Type | Description | Notes
 ## Method 1: Setting up the toolbar with the service
 
 `my-app.component.html`:
+
 ```html
 <mat-toolbar>
-  <app-actionicons></app-actionicons>
+  <app-action-items></app-action-items>
 </mat-toolbar>
 ```
 
@@ -162,10 +161,10 @@ Snippet of code:
 ```typescript
 /**
  * Gets the menu items (getter)
- * @returns {ActionIcon[]} The menu items
+ * @returns The menu items
  */
-get actionItems: ActionIcon[] {
-  return this.actionItemService.getActionIcons();
+get actionItems: ActionItem[] {
+  return this.actionItemService.getActionItems();
 }
 ```
 
@@ -206,9 +205,9 @@ get actionItems: ActionIcon[] {
 
 ```typescript
 export class MyComponent implements OnInit {
-  constructor(private actionItemService: ActionIconService){}
+  constructor(private actionItemService: ActionItemService){}
   ngOnInit() {
-    this.actionItemService.addActionIcon({title: 'Reload', icon: 'refresh', onClickListener: (ev: Event)=> {
+    this.actionItemService.addActionItem({title: 'Reload', icon: 'refresh', onClickListener: (ev: Event) => {
       console.log('Reload was clicked');
       window.location.reload(true);
     }})
@@ -220,10 +219,10 @@ export class MyComponent implements OnInit {
 
 ```typescript
 export class MyComponent implements OnInit {
-  constructor(private actionItemService: ActionIconService){}
+  constructor(private actionItemService: ActionItemService){}
   ngOnInit() {
-    this.actionItemService.addActionIcon({title: 'Open sidenav', icon: 'menu'});
-    this.actionItemService.addActionIconOnClickListener(0, (ev: Event)=> {
+    this.actionItemService.addActionItem({title: 'Open sidenav', icon: 'menu'});
+    this.actionItemService.addActionItemOnClickListener(0, (ev: Event)=> {
       console.log('Clicked');
     })
   }

@@ -2,31 +2,32 @@ export interface FeedEntry {
   /**
    * The title of the entry
    */
-  title: string;
+  title?: string;
   /**
    * The link of the entry
    */
-  link: string;
-  guid: string;
+  link?: string;
+  guid?: string;
   /**
    * The date that the entry was published on
    */
-  pubDate: Date;
+  pubDate?: Date;
   /**
    * An array of categories/tags assigned to the entry
    */
-  categories: string[];
+  categories?: string[];
   /**
    * The person who wrote the entry
    */
-  author: string;
+  author?: string;
   /**
    * A thumbnail of the entry
    */
-  thumbnail: string;
+  thumbnail?: string;
   /**
    * Description/the contents of the entry
    */
-  description: string;
-  content: string;
+  description?: string;
+  content?: string;
+  enclosure?: any;
 }

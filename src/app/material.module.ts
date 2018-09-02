@@ -28,6 +28,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgModule } from '@angular/core';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
+import { DomSanitizer } from '@angular/platform-browser';
 //#endregion
 
 const MATERIAL_MODULES = [
@@ -75,7 +76,8 @@ const CDK_MODULES = [
   ]
 })
 export class MaterialModule {
-  constructor(private iconRegistry: MatIconRegistry) {
+  constructor(private iconRegistry: MatIconRegistry, private dom: DomSanitizer) {
+    iconRegistry.addSvgIconSet(dom.bypassSecurityTrustResourceUrl('https://chan4077.github.io/res/mdi.svg'));
     iconRegistry.setDefaultFontSetClass('material-icons-extended');
   }
 }

@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActionIconService } from '../actionitem.service';
+import { ActionItemService } from '../actionitem.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { FeedDialog } from '../dialogs/feed-dialog/feed-dialog.component';
+import { FeedDialogComponent } from '../dialogs/feed-dialog/feed-dialog.component';
 import { FeedEntry } from '../model/feed-entry';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-import { OptionsDialog } from '../dialogs';
-import { RSSChannelInfoDialog } from '../dialogs/rss-channel-info-dialog/rss-channel-info-dialog.component';
+import { FeedOptionsDialogComponent, RSSChannelInfoDialogComponent } from '../dialogs';
 import { Router } from '@angular/router';
 import { Settings } from '../model/settings';
 import { SharedService } from '../shared.service';
@@ -61,7 +60,7 @@ export class HomeComponent implements OnInit {
     private http: HttpClient,
     private shared: SharedService,
     private router: Router,
-    private actionIconService: ActionIconService
+    private actionItemService: ActionItemService
   ) {
     const layoutChanges = breakpointObserver.observe('(max-width: 599px)');
     layoutChanges.subscribe(result => {
@@ -77,7 +76,7 @@ export class HomeComponent implements OnInit {
     return this.shared.isMobile();
   }
   options() {
-    const dialogRef = this.dialog.open(OptionsDialog);
+    const dialogRef = this.dialog.open(FeedOptionsDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
         this.refreshFeed();
@@ -85,7 +84,7 @@ export class HomeComponent implements OnInit {
     });
   }
   openRSSInfoDialog() {
-    this.dialog.open(RSSChannelInfoDialog);
+    this.dialog.open(RSSChannelInfoDialogComponent);
   }
   /**
    * Reloads the website
@@ -171,7 +170,7 @@ export class HomeComponent implements OnInit {
    * Opens the dialog to select an RSS feed
    */
   selectRss() {
-    const dialogRef = this.dialog.open(FeedDialog);
+    const dialogRef = this.dialog.open(FeedDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       const rssFeedForm = dialogRef.componentInstance.rssFeedForm;
       // const url = dialogRef.componentInstance.feedUrl;
@@ -213,23 +212,23 @@ export class HomeComponent implements OnInit {
       window.localStorage.setItem('hasLaunched', JSON.stringify(true));
     }
     this.refreshFeed();
-    this.actionIconService.addActionIcon({
+    this.actionItemService.addActionItem({
       title: 'Select RSS...', icon: 'rss_feed', showAsAction: true, onClickListener: () => {
         this.selectRss();
       }
     });
-    this.actionIconService.addActionIcon({
+    this.actionItemService.addActionItem({
       title: 'RSS Options...', icon: 'tune', onClickListener: () => {
         this.options();
       }
     });
-    this.actionIconService.addActionIcon({
+    this.actionItemService.addActionItem({
       title: 'Refresh feed', icon: 'sync', onClickListener: () => {
         this.refreshFeed();
       }
     });
     if (window.localStorage.getItem('feedUrl')) {
-      this.actionIconService.addActionIcon({
+      this.actionItemService.addActionItem({
         title: 'RSS Channel info.', icon: 'information', onClickListener: () => {
           this.openRSSInfoDialog();
         }

@@ -12,69 +12,71 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 /**
  * A action icon service for the toolbar.
  */
-export class ActionIconService {
+export class ActionItemService {
 
-  private actionIcons: ActionIcon[] = [];
+  private actionItems: ActionItem[] = [];
   /**
-   * Adds an action icon
-   * @param {ActionIcon} actionIcon The action icon
+   * Adds an action item
+   * @param actionItem The action item
    */
-  addActionIcon(actionIcon: ActionIcon) {
-    this.actionIcons.push(actionIcon);
+  addActionItem(actionItem: ActionItem) {
+    this.actionItems.push(actionItem);
   }
   /**
-   * Adds an action icon toggle
-   * @param {ActionIconToggle} actionIcon The action icon
+   * Adds an action item toggle
+   * @param actionItem The action item
+   * @deprecated
    * @experimental Do not use!
    */
-  addActionIconToggle(actionIcon: ActionIconToggle) {
+  addActionItemToggle(actionItem: ActionItemToggle) {
     console.warn('%cThis method is experimental and may break. Continue at your own risk.', 'font-weight: 600');
-    actionIcon.onClickListener = () => {
-      actionIcon.toggleBind = !actionIcon.toggleBind;
+    actionItem.onClickListener = () => {
+      actionItem.toggleBind = !actionItem.toggleBind;
     };
-    this.actionIcons.push(actionIcon);
+    this.actionItems.push(actionItem);
   }
   /**
-   * Updates an action icon by its index
-   * @param {number} index The index of the action icon
-   * @param {ActionIcon} actionIcon The action icon
+   * Updates an action item by its index
+   * @param index The index of the action item
+   * @param actionItem The action item
    */
-  updateActionIconByIndex(index: number, actionIcon: ActionIcon) {
+  updateActionItemByIndex(index: number, actionItem: ActionItem) {
     try {
-      this.actionIcons[index] = actionIcon;
+      this.actionItems[index] = actionItem;
     } catch (e) {
       this.throwIdNotFoundError(index);
     }
   }
   /**
-   * An alias of {@link ActionIconService#updateActionIconByIndex} to prevent apps from breaking
-   * @param {number} index The index of the action icon
-   * @param {ActionIcon} actionIcon The action icon
+   * An alias of {@link ActionItemService#updateActionItemByIndex} to prevent apps from breaking
+   * @deprecated
+   * @param index The index of the action item
+   * @param actionItem The action item
    */
-  updateActionIcon(index: number, actionIcon: ActionIcon) {
-    this.updateActionIconByIndex(index, actionIcon);
+  updateActionItem(index: number, actionItem: ActionItem) {
+    this.updateActionItemByIndex(index, actionItem);
   }
   /**
-   * Gets action icons
-   * @returns {ActionIcon[]}
+   * Gets all action items
    */
-  getActionIcons(): ActionIcon[] {
-    return this.actionIcons;
+  getActionItems(): ActionItem[] {
+    return this.actionItems;
   }
   /**
-   * An alias of {@link ActionIconService#removeActionIconByIndex} to prevent apps from breaking
-   * @param {number} id The index of the action icon to remove
+   * An alias of {@link ActionItemService#removeActionItemByIndex} to prevent apps from breaking
+   * @deprecated
+   * @param id The index of the action item to remove
    */
-  removeActionIcon(id: number) {
-    this.removeActionIconByIndex(id);
+  removeActionItem(id: number) {
+    this.removeActionItemByIndex(id);
   }
   /**
-   * Removes a action icon
-   * @param {number} id The index of the action icon to remove
+   * Removes an action item
+   * @param {number} id The index of the action item to remove
    */
-  removeActionIconByIndex(id: number) {
+  removeActionItemByIndex(id: number) {
     try {
-      this.actionIcons.splice(id, 1);
+      this.actionItems.splice(id, 1);
     } catch (e) {
       this.throwIdNotFoundError(id);
     }
@@ -84,40 +86,41 @@ export class ActionIconService {
    */
   removeActionItemByTitle(title: string) {
     try {
-      this.actionIcons.splice(
-        this.actionIcons.findIndex((actionIcon: ActionIcon) => {
-          return actionIcon.title === title;
+      this.actionItems.splice(
+        this.actionItems.findIndex((actionItem: ActionItem) => {
+          return actionItem.title === title;
         }), 1);
     } catch (e) {
       this.throwTitleNotFoundError(title);
     }
   }
   /**
-   * Removes all action icons
+   * Removes all action items
    */
-  removeActionIcons() {
-    this.actionIcons = [];
+  removeActionItems() {
+    this.actionItems = [];
   }
   /**
-   * Gets a action icon by its index
-   * @param {number} id The index of the action icon to get
+   * Gets a action item by its index
+   * @param id The index of the action item to retrieve
    */
-  getActionIconById(id: number): ActionIcon {
+  getActionItemById(id: number): ActionItem {
     try {
-      return this.actionIcons[id];
+      return this.actionItems[id];
     } catch (e) {
       this.throwIdNotFoundError(id);
     }
   }
   /**
-   * Adds a action icon on click listener to the specified action icon
+   * Adds a action item on click listener to the specified action item
    * Note: This can also be declared manually
-   * @param {number} id The id of the action icon
-   * @param {Function} callback The callback when the action icon is clicked (has to be arrow function)
+   * @deprecated Please set the onclick listener in the {@link ActionItem} object itself.
+   * @param id The id of the action item
+   * @param callback The callback when the action item is clicked (has to be arrow function)
    */
-  addActionIconOnClickListener(id: number, callback: (ev?: Event) => void) {
+  addActionItemOnClickListener(id: number, callback: (ev?: Event) => void) {
     try {
-      this.actionIcons[id].onClickListener = callback;
+      this.actionItems[id].onClickListener = callback;
     } catch (e) {
       this.throwIdNotFoundError(id);
     }
@@ -127,30 +130,30 @@ export class ActionIconService {
    * @private
    */
   private throwIdNotFoundError(id: number) {
-    throw new Error(`Could not find an action icon with index ${id}`);
+    throw new Error(`Could not find an action item with index ${id}`);
   }
   /**
    * Throws an error where the title couldn't be found
    */
   private throwTitleNotFoundError(title: string) {
-    throw new Error(`Could not find an action icon with title ${title}`);
+    throw new Error(`Could not find an action item with title ${title}`);
   }
 }
 
 /**
- * An action icon
+ * An action item
  */
-export class ActionIcon {
+export class ActionItem {
   /**
-   * The title of the action icon
+   * The title of the action item
    */
   title: string;
   /**
-   * The icon of the action icon
+   * The icon of the action item
    */
   icon?: string;
   /**
-   * The href of the action icon
+   * The href of the action item
    * NOTE: If `routerLink` is specified, don't use `href`.
    */
   href?: string;
@@ -159,27 +162,26 @@ export class ActionIcon {
    */
   showAsAction?: boolean;
   /**
-   * The router link of the action icon
+   * The router link of the action item
    * NOTE: If `href` is specified, don't use `routerLink`.
    */
   routerLink?: string;
   /**
-   * The on click listener of the action icon
-   * Note: This can also be set by {@link ActionIconService#addActionIconOnClickListener}
+   * The on click listener of the action item
+   * Note: This can also be set by {@link ActionItemService#addActionItemOnClickListener}
    */
   onClickListener?: (ev?: Event) => void;
   /**
-   * The submenu of the action icon
+   * The submenu of the action item
    */
-  subMenu?: ActionIcon[];
-
+  subMenu?: ActionItem[];
   // tslint:disable-next-line:max-line-length
-  constructor(title: string, icon?: string, href?: string, showAsAction?: boolean, routerLink?: string, onClickListener?: (ev?: Event) => void, subMenu?: ActionIcon[]) { }
+  constructor(title: string, icon?: string, href?: string, showAsAction?: boolean, routerLink?: string, onClickListener?: (ev?: Event) => void, subMenu?: ActionItem[]) { }
 }
 /**
- * An action icon toggle
+ * An action item toggle
  */
-export class ActionIconToggle extends ActionIcon {
+export class ActionItemToggle extends ActionItem {
   /**
    * The toggle boolean to bind to
    */
@@ -190,7 +192,7 @@ export class ActionIconToggle extends ActionIcon {
 }
 
 @Component({
-  selector: 'app-actionicons',
+  selector: 'app-action-items',
   template: `
 	<span id="more-btns" *ngFor="let actionItem of actionItems">
     <button
@@ -232,13 +234,13 @@ export class ActionIconToggle extends ActionIcon {
 	</mat-menu>
 				`
 })
-export class ActionIconsComponent {
-  constructor(private actionItemService: ActionIconService) { }
-  get actionItems(): ActionIcon[] {
-    return this.actionItemService.getActionIcons();
+export class ActionItemsComponent {
+  constructor(private actionItemService: ActionItemService) { }
+  get actionItems(): ActionItem[] {
+    return this.actionItemService.getActionItems();
   }
   get showMoreMenu() {
-    return this.actionItemService.getActionIcons().find((actionItem: ActionIcon): boolean => {
+    return this.actionItemService.getActionItems().find((actionItem: ActionItem): boolean => {
       return actionItem.showAsAction !== true;
     });
   }
@@ -246,10 +248,10 @@ export class ActionIconsComponent {
 
 @NgModule({
   declarations: [
-    ActionIconsComponent
+    ActionItemsComponent
   ],
   exports: [
-    ActionIconsComponent
+    ActionItemsComponent
   ],
   imports: [
     CommonModule,
@@ -261,7 +263,7 @@ export class ActionIconsComponent {
     RouterModule
   ],
   providers: [
-    ActionIconService
+    ActionItemService
   ]
 })
-export class ActionIconsModule { }
+export class ActionItemsModule { }

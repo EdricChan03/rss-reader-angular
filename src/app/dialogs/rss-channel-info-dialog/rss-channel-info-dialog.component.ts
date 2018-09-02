@@ -5,9 +5,9 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-rss-channel-info-dialog',
   templateUrl: './rss-channel-info-dialog.component.html'
 })
-export class RSSChannelInfoDialog implements OnInit {
+export class RSSChannelInfoDialogComponent implements OnInit {
 
-  constructor(private dialogRef: MatDialogRef<RSSChannelInfoDialog>) { }
+  constructor(private dialogRef: MatDialogRef<RSSChannelInfoDialogComponent>) { }
   
   ngOnInit() {
   }

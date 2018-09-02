@@ -1,22 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FeedCategory } from '../../model/feed-category';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { startWith } from 'rxjs/operators/startWith';
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+// import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Feed } from '../../model/feed';
-import { FeedChannel } from '../../model/feed-channel';
 
 @Component({
   selector: 'app-feed-dialog',
   templateUrl: './feed-dialog.component.html'
 })
-// tslint:disable-next-line:component-class-suffix
-export class FeedDialog implements OnInit {
+export class FeedDialogComponent implements OnInit {
   /**
    * The list of feeds
    * Available at {@link `/assets/feedurls.json`}
@@ -31,12 +29,12 @@ export class FeedDialog implements OnInit {
   filteredOptions: Observable<FeedCategory[]>;
   feedUrlValue = '';
   rssFeedForm: FormGroup;
-  feedData: AngularFirestoreDocument<FeedCategory>;
+  // feedData: AngularFirestoreDocument<FeedCategory>;
   constructor(
-    private dialogRef: MatDialogRef<FeedDialog>,
+    private dialogRef: MatDialogRef<FeedDialogComponent>,
     private http: HttpClient,
     private fb: FormBuilder,
-    private afFs: AngularFirestore
+    // private afFs: AngularFirestore
   ) {
     dialogRef.disableClose = true;
     this.rssFeedForm = fb.group({
@@ -79,23 +77,7 @@ export class FeedDialog implements OnInit {
     // }, 10000);
   }
   filter(name: string): FeedCategory[] {
-    // console.log(this.feeds);
-    // console.log(name);
-    // this.feeds.filter(feedUrls => {
-    //   return feedUrls.channels.filter(feedChannel => {
-    //     console.log(feedChannel);
-    //     // return feedChannel.feedName.toLowerCase().indexOf(name.toLowerCase()) === 0 ||
-    //     // feedChannel.feedUrl.toLowerCase().indexOf(name.toLowerCase()) === 0;
-    //     return feedChannel.feedUrl.toLowerCase().includes(name.toLowerCase());
-    //   });
-    // });
     // tslint:disable-next-line:max-line-length
-    return this.feeds.filter((element) => 	element.channels.some((subElement) => subElement.feedUrl.includes(name) || subElement.feedName.includes(name)));
+    return this.feeds.filter((element) => element.channels.some((subElement) => subElement.feedUrl.includes(name) || subElement.feedName.includes(name)));
   }
-  private _filterGroup(value: string): FeedCategory[] {
-    return this.feeds;
-  }
-  // displayFn(feedChannel?: FeedChannel): string | undefined {
-  //   return feedChannel ? feedChannel.feedName : undefined;
-  // }
 }

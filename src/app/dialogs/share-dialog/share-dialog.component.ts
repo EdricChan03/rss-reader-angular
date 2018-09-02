@@ -7,11 +7,11 @@ import { MatDialogRef } from '@angular/material';
   templateUrl: './share-dialog.component.html',
   styleUrls: ['./share-dialog.component.scss']
 })
-export class ShareDialog implements OnInit {
+export class ShareDialogComponent implements OnInit {
   url: string;
   feed: any;
   constructor(
-    private dialogRef: MatDialogRef<ShareDialog>
+    private dialogRef: MatDialogRef<ShareDialogComponent>
   ) {
     dialogRef.disableClose = true;
   }

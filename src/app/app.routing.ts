@@ -10,6 +10,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AndroidComponent } from './devices/android/android.component';
 import { IOSComponent } from './devices/ios/ios.component';
 import { ExploreComponent } from './explore/explore.component';
+import { HeadlinesComponent } from './headlines/headlines.component';
 
 const APP_ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
@@ -26,6 +27,7 @@ const APP_ROUTES: Routes = [
     ]
   },
   { path: 'explore', component: ExploreComponent },
+  { path: 'headlines', component: HeadlinesComponent },
   { path: '', pathMatch: 'full', redirectTo: '/home' },
   { path: '**', component: PageNotFoundComponent }
 ];

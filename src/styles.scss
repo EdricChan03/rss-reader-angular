@@ -319,6 +319,25 @@ td {
   position: relative;
 }
 
+.autocomplete-option .autocomplete-option-img {
+  vertical-align: middle;
+  margin-right: 8px;
+  &[dir=rtl] {
+    margin-right: 0;
+    margin-left: 8px;
+  }
+}
+
+.form-group {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.form-full-width {
+  width: 100%;
+}
+
 html,
 body {
   width: 100%;

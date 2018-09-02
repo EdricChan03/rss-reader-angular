@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { ActionIcon, ActionIconService } from '../actionitem.service';
+import { ActionItemService } from '../actionitem.service';
 
 @Component({
   selector: 'app-page-not-found',
@@ -8,10 +8,10 @@ import { ActionIcon, ActionIconService } from '../actionitem.service';
 })
 export class PageNotFoundComponent implements OnInit {
 
-  constructor(public router: Router, private actionItemService: ActionIconService) { }
+  constructor(public router: Router, private actionItemService: ActionItemService) { }
 
   ngOnInit() {
-    this.actionItemService.addActionIcon({title: 'Go back', icon: 'arrow_back', onClickListener: () => {
+    this.actionItemService.addActionItem({title: 'Go back', icon: 'arrow_back', onClickListener: () => {
       window.history.back();
     }, showAsAction: true});
   }

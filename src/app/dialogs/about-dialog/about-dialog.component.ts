@@ -6,13 +6,13 @@ import { Component } from '@angular/core';
   selector: 'app-about-dialog',
   templateUrl: './about-dialog.component.html'
 })
-export class AboutDialog {
+export class AboutDialogComponent {
 
   constructor(
     private dialog: MatDialog,
-    private dialogRef: MatDialogRef<AboutDialog>
+    private dialogRef: MatDialogRef<AboutDialogComponent>
   ) { }
-
+  // TODO: Implement this method
   openVersionDialog() {
 
   }

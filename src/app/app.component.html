@@ -9,7 +9,8 @@
     </mat-toolbar>
     <mat-nav-list>
       <a mat-list-item [routerLink]="['/', link.url]" routerLinkActive="active-link" *ngFor="let link of links">
-        <mat-icon matListIcon>{{link.icon}}</mat-icon>
+        <mat-icon matListIcon *ngIf="!link.isSvgIcon">{{link.icon}}</mat-icon>
+        <mat-icon matListIcon *ngIf="link.isSvgIcon" [svgIcon]="link.icon"></mat-icon>
         <h3 matLine>{{link.name}}</h3>
       </a>
       <!-- <h3 matSubheader>Platforms (coming soon)</h3>
@@ -49,7 +50,7 @@
         <mat-icon matListIcon>code</mat-icon>
         <h3 matLine>View source code</h3>
       </a>
-      <mat-list-item (click)="showOnboardingOverlay()" *ngIf="!shared.isMobile">
+      <mat-list-item (click)="showOnboardingOverlay()" *ngIf="shared.isMobile">
         <mat-icon matListIcon>open_in_browser</mat-icon>
         <h3 matLine>Show onboarding</h3>
       </mat-list-item>
@@ -66,7 +67,7 @@
       </button>
       RSS Reader
       <span fxFlex></span>
-      <app-actionicons></app-actionicons>
+      <app-action-items></app-action-items>
       <span style="width: 25px"></span>
       <button mat-icon-button [matMenuTriggerFor]="appsMenu" aria-label="Show apps menu" matTooltip="Apps">
         <mat-icon>apps</mat-icon>

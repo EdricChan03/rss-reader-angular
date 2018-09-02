@@ -1,13 +1,13 @@
 import 'hammerjs';
 
-import { CodeViewerDialog, FeedCardComponent } from './feed-card/feed-card.component';
+import { FeedCardComponent } from './feed-card/feed-card.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   OrderByPipe,
   StripHtmlTagsPipe,
   TruncatePipe
 } from './pipe';
-import { ActionIconsModule } from './actionitem.service';
+import { ActionItemsModule } from './actionitem.service';
 import { AndroidComponent } from './devices/android/android.component';
 import { AppComponent } from './app.component';
 import { AppRouting } from './app.routing';
@@ -32,13 +32,7 @@ import { OverlayService } from './overlay.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { SettingsComponent } from './settings/settings.component';
-import {
-  AboutDialog,
-  FeedDialog,
-  OptionsDialog,
-  RSSChannelInfoDialog,
-  ShareDialog
-} from './dialogs';
+import { DialogsModule } from './dialogs/dialogs.module';
 import {
   SharedModule
 } from './shared.service';
@@ -48,15 +42,8 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { HeadlinesComponent } from './headlines/headlines.component';
 
-const DIALOGS = [
-  FeedDialog,
-  CodeViewerDialog,
-  ShareDialog,
-  OptionsDialog,
-  RSSChannelInfoDialog,
-  AboutDialog
-];
 const OVERLAYS = [
   FilterOverlayComponent,
   OnboardingOverlayComponent,
@@ -71,7 +58,6 @@ const PIPES = [
   declarations: [
     AppComponent,
     FeedCardComponent,
-    DIALOGS,
     PIPES,
     HomeComponent,
     SettingsComponent,
@@ -85,7 +71,8 @@ const PIPES = [
     ExpansionPanelComponent,
     WebComponent,
     ExploreComponent,
-    OVERLAYS
+    OVERLAYS,
+    HeadlinesComponent
   ],
   imports: [
     BrowserModule,
@@ -98,10 +85,11 @@ const PIPES = [
     SharedModule,
     AppRouting,
     ServiceWorkerModule.register(environment.swLocation, { enabled: environment.production }),
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule.enablePersistence(),
-    AngularFireAuthModule,
-    ActionIconsModule
+    DialogsModule,
+    // AngularFireModule.initializeApp(environment.firebase),
+    // AngularFirestoreModule.enablePersistence(),
+    // AngularFireAuthModule,
+    ActionItemsModule
   ],
   bootstrap: [AppComponent],
   providers: [
@@ -109,10 +97,8 @@ const PIPES = [
     OverlayService
   ],
   entryComponents: [
-    DIALOGS,
     OVERLAYS,
     ExpansionPanelComponent
   ]
 })
-export class AppModule {
-}
+export class AppModule { }

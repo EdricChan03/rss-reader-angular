@@ -4,15 +4,14 @@ import { MatDialogRef, MatDialog } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-options-dialog',
-  templateUrl: './options-dialog.component.html'
+  selector: 'app-feed-options-dialog',
+  templateUrl: './feed-options-dialog.component.html'
 })
-// tslint:disable-next-line:component-class-suffix
-export class OptionsDialog implements OnInit {
+export class FeedOptionsDialogComponent implements OnInit {
   options: FeedOptions;
   tempOptions: FeedOptions;
   constructor(
-    private dialogRef: MatDialogRef<OptionsDialog>,
+    private dialogRef: MatDialogRef<FeedOptionsDialogComponent>,
     private shared: SharedService,
     private dialog: MatDialog
   ) { }
@@ -25,7 +24,7 @@ export class OptionsDialog implements OnInit {
     const snackBarRef = this.shared.openSnackBar({ msg: 'Options saved', action: 'Undo' });
     snackBarRef.onAction().subscribe(() => {
       this.options = this.tempOptions;
-      this.dialog.open(OptionsDialog);
+      this.dialog.open(FeedOptionsDialogComponent);
     });
   }
   ngOnInit() {

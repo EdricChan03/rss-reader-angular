@@ -54,7 +54,7 @@ export class DocViewer implements OnDestroy {
 
     this._documentFetchSubscription = this._http.get(url, { responseType: 'text' }).subscribe(
       result => {
-        this.html = this.parse.parseFromString(result, "text/html");
+        this.html = this.parse.parseFromString(result, 'text/html');
         this._elementRef.nativeElement.innerHTML = result;
         this.textContent = this._elementRef.nativeElement.textContent;
         this._loadExpansionPanel();
@@ -67,20 +67,20 @@ export class DocViewer implements OnDestroy {
   }
   private _loadExpansionPanel() {
     // Query selects all elements which have the `expansion-panel` attribute
-    let elements = this._elementRef.nativeElement.querySelectorAll('[expansion-panel]');
+    const elements = this._elementRef.nativeElement.querySelectorAll('[expansion-panel]');
     // Similar to the above line of code, but queries from the result of the http get itself
-    let tempElements = this.html.querySelectorAll("[expansion-panel]");
+    const tempElements = this.html.querySelectorAll('[expansion-panel]');
     // Loop between all the elements
-    for (var i=0;i<elements.length;i++) {
+    for (let i = 0; i < elements.length; i++) {
       // Creates a new portal host
-      let portalHost = new DomPortalHost(
+      const portalHost = new DomPortalHost(
         elements[i], this._componentFactoryResolver, this._appRef, this._injector);
       // Creates a new component portal
-      let expansionPanelPortal = new ComponentPortal(ExpansionPanelComponent);
+      const expansionPanelPortal = new ComponentPortal(ExpansionPanelComponent);
       // Clears the html of the element
-      elements[i].innerHTML = "";
+      elements[i].innerHTML = '';
       // Attaches the portal to the portal host declared earlier
-      let expansionPanel = portalHost.attach(expansionPanelPortal);
+      const expansionPanel = portalHost.attach(expansionPanelPortal);
       // Sets the `html` instance to be a `SafeHtml` of the original element's HTML
       expansionPanel.instance.html = this._dom.bypassSecurityTrustHtml(tempElements[i].innerHTML);
     }
