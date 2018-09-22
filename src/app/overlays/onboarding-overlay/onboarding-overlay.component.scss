@@ -21,9 +21,10 @@
   .onboarding-card-content {
     font-size: 30px;
     line-height: 30px;
-    padding: 60px;
-    height: 100%;
+    padding: 30px;
+    height: auto;
     margin: auto;
+    text-align: center;
     &.onboarding-card-content-center {
       display: flex !important;
       justify-content: center !important;
