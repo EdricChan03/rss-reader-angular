@@ -33,4 +33,8 @@ export interface NewsAPITopHeadlinesArticle {
    * When the article was published on.
    */
   publishedAt?: string;
+  /**
+   * The article's content.
+   */
+  content?: string;
 }
