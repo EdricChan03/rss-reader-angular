@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MatDialogRef } from '@angular/material';
+import { FeedEntry } from '../../model/feed-entry';
+import { NewsAPITopHeadlinesArticle } from '../../model/news-api/top-headlines-article';
 
 @Component({
   selector: 'app-share-dialog',
@@ -9,24 +11,37 @@ import { MatDialogRef } from '@angular/material';
 })
 export class ShareDialogComponent implements OnInit {
   url: string;
-  feed: any;
+  publishedDate: string;
+  feed: FeedEntry | NewsAPITopHeadlinesArticle;
   constructor(
     private dialogRef: MatDialogRef<ShareDialogComponent>
   ) {
     dialogRef.disableClose = true;
   }
+  /**
+   * Checks if the `feed` property is of type `FeedEntry`
+   */
+  isFeedEntry(feed: FeedEntry | NewsAPITopHeadlinesArticle): feed is FeedEntry {
+    return (<FeedEntry> feed).categories !== undefined;
+  }
   ngOnInit() {
-    this.url = this.feed.link;
+    if (this.isFeedEntry(this.feed)) {
+      this.url = this.feed.link;
+      this.publishedDate = this.feed.pubDate.toString();
+    } else {
+      this.url = this.feed.url;
+      this.publishedDate = this.feed.publishedAt;
+    }
   }
   shareToFacebook() {
-    window.open(`https://www.facebook.com/sharer.php?u=${encodeURI(this.feed.link)}`, '');
+    window.open(`https://www.facebook.com/sharer.php?u=${encodeURI(this.url)}`, '');
   }
   shareToTwitter() {
 
   }
   shareToGooglePlus() {
     // tslint:disable-next-line:max-line-length
-    window.open(`https://plus.google.com/share?url=${encodeURI(this.feed.link)}&text=${encodeURI('Check out this blogpost by ' + this.feed.author + ' published on ' + this.feed.pubDate + ' titled "' + this.feed.title + '"!')}`, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+    window.open(`https://plus.google.com/share?url=${encodeURI(this.url)}&text=${encodeURI('Check out this blogpost by ' + this.feed.author + ' published on ' + this.publishedDate + ' titled "' + this.feed.title + '"!')}`, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
   }
   shareNative() {
     if (navigator.share !== undefined) {
