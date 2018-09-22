@@ -4,7 +4,12 @@
 @import '~@angular/material/theming';
 /* Select Angular Material theming. */
 
-$rss-reader-typography: mat-typography-config( $font-family: 'Merriweather, sans-serif');
+$rss-reader-typography: mat-typography-config(
+  $font-family: 'Merriweather, sans-serif',
+  $title: mat-typography-level(20px, 32px, 700),
+  $body-2: mat-typography-level(14px, 24px, 700),
+  $button: mat-typography-level(14px, 14px, 700)
+);
 @include mat-core($rss-reader-typography);
 // TODO: Remove the following lines
 $deeppurple-amber-primary: mat-palette($mat-deep-purple);
@@ -120,6 +125,12 @@ body {
   width: 350px;
   box-sizing: border-box;
   margin: 16px;
+  .feed-card {
+    @include mat-elevation-transition;
+    &:hover, &:active {
+      @include mat-elevation(8);
+    }
+  }
 }
 
 .rss-reader-cards-container {
