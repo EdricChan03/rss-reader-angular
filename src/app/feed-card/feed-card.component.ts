@@ -1,7 +1,5 @@
-import * as hljs from 'highlight.js';
-
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MatSlideToggleChange } from '@angular/material';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 
 import { DomSanitizer } from '@angular/platform-browser';
 import { Settings } from '../model/settings';
@@ -25,13 +23,13 @@ export class FeedCardComponent implements OnInit {
   @Input() feed?: FeedEntry;
   @Input() headline?: NewsAPITopHeadlinesArticle;
   constructor(private dialog: MatDialog, private shared: SharedService, private dom: DomSanitizer) { }
-  share(feed: any) {
+  share(feed: FeedEntry | NewsAPITopHeadlinesArticle) {
     const dialogRef = this.dialog.open(ShareDialogComponent);
     dialogRef.componentInstance.feed = feed;
   }
   /**
    * Shows how the object is structured in a dialog
-   * @param {any} feed The feed for the code view
+   * @param feed The feed for the code view
    */
   showCode(feed) {
     const dialogRef = this.dialog.open(CodeViewerDialogComponent);
@@ -39,7 +37,7 @@ export class FeedCardComponent implements OnInit {
   }
   /**
    * Views the current post in a dialog
-   * @param {any} feed The current post
+   * @param feed The current post
    */
   viewInDialog(feed) {
     // tslint:disable-next-line:max-line-length
@@ -52,20 +50,6 @@ export class FeedCardComponent implements OnInit {
 
       }
     });
-  }
-  /**
-   * Encodes an image
-   * @return {any}
-   * @desc More info at {@link https://stackoverflow.com/a/22172860/6782707}
-  */
-  getBase64Image(img: HTMLImageElement): any {
-    const canvas = document.createElement('canvas');
-    canvas.width = img.width;
-    canvas.height = img.height;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(img, 0, 0);
-    const dataURL = canvas.toDataURL('image/png');
-    return dataURL.replace(/^data:image\/(png|jpg);base64,/, '');
   }
   /**
    * Toggles the image changed
