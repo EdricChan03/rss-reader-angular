@@ -8,10 +8,10 @@
       "updateMode": "prefetch",
       "urls": [
         "/rss-reader/index.html",
-        "/rss-reader/inline.9718b45d5994a146209e.bundle.js",
-        "/rss-reader/main.2489d906b427c2af2170.bundle.js",
-        "/rss-reader/polyfills.cbc2d43f2ee0a0db24ee.bundle.js",
-        "/rss-reader/styles.6d6257206cc4cdfd621f.bundle.css"
+        "/rss-reader/main.ecd74fb1b6e9b57d7ac9.js",
+        "/rss-reader/polyfills.28c03943bd2da44531b0.js",
+        "/rss-reader/runtime.dacbdd16937f57cf5379.js",
+        "/rss-reader/styles.beb793433b6e1b324d84.css"
       ],
       "patterns": []
     },
@@ -20,16 +20,10 @@
       "installMode": "lazy",
       "updateMode": "prefetch",
       "urls": [
-        "/rss-reader/assets/feedcategories.json",
-        "/rss-reader/assets/feedurls.json",
-        "/rss-reader/assets/docs/dev/actionicon-service.html",
         "/rss-reader/assets/docs/dev/actionitem-service.html",
         "/rss-reader/assets/docs/dev/coding-standards.html",
         "/rss-reader/assets/docs/dev/contributing.html",
-        "/rss-reader/assets/docs/dev/menuitem-injectable.html",
-        "/rss-reader/assets/docs/dev/menuitem-service.html",
         "/rss-reader/assets/docs/dev/overlay-service.html",
-        "/rss-reader/assets/docs/dev/shared-injectable.html",
         "/rss-reader/assets/docs/dev/shared-service.html",
         "/rss-reader/assets/docs/guides/generate-api-key.html",
         "/rss-reader/assets/docs/guides/getting-started.html",
@@ -48,43 +42,38 @@
         "/rss-reader/assets/favicon/favicon-32x32.png",
         "/rss-reader/assets/favicon/favicon-96x96.png",
         "/rss-reader/assets/favicon/icon-100x100-nocolor.png",
+        "/rss-reader/assets/feedcategories.json",
+        "/rss-reader/assets/feedurls-schema.json",
+        "/rss-reader/assets/feedurls.json",
+        "/rss-reader/assets/icon.svg",
         "/rss-reader/assets/img/Customizing UI.png",
         "/rss-reader/assets/img/Explore News Sources.png",
-        "/rss-reader/assets/img/News Article.png",
-        "/rss-reader/assets/md-font/MaterialIcons-Regular.eot",
-        "/rss-reader/assets/md-font/MaterialIcons-Regular.ijmap",
-        "/rss-reader/assets/md-font/MaterialIcons-Regular.svg",
-        "/rss-reader/assets/md-font/MaterialIcons-Regular.ttf",
-        "/rss-reader/assets/md-font/MaterialIcons-Regular.woff",
-        "/rss-reader/assets/md-font/MaterialIcons-Regular.woff2",
-        "/rss-reader/assets/md-font/README.md",
-        "/rss-reader/assets/md-font/codepoints",
-        "/rss-reader/assets/md-font/material-icons.css"
+        "/rss-reader/assets/img/News Article.png"
       ],
-      "patterns": []
+      "patterns": [
+        "https:\\/\\/chan4077\\.github\\.io\\/res\\/.*"
+      ]
+    },
+    {
+      "name": "fonts",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [],
+      "patterns": [
+        "https:\\/\\/fonts\\.googleapis\\.com\\/.*"
+      ]
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "/rss-reader/inline.9718b45d5994a146209e.bundle.js": "ba60c87cacc10a38a346b6e1bf873252f9158b55",
-    "/rss-reader/assets/feedcategories.json": "52a05b2713d6924b8cec57de384ec633893fac26",
-    "/rss-reader/main.2489d906b427c2af2170.bundle.js": "d50d6fad0749bd4ab5fde89c73b8e54355aff49c",
-    "/rss-reader/assets/feedurls.json": "4962a12b3ccff072a9bc12a72cb70db4390301b3",
-    "/rss-reader/polyfills.cbc2d43f2ee0a0db24ee.bundle.js": "0af68321c56b0581e7a66487cfeb425c257897ed",
-    "/rss-reader/assets/docs/dev/actionicon-service.html": "4c86ffc84c70cf28e848cd537962c1c4edd87647",
-    "/rss-reader/styles.6d6257206cc4cdfd621f.bundle.css": "54a1e680a2ccb78368e4c90faaa68343330a76d7",
-    "/rss-reader/assets/docs/dev/actionitem-service.html": "19d0c0ecbe55d90d0a7e31f6d6c128222b462f0a",
-    "/rss-reader/index.html": "921af9c490c23f09239980124f0b40374c748d87",
+    "/rss-reader/assets/docs/dev/actionitem-service.html": "9c2b3797903c7b1facf7b811a3aa1ace24bb7a08",
     "/rss-reader/assets/docs/dev/coding-standards.html": "858d59861846100c03430ee4ff447af9cbd969ea",
-    "/rss-reader/assets/docs/dev/contributing.html": "36041eb5fc14573681add578c9e1c59ec83fe06c",
-    "/rss-reader/assets/docs/dev/menuitem-injectable.html": "d3f58a53bb6893e21cc20743069bf06036346d45",
-    "/rss-reader/assets/docs/dev/menuitem-service.html": "94807ff02f8c96a6b22fb702f9436f81cd0fd651",
-    "/rss-reader/assets/docs/dev/overlay-service.html": "002af132525e5c536bedc1d9b648bc36a1f4f2ba",
-    "/rss-reader/assets/docs/dev/shared-injectable.html": "c6111bfe708d5ac47ad19c71898711a79e96fe04",
-    "/rss-reader/assets/docs/dev/shared-service.html": "e30e812194386ad2c12663b7bc7052b9eb50693e",
-    "/rss-reader/assets/docs/guides/generate-api-key.html": "cfe6c592710920de7cb6a9ceabef409c28257a85",
-    "/rss-reader/assets/docs/guides/getting-started.html": "e26bf831e89371cc37c4c800ceacc2a9bdce4aea",
-    "/rss-reader/assets/docs/guides/troubleshooting.html": "abfcb907f9c29699a894cff3e21a66e540556640",
+    "/rss-reader/assets/docs/dev/contributing.html": "2ba48ceb3d5f4bcddcb570ee84d84c8eadb182f2",
+    "/rss-reader/assets/docs/dev/overlay-service.html": "80f4360c0b11bb0b32dbb967895f74e0251b17cf",
+    "/rss-reader/assets/docs/dev/shared-service.html": "e4cebe50d6acfdc06550e749526a0fdaa8d50e40",
+    "/rss-reader/assets/docs/guides/generate-api-key.html": "82e4ca39681e9c0f6f4667548a3e8aef1cd40d4c",
+    "/rss-reader/assets/docs/guides/getting-started.html": "2b2fd56d3872e74ec669f17c774868ffe2c4cc31",
+    "/rss-reader/assets/docs/guides/troubleshooting.html": "264f33591b88a66b1a1d433f2cdb08fff2bb7b44",
     "/rss-reader/assets/docs/img/generate_api_key/email_verification.jpg": "a4ca62d0d724aa97fa9b0c1a0ee9e0dee0a4c226",
     "/rss-reader/assets/docs/img/generate_api_key/login_page.jpg": "dd0e5e76b1bcadfa870235e796b0ccbf3963fd3e",
     "/rss-reader/assets/docs/img/generate_api_key/my_account_top.jpg": "f3f56c598227206f831e5ea85f4b48b58e05603e",
@@ -99,17 +88,35 @@
     "/rss-reader/assets/favicon/favicon-32x32.png": "296c477fe15f3a77ed64fbbadb5ec55bdcf5c4f9",
     "/rss-reader/assets/favicon/favicon-96x96.png": "1d1589f7d995227be955f9136e40fe78ddc4883d",
     "/rss-reader/assets/favicon/icon-100x100-nocolor.png": "d8c163319b13850fa354d54fa052f6e58b91ab5d",
+    "/rss-reader/assets/feedcategories.json": "880451ca46290a5567022f52cdd1490ede443cd7",
+    "/rss-reader/assets/feedurls-schema.json": "77b1ba683a6a737ee6db5041e2f7244109a1cd7d",
+    "/rss-reader/assets/feedurls.json": "25d3bca74427f3ff57305345b71af1c630e06b82",
+    "/rss-reader/assets/icon.svg": "18fd15a33f0782996bfffd8c82f0f9c599797527",
     "/rss-reader/assets/img/Customizing UI.png": "258c30118419a00ad50e72884faddb02ba80f0e7",
     "/rss-reader/assets/img/Explore News Sources.png": "70eb50d386ae85e5a344c93f08556455e065f2e5",
     "/rss-reader/assets/img/News Article.png": "123985f0b304117c98e32f29707c180277fc428f",
-    "/rss-reader/assets/md-font/MaterialIcons-Regular.eot": "26fb8cecb5512223277b4d290a24492a0f09ede1",
-    "/rss-reader/assets/md-font/MaterialIcons-Regular.ijmap": "df468e87685c24b2a5d431036d4d5a434efdc28e",
-    "/rss-reader/assets/md-font/MaterialIcons-Regular.svg": "52ad95c4e0691e8c9b8ef97c551a9970eb498ca0",
-    "/rss-reader/assets/md-font/MaterialIcons-Regular.ttf": "fc05de31234e0090f7ddc28ce1b23af4026cb1da",
-    "/rss-reader/assets/md-font/MaterialIcons-Regular.woff": "c6c953c2ccb2ca9abb21db8dbf473b5a435f0082",
-    "/rss-reader/assets/md-font/MaterialIcons-Regular.woff2": "09963592e8c953cc7e14e3fb0a5b05d5042e8435",
-    "/rss-reader/assets/md-font/README.md": "867c099a181af04de39152d48aee013a01fcd1cd",
-    "/rss-reader/assets/md-font/codepoints": "9f50ec0cced0115e7786e4e26b53ff35d2c0f0a0",
-    "/rss-reader/assets/md-font/material-icons.css": "d45506350e35c369dca6d1ed299b3688e590db8d"
-  }
+    "/rss-reader/index.html": "43f27b0420ae41c93ff6f7d20df7f4d2adaf6dc3",
+    "/rss-reader/main.ecd74fb1b6e9b57d7ac9.js": "ce6b64a54b5efaac6daa7b05311b2a5fa313452e",
+    "/rss-reader/polyfills.28c03943bd2da44531b0.js": "6f0a7752e66810eb5d49cd47717f02c904554ea9",
+    "/rss-reader/runtime.dacbdd16937f57cf5379.js": "c476d09aa03057a59734d197ffd3691dfc6afcb0",
+    "/rss-reader/styles.beb793433b6e1b324d84.css": "6a9c9b4a151897a91cbe1575efe7e985abc4f99a"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
 }
