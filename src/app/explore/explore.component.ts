@@ -3,7 +3,6 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { SharedService } from '../shared.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { forkJoin } from 'rxjs/observable/forkJoin';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { MatButton } from '@angular/material/button';
 
@@ -13,29 +12,19 @@ import { MatButton } from '@angular/material/button';
   styleUrls: ['./explore.component.scss']
 })
 export class ExploreComponent implements OnInit, OnDestroy {
-
+  isInputFocused = false;
+  search: string;
+  newsSources: Source[];
+  filteredNewsSources: any;
+  private _overlayRef: OverlayRef;
+  private newsApiSourcesEndpoint = 'https://newsapi.org/v2/sources?apiKey=1bc8e59db83a42b490cb2f6f2b604f69';
+  private newsApiEverythingEndpoint = 'https://newsapi.org/v2/everything?apiKey=1bc8e59db83a42b490cb2f6f2b604f69';
+  private _overlayIsOpen = false;
+  @ViewChild('filterOverlayBtn') filterOverlayBtn: MatButton;
   constructor(
     private http: HttpClient,
     private shared: SharedService,
     private overlay: Overlay) { }
-  // tslint:disable-next-line:member-ordering
-  isInputFocused = false;
-  // tslint:disable-next-line:member-ordering
-  search: string;
-  // tslint:disable-next-line:member-ordering
-  newsSources: Source[];
-  // tslint:disable-next-line:member-ordering
-  filteredNewsSources: any;
-  // tslint:disable-next-line:member-ordering
-  private _overlayRef: OverlayRef;
-  // tslint:disable-next-line:member-ordering
-  private newsApiSourcesEndpoint = 'https://newsapi.org/v2/sources?apiKey=1bc8e59db83a42b490cb2f6f2b604f69';
-  // tslint:disable-next-line:member-ordering
-  private newsApiEverythingEndpoint = 'https://newsapi.org/v2/everything?apiKey=1bc8e59db83a42b490cb2f6f2b604f69';
-  // tslint:disable-next-line:member-ordering
-  private _overlayIsOpen = false;
-  // tslint:disable-next-line:member-ordering
-  @ViewChild('filterOverlayBtn') filterOverlayBtn: MatButton;
   getNewsSources() {
     this.http.get<SourceAPI>(this.newsApiSourcesEndpoint).subscribe(result => {
       if (result.status === 'error') {
@@ -46,8 +35,12 @@ export class ExploreComponent implements OnInit, OnDestroy {
             this.getNewsSources();
           });
         } else {
-          // tslint:disable-next-line:max-line-length
-          const snackBarRef = this.shared.openSnackBar({ msg: 'Error: An unknown error occured. Try refreshing!', additionalOpts: { duration: 5000, panelClass: ['mat-elevation-z2'] } });
+          const snackBarRef = this.shared.openSnackBar({
+            msg: 'Error: An unknown error occured. Try refreshing!',
+            additionalOpts: {
+              duration: 5000
+            }
+          });
           snackBarRef.onAction().subscribe(() => {
             this.getNewsSources();
           });
