@@ -324,7 +324,7 @@ An observable for when after all dialogs are closed
 ## `isMobile`
 
 ```typescript
-isMobile(): boolean;
+get isMobile(): boolean;
 ```
 
 <!-- start-enclose-content -->
