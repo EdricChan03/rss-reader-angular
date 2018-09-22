@@ -1,14 +1,15 @@
+import { SHIFT, SLASH } from '@angular/cdk/keycodes';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 import { ActionItemService } from '../actionitem.service';
-import { BreakpointObserver } from '@angular/cdk/layout';
-import { FeedDialogComponent } from '../dialogs/feed-dialog/feed-dialog.component';
+import {
+  FeedDialogComponent,
+  FeedOptionsDialogComponent,
+  RSSChannelInfoDialogComponent
+} from '../dialogs';
 import { FeedEntry } from '../model/feed-entry';
-import { HttpClient } from '@angular/common/http';
-import { MatDialog } from '@angular/material/dialog';
-import { FeedOptionsDialogComponent, RSSChannelInfoDialogComponent } from '../dialogs';
-import { Router } from '@angular/router';
-import { Settings } from '../model/settings';
 import { SharedService } from '../shared.service';
 
 @Component({
@@ -44,36 +45,33 @@ export class HomeComponent implements OnInit {
   /**
    * The refresh status present when refreshing the RSS
    */
-  refreshStatus = 'Hold up while we\'re getting the RSS feed for the channel you selected.';
+  refreshStatus = 'Getting RSS feed...';
   /**
    * The RSS2Json website base URL
    */
-  rssToJsonServiceBaseUrl = 'https://api.rss2json.com/v1/api.json?rss_url=';
-  /**
-   * The RSS2Json website api key url
-   */
-  rssToJsonServiceApiUrl = '&api_key=';
-  isSmallScreen: boolean;
+  rssToJsonServiceBaseUrl = 'https://api.rss2json.com/v1/api.json';
+  // See https://stackoverflow.com/a/12444641 for more info
+  keyMaps = {};
   constructor(
-    private breakpointObserver: BreakpointObserver,
     private dialog: MatDialog,
     private http: HttpClient,
     private shared: SharedService,
-    private router: Router,
     private actionItemService: ActionItemService
   ) {
-    const layoutChanges = breakpointObserver.observe('(max-width: 599px)');
-    layoutChanges.subscribe(result => {
-      if (result.matches) {
-        this.isSmallScreen = true;
-      } else {
-        this.isSmallScreen = false;
+    shared.keyDownUpEvents$.subscribe((event: KeyboardEvent) => {
+      this.keyMaps[event.keyCode] = event.type === 'keydown';
+      if (!['INPUT', 'TEXTAREA'].includes(event.srcElement.nodeName)) {
+        this.keyboardShortcutHandler();
       }
     });
-    // this.isSmallScreen = breakpointObserver.isMatched('(max-width: 599px)');
   }
-  get isMobile() {
-    return this.shared.isMobile();
+  keyboardShortcutHandler() {
+    console.log('Before: ', this.keyMaps);
+    if (this.keyMaps[SHIFT] && this.keyMaps[SLASH]) {
+      console.log('Keyboard shortcuts dialog!');
+    }
+    this.keyMaps = {};
+    console.log('After: ', this.keyMaps);
   }
   options() {
     const dialogRef = this.dialog.open(FeedOptionsDialogComponent);
@@ -91,7 +89,7 @@ export class HomeComponent implements OnInit {
    */
   reload() {
     // tslint:disable-next-line:max-line-length
-    this.shared.openConfirmDialog({ msg: 'Are you sure you want to refresh? Changes will not be saved!', title: 'Confirmation' }).afterClosed().subscribe(result => {
+    this.shared.openConfirmDialog({ msg: 'Are you sure you want to refresh? Changes will not be saved!', title: 'Refresh feed?' }).afterClosed().subscribe(result => {
       if (result === 'ok') {
         window.location.reload(true);
       }
@@ -100,7 +98,6 @@ export class HomeComponent implements OnInit {
   /**
    * Refreshes the feed
    * Not to be confused with {@link reload}
-   * @param tryAgain
    */
   refreshFeed() {
     // Show that it is getting RSS
@@ -133,7 +130,7 @@ export class HomeComponent implements OnInit {
       if (opts.amount) {
         // Add 1s of delay to provide user feedback.
         // tslint:disable-next-line:max-line-length
-        this.http.get<any>(`https://api.rss2json.com/v1/api.json?rss_url=${this._getFeedUrl()}&api_key=${this.apiKey}&count=${opts.amount}`).subscribe(result => {
+        this.http.get<any>(`${this.rssToJsonServiceBaseUrl}?rss_url=${this._getFeedUrl()}&api_key=${this.apiKey}&count=${opts.amount}`).subscribe(result => {
           this.feeds = result.items;
           this.isRefreshing = false;
           this.hasError = false;
@@ -151,7 +148,7 @@ export class HomeComponent implements OnInit {
   }
   private _getFeedWithNoOpts() {
     // Add 1s of delay to provide user feedback.
-    this.http.get<any>(`https://api.rss2json.com/v1/api.json?rss_url=${this._getFeedUrl()}&api_key=${this.apiKey}`).subscribe(result => {
+    this.http.get<any>(`${this.rssToJsonServiceBaseUrl}?rss_url=${this._getFeedUrl()}&api_key=${this.apiKey}`).subscribe(result => {
       this.feeds = result.items;
       this.isRefreshing = false;
       this.hasError = false;
