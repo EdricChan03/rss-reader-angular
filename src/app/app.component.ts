@@ -122,9 +122,6 @@ export class AppComponent implements OnInit, OnDestroy {
   get isOffline() {
     return !navigator.onLine;
   }
-  get isMobile() {
-    return this.shared.isMobile();
-  }
   get isSidenavOpen() {
     if (this.sidenav.opened) {
       return true;
