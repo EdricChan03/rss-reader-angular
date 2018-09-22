@@ -4,10 +4,9 @@ import { FeedCategory } from '../../model/feed-category';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Observable } from 'rxjs/Observable';
-import { map } from 'rxjs/operators/map';
-import { startWith } from 'rxjs/operators/startWith';
-// import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+// import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Feed } from '../../model/feed';
 
 @Component({
