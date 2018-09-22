@@ -12,20 +12,37 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCommonModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Observable } from 'rxjs/Observable';
+import { Observable, Subject } from 'rxjs';
 import { SwUpdate } from '@angular/service-worker';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class SharedService implements OnInit {
   private _title = '';
   private readonly _version = '1.3.0';
+  /**
+   * Keydown and up events to the document
+   */
+  keyDownUpEvents = new Subject<KeyboardEvent>();
+  /**
+	 * Keydown and up events as an observable
+	 */
+  keyDownUpEvents$ = this.keyDownUpEvents.asObservable();
   constructor(
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private documentTitle: Title,
     private breakpointObserver: BreakpointObserver,
     private swUpdate: SwUpdate
-  ) { }
+  ) {
+    window.addEventListener('keydown', (event) => {
+      this.keyDownUpEvents.next(event);
+    });
+    window.addEventListener('keyup', (event) => {
+      this.keyDownUpEvents.next(event);
+    })
+  }
   /**
    * Gets the version of the app
    */
@@ -86,7 +103,7 @@ export class SharedService implements OnInit {
    * Detects if the user is using a mobile device
    * @returns {boolean}
    */
-  isMobile(): boolean {
+  get isMobile(): boolean {
     if (this.breakpointObserver.isMatched('(max-width: 599px)')) {
       return true;
     } else {
