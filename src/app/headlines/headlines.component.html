@@ -1,3 +1,21 @@
-<div class="rss-reader-cards-container">
-  <app-feed-card *ngFor="let headline of (headlines | async)?.articles" [headline]="headline" class="rss-reader-card"></app-feed-card>
+<p *ngIf="getStarted">Customise the headlines by clicking on the <mat-icon>tune</mat-icon> icon.</p>
+<div class="rss-reader-cards-container" *ngIf="headlines$ | async as headlines; else: loading">
+  <app-feed-card *ngFor="let article of headlines?.articles" [headline]="article" class="rss-reader-card"></app-feed-card>
 </div>
+<ng-template #loading>
+  <div class="start">
+    <p>{{refreshStatus}}</p>
+    <mat-spinner class="start-indicator"></mat-spinner>
+    <button mat-button [matMenuTriggerFor]="moreMenu" *ngIf="hasError">Options
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <mat-menu [overlapTrigger]="false" #moreMenu="matMenu">
+      <button mat-menu-item (click)="reload()">
+        <mat-icon>refresh</mat-icon>Reload page</button>
+      <button mat-menu-item (click)="refreshFeed(true)">
+        <mat-icon>sync</mat-icon>Refresh feed</button>
+      <button mat-menu-item (click)="selectRss()">
+        <mat-icon>rss_feed</mat-icon> Reselect RSS</button>
+    </mat-menu>
+  </div>
+</ng-template>

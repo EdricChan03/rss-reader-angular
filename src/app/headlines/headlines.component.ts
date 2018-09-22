@@ -3,7 +3,6 @@ import { SharedService } from '../shared.service';
 import { ActionItemService } from '../actionitem.service';
 import { MatDialog } from '@angular/material';
 import { HeadlineOptionsDialogComponent } from '../dialogs';
-import { NewsAPITopHeadlinesArticle } from '../model/news-api/top-headlines-article';
 import { HttpClient } from '@angular/common/http';
 import { NewsAPITopHeadlinesOpts, NewsAPITopHeadlines } from '../model/news-api/top-headlines';
 import { Observable } from 'rxjs';
@@ -15,7 +14,9 @@ import { Observable } from 'rxjs';
 export class HeadlinesComponent implements OnInit {
 
   readonly headlineAPIEndpoint = 'https://newsapi.org/v2/top-headlines';
-  headlines: Observable<NewsAPITopHeadlines>;
+  getStarted = false;
+  headlines$: Observable<NewsAPITopHeadlines>;
+  refreshStatus = 'Getting headlines...';
   constructor(
     private shared: SharedService,
     private dialog: MatDialog,
@@ -51,12 +52,21 @@ export class HeadlinesComponent implements OnInit {
     return this.http.get<NewsAPITopHeadlines>(apiEndpoint);
   }
   reloadHeadlines(options: NewsAPITopHeadlinesOpts) {
-    this.headlines = this.getHeadlines(options);
+    this.headlines$ = this.getHeadlines(options);
   }
   ngOnInit() {
+    if (window.localStorage.getItem('headlineHasLaunched')) {
+      this.getStarted = true;
+      window.localStorage.setItem('hasLaunched', JSON.stringify(true));
+    }
     if (window.localStorage.getItem('headlineOpts')) {
-      const options = JSON.parse(window.localStorage.getItem('headlineOpts')) as NewsAPITopHeadlinesOpts;
-      this.headlines = this.getHeadlines(options);
+      try {
+        const options = JSON.parse(window.localStorage.getItem('headlineOpts')) as NewsAPITopHeadlinesOpts;
+        this.headlines$ = this.getHeadlines(options);
+      } catch (error) {
+        console.warn(`Oops! An error occured while getting settings for headlines! The error: ${error}`);
+        this.openHeadlineOptsDialog();
+      }
     } else {
       this.openHeadlineOptsDialog();
     }
