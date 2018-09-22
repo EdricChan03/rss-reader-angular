@@ -17,7 +17,7 @@
         </mat-option>
       </mat-autocomplete>
       <mat-error *ngIf="headlineOptForm.get('country')?.hasError('required')">This is required.</mat-error>
-      <mat-error *ngIf="headlineOptForm.get('country')?.hasError('minLength') || headlineOptForm.get('country')?.hasError('maxLength')">Please enter a valid country code.</mat-error>
+      <!-- <mat-error *ngIf="headlineOptForm.get('country')?.hasError('minLength') || headlineOptForm.get('country')?.hasError('maxLength')">Please enter a valid country code.</mat-error> -->
     </mat-form-field>
     <br>
     <mat-form-field>
