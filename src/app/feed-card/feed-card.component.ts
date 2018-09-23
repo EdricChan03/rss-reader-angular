@@ -23,9 +23,19 @@ export class FeedCardComponent implements OnInit {
   @Input() feed?: FeedEntry;
   @Input() headline?: NewsAPITopHeadlinesArticle;
   constructor(private dialog: MatDialog, private shared: SharedService, private dom: DomSanitizer) { }
+  /**
+   * Shares the current feed entry or article
+   * @param feed The entry/article to share
+   */
   share(feed: FeedEntry | NewsAPITopHeadlinesArticle) {
     const dialogRef = this.dialog.open(ShareDialogComponent);
     dialogRef.componentInstance.feed = feed;
+  }
+  /**
+   * Checks if a variable is an empty string
+   */
+  isEmpty(variable: string): boolean {
+    return (!variable || 0 === variable.length);
   }
   /**
    * Shows how the object is structured in a dialog

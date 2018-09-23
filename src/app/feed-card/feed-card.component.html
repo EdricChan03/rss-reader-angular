@@ -2,8 +2,10 @@
   <mat-card class="feed-card">
     <mat-card-header>
       <mat-card-title *ngIf="headline?.author || headline?.source">
-        <span *ngIf="headline?.author && !headline?.source">{{headline?.author}}</span>
-        <span *ngIf="headline?.source?.name && !headline?.author">{{headline?.source?.name}}</span>
+        <!-- Show the author by default -->
+        <span *ngIf="headline?.author">{{headline?.author}}</span>
+        <!-- Otherwise, show the headline's source -->
+        <span *ngIf="headline?.source && !headline?.author">{{headline?.source?.name}}</span>
       </mat-card-title>
       <mat-card-subtitle *ngIf="headline?.publishedAt">{{headline?.publishedAt | date:'short'}}</mat-card-subtitle>
       <span fxFlex></span>
@@ -19,7 +21,8 @@
     <img mat-card-image *ngIf="headline?.urlToImage && hasImage" [src]="headline?.urlToImage">
     <mat-card-title class="feed-title" *ngIf="headline?.title">{{headline?.title}}</mat-card-title>
     <mat-card-content *ngIf="headline?.description || headline?.content">
-      <p>{{headline?.description | slice:0:300}}&#8230;</p>
+      <p *ngIf="headline?.description">{{headline?.description | slice:0:300}}&#8230;</p>
+      <p *ngIf="headline?.content && !headline?.description">{{headline?.content | slice:0:260}}</p>
     </mat-card-content>
     <mat-divider></mat-divider>
     <mat-card-actions align="end">
