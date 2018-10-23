@@ -1,4 +1,4 @@
-import { Component, DoCheck, Injectable, NgModule, OnInit, ViewChild } from '@angular/core';
+import { Component, Injectable, NgModule, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatListModule, MatSelectionList } from '@angular/material/list';
 import { MatSnackBar, MatSnackBarConfig, MatSnackBarModule, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
@@ -18,7 +18,7 @@ import { SwUpdate } from '@angular/service-worker';
 @Injectable({
   providedIn: 'root'
 })
-export class SharedService implements OnInit {
+export class SharedService {
   private _title = '';
   private readonly _version = '1.3.0';
   /**
@@ -41,7 +41,7 @@ export class SharedService implements OnInit {
     });
     window.addEventListener('keyup', (event) => {
       this.keyDownUpEvents.next(event);
-    })
+    });
   }
   /**
    * Gets the version of the app
@@ -65,18 +65,6 @@ export class SharedService implements OnInit {
    */
   get title(): string {
     return this._title;
-  }
-  ngOnInit() {
-    this.swUpdate.available.subscribe(event => {
-      console.log('[App] Update available: current version is', event.current, 'available version is', event.available);
-      // tslint:disable-next-line:max-line-length
-      const snackBarRef = this.openSnackBar({ msg: 'A newer version of this app is available!', action: 'Update & Refresh', additionalOpts: { panelClass: ['mat-elevation-z3'], horizontalPosition: 'start' } });
-
-      snackBarRef.onAction().subscribe(() => {
-        this.activateUpdate();
-      });
-
-    });
   }
   /**
    * Checks for updates (ngsw)
@@ -355,7 +343,13 @@ export class ConfirmDialog implements OnInit {
     <span *ngIf="promptConfig.isHtml" [innerHTML]="promptConfig.msg"></span>
     <form #form="ngForm">
       <mat-form-field color="{{promptConfig.color ? promptConfig.color : 'primary'}}" style="width:100%">
-        <input matInput [(ngModel)]="input" placeholder="{{promptConfig.placeholder}}" type="{{promptConfig.inputType ? promptConfig.inputType : 'text'}}" required name="input">
+        <mat-label>{{promptConfig.placeholder}}</mat-label>
+        <input
+          matInput
+          [(ngModel)]="input"
+          type="{{promptConfig.inputType ? promptConfig.inputType : 'text'}}"
+          required
+          name="input">
         <mat-error>This is required.</mat-error>
       </mat-form-field>
     </form>
@@ -395,14 +389,25 @@ export class PromptDialog implements OnInit {
   <h2 matDialogTitle>{{selectionConfig.title ? selectionConfig.title : 'Select options from the list'}}</h2>
   <mat-dialog-content fxLayout="column" class="mat-typography">
     <mat-selection-list #selection>
-      <mat-list-option *ngFor="let option of selectionConfig.options" [disabled]="option.disabled" [value]="option.value" [checkboxPosition]="option.checkboxPosition ? option.checkboxPosition : 'before'" [selected]="option.selected">
+      <mat-list-option
+        *ngFor="let option of selectionConfig.options"
+        [disabled]="option.disabled"
+        [value]="option.value"
+        [checkboxPosition]="option.checkboxPosition ? option.checkboxPosition : 'before'"
+        [selected]="option.selected">
         {{option.content}}
       </mat-list-option>
     </mat-selection-list>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button mat-button color="primary" (click)="cancel()">{{selectionConfig.cancel ? selectionConfig.cancel : 'Cancel'}}</button>
-    <button mat-button color="primary" (click)="ok()" [disabled]="selection.selectedOptions.selected.length < 1">{{selectionConfig.ok ? selectionConfig.ok : 'OK'}}</button>
+    <button
+      mat-button
+      color="primary"
+      (click)="ok()"
+      [disabled]="selection.selectedOptions.selected.length < 1">
+      {{selectionConfig.ok ? selectionConfig.ok : 'OK'}}
+    </button>
   </mat-dialog-actions>
   `
 })
