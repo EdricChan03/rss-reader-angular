@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.6.8",
-    "@angular/cli": "^7.2.3",
+    "@angular/cli": "^7.3.8",
     "@angular/compiler-cli": "^7.2.2",
     "@types/gulp": "^3.8.36",
     "@types/gulp-rename": "0.0.33",
