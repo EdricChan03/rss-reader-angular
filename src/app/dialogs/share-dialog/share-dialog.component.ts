@@ -37,7 +37,9 @@ export class ShareDialogComponent implements OnInit {
     window.open(`https://www.facebook.com/sharer.php?u=${encodeURI(this.url)}`, '');
   }
   shareToTwitter() {
-
+    const text = encodeURI(`Check out this blogpost by ${this.feed.author}\
+    published on ${this.publishedDate} titled "${this.feed.title}"!')}`);
+    window.open(`https://twitter.com/intent/tweet?url=${encodeURI(this.url)}&text=${text}`);
   }
   // Google+ has been shutdown
   /*shareToGooglePlus() {
