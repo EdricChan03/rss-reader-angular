@@ -39,10 +39,11 @@ export class ShareDialogComponent implements OnInit {
   shareToTwitter() {
 
   }
-  shareToGooglePlus() {
+  // Google+ has been shutdown
+  /*shareToGooglePlus() {
     // tslint:disable-next-line:max-line-length
     window.open(`https://plus.google.com/share?url=${encodeURI(this.url)}&text=${encodeURI('Check out this blogpost by ' + this.feed.author + ' published on ' + this.publishedDate + ' titled "' + this.feed.title + '"!')}`, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
-  }
+  }*/
   shareNative() {
     if (navigator.share !== undefined) {
       navigator.share({
