@@ -77,7 +77,7 @@ const CDK_MODULES = [
 })
 export class MaterialModule {
   constructor(private iconRegistry: MatIconRegistry, private dom: DomSanitizer) {
-    iconRegistry.addSvgIconSet(dom.bypassSecurityTrustResourceUrl('https://chan4077.github.io/res/mdi.svg'));
+    iconRegistry.addSvgIconSet(dom.bypassSecurityTrustResourceUrl('https://edricchan03.github.io/res/mdi.svg'));
     iconRegistry.setDefaultFontSetClass('material-icons-extended');
   }
 }

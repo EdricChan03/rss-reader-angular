@@ -6,7 +6,7 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 
 - This project was forked from <https://github.com/becompany/angular2-rss-reader-tutorial>.
 - This project features [Angular Material 2](https://material.angular.io) and [Angular 4](https://angular.io).
-- This project is available [here](https://chan4077.github.io/rss-reader)
+- This project is available [here](https://edricchan03.github.io/rss-reader)
 
 # Serving locally
 ## Developer mode

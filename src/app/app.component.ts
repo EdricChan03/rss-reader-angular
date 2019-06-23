@@ -29,7 +29,7 @@ export class AppComponent implements OnInit, OnDestroy {
       subheaderProjects: [
         {
           name: 'RSS Reader',
-          url: 'https://chan4077.github.io/rss-reader',
+          url: 'https://edricchan03.github.io/rss-reader',
           icon: 'rss_feed'
         },
         {
@@ -44,12 +44,12 @@ export class AppComponent implements OnInit, OnDestroy {
         },
         {
           name: 'Chan4077.GitHub.io',
-          url: 'https://chan4077.github.io',
+          url: 'https://edricchan03.github.io',
           icon: 'home'
         },
         {
           name: 'First-Mod',
-          url: 'https://chan4077.github.io/First-Mod',
+          url: 'https://edricchan03.github.io/First-Mod',
           icon: 'gamepads'
         }]
     },

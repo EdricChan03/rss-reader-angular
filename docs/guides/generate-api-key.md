@@ -31,14 +31,14 @@ As the RSS dialog requires you to enter an API key, this guide will show you how
 
    ![My account tabs](../img/generate_api_key/my_account_top.jpg)
 
-9. Lastly, click/ tap on the input field and copy it to the clipboard. Then head back to the [website](https://chan4077.github.io/rss-reader) and fill up the API key section in the feed dialog.
+9. Lastly, click/ tap on the input field and copy it to the clipboard. Then head back to the [website](https://edricchan03.github.io/rss-reader) and fill up the API key section in the feed dialog.
 
 You're done!
 
 <!-- begin end links -->
 
 ---
-[:arrow_left: Back to website](https://chan4077.github.io/rss-reader)
+[:arrow_left: Back to website](https://edricchan03.github.io/rss-reader)
 
 - [Generating an API Key **(You are here)**](./generate-api-key.md)
 - [Getting Started](./getting-started.md)

@@ -1,7 +1,7 @@
 {
   "definitions": {},
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://chan4077.github.io/rss-reader/schemas/feedurls.json",
+  "$id": "http://edricchan03.github.io/rss-reader/schemas/feedurls.json",
   "type": "object",
   "properties": {
     "$schema": {

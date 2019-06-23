@@ -420,4 +420,4 @@ Property | Description | Type | Default value(s) | Required? | Notes
 
 ---
 
-[Testing page](https://chan4077.github.io/rss-reader/test)
+[Testing page](https://edricchan03.github.io/rss-reader/test)
