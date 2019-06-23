@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../shared.service';
 import { ActionItemService } from '../actionitem.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { HeadlineOptionsDialogComponent } from '../dialogs';
 import { HttpClient } from '@angular/common/http';
 import { NewsAPITopHeadlinesOpts, NewsAPITopHeadlines } from '../model/news-api/top-headlines';
@@ -37,6 +37,12 @@ export class HeadlinesComponent implements OnInit {
   openHeadlineOptsDialog() {
     const dialogRef = this.dialog.open(HeadlineOptionsDialogComponent);
     if (window.localStorage.getItem('headlineOpts')) {
+      const headlineOpts = JSON.parse(window.localStorage.getItem('headlineOpts'));
+
+      if ('topic' in JSON.parse(window.localStorage.getItem('headlineOpts'))) {
+        delete headlineOpts['topic'];
+        window.localStorage.setItem('headlineOpts', JSON.stringify(headlineOpts));
+      }
       dialogRef.componentInstance.options = JSON.parse(window.localStorage.getItem('headlineOpts'));
     }
     dialogRef.afterClosed().subscribe(result => {

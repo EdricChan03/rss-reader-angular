@@ -3,11 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { FeedCategory } from '../../model/feed-category';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 // import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Feed } from '../../model/feed';
+import { SubmitRssDialogComponent } from '../submit-rss-dialog/submit-rss-dialog.component';
+import { FeedChannel } from 'app/model/feed-channel';
 
 @Component({
   selector: 'app-feed-dialog',
@@ -24,7 +26,6 @@ export class FeedDialogComponent implements OnInit {
    */
   feedUrlChannel: string;
   feedCategory: string;
-  categories: any;
   filteredOptions: Observable<FeedCategory[]>;
   feedUrlValue = '';
   rssFeedForm: FormGroup;
@@ -33,23 +34,16 @@ export class FeedDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<FeedDialogComponent>,
     private http: HttpClient,
     private fb: FormBuilder,
-    // private afFs: AngularFirestore
+    private dialog: MatDialog
   ) {
     dialogRef.disableClose = true;
     this.rssFeedForm = fb.group({
       feedUrl: ['', Validators.required],
-      publishFeedUrl: false,
-      feedUrlChannel: '',
-      feedCategory: '',
-      apiKey: ['', [Validators.required, Validators.maxLength(40), Validators.minLength(40)]]
+      apiKey: ['', [Validators.required, Validators.maxLength(40), Validators.minLength(40)]],
+      amount: [30, Validators.required]
     });
   }
   ngOnInit() {
-    this.http.get('assets/feedcategories.json')
-      .subscribe(result => {
-        this.categories = result;
-      },
-        err => console.error(err));
     this.http.get<Feed>('assets/feedurls.json')
       .subscribe(result => {
         console.log(result);
@@ -65,18 +59,37 @@ export class FeedDialogComponent implements OnInit {
           map(value => this.filter(value))
         );
     });
-    if (window.localStorage.getItem('feedUrl')) {
-      this.rssFeedForm.patchValue({ feedUrl: window.localStorage.getItem('feedUrl') });
+    if (window.localStorage.getItem('feedOptions')) {
+      this.rssFeedForm.patchValue(JSON.parse(window.localStorage.getItem('feedOptions')));
     }
-    if (window.localStorage.getItem('apiKey')) {
-      this.rssFeedForm.patchValue({ apiKey: window.localStorage.getItem('apiKey') });
-    }
-    // setTimeout(() => {
-    //   console.log(this.filter('lineage')[0]);
-    // }, 10000);
   }
   filter(name: string): FeedCategory[] {
-    // tslint:disable-next-line:max-line-length
-    return this.feeds.filter((element) => element.channels.some((subElement) => subElement.feedUrl.includes(name) || subElement.feedName.includes(name)));
+    const filteredFeedCategories: FeedCategory[] = [];
+    for (const feedCategory of this.feeds) {
+      const tempFeedCategory: FeedCategory = {
+        categoryId: null,
+        categoryName: null,
+        channels: []
+      };
+      const tempFeedChannels: FeedChannel[] = [];
+      tempFeedCategory['categoryName'] = feedCategory.categoryName;
+      tempFeedCategory['categoryId'] = feedCategory.categoryId;
+      for (const feedChannel of feedCategory.channels) {
+        if (feedChannel.feedName.includes(name) || feedChannel.feedUrl.includes(name)) {
+          tempFeedChannels.push(feedChannel);
+        }
+      }
+      if (tempFeedChannels.length >= 1) {
+        tempFeedCategory['channels'] = tempFeedChannels;
+        filteredFeedCategories.push(tempFeedCategory);
+      }
+    }
+    console.log(filteredFeedCategories);
+    return filteredFeedCategories;
+  }
+  openSubmitRssDialog() {
+    this.dialog.open(SubmitRssDialogComponent, {
+      data: { feedUrl: this.rssFeedForm.get('feedUrl')!.value }
+    });
   }
 }

@@ -12,13 +12,26 @@ import { HttpClient } from '@angular/common/http';
 export class HeadlineOptionsDialogComponent implements OnInit {
 
   filteredOptions: Observable<RestCountriesAPICountry[]>;
-  countries: RestCountriesAPICountry[];
   headlineOptForm: FormGroup;
   options: {
+    /**
+     * The API key
+     */
     apiKey?: string;
+    /**
+     * A country code
+     */
     country?: string;
-    topic?: string;
+    /**
+     * The category to fetch
+     */
+    category?: string;
+    /**
+     * The number of articles to return
+     */
+    pageSize?: number;
   };
+  categories = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'];
   constructor(
     private fb: FormBuilder,
     private http: HttpClient
@@ -27,7 +40,8 @@ export class HeadlineOptionsDialogComponent implements OnInit {
       apiKey: ['', Validators.required],
       country: ['', Validators.required],
       // country: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
-      topic: ['', Validators.required]
+      category: ['', Validators.required],
+      pageSize: [20, Validators.required]
     });
   }
 
@@ -35,11 +49,6 @@ export class HeadlineOptionsDialogComponent implements OnInit {
     if (this.options) {
       this.headlineOptForm.patchValue(this.options);
     }
-    this.http.get<RestCountriesAPICountry[]>('https://restcountries.eu/rest/v2/all')
-      .subscribe(result => {
-        this.countries = result;
-      },
-        err => console.error(err));
     setTimeout(() => {
       this.filteredOptions = this.headlineOptForm.get('country')!.valueChanges
         .pipe(

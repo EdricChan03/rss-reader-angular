@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import { FeedEntry } from '../../model/feed-entry';
 import { NewsAPITopHeadlinesArticle } from '../../model/news-api/top-headlines-article';
 

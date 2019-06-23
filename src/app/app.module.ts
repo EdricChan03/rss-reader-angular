@@ -21,7 +21,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { GuideItems } from './guide-items';
 import { GuideViewer } from './pages/guide-viewer/guide-viewer.component';
 import { GuidesList } from './pages/guide-list/guide-list.component';
-import { HomeComponent } from './home/home.component';
+import { FeedComponent } from './feed/feed.component';
 import { HttpClientModule } from '@angular/common/http';
 import { IOSComponent } from './devices/ios/ios.component';
 import { MaterialModule } from './material.module';
@@ -59,7 +59,7 @@ const PIPES = [
     AppComponent,
     FeedCardComponent,
     PIPES,
-    HomeComponent,
+    FeedComponent,
     SettingsComponent,
     TestpageComponent,
     PageNotFoundComponent,

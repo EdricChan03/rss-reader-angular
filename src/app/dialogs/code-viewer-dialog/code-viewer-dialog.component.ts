@@ -1,5 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import * as hljs from 'highlight.js';
 
 @Component({

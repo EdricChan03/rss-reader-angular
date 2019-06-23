@@ -4,7 +4,7 @@ import { GuidesList } from './pages/guide-list/guide-list.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TestpageComponent } from './testpage/testpage.component';
 import { SettingsComponent } from './settings/settings.component';
-import { HomeComponent } from './home/home.component';
+import { FeedComponent } from './feed/feed.component';
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AndroidComponent } from './devices/android/android.component';
@@ -13,11 +13,6 @@ import { ExploreComponent } from './explore/explore.component';
 import { HeadlinesComponent } from './headlines/headlines.component';
 
 const APP_ROUTES: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'settings', component: SettingsComponent },
-  { path: 'test', component: TestpageComponent },
-  { path: 'docs', component: GuidesList },
-  { path: 'doc/:docTypeId/:docId', component: GuideViewer },
   {
     path: 'devices', children: [
       { path: 'android', component: AndroidComponent },
@@ -26,9 +21,15 @@ const APP_ROUTES: Routes = [
       { path: '**', redirectTo: '/devices/android' }
     ]
   },
+  { path: 'doc/:docTypeId/:docId', component: GuideViewer },
+  { path: 'docs', component: GuidesList },
   { path: 'explore', component: ExploreComponent },
+  { path: 'feed', component: FeedComponent },
   { path: 'headlines', component: HeadlinesComponent },
-  { path: '', pathMatch: 'full', redirectTo: '/home' },
+  { path: 'home', redirectTo: '/feed' },
+  { path: 'settings', component: SettingsComponent },
+  { path: 'test', component: TestpageComponent },
+  { path: '', pathMatch: 'full', redirectTo: '/feed' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

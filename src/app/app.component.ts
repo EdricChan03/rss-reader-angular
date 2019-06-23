@@ -1,28 +1,19 @@
-import { ActionItemService } from './actionitem.service';
-import {
-  FilterOverlayComponent,
-  NotificationsOverlayComponent,
-  OnboardingOverlayComponent
-} from './overlays';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { NavigationStart, Router } from '@angular/router';
 import { Overlay, OverlayContainer } from '@angular/cdk/overlay';
-
-import { AboutDialogComponent } from './dialogs';
-import { BreakpointObserver } from '@angular/cdk/layout';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { DomSanitizer } from '@angular/platform-browser';
-import { Feed } from './model/feed';
-import { HttpClient } from '@angular/common/http';
-import { MatButton } from '@angular/material/button';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { OrderByPipe } from './pipe/orderby.pipe';
-import { OverlayService } from './overlay.service';
-import { Settings } from './model/settings';
-import { SharedService } from './shared.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { NavigationStart, Router } from '@angular/router';
+import { SwUpdate } from '@angular/service-worker';
+
+import { ActionItemService } from './actionitem.service';
+import { AboutDialogComponent } from './dialogs';
 import { environment } from '../environments/environment';
+import { Settings } from './model/settings';
+import { OverlayService } from './overlay.service';
+import { OnboardingOverlayComponent } from './overlays';
+import { SharedService } from './shared.service';
 
 @Component({
   selector: 'rss-reader',
@@ -75,9 +66,9 @@ export class AppComponent implements OnInit, OnDestroy {
   ];
   links = [
     {
-      name: 'Home',
-      url: 'home',
-      icon: 'home'
+      name: 'Feed',
+      url: 'feed',
+      icon: 'rss_feed'
     },
     {
       name: 'Headlines',
@@ -109,13 +100,12 @@ export class AppComponent implements OnInit, OnDestroy {
     private actionItemService: ActionItemService,
     private router: Router,
     private overlay: Overlay,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private swUpdate: SwUpdate
   ) {
     router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
-        if (router.url === '/home' || router.url === '/headlines') {
-          this.actionItemService.removeActionItems();
-        }
+        this.actionItemService.removeActionItems();
       }
     });
   }
@@ -141,17 +131,6 @@ export class AppComponent implements OnInit, OnDestroy {
       hasBackdrop: true
     }, true);
   }
-  /* showNotificationsOverlay() {
-    this._createNotificationsOverlay();
-  }
-  private _createNotificationsOverlay() {
-    this.overlayService.createOverlay(new ComponentPortal(NotificationsOverlayComponent), {
-      // tslint:disable-next-line:max-line-length
-      positionStrategy: this.overlayService.createBelowPosElPositionStrategy(this.notificationsBtn._elementRef, { originX: 'end', originY: 'bottom' }, { overlayX: 'end', overlayY: 'top' }),
-      hasBackdrop: true
-    }, true);
-
-  } */
   ngOnDestroy() {
     this.overlayService.destroyOverlay();
   }
@@ -186,5 +165,17 @@ export class AppComponent implements OnInit, OnDestroy {
         window.location.reload(true);
       });
     }
+    this.swUpdate.available.subscribe(event => {
+      console.log('[App] Update available: current version is', event.current, 'available version is', event.available);
+      const snackBarRef = this.shared.openSnackBar({
+        msg: 'A newer version of this app is available!',
+        action: 'Update & Refresh'
+      });
+
+      snackBarRef.onAction().subscribe(() => {
+        this.shared.activateUpdate();
+      });
+
+    });
   }
 }
