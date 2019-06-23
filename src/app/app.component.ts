@@ -20,7 +20,7 @@ import { SharedService } from './shared.service';
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit, OnDestroy {
-  @ViewChild('left') sidenav: MatSidenav;
+  @ViewChild('left', { static: true }) sidenav: MatSidenav;
   settings: Settings;
   environment = environment;
   projects = [

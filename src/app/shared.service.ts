@@ -413,7 +413,7 @@ export class PromptDialog implements OnInit {
 })
 // tslint:disable-next-line:component-class-suffix
 export class SelectionDialog implements OnInit {
-  @ViewChild('selection') selection: MatSelectionList;
+  @ViewChild('selection', { static: true }) selection: MatSelectionList;
   constructor(private dialogRef: MatDialogRef<SelectionDialog>) {
   }
   // tslint:disable-next-line:member-ordering

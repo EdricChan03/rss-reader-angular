@@ -20,7 +20,7 @@ export class ExploreComponent implements OnInit, OnDestroy {
   private newsApiSourcesEndpoint = 'https://newsapi.org/v2/sources?apiKey=1bc8e59db83a42b490cb2f6f2b604f69';
   private newsApiEverythingEndpoint = 'https://newsapi.org/v2/everything?apiKey=1bc8e59db83a42b490cb2f6f2b604f69';
   private _overlayIsOpen = false;
-  @ViewChild('filterOverlayBtn') filterOverlayBtn: MatButton;
+  @ViewChild('filterOverlayBtn', { static: true }) filterOverlayBtn: MatButton;
   constructor(
     private http: HttpClient,
     private shared: SharedService,
