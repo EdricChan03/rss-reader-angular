@@ -100,11 +100,11 @@ export class FeedCardComponent implements OnInit {
       }
     }
     if (this.feed) {
-      if (this.feed.enclosure && this.feed.enclosure.length === undefined && this.settings.showImages) {
-        if (this.feed.enclosure.link) {
-          this.replaceImg(false);
-        } else if (this.feed.enclosure.thumbnail || this.feed.thumbnail) {
+      if ((this.feed.thumbnail || (this.feed.enclosure && this.feed.enclosure.length === undefined)) && this.settings.showImages) {
+        if (this.feed.enclosure.thumbnail || this.feed.thumbnail) {
           this.replaceImg(true);
+        } else if (this.feed.enclosure.link) {
+          this.replaceImg(false);
         }
       }
     }

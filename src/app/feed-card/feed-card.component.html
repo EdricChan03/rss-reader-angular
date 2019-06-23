@@ -18,7 +18,7 @@
         </button>
       </mat-menu>
     </mat-card-header>
-    <img mat-card-image *ngIf="headline?.urlToImage && hasImage" [src]="headline?.urlToImage">
+    <img mat-card-image *ngIf="headline?.urlToImage && hasImage" [src]="headline?.urlToImage" alt="Headline thumbnail">
     <mat-card-title class="feed-title" *ngIf="headline?.title">{{headline?.title}}</mat-card-title>
     <mat-card-content *ngIf="headline?.description || headline?.content">
       <p *ngIf="headline?.description">{{headline?.description | slice:0:300}}&#8230;</p>
@@ -52,7 +52,7 @@
         </button>
       </mat-menu>
     </mat-card-header>
-    <img mat-card-image *ngIf="feed?.thumbnail && hasImage" [src]="imageSrc">
+    <img mat-card-image *ngIf="(feed?.thumbnail || feed?.enclosure?.thumbnail) && hasImage" [src]="imageSrc" alt="Feed thumbnail">
     <mat-card-title class="feed-title">{{feed?.title}}</mat-card-title>
     <mat-card-content>
       <p>{{feed?.description | stripHtmlTags | slice:0:300}}&#8230;</p>
