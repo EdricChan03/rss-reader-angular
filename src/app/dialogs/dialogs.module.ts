@@ -11,6 +11,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatRippleModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
@@ -46,6 +47,7 @@ const DIALOG_MATERIAL_MODULES = [
   MatIconModule,
   MatInputModule,
   MatMenuModule,
+  MatRippleModule,
   MatSelectModule,
   MatTooltipModule
 ];
