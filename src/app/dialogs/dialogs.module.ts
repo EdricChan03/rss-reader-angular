@@ -20,7 +20,6 @@ import { AboutDialogComponent } from './about-dialog/about-dialog.component';
 import { CodeViewerDialogComponent } from './code-viewer-dialog/code-viewer-dialog.component';
 import { FeedDialogComponent } from './feed-dialog/feed-dialog.component';
 import { HeadlineOptionsDialogComponent } from './headline-options-dialog/headline-options-dialog.component';
-import { KeyboardShortcutsDialogComponent } from './keyboard-shortcuts-dialog/keyboard-shortcuts-dialog.component';
 import { RSSChannelInfoDialogComponent } from './rss-channel-info-dialog/rss-channel-info-dialog.component';
 import { ShareDialogComponent } from './share-dialog/share-dialog.component';
 import { SubmitRssDialogComponent } from './submit-rss-dialog/submit-rss-dialog.component';
@@ -31,7 +30,6 @@ export const DIALOGS = [
   CodeViewerDialogComponent,
   FeedDialogComponent,
   HeadlineOptionsDialogComponent,
-  KeyboardShortcutsDialogComponent,
   RSSChannelInfoDialogComponent,
   ShareDialogComponent,
   SubmitRssDialogComponent

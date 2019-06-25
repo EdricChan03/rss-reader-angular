@@ -1,23 +1,23 @@
 import { R, SHIFT, SLASH } from '@angular/cdk/keycodes';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { ActionItemService } from '../actionitem.service';
 import {
   FeedDialogComponent,
   RSSChannelInfoDialogComponent,
-  KeyboardShortcutsDialogComponent
 } from '../dialogs';
 import { FeedEntry } from '../model/feed-entry';
 import { SharedService } from '../shared.service';
-import { KeyboardShortcut } from '../model/keyboard-shortcut';
+import { HotkeysService } from '../hotkeys/hotkeys.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html'
 })
-export class FeedComponent implements OnInit {
+export class FeedComponent implements OnDestroy, OnInit {
 
   /**
   * Whether it's the first time that the user has used the website. (Can be reset by clearing `localStorage`)
@@ -45,21 +45,28 @@ export class FeedComponent implements OnInit {
    */
   rssToJsonServiceBaseUrl = 'https://api.rss2json.com/v1/api.json';
   // See https://stackoverflow.com/a/12444641 for more info
-  keyMaps = {};
+  // keyMaps = {};
+  shortcutHandlers: Subscription[] = [];
   constructor(
     private dialog: MatDialog,
     private http: HttpClient,
     private shared: SharedService,
-    private actionItemService: ActionItemService
+    private actionItemService: ActionItemService,
+    private hotkeys: HotkeysService
   ) {
-    shared.keyDownUpEvents$.subscribe((event: KeyboardEvent) => {
+    /* shared.keyDownUpEvents$.subscribe((event: KeyboardEvent) => {
       this.keyMaps[event.keyCode] = event.type === 'keydown';
       if (!['INPUT', 'TEXTAREA'].includes(event.srcElement.nodeName)) {
         this.keyboardShortcutHandler();
       }
-    });
+    }); */
+    const refreshShortcut = hotkeys.addShortcut({ keys: 'r', description: 'Refresh the feed' })
+      .subscribe(() => {
+        this.refreshFeed();
+      });
+    this.shortcutHandlers.push(refreshShortcut);
   }
-  keyboardShortcutHandler() {
+  /* keyboardShortcutHandler() {
     if (this.keyMaps[SHIFT] && this.keyMaps[SLASH]) {
       this.openKeyboardShortcutDialog();
       this.keyMaps = {};
@@ -67,8 +74,8 @@ export class FeedComponent implements OnInit {
       this.refreshFeed();
       this.keyMaps = {};
     }
-  }
-  openKeyboardShortcutDialog() {
+  } */
+  /* openKeyboardShortcutDialog() {
     if (this.dialog.getDialogById('keyboard-shortcut-dialog') === undefined) {
       this.dialog.open<KeyboardShortcutsDialogComponent, KeyboardShortcut[]>(KeyboardShortcutsDialogComponent, {
         data: [
@@ -86,7 +93,7 @@ export class FeedComponent implements OnInit {
     } else {
       this.dialog.getDialogById('keyboard-shortcut-dialog').close();
     }
-  }
+  } */
   openRSSInfoDialog() {
     this.dialog.open(RSSChannelInfoDialogComponent);
   }
@@ -174,7 +181,7 @@ export class FeedComponent implements OnInit {
   }
   ngOnInit() {
     if (window.localStorage.getItem('apiKey') && window.localStorage.getItem('feedUrl')) {
-      this.feedOptions = <FeedOptions> JSON.parse(window.localStorage.getItem('feedOptions'));
+      this.feedOptions = <FeedOptions>JSON.parse(window.localStorage.getItem('feedOptions'));
       if (window.localStorage.getItem('apiKey')) {
         this.feedOptions['apiKey'] = window.localStorage.getItem('apiKey');
       }
@@ -186,7 +193,7 @@ export class FeedComponent implements OnInit {
       window.localStorage.removeItem('feedUrl');
     } else {
       if (window.localStorage.getItem('feedOptions')) {
-        this.feedOptions = <FeedOptions> JSON.parse(window.localStorage.getItem('feedOptions'));
+        this.feedOptions = <FeedOptions>JSON.parse(window.localStorage.getItem('feedOptions'));
       } else {
         this.selectRss();
       }
@@ -206,6 +213,14 @@ export class FeedComponent implements OnInit {
         this.refreshFeed();
       }
     });
+  }
+
+  ngOnDestroy() {
+    if (this.shortcutHandlers.length > 0) {
+      this.shortcutHandlers.forEach((handler) => {
+        handler.unsubscribe();
+      });
+    }
   }
 
 }

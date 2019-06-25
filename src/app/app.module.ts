@@ -43,6 +43,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { HeadlinesComponent } from './headlines/headlines.component';
+import { HotkeysModule } from './hotkeys/hotkeys.module';
 
 const OVERLAYS = [
   FilterOverlayComponent,
@@ -89,7 +90,8 @@ const PIPES = [
     // AngularFireModule.initializeApp(environment.firebase),
     // AngularFirestoreModule.enablePersistence(),
     // AngularFireAuthModule,
-    ActionItemsModule
+    ActionItemsModule,
+    HotkeysModule
   ],
   bootstrap: [AppComponent],
   providers: [
