@@ -1,4 +1,4 @@
-import { task, src, dest } from 'gulp';
+import { dest, task, parallel, src } from 'gulp';
 import * as path from 'path';
 
 const markdown = require('gulp-markdown');
@@ -24,7 +24,7 @@ const PRE_PATTERN = /(<pre[^>]*)/g;
 const START_COMMENT_PATTERN = /(<!-- start-enclose-content -->)/g;
 const END_COMMENT_PATTERN = /(<!-- end-enclose-content -->)/g;
 
-task('docs', ['docs-guides', 'docs-dev', 'docs-img']);
+task('docs', parallel(['docs-guides', 'docs-dev', 'docs-img']));
 
 task('docs-guides', () => {
   return src('docs/guides/**/!(README.md)')
