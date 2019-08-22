@@ -37,7 +37,8 @@
     "highlight.js": "^9.13.1",
     "markdown-to-html": "0.0.13",
     "rxjs": "^6.5.2",
-    "web-animations-js": "github:angular/web-animations-js#release_pr208",
+    "tslib": "^1.10.0",
+    "web-animations-js": "^2.3.2",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
