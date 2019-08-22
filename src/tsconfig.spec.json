@@ -1,23 +1,13 @@
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "downlevelIteration": true,
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "lib": [
-      "es2016",
-      "dom"
-    ],
     "outDir": "../out-tsc/spec",
-    "module": "esnext",
-    "target": "es2015",
-    "baseUrl": "",
+    "baseUrl": "./",
+    "module": "commonjs",
+    "target": "es5",
     "types": [
       "jasmine",
-      "node",
-      "hammerjs"
+      "node"
     ]
   },
   "files": [
