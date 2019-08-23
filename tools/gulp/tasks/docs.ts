@@ -24,24 +24,23 @@ const PRE_PATTERN = /(<pre[^>]*)/g;
 const START_COMMENT_PATTERN = /(<!-- start-enclose-content -->)/g;
 const END_COMMENT_PATTERN = /(<!-- end-enclose-content -->)/g;
 
-task('docs', parallel(['docs-guides', 'docs-dev', 'docs-img']));
 
 task('docs-guides', () => {
   return src('docs/guides/**/!(README.md)')
     .pipe(markdown(markdownOptions))
     .pipe(transform('utf8', transformMarkdownFiles))
     // tslint:disable-next-line:no-shadowed-variable
-    .pipe(rename(function(path: rename.ParsedPath) {
+    .pipe(rename(function (path: rename.ParsedPath) {
       path.extname = '.html';
     }))
     .pipe(dest('src/assets/docs/guides'));
-  });
-  task('docs-dev', () => {
-    return src('docs/dev/**/!(README.md)')
+});
+task('docs-dev', () => {
+  return src('docs/dev/**/!(README.md)')
     .pipe(markdown(markdownOptions))
     .pipe(transform('utf8', transformMarkdownFiles))
     // tslint:disable-next-line:no-shadowed-variable
-    .pipe(rename(function(path: rename.ParsedPath) {
+    .pipe(rename(function (path: rename.ParsedPath) {
       path.extname = '.html';
     }))
     .pipe(dest('src/assets/docs/dev'));
@@ -50,6 +49,8 @@ task('docs-img', () => {
   return src('docs/img/**')
     .pipe(dest('src/assets/docs/img'));
 });
+
+task('docs', parallel(['docs-guides', 'docs-dev', 'docs-img']));
 
 /**
  * Transforms the Markdown files
