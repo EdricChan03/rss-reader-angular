@@ -194,7 +194,7 @@ export class ActionItemToggle extends ActionItem {
 @Component({
   selector: 'app-action-items',
   template: `
-	<span id="more-btns" *ngFor="let actionItem of actionItems">
+	<ng-container *ngFor="let actionItem of actionItems">
     <button
     mat-icon-button
     *ngIf="actionItem.showAsAction && actionItem.href == null"
@@ -212,12 +212,12 @@ export class ActionItemToggle extends ActionItem {
       [matTooltip]="actionItem.title">
 			<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
 		</a>
-	</span>
+	</ng-container>
 	<button mat-icon-button *ngIf="showMoreMenu" [matMenuTriggerFor]="moreMenu">
 		<mat-icon>more_vert</mat-icon>
 	</button>
 	<mat-menu #moreMenu="matMenu">
-		<span *ngFor="let actionItem of actionItems">
+		<ng-container *ngFor="let actionItem of actionItems">
 			<button mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.href == null" (click)="actionItem.onClickListener()">
 				<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
 				{{actionItem.title}}
@@ -230,7 +230,7 @@ export class ActionItemToggle extends ActionItem {
 				<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
 				{{actionItem.title}}
 			</a>
-		</span>
+		</ng-container>
 	</mat-menu>
 				`
 })
