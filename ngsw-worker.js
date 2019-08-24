@@ -15,6 +15,12 @@
      * from the global scope.
      */
     class Adapter {
+        constructor(scope) {
+            // Suffixing `ngsw` with the baseHref to avoid clash of cache names
+            // for SWs with different scopes on the same domain.
+            const baseHref = this.parseUrl(scope.registration.scope).path;
+            this.cacheNamePrefix = 'ngsw:' + baseHref;
+        }
         /**
          * Wrapper around the `Request` constructor.
          */
@@ -41,8 +47,10 @@
          * Extract the pathname of a URL.
          */
         parseUrl(url, relativeTo) {
-            const parsed = new URL(url, relativeTo);
-            return { origin: parsed.origin, path: parsed.pathname };
+            // Workaround a Safari bug, see
+            // https://github.com/angular/angular/issues/31061#issuecomment-503637978
+            const parsed = !relativeTo ? new URL(url) : new URL(url, relativeTo);
+            return { origin: parsed.origin, path: parsed.pathname, search: parsed.search };
         }
         /**
          * Wait for a given amount of time before completing a Promise.
@@ -90,14 +98,14 @@
             if (this.tables.has(name)) {
                 this.tables.delete(name);
             }
-            return this.scope.caches.delete(`ngsw:db:${name}`);
+            return this.scope.caches.delete(`${this.adapter.cacheNamePrefix}:db:${name}`);
         }
         list() {
-            return this.scope.caches.keys().then(keys => keys.filter(key => key.startsWith('ngsw:db:')));
+            return this.scope.caches.keys().then(keys => keys.filter(key => key.startsWith(`${this.adapter.cacheNamePrefix}:db:`)));
         }
         open(name) {
             if (!this.tables.has(name)) {
-                const table = this.scope.caches.open(`ngsw:db:${name}`)
+                const table = this.scope.caches.open(`${this.adapter.cacheNamePrefix}:db:${name}`)
                     .then(cache => new CacheTable(name, cache, this.adapter));
                 this.tables.set(name, table);
             }
@@ -156,6 +164,14 @@
         constructor() {
             super(...arguments);
             this.isCritical = true;
+        }
+    }
+    function errorToString(error) {
+        if (error instanceof Error) {
+            return `${error.message}\n${error.stack}`;
+        }
+        else {
+            return `${error}`;
         }
     }
 
@@ -342,8 +358,7 @@
             this.metadata = this.db.open(`${this.prefix}:${this.config.name}:meta`);
             // Determine the origin from the registration scope. This is used to differentiate between
             // relative and absolute URLs.
-            this.origin =
-                this.adapter.parseUrl(this.scope.registration.scope, this.scope.registration.scope).origin;
+            this.origin = this.adapter.parseUrl(this.scope.registration.scope).origin;
         }
         cacheStatus(url) {
             return __awaiter(this, void 0, void 0, function* () {
@@ -476,7 +491,7 @@
                             const metaTable = yield this.metadata;
                             ts = (yield metaTable.read(req.url)).ts;
                         }
-                        catch (e) {
+                        catch (_a) {
                             // Otherwise, look for a Date header.
                             const date = res.headers.get('Date');
                             if (date === null) {
@@ -489,7 +504,7 @@
                         const age = this.adapter.time - ts;
                         return age < 0 || age > maxAge;
                     }
-                    catch (e) {
+                    catch (_b) {
                         // Assume stale.
                         return true;
                     }
@@ -502,7 +517,7 @@
                         // time, if it parses correctly.
                         return this.adapter.time > Date.parse(expiresStr);
                     }
-                    catch (e) {
+                    catch (_c) {
                         // The expiration date failed to parse, so revalidate as a precaution.
                         return true;
                     }
@@ -531,7 +546,7 @@
                 try {
                     metadata = yield metaTable.read(url);
                 }
-                catch (e) {
+                catch (_a) {
                     // Do nothing, not found. This shouldn't happen, but it can be handled.
                 }
                 // Return both the response and any available metadata.
@@ -580,23 +595,32 @@
                     if (!res.ok) {
                         throw new Error(`Response not Ok (fetchAndCacheOnce): request for ${req.url} returned response ${res.status} ${res.statusText}`);
                     }
-                    // This response is safe to cache (as long as it's cloned). Wait until the cache operation
-                    // is complete.
-                    const cache = yield this.scope.caches.open(`${this.prefix}:${this.config.name}:cache`);
-                    yield cache.put(req, res.clone());
-                    // If the request is not hashed, update its metadata, especially the timestamp. This is needed
-                    // for future determination of whether this cached response is stale or not.
-                    if (!this.hashes.has(req.url)) {
-                        // Metadata is tracked for requests that are unhashed.
-                        const meta = { ts: this.adapter.time, used };
-                        const metaTable = yield this.metadata;
-                        yield metaTable.write(req.url, meta);
+                    try {
+                        // This response is safe to cache (as long as it's cloned). Wait until the cache operation
+                        // is complete.
+                        const cache = yield this.scope.caches.open(`${this.prefix}:${this.config.name}:cache`);
+                        yield cache.put(req, res.clone());
+                        // If the request is not hashed, update its metadata, especially the timestamp. This is
+                        // needed for future determination of whether this cached response is stale or not.
+                        if (!this.hashes.has(req.url)) {
+                            // Metadata is tracked for requests that are unhashed.
+                            const meta = { ts: this.adapter.time, used };
+                            const metaTable = yield this.metadata;
+                            yield metaTable.write(req.url, meta);
+                        }
+                        return res;
                     }
-                    return res;
+                    catch (err) {
+                        // Among other cases, this can happen when the user clears all data through the DevTools,
+                        // but the SW is still running and serving another tab. In that case, trying to write to the
+                        // caches throws an `Entry was not found` error.
+                        // If this happens the SW can no longer work correctly. This situation is unrecoverable.
+                        throw new SwCriticalError(`Failed to update the caches for request to '${req.url}' (fetchAndCacheOnce): ${errorToString(err)}`);
+                    }
                 }
                 finally {
                     // Finally, it can be removed from `inFlightRequests`. This might result in a double-remove
-                    // if some other  chain was already making this request too, but that won't hurt anything.
+                    // if some other chain was already making this request too, but that won't hurt anything.
                     this.inFlightRequests.delete(req.url);
                 }
             });
@@ -724,7 +748,7 @@
                 try {
                     return yield this.scope.fetch(req);
                 }
-                catch (err) {
+                catch (_a) {
                     return this.adapter.newResponse('', {
                         status: 504,
                         statusText: 'Gateway Timeout',
@@ -1008,7 +1032,7 @@
                     try {
                         this._lru = new LruList(yield table.read('lru'));
                     }
-                    catch (e) {
+                    catch (_a) {
                         this._lru = new LruList();
                     }
                 }
@@ -1097,8 +1121,10 @@
                     // Cache the network response eventually.
                     ctx.waitUntil(this.safeCacheResponse(req, networkFetch));
                 }
-                // The request completed in time, so cache it inline with the response flow.
-                yield this.cacheResponse(req, res, lru);
+                else {
+                    // The request completed in time, so cache it inline with the response flow.
+                    yield this.cacheResponse(req, res, lru);
+                }
                 return res;
             });
         }
@@ -1111,12 +1137,12 @@
                 try {
                     res = yield timeoutFetch;
                 }
-                catch (e) {
+                catch (_a) {
                     res = undefined;
                 }
                 // If the network fetch times out or errors, fall back on the cache.
                 if (res === undefined) {
-                    ctx.waitUntil(this.safeCacheResponse(req, networkFetch));
+                    ctx.waitUntil(this.safeCacheResponse(req, networkFetch, true));
                     // Ignore the age, the network response will be cached anyway due to the
                     // behavior of freshness.
                     const fromCache = yield this.loadFromCache(req, lru);
@@ -1131,9 +1157,7 @@
                     return res;
                 }
                 // No response in the cache. No choice but to fall back on the full network fetch.
-                res = yield networkFetch;
-                yield this.cacheResponse(req, res, lru, true);
-                return res;
+                return networkFetch;
             });
         }
         networkFetchWithTimeout(req) {
@@ -1145,7 +1169,7 @@
                     try {
                         return yield networkFetch;
                     }
-                    catch (err) {
+                    catch (_a) {
                         return this.adapter.newResponse(null, {
                             status: 504,
                             statusText: 'Gateway Timeout',
@@ -1156,7 +1180,7 @@
                     try {
                         return yield networkFetch;
                     }
-                    catch (err) {
+                    catch (_b) {
                         return undefined;
                     }
                 }))();
@@ -1172,12 +1196,12 @@
                 return [networkFetch, networkFetch];
             }
         }
-        safeCacheResponse(req, res) {
+        safeCacheResponse(req, res, okToCacheOpaque) {
             return __awaiter$1(this, void 0, void 0, function* () {
                 try {
-                    yield this.cacheResponse(req, yield res, yield this.lru());
+                    yield this.cacheResponse(req, yield res, yield this.lru(), okToCacheOpaque);
                 }
-                catch (e) {
+                catch (_a) {
                     // TODO: handle this error somehow?
                 }
             });
@@ -1201,7 +1225,7 @@
                         }
                         // Otherwise, or if there was an error, assume the response is expired, and evict it.
                     }
-                    catch (e) {
+                    catch (_a) {
                         // Some error getting the age for the response. Assume it's expired.
                     }
                     lru.remove(req.url);
@@ -1222,7 +1246,7 @@
         cacheResponse(req, res, lru, okToCacheOpaque = false) {
             return __awaiter$1(this, void 0, void 0, function* () {
                 // Only cache successful responses.
-                if (!res.ok || (okToCacheOpaque && res.type === 'opaque')) {
+                if (!(res.ok || (okToCacheOpaque && res.type === 'opaque'))) {
                     return;
                 }
                 // If caching this response would make the cache exceed its maximum size, evict something
@@ -1283,7 +1307,7 @@
                 try {
                     return this.scope.fetch(req);
                 }
-                catch (err) {
+                catch (_a) {
                     return this.adapter.newResponse(null, {
                         status: 504,
                         statusText: 'Gateway Timeout',
@@ -1308,6 +1332,11 @@
             step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
     };
+    const BACKWARDS_COMPATIBILITY_NAVIGATION_URLS = [
+        { positive: true, regex: '^/.*$' },
+        { positive: false, regex: '^/.*\\.[^/]*$' },
+        { positive: false, regex: '^/.*__' },
+    ];
     /**
      * A specific version of the application, identified by a unique manifest
      * as determined by its hash.
@@ -1342,7 +1371,7 @@
             this.assetGroups = (manifest.assetGroups || []).map(config => {
                 // Every asset group has a cache that's prefixed by the manifest hash and the name of the
                 // group.
-                const prefix = `ngsw:${this.manifestHash}:assets`;
+                const prefix = `${adapter.cacheNamePrefix}:${this.manifestHash}:assets`;
                 // Check the caching mode, which determines when resources will be fetched/updated.
                 switch (config.installMode) {
                     case 'prefetch':
@@ -1353,7 +1382,10 @@
             });
             // Process each `DataGroup` declared in the manifest.
             this.dataGroups = (manifest.dataGroups || [])
-                .map(config => new DataGroup(this.scope, this.adapter, config, this.database, `ngsw:${config.version}:data`));
+                .map(config => new DataGroup(this.scope, this.adapter, config, this.database, `${adapter.cacheNamePrefix}:${config.version}:data`));
+            // This keeps backwards compatibility with app versions without navigation urls.
+            // Fix: https://github.com/angular/angular/issues/27209
+            manifest.navigationUrls = manifest.navigationUrls || BACKWARDS_COMPATIBILITY_NAVIGATION_URLS;
             // Create `include`/`exclude` RegExps for the `navigationUrls` declared in the manifest.
             const includeUrls = manifest.navigationUrls.filter(spec => spec.positive);
             const excludeUrls = manifest.navigationUrls.filter(spec => !spec.positive);
@@ -1761,8 +1793,8 @@ ${msgIdle}`, { headers: this.adapter.newHeaders({ 'Content-Type': 'text/plain' }
     const IDLE_THRESHOLD = 5000;
     const SUPPORTED_CONFIG_VERSION = 1;
     const NOTIFICATION_OPTION_NAMES = [
-        'actions', 'badge', 'body', 'dir', 'icon', 'lang', 'renotify', 'requireInteraction', 'tag',
-        'vibrate', 'data'
+        'actions', 'badge', 'body', 'data', 'dir', 'icon', 'image', 'lang', 'renotify',
+        'requireInteraction', 'silent', 'tag', 'timestamp', 'title', 'vibrate'
     ];
     var DriverReadyState;
     (function (DriverReadyState) {
@@ -1831,9 +1863,22 @@ ${msgIdle}`, { headers: this.adapter.newHeaders({ 'Content-Type': 'text/plain' }
             // The activate event is triggered when this version of the service worker is
             // first activated.
             this.scope.addEventListener('activate', (event) => {
-                // As above, it's safe to take over from existing clients immediately, since
-                // the new SW version will continue to serve the old application.
-                event.waitUntil(this.scope.clients.claim());
+                event.waitUntil((() => __awaiter$5(this, void 0, void 0, function* () {
+                    // As above, it's safe to take over from existing clients immediately, since the new SW
+                    // version will continue to serve the old application.
+                    yield this.scope.clients.claim();
+                    // Once all clients have been taken over, we can delete caches used by old versions of
+                    // `@angular/service-worker`, which are no longer needed. This can happen in the background.
+                    this.idle.schedule('activate: cleanup-old-sw-caches', () => __awaiter$5(this, void 0, void 0, function* () {
+                        try {
+                            yield this.cleanupOldSwCaches();
+                        }
+                        catch (err) {
+                            // Nothing to do - cleanup failed. Just log it.
+                            this.debugger.log(err, 'cleanupOldSwCaches @ activate: cleanup-old-sw-caches');
+                        }
+                    }));
+                }))());
                 // Rather than wait for the first fetch event, which may not arrive until
                 // the next time the application is loaded, the SW takes advantage of the
                 // activation event to schedule initialization. However, if this were run
@@ -1852,6 +1897,7 @@ ${msgIdle}`, { headers: this.adapter.newHeaders({ 'Content-Type': 'text/plain' }
             this.scope.addEventListener('fetch', (event) => this.onFetch(event));
             this.scope.addEventListener('message', (event) => this.onMessage(event));
             this.scope.addEventListener('push', (event) => this.onPush(event));
+            this.scope.addEventListener('notificationclick', (event) => this.onClick(event));
             // The debugger generates debug pages in response to debugging requests.
             this.debugger = new DebugHandler(this, this.adapter);
             // The IdleScheduler will execute idle tasks after a given delay.
@@ -1865,10 +1911,14 @@ ${msgIdle}`, { headers: this.adapter.newHeaders({ 'Content-Type': 'text/plain' }
          */
         onFetch(event) {
             const req = event.request;
+            const scopeUrl = this.scope.registration.scope;
+            const requestUrlObj = this.adapter.parseUrl(req.url, scopeUrl);
+            if (req.headers.has('ngsw-bypass') || /[?&]ngsw-bypass(?:[=&]|$)/i.test(requestUrlObj.search)) {
+                return;
+            }
             // The only thing that is served unconditionally is the debug page.
-            if (this.adapter.parseUrl(req.url, this.scope.registration.scope).path === '/ngsw/state') {
-                // Allow the debugger to handle the request, but don't affect SW state in any
-                // other way.
+            if (requestUrlObj.path === '/ngsw/state') {
+                // Allow the debugger to handle the request, but don't affect SW state in any other way.
                 event.respondWith(this.debugger.handleFetch(req));
                 return;
             }
@@ -1881,6 +1931,15 @@ ${msgIdle}`, { headers: this.adapter.newHeaders({ 'Content-Type': 'text/plain' }
                 // Even though the worker is in safe mode, idle tasks still need to happen so
                 // things like update checks, etc. can take place.
                 event.waitUntil(this.idle.trigger());
+                return;
+            }
+            // Although "passive mixed content" (like images) only produces a warning without a
+            // ServiceWorker, fetching it via a ServiceWorker results in an error. Let such requests be
+            // handled by the browser, since handling with the ServiceWorker would fail anyway.
+            // See https://github.com/angular/angular/issues/23012#issuecomment-376430187 for more details.
+            if (requestUrlObj.origin.startsWith('http:') && scopeUrl.startsWith('https:')) {
+                // Still, log the incident for debugging purposes.
+                this.debugger.log(`Ignoring passive mixed content request: Driver.fetch(${req.url})`);
                 return;
             }
             // When opening DevTools in Chrome, a request is made for the current URL (and possibly related
@@ -1949,6 +2008,10 @@ ${msgIdle}`, { headers: this.adapter.newHeaders({ 'Content-Type': 'text/plain' }
             // Handle the push and keep the SW alive until it's handled.
             msg.waitUntil(this.handlePush(msg.data.json()));
         }
+        onClick(event) {
+            // Handle the click event and keep the SW alive until it's handled.
+            event.waitUntil(this.handleClick(event.notification, event.action));
+        }
         handleMessage(msg, from) {
             return __awaiter$5(this, void 0, void 0, function* () {
                 if (isMsgCheckForUpdates(msg)) {
@@ -1974,6 +2037,20 @@ ${msgIdle}`, { headers: this.adapter.newHeaders({ 'Content-Type': 'text/plain' }
                 NOTIFICATION_OPTION_NAMES.filter(name => desc.hasOwnProperty(name))
                     .forEach(name => options[name] = desc[name]);
                 yield this.scope.registration.showNotification(desc['title'], options);
+            });
+        }
+        handleClick(notification, action) {
+            return __awaiter$5(this, void 0, void 0, function* () {
+                notification.close();
+                const options = {};
+                // The filter uses `name in notification` because the properties are on the prototype so
+                // hasOwnProperty does not work here
+                NOTIFICATION_OPTION_NAMES.filter(name => name in notification)
+                    .forEach(name => options[name] = notification[name]);
+                yield this.broadcast({
+                    type: 'NOTIFICATION_CLICK',
+                    data: { action, notification: options },
+                });
             });
         }
         reportStatus(client, promise, nonce) {
@@ -2307,7 +2384,7 @@ ${msgIdle}`, { headers: this.adapter.newHeaders({ 'Content-Type': 'text/plain' }
         deleteAllCaches() {
             return __awaiter$5(this, void 0, void 0, function* () {
                 yield (yield this.scope.caches.keys())
-                    .filter(key => key.startsWith('ngsw:'))
+                    .filter(key => key.startsWith(`${this.adapter.cacheNamePrefix}:`))
                     .reduce((previous, key) => __awaiter$5(this, void 0, void 0, function* () {
                     yield Promise.all([
                         previous,
@@ -2356,7 +2433,7 @@ ${msgIdle}`, { headers: this.adapter.newHeaders({ 'Content-Type': 'text/plain' }
                     // network, but caches continue to be valid for previous versions. This is
                     // unfortunate but unavoidable.
                     this.state = DriverReadyState.EXISTING_CLIENTS_ONLY;
-                    this.stateMessage = `Degraded due to failed initialization: ${errorToString(err)}`;
+                    this.stateMessage = `Degraded due to: ${errorToString(err)}`;
                     // Cancel the binding for these clients.
                     Array.from(this.clientVersionMap.keys())
                         .forEach(clientId => this.clientVersionMap.delete(clientId));
@@ -2370,7 +2447,14 @@ ${msgIdle}`, { headers: this.adapter.newHeaders({ 'Content-Type': 'text/plain' }
                     // Push the affected clients onto the latest version.
                     affectedClients.forEach(clientId => this.clientVersionMap.set(clientId, this.latestHash));
                 }
-                yield this.sync();
+                try {
+                    yield this.sync();
+                }
+                catch (err2) {
+                    // We are already in a bad state. No need to make things worse.
+                    // Just log the error and move on.
+                    this.debugger.log(err2, `Driver.versionFailed(${err.message || err})`);
+                }
             });
         }
         setupUpdate(manifest, hash) {
@@ -2488,6 +2572,18 @@ ${msgIdle}`, { headers: this.adapter.newHeaders({ 'Content-Type': 'text/plain' }
                 }), Promise.resolve());
                 // Commit all the changes to the saved state.
                 yield this.sync();
+            });
+        }
+        /**
+         * Delete caches that were used by older versions of `@angular/service-worker` to avoid running
+         * into storage quota limitations imposed by browsers.
+         * (Since at this point the SW has claimed all clients, it is safe to remove those caches.)
+         */
+        cleanupOldSwCaches() {
+            return __awaiter$5(this, void 0, void 0, function* () {
+                const cacheNames = yield this.scope.caches.keys();
+                const oldSwCacheNames = cacheNames.filter(name => /^ngsw:(?!\/)/.test(name));
+                yield Promise.all(oldSwCacheNames.map(name => this.scope.caches.delete(name)));
             });
         }
         /**
@@ -2622,14 +2718,6 @@ ${msgIdle}`, { headers: this.adapter.newHeaders({ 'Content-Type': 'text/plain' }
             });
         }
     }
-    function errorToString(error) {
-        if (error instanceof Error) {
-            return `${error.message}\n${error.stack}`;
-        }
-        else {
-            return `${error}`;
-        }
-    }
 
     /**
      * @license
@@ -2639,7 +2727,7 @@ ${msgIdle}`, { headers: this.adapter.newHeaders({ 'Content-Type': 'text/plain' }
      * found in the LICENSE file at https://angular.io/license
      */
     const scope = self;
-    const adapter = new Adapter();
+    const adapter = new Adapter(scope);
     const driver = new Driver(scope, adapter, new CacheDatabase(scope, adapter));
 
 }());
