@@ -1,7 +1,9 @@
 import { OverlayService } from '../../overlay.service';
 import { Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { trigger, style, animate, transition, state } from '@angular/animations';
+import { HotkeysService } from 'app/hotkeys/hotkeys.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-onboarding-overlay',
@@ -17,7 +19,7 @@ import { trigger, style, animate, transition, state } from '@angular/animations'
     )
   ]
 })
-export class OnboardingOverlayComponent {
+export class OnboardingOverlayComponent implements OnDestroy {
   index: 0 | 1 | 2 | 3 = 0;
   content = [
     {
@@ -39,10 +41,29 @@ export class OnboardingOverlayComponent {
       imgSrc: 'assets/img/Explore News Sources.png'
     }];
 
+  shortcutHandlers: Subscription[] = []
+
   constructor(
     private router: Router,
-    private overlayService: OverlayService
-  ) { }
+    private overlayService: OverlayService,
+    private hotkeys: HotkeysService
+  ) {
+    const backShortcut = hotkeys.addShortcut({ keys: 'arrowleft',
+    description: 'Go back to previous step' }).subscribe(() => this.prevIndex());
+    this.shortcutHandlers.push(backShortcut);
+    const forwardShortcut = hotkeys.addShortcut({ keys: 'arrowright',
+    description: 'Go forward to next step' }).subscribe(() => this.nextIndex());
+    this.shortcutHandlers.push(forwardShortcut);
+  }
+
+  ngOnDestroy() {
+    if (this.shortcutHandlers.length > 0) {
+      this.shortcutHandlers.forEach((handler) => {
+        handler.unsubscribe();
+      });
+      this.shortcutHandlers = [];
+    }
+  }
   prevIndex() {
     if (this.index !== 0) {
       this.index--;
