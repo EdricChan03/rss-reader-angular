@@ -13,5 +13,7 @@ export const environment = {
     projectId: "rss-reader-a5b4b",
     storageBucket: "",
     messagingSenderId: "870397667989"
-  }
+  },
+  /** The current version of the app. */
+  latestVersion: '1.5.0'
 };
