@@ -1,0 +1,28 @@
+<div class="app-content">
+  <h1 id="current-version">Current version: {{ releaseNotes.latestVersion }}</h1>
+
+  <p><em><a routerLink="." fragment="version-{{ releaseNotes.latestVersion }}">Jump to release notes</a></em></p>
+  <hr>
+
+  <h1 id="release-notes" *ngIf="versions?.length > 0">Release notes</h1>
+  <ng-container *ngIf="versions; else: noReleaseNotes">
+    <ng-container *ngFor="let version of versions">
+      <h2 id="version-{{ version }}">Version {{ version }}</h2>
+      <ng-container *ngIf="getReleaseNote(version) as releaseNote">
+        <ng-container *ngIf="isArray(releaseNote.summary)">
+          <p [innerHTML]="joinReleaseNotes(releaseNote.summary) | markdown"></p>
+        </ng-container>
+        <ng-container *ngIf="!isArray(releaseNote.summary) && isUrl(releaseNote.summary)">
+          <p>See this <a [href]="releaseNote.summary">link</a> for more info.</p>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+
+</div>
+<ng-template #noReleaseNotes>
+  <div class="center">
+    <h1 id="no-release-notes-available">No release notes available!</h1>
+    <p>Are you connected to the internet?</p>
+  </div>
+</ng-template>

@@ -90,6 +90,11 @@ export class AppComponent implements OnInit, OnDestroy {
       name: 'Settings',
       url: 'settings',
       icon: 'settings'
+    },
+    {
+      name: 'Release notes',
+      url: 'release-notes',
+      icon: 'new_releases'
     }
   ];
   constructor(

@@ -44,6 +44,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { HeadlinesComponent } from './headlines/headlines.component';
 import { HotkeysModule } from './hotkeys/hotkeys.module';
+import { ComponentsModule } from './components/components.module';
+import { MarkdownModule } from 'ngx-markdown';
 
 const OVERLAYS = [
   FilterOverlayComponent,
@@ -82,6 +84,7 @@ const PIPES = [
     FormsModule,
     FlexLayoutModule,
     HttpClientModule,
+    MarkdownModule.forRoot(),
     MaterialModule,
     SharedModule,
     AppRouting,
@@ -91,7 +94,8 @@ const PIPES = [
     // AngularFirestoreModule.enablePersistence(),
     // AngularFireAuthModule,
     ActionItemsModule,
-    HotkeysModule
+    HotkeysModule,
+    ComponentsModule
   ],
   bootstrap: [AppComponent],
   providers: [

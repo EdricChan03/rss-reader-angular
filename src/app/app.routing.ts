@@ -11,6 +11,7 @@ import { AndroidComponent } from './devices/android/android.component';
 import { IOSComponent } from './devices/ios/ios.component';
 import { ExploreComponent } from './explore/explore.component';
 import { HeadlinesComponent } from './headlines/headlines.component';
+import { ReleaseNotesComponent } from './components/release-notes/release-notes.component';
 
 const APP_ROUTES: Routes = [
   {
@@ -27,6 +28,7 @@ const APP_ROUTES: Routes = [
   { path: 'feed', component: FeedComponent },
   { path: 'headlines', component: HeadlinesComponent },
   { path: 'home', redirectTo: '/feed' },
+  { path: 'release-notes', component: ReleaseNotesComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'test', component: TestpageComponent },
   { path: '', pathMatch: 'full', redirectTo: '/feed' },
