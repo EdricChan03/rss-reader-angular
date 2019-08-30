@@ -25,8 +25,10 @@ export class OnboardingOverlayComponent {
       imgSrc: ''
     },
     {
-      content: 'Multiple news sources. One reader.',
-      imgSrc: 'assets/img/News Article.png'
+      // content: 'Multiple news sources. One reader.',
+      content: 'Easier reading of articles in a card format.',
+      // imgSrc: 'assets/img/News Article.png'
+      imgSrc: 'assets/onboarding/articles.svg'
     },
     {
       content: 'Customizable. Tons of options.',
