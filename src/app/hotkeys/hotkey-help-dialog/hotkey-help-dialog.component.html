@@ -10,7 +10,10 @@
     <tr *ngFor="let keys of hotkeys">
       <td>{{ keys[1] }}</td>
       <td class="text-right">
-        <kbd>{{ keys[0] }}</kbd>
+        <ng-container *ngFor="let shortcut of getDisplayedShortcut(keys[0]); last as last">
+          <kbd>{{ shortcut }}</kbd>
+          <span *ngIf="!last">&nbsp;+&nbsp;</span>
+        </ng-container>
       </td>
     </tr>
   </tbody>
