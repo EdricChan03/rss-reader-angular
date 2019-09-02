@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
 })
 export class AboutDialogComponent {
 
-  latestVersion = environment.latestVersion;
+  latestVersion = environment.latestVersion.full;
 
   constructor(
     private dialog: MatDialog,
