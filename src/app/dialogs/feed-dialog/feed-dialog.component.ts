@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 import { FeedCategory } from '../../model/feed-category';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 // import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Feed } from '../../model/feed';
 import { SubmitRssDialogComponent } from '../submit-rss-dialog/submit-rss-dialog.component';
-import { FeedChannel } from 'app/model/feed-channel';
+import { FeedChannel } from '../../model/feed-channel';
+import { feedUrls } from '../../../assets/feedurls.json';
 
 @Component({
   selector: 'app-feed-dialog',
@@ -20,7 +20,7 @@ export class FeedDialogComponent implements OnInit {
    * The list of feeds
    * Available at {@link `/assets/feedurls.json`}
    */
-  feeds: FeedCategory[];
+  feeds: FeedCategory[] = feedUrls;
   /**
    * The feed URL channel for the publishing
    */
@@ -32,7 +32,6 @@ export class FeedDialogComponent implements OnInit {
   // feedData: AngularFirestoreDocument<FeedCategory>;
   constructor(
     private dialogRef: MatDialogRef<FeedDialogComponent>,
-    private http: HttpClient,
     private fb: FormBuilder,
     private dialog: MatDialog
   ) {
@@ -42,23 +41,14 @@ export class FeedDialogComponent implements OnInit {
       apiKey: ['', [Validators.required, Validators.maxLength(40), Validators.minLength(40)]],
       amount: [30, Validators.required]
     });
+    this.filteredOptions = this.rssFeedForm.get('feedUrl').valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this.filter(value))
+      );
   }
   ngOnInit() {
-    this.http.get<Feed>('assets/feedurls.json')
-      .subscribe(result => {
-        console.log(result);
-        console.log(result.feedUrls);
-        this.feeds = result.feedUrls;
-      },
-        err => console.error(err));
     // this.feedData = this.afFs.doc('data/feed');
-    setTimeout(() => {
-      this.filteredOptions = this.rssFeedForm.get('feedUrl').valueChanges
-        .pipe(
-          startWith(''),
-          map(value => this.filter(value))
-        );
-    });
     if (window.localStorage.getItem('feedOptions')) {
       this.rssFeedForm.patchValue(JSON.parse(window.localStorage.getItem('feedOptions')));
     }
