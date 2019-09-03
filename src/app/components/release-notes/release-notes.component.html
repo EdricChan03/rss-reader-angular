@@ -8,6 +8,8 @@
   <ng-container *ngIf="versions; else: noReleaseNotes">
     <ng-container *ngFor="let version of versions">
       <h2 id="version-{{ version }}">Version {{ version }}</h2>
+      <p>Release date: <em>{{ getReleaseDate(version) | date:'long' }}</em></p>
+      <p>Released by: <em>{{ getReleaseAuthor(version) }}</em></p>
       <ng-container *ngIf="getReleaseNote(version) as releaseNote">
         <ng-container *ngIf="isArray(releaseNote.summary)">
           <p [innerHTML]="joinReleaseNotes(releaseNote.summary) | markdown"></p>

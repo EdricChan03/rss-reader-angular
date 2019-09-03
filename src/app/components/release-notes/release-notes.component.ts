@@ -31,6 +31,30 @@ export class ReleaseNotesComponent implements OnInit {
   }
 
   /**
+   * Retrieves the date when the `version` was released.
+   * @param version The version to retrieve.
+   */
+  getReleaseDate(version: string): string {
+    return this.releaseNotes.releases[version].releaseDate;
+  }
+
+  /**
+   * Retrieves the author of the release.
+   * @param version The version to retrieve.
+   */
+  getReleaseAuthor(version: string): string {
+    return this.releaseNotes.releases[version].releaseAuthor;
+  }
+
+  /**
+   * Retrieves information about a particular version's release notes.
+   * @param version The version to retrieve.
+   */
+  getReleaseInfo(version: string): string {
+    return this.releaseNotes.releases[version];
+  }
+
+  /**
    * Joins a list of release notes to a string.
    * @param notes The notes to join
    */

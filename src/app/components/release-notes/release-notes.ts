@@ -2,7 +2,7 @@ export interface Release {
   /** Release notes for the version. */
   releaseNotes: ReleaseNotes;
   /** Release date for the version. */
-  releaseDate?: string | number;
+  releaseDate?: string;
   /** The person who released the version. */
   releaseAuthor?: string;
 }
