@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ReleaseNotesJSON, ReleaseNotes } from './release-notes';
+import { ReleaseNotesJSON, ReleaseNotes, Release } from './release-notes';
 import releaseNotes from '../../../assets/release-notes.json';
 
 @Component({
@@ -50,7 +50,7 @@ export class ReleaseNotesComponent implements OnInit {
    * Retrieves information about a particular version's release notes.
    * @param version The version to retrieve.
    */
-  getReleaseInfo(version: string): string {
+  getReleaseInfo(version: string): Release {
     return this.releaseNotes.releases[version];
   }
 
