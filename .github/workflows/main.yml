@@ -24,4 +24,5 @@ jobs:
     - name: Deploy site
       run: npm run action:deploy
       env:
-        GH_TOKEN: ${{ secrets.DEPLOY_GH_PAGES_TOKEN }}
+        # GH_TOKEN: ${{ secrets.DEPLOY_GH_PAGES_TOKEN }}
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
