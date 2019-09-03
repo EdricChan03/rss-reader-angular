@@ -14,7 +14,7 @@
     "build": "ng build --prod --base-href /rss-reader/ --deploy-url /rss-reader/",
     "build-prod-local": "ng build -c=httpserver --prod && cd dist && http-server",
     "deploy": "ng deploy",
-    "action:deploy": "ng deploy --repo https://x-access-token:GH_TOKEN@github.com/EdricChan03/rss-reader.git --no-silent"
+    "action:deploy": "ng deploy --repo https://x-access-token:GH_TOKEN@github.com/EdricChan03/rss-reader.git --no-silent --dry-run"
   },
   "private": true,
   "dependencies": {
