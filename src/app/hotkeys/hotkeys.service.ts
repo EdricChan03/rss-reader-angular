@@ -43,7 +43,7 @@ export class HotkeysService {
     private dialog: MatDialog,
     @Inject(DOCUMENT) private document: Document
   ) {
-    this.addShortcut({ keys: 'shift.?', description: 'Show this help dialog' })
+    this.addShortcut({ keys: 'shift.?', description: 'Show this help dialog', shortcutBlacklistEls: ['input', 'textarea'] })
       .subscribe(() => {
         this.openHotkeyHelpDialog();
       });
