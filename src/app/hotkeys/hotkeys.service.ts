@@ -45,7 +45,7 @@ export class HotkeysService {
   ) {
     this.addShortcut({ keys: 'shift.?', description: 'Show this help dialog' })
       .subscribe(() => {
-        this.openHelpDialog();
+        this.openHotkeyHelpDialog();
       });
   }
 
@@ -105,7 +105,7 @@ export class HotkeysService {
     });
   }
 
-  openHelpDialog() {
+  openHotkeyHelpDialog() {
     if (this.dialog.getDialogById(this.hotkeyHelpDialogId) != null) {
       // Close existing dialog
       this.dialog.getDialogById(this.hotkeyHelpDialogId).close();
