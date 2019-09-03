@@ -14,6 +14,7 @@ import { Settings } from './model/settings';
 import { OverlayService } from './overlay.service';
 import { OnboardingOverlayComponent } from './overlays';
 import { SharedService } from './shared.service';
+import { HotkeysService } from './hotkeys/hotkeys.service';
 
 @Component({
   selector: 'rss-reader',
@@ -106,12 +107,23 @@ export class AppComponent implements OnInit, OnDestroy {
     private router: Router,
     private overlay: Overlay,
     private dialog: MatDialog,
-    private swUpdate: SwUpdate
+    private swUpdate: SwUpdate,
+    private hotkeys: HotkeysService
   ) {
     router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.actionItemService.removeActionItems();
+        this._addDefaultActionItems();
       }
+    });
+  }
+  private _addDefaultActionItems() {
+    this.actionItemService.addActionItem({
+      id: 'keyboard-shortcuts-action-item',
+      title: 'Keyboard shortcuts',
+      icon: 'keyboard',
+      showAsAction: false,
+      onClickListener: () => this.hotkeys.openHotkeyHelpDialog()
     });
   }
   get isOffline() {
