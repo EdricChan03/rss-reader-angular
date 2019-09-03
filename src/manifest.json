@@ -7,6 +7,14 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
+  "categories": ["news"],
+  "description": "News and RSS reader application that provides the latest news and headlines.",
+  "dir": "auto",
+  "lang": "en",
+  "serviceworker": {
+    "src": "/rss-reader/ngsw-worker.js",
+    "scope": "/rss-reader/"
+  },
   "icons": [
     {
       "src": "assets/favicon/favicon-96x96.png",
