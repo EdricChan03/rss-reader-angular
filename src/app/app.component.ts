@@ -123,7 +123,7 @@ export class AppComponent implements OnInit, OnDestroy {
       title: 'Keyboard shortcuts',
       icon: 'keyboard',
       showAsAction: false,
-      onClickListener: () => this.hotkeys.openHotkeyHelpDialog()
+      onClickListener: () => { this.hotkeys.openHotkeyHelpDialog(); }
     });
   }
   get isOffline() {
