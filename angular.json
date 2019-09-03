@@ -115,8 +115,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "/rss-reader/",
-            "repo": "https://github.com/EdricChan03/rss-reader"
+            "baseHref": "/rss-reader/"
           }
         }
       }
