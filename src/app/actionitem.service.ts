@@ -2,11 +2,13 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Injectable, Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
+
+/** ID used to generate new action items with no explicitly-defined ID. */
+let nextKeyId = 0;
 
 @Injectable()
 /**
@@ -14,13 +16,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
  */
 export class ActionItemService {
 
-  private actionItems: ActionItem[] = [];
+  readonly actionItems = new Map<string, ActionItem>();
   /**
    * Adds an action item
    * @param actionItem The action item
    */
   addActionItem(actionItem: ActionItem) {
-    this.actionItems.push(actionItem);
+    this.actionItems.set(`actionItem-${nextKeyId++}`, actionItem);
   }
   /**
    * Adds an action item toggle
@@ -33,82 +35,52 @@ export class ActionItemService {
     actionItem.onClickListener = () => {
       actionItem.toggleBind = !actionItem.toggleBind;
     };
-    this.actionItems.push(actionItem);
+    this.actionItems.set(`actionItem-${nextKeyId++}`, actionItem);
   }
   /**
-   * Updates an action item by its index
-   * @param index The index of the action item
+   * Updates an action item by its key
+   * @param key The key of the action item
    * @param actionItem The action item
    */
-  updateActionItemByIndex(index: number, actionItem: ActionItem) {
+  updateActionItemByKey(key: string, actionItem: ActionItem) {
     try {
-      this.actionItems[index] = actionItem;
+      this.actionItems[key] = actionItem;
     } catch (e) {
-      this.throwIdNotFoundError(index);
+      this.throwKeyNotFoundError(key);
     }
-  }
-  /**
-   * An alias of {@link ActionItemService#updateActionItemByIndex} to prevent apps from breaking
-   * @deprecated
-   * @param index The index of the action item
-   * @param actionItem The action item
-   */
-  updateActionItem(index: number, actionItem: ActionItem) {
-    this.updateActionItemByIndex(index, actionItem);
   }
   /**
    * Gets all action items
    */
   getActionItems(): ActionItem[] {
-    return this.actionItems;
-  }
-  /**
-   * An alias of {@link ActionItemService#removeActionItemByIndex} to prevent apps from breaking
-   * @deprecated
-   * @param id The index of the action item to remove
-   */
-  removeActionItem(id: number) {
-    this.removeActionItemByIndex(id);
+    return Array.from(this.actionItems.values());
   }
   /**
    * Removes an action item
-   * @param {number} id The index of the action item to remove
+   * @param key The key of the action item to remove
    */
-  removeActionItemByIndex(id: number) {
+  removeActionItemByKey(key: string) {
     try {
-      this.actionItems.splice(id, 1);
+      this.actionItems.delete(key);
     } catch (e) {
-      this.throwIdNotFoundError(id);
-    }
-  }
-  /**
-   * Removes an action item by its title
-   */
-  removeActionItemByTitle(title: string) {
-    try {
-      this.actionItems.splice(
-        this.actionItems.findIndex((actionItem: ActionItem) => {
-          return actionItem.title === title;
-        }), 1);
-    } catch (e) {
-      this.throwTitleNotFoundError(title);
+      this.throwKeyNotFoundError(key);
     }
   }
   /**
    * Removes all action items
    */
   removeActionItems() {
-    this.actionItems = [];
+    this.actionItems.clear();
   }
   /**
-   * Gets a action item by its index
-   * @param id The index of the action item to retrieve
+   * Gets a action item by its key
+   * @param key The key of the action item to retrieve
    */
-  getActionItemById(id: number): ActionItem {
+  getActionItemByKey(key: string): ActionItem {
     try {
-      return this.actionItems[id];
+      return this.actionItems[key];
     } catch (e) {
-      this.throwIdNotFoundError(id);
+      this.throwKeyNotFoundError(key);
     }
   }
   /**
@@ -118,19 +90,19 @@ export class ActionItemService {
    * @param id The id of the action item
    * @param callback The callback when the action item is clicked (has to be arrow function)
    */
-  addActionItemOnClickListener(id: number, callback: (ev?: Event) => void) {
+  addActionItemOnClickListener(key: string, callback: (ev?: Event) => void) {
     try {
-      this.actionItems[id].onClickListener = callback;
+      this.actionItems[key].onClickListener = callback;
     } catch (e) {
-      this.throwIdNotFoundError(id);
+      this.throwKeyNotFoundError(key);
     }
   }
   /**
    * Throws an error where the id couldn't be found
    * @private
    */
-  private throwIdNotFoundError(id: number) {
-    throw new Error(`Could not find an action item with index ${id}`);
+  private throwKeyNotFoundError(id: string) {
+    throw new Error(`Could not find an action item with key ${id}`);
   }
   /**
    * Throws an error where the title couldn't be found
@@ -148,6 +120,8 @@ export class ActionItem {
    * The title of the action item
    */
   title: string;
+  /** The ID of the action item */
+  id?: string;
   /**
    * The icon of the action item
    */
@@ -213,12 +187,13 @@ export class ActionItemToggle extends ActionItem {
 			<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
 		</a>
 	</ng-container>
-	<button mat-icon-button *ngIf="showMoreMenu" [matMenuTriggerFor]="moreMenu">
+  <button mat-icon-button *ngIf="showMoreMenu" [matMenuTriggerFor]="moreMenu"
+    matTooltip="More options">
 		<mat-icon>more_vert</mat-icon>
 	</button>
 	<mat-menu #moreMenu="matMenu">
 		<ng-container *ngFor="let actionItem of actionItems">
-			<button mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.href == null" (click)="actionItem.onClickListener()">
+			<button mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.href == null" (click)="actionItem.onClickListener($event)">
 				<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
 				{{actionItem.title}}
 			</button>
