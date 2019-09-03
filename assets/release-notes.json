@@ -7,7 +7,10 @@
         "summary": [
           "- Removed settings that would not do anything",
           "- Use labels instead of placeholders for input fields",
-          "- Added release notes that would inform you of the latest features"
+          "- Added release notes that would inform you of the latest features",
+          "- Added tooltip to \"more options\" button in toolbar",
+          "- Slight tweaking of onboarding experience for new users",
+          "- And lots of bug-fixes!"
         ],
         "details": [
           "- Removed settings (_Enable multiple RSS feeds_, _Notifications_)",
