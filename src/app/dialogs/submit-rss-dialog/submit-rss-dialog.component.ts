@@ -14,6 +14,6 @@ export class SubmitRssDialogComponent {
 
   getFormUrl(): SafeResourceUrl {
     // tslint:disable-next-line:max-line-length
-    return this.dom.sanitize(SecurityContext.RESOURCE_URL, `https://docs.google.com/forms/d/e/1FAIpQLSca8Iug_FPflBOHJdUN4KUBrUurOLjcyHAWqkn0_TTJ1oYmRQ/viewform?usp=pp_url&entry.1135652000=${this.data.feedUrl}`);
+    return this.dom.sanitize(SecurityContext.URL, `https://docs.google.com/forms/d/e/1FAIpQLSca8Iug_FPflBOHJdUN4KUBrUurOLjcyHAWqkn0_TTJ1oYmRQ/viewform?usp=pp_url&entry.1135652000=${this.data.feedUrl}`);
   }
 }
