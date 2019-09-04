@@ -7,6 +7,22 @@ on:
     - master
 
 jobs:
+  test:
+    name: App linting/testing
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup NodeJS LTS
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Install dependencies
+      run: npm ci
+    - name: Lint application
+      run: npm run lint
+    - name: Test application
+      run: npm test
   deploy:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
