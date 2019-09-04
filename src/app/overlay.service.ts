@@ -1,4 +1,10 @@
-import { ConnectedPositionStrategy, GlobalPositionStrategy, OriginConnectionPosition, Overlay, OverlayConfig, OverlayConnectionPosition, OverlayRef } from '@angular/cdk/overlay';
+import {
+  FlexibleConnectedPositionStrategy,
+  GlobalPositionStrategy,
+  Overlay,
+  OverlayConfig,
+  OverlayRef
+} from '@angular/cdk/overlay';
 import { ElementRef, Injectable } from '@angular/core';
 
 import { ComponentPortal } from '@angular/cdk/portal';
@@ -6,24 +12,23 @@ import { ComponentPortal } from '@angular/cdk/portal';
 @Injectable()
 export class OverlayService {
 
-  private _overlayRef: OverlayRef;
-  private _componentPortal: ComponentPortal<any>;
-  constructor(private _overlay: Overlay) { }
+  private overlayRef: OverlayRef;
+  private componentPortal: ComponentPortal<any>;
+  constructor(private overlay: Overlay) { }
   /**
    * Attaches a portal to the overlay
-   * @private
    */
   private _attachPortal(): void {
-    if (!this._overlayRef.hasAttached() && this._componentPortal) {
-      this._overlayRef.attach(this._componentPortal);
+    if (!this.overlayRef.hasAttached() && this.componentPortal) {
+      this.overlayRef.attach(this.componentPortal);
     }
   }
   /**
    * Destroys the currently opened overlay
    */
   destroyOverlay(): void {
-    if (this._overlayRef.hasAttached() && this._overlayRef !== null) {
-      this._overlayRef.dispose();
+    if (this.overlayRef.hasAttached() && this.overlayRef !== null) {
+      this.overlayRef.dispose();
     }
   }
   /**
@@ -34,16 +39,16 @@ export class OverlayService {
     this.destroyOverlay();
   }
   getOverlayRef(): OverlayRef | void {
-    if (this._overlayRef) {
-      return this._overlayRef;
+    if (this.overlayRef) {
+      return this.overlayRef;
     }
   }
   /**
    * Creates a center overlay position strategy
-   * @returns {GlobalPositionStrategy} The position strategy
+   * @returns The position strategy
    */
   createCenterOverlayPositionStrategy(): GlobalPositionStrategy {
-    return this._overlay
+    return this.overlay
       .position()
       .global()
       .centerHorizontally()
@@ -51,36 +56,32 @@ export class OverlayService {
   }
   /**
    * Creates a below the position of an element position strategy
-   * @param {ElementRef} elementRef The element ref
-   * @param {OriginConnectionPosition} originPos The origin's positions
-   * @param {OverlayConnectionPosition} overlayPos The overlay's positions
-   * @returns {ConnectedPositionStrategy} The position strategy
+   * @param elementRef The element ref
+   * @returns The position strategy
    */
   createBelowPosElPositionStrategy(
-    elementRef: ElementRef,
-    originPos: OriginConnectionPosition,
-    overlayPos: OverlayConnectionPosition
-  ): ConnectedPositionStrategy {
-    return this._overlay
+    elementRef: ElementRef
+  ): FlexibleConnectedPositionStrategy {
+    return this.overlay
       .position()
-      .connectedTo(elementRef, originPos, overlayPos);
+      .flexibleConnectedTo(elementRef);
   }
 
   /**
    * Creates an overlay with the specified parameters
-   * @param {ComponentPortal<any>} portal The portal to attach to the overlay's ref. For more info, visit {@link Overlay#create}
-   * @param {OverlayConfig} config The configuration of the overlay. See {@link OverlayConfig} for more properties.
-   * @param {boolean} backdropClickClosesOverlay Whether when the overlay's backdrop is clicked and it will close the overlay
+   * @param portal The portal to attach to the overlay's ref. For more info, visit {@link Overlay#create}
+   * @param config The configuration of the overlay. See {@link OverlayConfig} for more properties.
+   * @param backdropClickClosesOverlay Whether when the overlay's backdrop is clicked and it will close the overlay
    */
   createOverlay(portal: ComponentPortal<any>, config?: OverlayConfig, backdropClickClosesOverlay?: boolean): OverlayRef {
-    this._overlayRef = this._overlay.create(config);
-    this._componentPortal = portal;
+    this.overlayRef = this.overlay.create(config);
+    this.componentPortal = portal;
     this._attachPortal();
     if (backdropClickClosesOverlay && config.hasBackdrop) {
-      this._overlayRef.backdropClick().subscribe(() => {
+      this.overlayRef.backdropClick().subscribe(() => {
         this.destroyOverlay();
       });
     }
-    return this._overlayRef;
+    return this.overlayRef;
   }
 }

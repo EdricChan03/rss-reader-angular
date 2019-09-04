@@ -20,8 +20,8 @@ import { Observable, Subscription } from 'rxjs';
 export class FeedComponent implements OnDestroy, OnInit {
 
   /**
-  * Whether it's the first time that the user has used the website. (Can be reset by clearing `localStorage`)
-  */
+   * Whether it's the first time that the user has used the website. (Can be reset by clearing `localStorage`)
+   */
   getStarted = false;
   feedOptions: FeedOptions;
   /**
@@ -54,12 +54,6 @@ export class FeedComponent implements OnDestroy, OnInit {
     private actionItemService: ActionItemService,
     private hotkeys: HotkeysService
   ) {
-    /* shared.keyDownUpEvents$.subscribe((event: KeyboardEvent) => {
-      this.keyMaps[event.keyCode] = event.type === 'keydown';
-      if (!['INPUT', 'TEXTAREA'].includes(event.srcElement.nodeName)) {
-        this.keyboardShortcutHandler();
-      }
-    }); */
     const refreshShortcut = hotkeys.addShortcut({ keys: 'r', description: 'Refresh the feed', shortcutBlacklistEls: ['input', 'textarea'] })
       .subscribe(() => {
         this.refreshFeed();
@@ -114,7 +108,7 @@ export class FeedComponent implements OnDestroy, OnInit {
     // tslint:disable-next-line:max-line-length
     this.shared.openConfirmDialog({ msg: 'Are you sure you want to refresh? Changes will not be saved!', title: 'Reload?' }).afterClosed().subscribe(result => {
       if (result === 'ok') {
-        window.location.reload(true);
+        window.location.reload();
       }
     });
   }
@@ -129,8 +123,8 @@ export class FeedComponent implements OnDestroy, OnInit {
     // Set to empty array
     this.feeds = [];
     let feedOpts: FeedOptions;
-    if (window.localStorage['feedOptions']) {
-      feedOpts = <FeedOptions>JSON.parse(window.localStorage['feedOptions']);
+    if (window.localStorage.feedOptions) {
+      feedOpts = JSON.parse(window.localStorage.feedOptions) as FeedOptions;
     }
     if (feedOpts) {
       this._getFeed(feedOpts);
@@ -139,10 +133,10 @@ export class FeedComponent implements OnDestroy, OnInit {
   private _getFeedUrl(): string {
     let localUrl: string;
     // Get the feed url from localstorage
-    if (window.localStorage['feedOptions']) {
-      localUrl = (JSON.parse(window.localStorage['feedOptions']) as FeedOptions).feedUrl;
-    } else if (window.localStorage['feedUrl']) {
-      localUrl = window.localStorage['feedUrl'];
+    if (window.localStorage.feedOptions) {
+      localUrl = (JSON.parse(window.localStorage.feedOptions) as FeedOptions).feedUrl;
+    } else if (window.localStorage.feedUrl) {
+      localUrl = window.localStorage.feedUrl;
     } else {
       localUrl = 'https://www.blog.google/rss/';
     }
@@ -181,33 +175,33 @@ export class FeedComponent implements OnDestroy, OnInit {
       // this.apiKey = dialogRef.componentInstance.apiKey;
       // const publishFeedUrl = dialogRef.componentInstance.publishFeedUrl;
       if (result === 'save') {
-        window.localStorage['feedOptions'] = JSON.stringify(rssFeedForm.getRawValue());
+        window.localStorage.feedOptions = JSON.stringify(rssFeedForm.getRawValue());
         this.refreshFeed();
       }
     });
   }
   private _migrateFeedOpts() {
-    if (window.localStorage['apiKey'] && window.localStorage['feedUrl']) {
+    if (window.localStorage.apiKey && window.localStorage.feedUrl) {
       console.log('Old feed options found. Migrating old options...');
-      const tempFeedOptions = <FeedOptions>JSON.parse(window.localStorage['feedOptions']);
-      if (window.localStorage['apiKey']) {
-        tempFeedOptions['apiKey'] = window.localStorage['apiKey'];
+      const tempFeedOptions = JSON.parse(window.localStorage.feedOptions) as FeedOptions;
+      if (window.localStorage.apiKey) {
+        tempFeedOptions.apiKey = window.localStorage.apiKey;
       }
-      if (window.localStorage['feedUrl']) {
-        tempFeedOptions['feedUrl'] = window.localStorage['feedUrl'];
+      if (window.localStorage.feedUrl) {
+        tempFeedOptions.feedUrl = window.localStorage.feedUrl;
       }
-      window.localStorage['feedOptions'] = JSON.stringify(tempFeedOptions);
-      delete window.localStorage['apiKey'];
-      delete window.localStorage['feedUrl'];
+      window.localStorage.feedOptions = JSON.stringify(tempFeedOptions);
+      delete window.localStorage.apiKey;
+      delete window.localStorage.feedUrl;
     }
   }
   ngOnInit() {
-    if (!window.localStorage['feedOptions']) {
+    if (!window.localStorage.feedOptions) {
       this.selectRss();
     }
-    if (!window.localStorage['hasLaunched']) {
+    if (!window.localStorage.hasLaunched) {
       this.getStarted = true;
-      window.localStorage['hasLaunched'] = JSON.stringify(true);
+      window.localStorage.hasLaunched = JSON.stringify(true);
     }
     this.refreshFeed();
   }

@@ -35,7 +35,7 @@ export const firebaseConfig: FirebaseAppConfig = {
 export const defaultEnvironment: Environment = {
   production: false,
   swLocation: '',
-  latestVersion: latestVersion
+  latestVersion
 };
 
 /**

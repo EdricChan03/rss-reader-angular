@@ -70,7 +70,7 @@ export class FeedCardComponent implements OnInit {
   }
   /**
    * Replaces the image
-   * @param {boolean} isThumbnail Whether the image is in the thumbnail of `enclosure` object
+   * @param isThumbnail Whether the image is in the thumbnail of `enclosure` object
    */
   replaceImg(isThumbnail?: boolean) {
     this.hasImage = true;
@@ -91,7 +91,7 @@ export class FeedCardComponent implements OnInit {
    */
   ngOnInit() {
     if (window.localStorage.getItem('settings')) {
-      this.settings = <Settings>JSON.parse(window.localStorage.getItem('settings'));
+      this.settings = JSON.parse(window.localStorage.getItem('settings')) as Settings;
       if (this.settings.hasOwnProperty('openNewTab')) {
         this.target = this.settings.openNewTab ? '_blank' : '_self';
       }

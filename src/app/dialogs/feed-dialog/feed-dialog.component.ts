@@ -62,15 +62,15 @@ export class FeedDialogComponent implements OnInit {
         channels: []
       };
       const tempFeedChannels: FeedChannel[] = [];
-      tempFeedCategory['categoryName'] = feedCategory.categoryName;
-      tempFeedCategory['categoryId'] = feedCategory.categoryId;
+      tempFeedCategory.categoryName = feedCategory.categoryName;
+      tempFeedCategory.categoryId = feedCategory.categoryId;
       for (const feedChannel of feedCategory.channels) {
         if (feedChannel.feedName.includes(name) || feedChannel.feedUrl.includes(name)) {
           tempFeedChannels.push(feedChannel);
         }
       }
       if (tempFeedChannels.length >= 1) {
-        tempFeedCategory['channels'] = tempFeedChannels;
+        tempFeedCategory.channels = tempFeedChannels;
         filteredFeedCategories.push(tempFeedCategory);
       }
     }
@@ -79,7 +79,7 @@ export class FeedDialogComponent implements OnInit {
   }
   openSubmitRssDialog() {
     this.dialog.open(SubmitRssDialogComponent, {
-      data: { feedUrl: this.rssFeedForm.get('feedUrl')!.value }
+      data: { feedUrl: this.rssFeedForm.get('feedUrl').value }
     });
   }
 }

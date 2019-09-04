@@ -50,7 +50,7 @@ export class HeadlineOptionsDialogComponent implements OnInit {
       this.headlineOptForm.patchValue(this.options);
     }
     setTimeout(() => {
-      this.filteredOptions = this.headlineOptForm.get('country')!.valueChanges
+      this.filteredOptions = this.headlineOptForm.get('country').valueChanges
         .pipe(
           // debounceTime(150),
           switchMap(value => this.filter(value))

@@ -185,7 +185,6 @@ export class TestpageComponent implements OnInit {
   /**
    * Outputs the result of a function
    * @param result The result of a function
-   * @private
    */
   private outputResult(result: any) {
     console.log(`Result: ${result}`);

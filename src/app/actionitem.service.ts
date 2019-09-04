@@ -99,7 +99,6 @@ export class ActionItemService {
   }
   /**
    * Throws an error where the id couldn't be found
-   * @private
    */
   private throwKeyNotFoundError(id: string) {
     throw new Error(`Could not find an action item with key ${id}`);

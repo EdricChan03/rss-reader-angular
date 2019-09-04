@@ -61,7 +61,7 @@ const DEV_GUIDES: GuideItem[] = [
 ];
 
 @Injectable()
-export class GuideItems {
+export class GuideItemsService {
   getAllItems(): GuideItem[] {
     return GUIDES.concat(DEV_GUIDES);
   }

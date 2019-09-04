@@ -13,14 +13,14 @@ import { AppComponent } from './app.component';
 import { AppRouting } from './app.routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { DocViewer } from './pages/doc-viewer/doc-viewer.component';
+import { DocViewerComponent } from './pages/doc-viewer/doc-viewer.component';
 import { ExpansionPanelComponent } from './pages/expansion-panel/expansion-panel.component';
 import { ExploreComponent } from './explore/explore.component';
 import { FilterOverlayComponent } from './overlays/filter-overlay/filter-overlay.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { GuideItems } from './guide-items';
-import { GuideViewer } from './pages/guide-viewer/guide-viewer.component';
-import { GuidesList } from './pages/guide-list/guide-list.component';
+import { GuideItemsService } from './guide-items';
+import { GuideViewerComponent } from './pages/guide-viewer/guide-viewer.component';
+import { GuidesListComponent } from './pages/guide-list/guide-list.component';
 import { FeedComponent } from './feed/feed.component';
 import { HttpClientModule } from '@angular/common/http';
 import { IOSComponent } from './devices/ios/ios.component';
@@ -66,9 +66,9 @@ const PIPES = [
     SettingsComponent,
     TestpageComponent,
     PageNotFoundComponent,
-    DocViewer,
-    GuideViewer,
-    GuidesList,
+    DocViewerComponent,
+    GuideViewerComponent,
+    GuidesListComponent,
     AndroidComponent,
     IOSComponent,
     ExpansionPanelComponent,
@@ -99,7 +99,7 @@ const PIPES = [
   ],
   bootstrap: [AppComponent],
   providers: [
-    GuideItems,
+    GuideItemsService,
     OverlayService
   ],
   entryComponents: [

@@ -5,7 +5,7 @@ import { StripHtmlTagsPipe } from './strip-html-tags.pipe';
 
 describe('Pipe: StripHtmlTags', () => {
   it('create an instance', () => {
-    let pipe = new StripHtmlTagsPipe();
+    const pipe = new StripHtmlTagsPipe();
     expect(pipe).toBeTruthy();
   });
 });

@@ -23,24 +23,24 @@ export class SettingsComponent implements OnInit {
           theme: 'indigo-pink',
           notifyNewReleases: true
         };
-        window.localStorage['settings'] = JSON.stringify(tempSettings);
+        window.localStorage.settings = JSON.stringify(tempSettings);
         // tslint:disable-next-line:max-line-length
         this.shared.openSnackBar({ msg: 'Settings successfully reset', additionalOpts: { duration: 4000, horizontalPosition: 'start', panelClass: 'mat-elevation-z3' } });
       }
     });
   }
   save() {
-    window.localStorage['settings'] = JSON.stringify(this.settings);
+    window.localStorage.settings = JSON.stringify(this.settings);
     // tslint:disable-next-line:max-line-length
     const snackBarRef = this.shared.openSnackBar({ msg: 'Settings saved', action: 'Reload', additionalOpts: { duration: 4000, horizontalPosition: 'start', panelClass: 'mat-elevation-z3' } });
     snackBarRef.onAction().subscribe(_ => {
-      window.location.reload(true);
+      window.location.reload();
     });
   }
   ngOnInit() {
     this.themes = ['indigo-pink', 'deeppurple-amber', 'pink-bluegrey', 'purple-green'];
-    if (window.localStorage['settings']) {
-      this.settings = <Settings>JSON.parse(window.localStorage['settings']);
+    if (window.localStorage.settings) {
+      this.settings = JSON.parse(window.localStorage.settings) as Settings;
     }
   }
 

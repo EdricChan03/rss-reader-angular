@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class StripHtmlTagsPipe implements PipeTransform {
 
-  private tagBody: string = '(?:[^"\'>]|"[^"]*"|\'[^\']*\')*';
+  private tagBody = '(?:[^"\'>]|"[^"]*"|\'[^\']*\')*';
   private tagOrComment: RegExp = new RegExp(
     '<(?:'
     // Comment body.

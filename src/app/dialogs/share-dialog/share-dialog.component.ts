@@ -22,7 +22,7 @@ export class ShareDialogComponent implements OnInit {
    * Checks if the `feed` property is of type `FeedEntry`
    */
   isFeedEntry(feed: FeedEntry | NewsAPITopHeadlinesArticle): feed is FeedEntry {
-    return (<FeedEntry> feed).categories !== undefined;
+    return (feed as FeedEntry).categories !== undefined;
   }
   ngOnInit() {
     if (this.isFeedEntry(this.feed)) {
@@ -41,11 +41,6 @@ export class ShareDialogComponent implements OnInit {
     published on ${this.publishedDate} titled "${this.feed.title}"!')}`);
     window.open(`https://twitter.com/intent/tweet?url=${encodeURI(this.url)}&text=${text}`);
   }
-  // Google+ has been shutdown
-  /*shareToGooglePlus() {
-    // tslint:disable-next-line:max-line-length
-    window.open(`https://plus.google.com/share?url=${encodeURI(this.url)}&text=${encodeURI('Check out this blogpost by ' + this.feed.author + ' published on ' + this.publishedDate + ' titled "' + this.feed.title + '"!')}`, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
-  }*/
   shareNative() {
     if (navigator.share !== undefined) {
       navigator.share({

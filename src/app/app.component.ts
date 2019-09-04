@@ -159,7 +159,7 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     }
     if (window.localStorage.getItem('settings')) {
-      this.settings = <Settings>JSON.parse(window.localStorage.getItem('settings'));
+      this.settings = JSON.parse(window.localStorage.getItem('settings')) as Settings;
       if (this.settings.theme) {
         document.getElementsByTagName('body')[0].classList.add(this.settings.theme);
         this.overlayContainer.getContainerElement().classList.add(this.settings.theme);
@@ -179,7 +179,7 @@ export class AppComponent implements OnInit, OnDestroy {
       // tslint:disable-next-line:max-line-length
       const snackBarRef = this.shared.openSnackBar({ msg: 'You are currently offline. Some features may not be available.', action: 'Retry', additionalOpts: { panelClass: ['mat-elevation-z2'], horizontalPosition: 'start' } });
       snackBarRef.onAction().subscribe(() => {
-        window.location.reload(true);
+        window.location.reload();
       });
     }
     this.swUpdate.available.subscribe(event => {

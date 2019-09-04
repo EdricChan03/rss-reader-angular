@@ -41,7 +41,7 @@ export class OnboardingOverlayComponent implements OnDestroy {
       imgSrc: 'assets/img/Explore News Sources.png'
     }];
 
-  shortcutHandlers: Subscription[] = []
+  shortcutHandlers: Subscription[] = [];
 
   constructor(
     private router: Router,

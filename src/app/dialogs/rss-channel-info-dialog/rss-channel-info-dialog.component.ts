@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class RSSChannelInfoDialogComponent implements OnInit {
 
   constructor(private dialogRef: MatDialogRef<RSSChannelInfoDialogComponent>) { }
-  
+
   ngOnInit() {
   }
 

@@ -40,7 +40,7 @@ export class HeadlinesComponent implements OnInit {
       const headlineOpts = JSON.parse(window.localStorage.getItem('headlineOpts'));
 
       if ('topic' in JSON.parse(window.localStorage.getItem('headlineOpts'))) {
-        delete headlineOpts['topic'];
+        delete headlineOpts.topic;
         window.localStorage.setItem('headlineOpts', JSON.stringify(headlineOpts));
       }
       dialogRef.componentInstance.options = JSON.parse(window.localStorage.getItem('headlineOpts'));

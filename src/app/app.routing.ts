@@ -1,6 +1,6 @@
 import { WebComponent } from './devices/web/web.component';
-import { GuideViewer } from './pages/guide-viewer/guide-viewer.component';
-import { GuidesList } from './pages/guide-list/guide-list.component';
+import { GuideViewerComponent } from './pages/guide-viewer/guide-viewer.component';
+import { GuidesListComponent } from './pages/guide-list/guide-list.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TestpageComponent } from './testpage/testpage.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -22,8 +22,8 @@ const APP_ROUTES: Routes = [
       { path: '**', redirectTo: '/devices/android' }
     ]
   },
-  { path: 'doc/:docTypeId/:docId', component: GuideViewer },
-  { path: 'docs', component: GuidesList },
+  { path: 'doc/:docTypeId/:docId', component: GuideViewerComponent },
+  { path: 'docs', component: GuidesListComponent },
   { path: 'explore', component: ExploreComponent },
   { path: 'feed', component: FeedComponent },
   { path: 'headlines', component: HeadlinesComponent },
