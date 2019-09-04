@@ -1,11 +1,7 @@
-import { browser, element, by } from 'protractor/globals';
+import { browser, element, by } from 'protractor';
 
-export class BecompanyRssReaderWebpackPage {
+export class AppPage {
   navigateTo() {
-    return browser.get('/');
-  }
-
-  getParagraphText() {
-    return element(by.css('app-root span.center')).getText();
+    return browser.get(browser.baseUrl);
   }
 }
