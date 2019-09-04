@@ -109,7 +109,10 @@
               "src/tsconfig.app.json",
               "src/tsconfig.spec.json"
             ],
-            "exclude": []
+            "exclude": [
+              "**/node_modules/**",
+              "**/*.json"
+            ]
           }
         },
         "deploy": {

@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "ng serve",
-    "lint": "tslint \"src/**/*.ts\"",
+    "lint": "ng lint",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor",
@@ -72,7 +72,7 @@
     "protractor": "^5.4.2",
     "ts-node": "^8.3.0",
     "tsconfig-paths": "^3.8.0",
-    "tslint": "~5.10.0",
+    "tslint": "~5.18.0",
     "typescript": "^3.5.3"
   }
 }
