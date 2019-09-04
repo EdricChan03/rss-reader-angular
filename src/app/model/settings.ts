@@ -36,4 +36,6 @@ export interface Settings {
    * @deprecated Option doesn't do anything and has been removed from settings
    */
   maxNotifications?: number | any;
+  /** Whether the user should be notified when a new release of the app is out. */
+  notifyNewReleases?: boolean;
 }

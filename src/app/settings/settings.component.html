@@ -12,6 +12,8 @@
         </mat-select>
         <mat-hint>Changes will be made on reload.</mat-hint>
       </mat-form-field>
+      <h3 class="mat-subheader">Releases</h3>
+      <mat-checkbox [(ngModel)]="settings.notifyNewReleases" class="checkbox">Notify when new releases are out</mat-checkbox>
     </mat-card-content>
     <mat-card-actions align="end">
       <button mat-button (click)="reset()" color="warn">Reset</button>

@@ -20,16 +20,17 @@ export class SettingsComponent implements OnInit {
           multipleRss: false,
           openNewTab: true,
           showImages: true,
-          theme: 'indigo-pink'
+          theme: 'indigo-pink',
+          notifyNewReleases: true
         };
-        window.localStorage.setItem('settings', JSON.stringify(tempSettings));
+        window.localStorage['settings'] = JSON.stringify(tempSettings);
         // tslint:disable-next-line:max-line-length
         this.shared.openSnackBar({ msg: 'Settings successfully reset', additionalOpts: { duration: 4000, horizontalPosition: 'start', panelClass: 'mat-elevation-z3' } });
       }
     });
   }
   save() {
-    window.localStorage.setItem('settings', JSON.stringify(this.settings));
+    window.localStorage['settings'] = JSON.stringify(this.settings);
     // tslint:disable-next-line:max-line-length
     const snackBarRef = this.shared.openSnackBar({ msg: 'Settings saved', action: 'Reload', additionalOpts: { duration: 4000, horizontalPosition: 'start', panelClass: 'mat-elevation-z3' } });
     snackBarRef.onAction().subscribe(_ => {
@@ -38,8 +39,8 @@ export class SettingsComponent implements OnInit {
   }
   ngOnInit() {
     this.themes = ['indigo-pink', 'deeppurple-amber', 'pink-bluegrey', 'purple-green'];
-    if (window.localStorage.getItem('settings')) {
-      this.settings = <Settings>JSON.parse(window.localStorage.getItem('settings'));
+    if (window.localStorage['settings']) {
+      this.settings = <Settings>JSON.parse(window.localStorage['settings']);
     }
   }
 
