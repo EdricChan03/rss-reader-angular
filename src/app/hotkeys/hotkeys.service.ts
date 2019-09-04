@@ -7,11 +7,19 @@ import { DOCUMENT } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { HotkeyHelpDialogComponent } from './hotkey-help-dialog/hotkey-help-dialog.component';
 
+type Platform = 'windows' | 'macos' | 'linux' | 'other';
+
+interface Hotkey {
+  /** A valid hotkey bind. */
+  keys: string;
+  /** The platform where this hotkey will be valid for. */
+  platform?: Platform;
+}
 interface HotkeyOptions {
   /** The element to bind the hotkey to. */
   element: any;
-  /** A valid hotkey bind. */
-  keys: string;
+  /** A valid hotkey bind, or a list of hotkey binds. */
+  keys: string | Hotkey[];
   /** The description of the hotkey, if any. */
   description?: string;
   /**
@@ -59,7 +67,15 @@ export class HotkeysService {
     const event = `keydown.${merged.keys}`;
 
     if (merged.description) {
-      this.hotkeys.set(merged.keys, merged.description);
+      if (typeof merged.keys === 'string') {
+        this.hotkeys.set(merged.keys, merged.description);
+      } else {
+        merged.keys.forEach(hotkey => {
+          if (this.isPlatform(hotkey.platform)) {
+            this.hotkeys.set(hotkey.keys, merged.description);
+          }
+        });
+      }
     }
 
     return new Observable(observer => {
@@ -100,7 +116,15 @@ export class HotkeysService {
 
       return () => {
         dispose();
-        this.hotkeys.delete(merged.keys);
+        if (typeof merged.keys === 'string') {
+          this.hotkeys.delete(merged.keys);
+        } else {
+          merged.keys.forEach(hotkey => {
+            if (this.isPlatform(hotkey.platform)) {
+              this.hotkeys.delete(hotkey.keys);
+            }
+          });
+        }
       };
     });
   }
@@ -115,5 +139,34 @@ export class HotkeysService {
         id: this.hotkeyHelpDialogId
       });
     }
+  }
+
+  /**
+   * Whether the platform matches the specified `platform`.
+   * @param platform The platform to check.
+   */
+  private isPlatform(platform: Platform): boolean {
+    // See https://stackoverflow.com/a/19883965/6782707
+    let result = false;
+    switch (window.navigator.platform) {
+      case 'Macintosh':
+      case 'MacIntel':
+        result = platform === 'macos';
+        break;
+      case 'Windows':
+      case 'Win16':
+      case 'Win32':
+      case 'WinCE':
+        result = platform === 'windows';
+        break;
+      default:
+        if (window.navigator.platform.includes('Linux')) {
+          result = platform === 'linux';
+        } else {
+          result = platform === 'other';
+        }
+        break;
+    }
+    return result;
   }
 }
