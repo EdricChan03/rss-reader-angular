@@ -6,4 +6,9 @@ describe('RSS Reader app', () => {
   beforeEach(() => {
     page = new AppPage();
   });
+
+  it('should show RSS Reader in the toolbar', async () => {
+    page.navigateTo();
+    expect(await page.getToolbarText()).toEqual('RSS Reader');
+  });
 });
