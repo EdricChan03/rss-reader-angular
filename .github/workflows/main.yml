@@ -21,8 +21,8 @@ jobs:
       run: npm ci
     - name: Lint application
       run: npm run lint
-    - name: Test application
-      run: npm test
+#     - name: Test application
+#       run: npm test
   deploy:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
