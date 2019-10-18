@@ -8,6 +8,15 @@
       "type": "string",
       "description": "The schema to use for the JSON file."
     },
+    "feedSources": {
+      "$id": "#/properties/feedSources",
+      "type": "array",
+      "description": "A list of RSS feed sources where the RSS feeds originated from.",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
     "feedUrls": {
       "$id": "#/properties/feedUrls",
       "type": "array",
@@ -69,6 +78,7 @@
                 "feedUrl": {
                   "$id": "#/properties/feedUrls/items/properties/channels/items/properties/feedUrl",
                   "type": "string",
+                  "format": "uri",
                   "description": "The URL of the RSS feed channel.",
                   "examples": [
                     "https://www.androidpolice.com/feed/",
@@ -85,6 +95,26 @@
                     "The Keyword",
                     "Latest Articles from Macworld UK"
                   ]
+                },
+                "feedType": {
+                  "$id": "#/properties/feedUrls/items/properties/channels/items/properties/feedType",
+                  "type": "string",
+                  "description": "The RSS feed's type. (Currently supports podcast, news or other)",
+                  "enum": [
+                    "news",
+                    "podcast",
+                    "other"
+                  ],
+                  "default": "news"
+                },
+                "feedSource": {
+                  "$id": "#/properties/feedUrls/items/properties/channels/items/properties/feedSource",
+                  "type": "string",
+                  "description": "A URL indicating where the feed RSS originated from (if any).",
+                  "examples": [
+                    "https://www.example.com",
+                    "https://www.grannerman.com/webdev/becoming-a-web-developer/rss-feeds-for-the-web-developer"
+                  ]
                 }
               }
             }
@@ -92,5 +122,8 @@
         }
       }
     }
-  }
+  },
+  "required": [
+    "feedUrls"
+  ]
 }

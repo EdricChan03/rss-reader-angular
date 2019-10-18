@@ -2,7 +2,7 @@ import { OverlayService } from '../../overlay.service';
 import { Router } from '@angular/router';
 import { Component, OnDestroy } from '@angular/core';
 import { trigger, style, animate, transition, state } from '@angular/animations';
-import { HotkeysService } from 'app/hotkeys/hotkeys.service';
+import { HotkeysService } from '../../hotkeys/hotkeys.service';
 import { Subscription } from 'rxjs';
 
 @Component({

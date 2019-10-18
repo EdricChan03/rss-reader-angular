@@ -4,24 +4,25 @@
   "newProjectRoot": "projects",
   "projects": {
     "rss-reader": {
-      "root": "",
-      "sourceRoot": "src",
+      "root": "projects/rss-reader/",
+      "sourceRoot": "projects/rss-reader/src",
       "projectType": "application",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "index": "projects/rss-reader/src/index.html",
+            "main": "projects/rss-reader/src/main.ts",
+            "tsConfig": "projects/rss-reader/tsconfig.app.json",
             "showCircularDependencies": false,
-            "polyfills": "src/polyfills.ts",
+            "polyfills": "projects/rss-reader/src/polyfills.ts",
             "assets": [
-              "src/assets"
+              "projects/rss-reader/src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "projects/rss-reader/src/styles.scss"
             ],
             "scripts": [
               "node_modules/marked/lib/marked.js"
@@ -41,8 +42,8 @@
               "serviceWorker": true,
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "projects/rss-reader/src/environments/environment.ts",
+                  "with": "projects/rss-reader/src/environments/environment.prod.ts"
                 }
               ]
             },
@@ -59,8 +60,8 @@
               "serviceWorker": true,
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.httpserver.ts"
+                  "replace": "projects/rss-reader/src/environments/environment.ts",
+                  "with": "projects/rss-reader/src/environments/environment.httpserver.ts"
                 }
               ]
             }
@@ -89,16 +90,16 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
+            "main": "projects/rss-reader/src/test.ts",
+            "karmaConfig": "projects/rss-reader/karma.conf.js",
+            "polyfills": "projects/rss-reader/src/polyfills.ts",
+            "tsConfig": "projects/rss-reader/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/styles.scss"
+              "projects/rss-reader/src/styles.scss"
             ],
             "assets": [
-              "src/assets"
+              "projects/rss-reader/src/assets"
             ]
           }
         },
@@ -106,13 +107,25 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "projects/rss-reader/tsconfig.app.json",
+              "projects/rss-reader/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**",
               "**/*.json"
             ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/rss-reader/e2e/protractor.conf.js",
+            "devServerTarget": "rss-reader:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "rss-reader:serve:production"
+            }
           }
         },
         "deploy": {
@@ -122,44 +135,7 @@
           }
         }
       }
-    },
-    "rss-reader-e2e": {
-      "root": "e2e",
-      "sourceRoot": "e2e",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "rss-reader:serve"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "e2e/tsconfig.e2e.json"
-            ],
-            "exclude": []
-          }
-        }
-      }
     }
   },
-  "defaultProject": "rss-reader",
-  "schematics": {
-    "@schematics/angular:component": {
-      "spec": false,
-      "inlineStyle": true,
-      "prefix": "app",
-      "styleext": "scss"
-    },
-    "@schematics/angular:service": {
-      "spec": false
-    },
-    "@schematics/angular:directive": {
-      "prefix": "app"
-    }
-  }
+  "defaultProject": "rss-reader"
 }

@@ -79,6 +79,15 @@ export class ReleaseNotesComponent implements OnInit {
   isUrl(val: string): boolean {
     return /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(val);
   }
+
+  /**
+   * Checks whether the specified `val` parameter is a string.
+   * @param val The value to check.
+   */
+  isStr(val: any): boolean {
+    return typeof val === 'string';
+  }
+
   ngOnInit() {
   }
 

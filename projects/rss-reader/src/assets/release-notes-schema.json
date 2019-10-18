@@ -16,7 +16,10 @@
       "description": "A list of all releases."
     }
   },
-  "required": ["latestVersion", "releases"],
+  "required": [
+    "latestVersion",
+    "releases"
+  ],
   "definitions": {
     "version": {
       "type": "string",
@@ -63,24 +66,52 @@
               "format": "uri"
             }
           ]
+        },
+        "releaseCommitSha": {
+          "description": "The Git commit SHA of the release.",
+          "type": "string",
+          "minLength": 7,
+          "maxLength": 40
+        },
+        "releaseType": {
+          "$comment": "This isn't really supported at the moment",
+          "description": "The release's type.",
+          "type": "string",
+          "enum": [
+            "stable",
+            "beta",
+            "nightly"
+          ]
         }
       },
-      "required": ["releaseNotes"]
+      "required": [
+        "releaseNotes"
+      ]
     },
     "releaseNotes": {
-      "description": "Release notes for the specified version.",
-      "type": "object",
-      "properties": {
-        "summary": {
-          "description": "A summary of the release notes. Support markdown.",
-          "$ref": "#/definitions/releaseNotesTypes"
+      "description": "Release notes for the specified version. (Allows for an external URI to be specified)",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "summary": {
+              "description": "A summary of the release notes. Supports Markdown.",
+              "$ref": "#/definitions/releaseNotesTypes"
+            },
+            "details": {
+              "description": "A descriptive version of the release notes. Supports Markdown.",
+              "$ref": "#/definitions/releaseNotesTypes"
+            }
+          },
+          "required": [
+            "summary"
+          ]
         },
-        "details": {
-          "description": "A descriptive version of the release notes. Supports Markdown.",
-          "$ref": "#/definitions/releaseNotesTypes"
+        {
+          "type": "string",
+          "format": "uri"
         }
-      },
-      "required": ["summary"]
+      ]
     },
     "releaseNotesTypes": {
       "oneOf": [

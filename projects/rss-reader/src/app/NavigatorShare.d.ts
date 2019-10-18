@@ -4,7 +4,7 @@
  *
  * MIT License
  *
- * Copyright (c) 2018 Edric Chan All rights reserved.
+ * Copyright (c) 2018-2019 Edric Chan All rights reserved.
  *
  * Use of this source code is protected by a MIT-style license that can be found on the LICENSE
  * file available at the root of this repository.

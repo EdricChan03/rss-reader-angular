@@ -11,11 +11,16 @@
       <p>Release date: <em>{{ getReleaseDate(version) | date:'long' }}</em></p>
       <p>Released by: <em>{{ getReleaseAuthor(version) }}</em></p>
       <ng-container *ngIf="getReleaseNote(version) as releaseNote">
-        <ng-container *ngIf="isArray(releaseNote.summary)">
-          <p [innerHTML]="joinReleaseNotes(releaseNote.summary) | markdown"></p>
+        <ng-container *ngIf="isStr(releaseNote) && isUrl(releaseNote)">
+          <p>See this <a [href]="releaseNote">link</a> for the release notes.</p>
         </ng-container>
-        <ng-container *ngIf="!isArray(releaseNote.summary) && isUrl(releaseNote.summary)">
-          <p>See this <a [href]="releaseNote.summary">link</a> for more info.</p>
+        <ng-container *ngIf="!isStr(releaseNote)">
+          <ng-container *ngIf="isArray(releaseNote.summary)">
+            <p [innerHTML]="joinReleaseNotes(releaseNote.summary) | markdown"></p>
+          </ng-container>
+          <ng-container *ngIf="!isArray(releaseNote.summary) && isUrl(releaseNote.summary)">
+            <p>See this <a [href]="releaseNote.summary">link</a> for more info.</p>
+          </ng-container>
         </ng-container>
       </ng-container>
     </ng-container>

@@ -356,16 +356,17 @@ body {
   height: 100%;
 }
 
+// Style based from StackOverflow's CSS.
 kbd {
   display: inline-block;
   margin: 0 .1em;
   padding: .1em .6em;
   font-size: 11px;
   line-height: 1.4;
-  color: #242729;
+  // color: #242729;
   border: 1px solid #adb3b9;
   border-radius: 3px;
-  box-shadow: 0 1px 0 rgba(12,13,14,.2), 0 0 0 2px #fff inset;
+  // box-shadow: 0 1px 0 rgba(12,13,14,.2), 0 0 0 2px #fff inset;
   white-space: nowrap;
 }
 

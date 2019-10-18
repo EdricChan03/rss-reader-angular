@@ -1,0 +1,222 @@
+<h1 id="actionitemservice"><code>ActionItemService</code></h1>
+<h2 id="description">Description</h2>
+<p>This service makes it easier to add menu items to a toolbar, similar to like Android.</p>
+<p><strong>NOTE:</strong> In the future, this may be revisited and integrated with <code>SharedService</code>.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Ensure that <code>ActionItemsModule</code> is imported to your main app&#39;s module under the <code>imports</code> array:</p>
+<pre class="hljs"><code class="language-typescript"><span class="hljs-keyword">import</span> { ActionItemsModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'path/to/actionitem.service'</span>;
+<span class="hljs-meta">@NgModule</span>({
+  imports: [ActionItemsModule]
+})</code></pre>
+<hr>
+<h1 id="methods">Methods</h1>
+<h2 id="addactionitem"><code>addActionItem</code></h2>
+<pre class="hljs"><code class="language-typescript">addActionItem(actionItem: ActionItem): <span class="hljs-built_in">void</span>;</code></pre>
+<div expansion-panel>
+
+<h3 id="description">Description</h3>
+<p>Adds a menu item.</p>
+<h3 id="params">Params</h3>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>actionItem</code></td>
+<td><code>ActionItem</code></td>
+<td>The menu item to add</td>
+<td>-</td>
+</tr>
+</tbody></table>
+</div>
+
+
+<h2 id="getactionitems"><code>getActionItems</code></h2>
+<pre class="hljs"><code class="language-typescript">getActionItems(): ActionItem[];</code></pre>
+<div expansion-panel>
+
+<h3 id="description">Description</h3>
+<p>Gets the menu items.</p>
+</div>
+
+
+<h2 id="removeactionitem"><code>removeActionItem</code></h2>
+<pre class="hljs"><code class="language-typescript">removeActionItem(id: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">void</span>;</code></pre>
+<div expansion-panel>
+
+<h3 id="description">Description</h3>
+<p>Removes the specified menu item at the index.</p>
+<h3 id="params">Params</h3>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>id</code></td>
+<td><code>number</code></td>
+<td>The index of the menu item to remove</td>
+<td>-</td>
+</tr>
+<tr>
+<td></div></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="removeactionitems"><code>removeActionItems</code></h2>
+<pre class="hljs"><code class="language-typescript">removeActionItems(): <span class="hljs-built_in">void</span>;</code></pre>
+<div expansion-panel>
+
+<h3 id="description">Description</h3>
+<p>Removes all menu items.</p>
+</div>
+
+<h2 id="getactionitembyid"><code>getActionItemById</code></h2>
+<pre class="hljs"><code class="language-typescript">getActionItemById(id: <span class="hljs-built_in">number</span>): ActionItem;</code></pre>
+<div expansion-panel>
+
+<h3 id="description">Description</h3>
+<p>Gets a menu item by its index.</p>
+<h3 id="returns">Returns</h3>
+<p><code>ActionItem</code></p>
+<h3 id="params">Params</h3>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>id</code></td>
+<td><code>number</code></td>
+<td>The index of the menu item to get</td>
+<td>-</td>
+</tr>
+<tr>
+<td></div></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="addactionitemonclicklistener"><code>addActionItemOnClickListener</code></h2>
+<pre class="hljs"><code class="language-typescript">addActionItemOnClickListener(id: <span class="hljs-built_in">number</span>, callback: <span class="hljs-function">(<span class="hljs-params">ev?: Event</span>) =&gt;</span> <span class="hljs-built_in">void</span>): <span class="hljs-built_in">void</span>;</code></pre>
+<div expansion-panel>
+
+<h3 id="description">Description</h3>
+<p>Adds an onclick listener to the specified menu item.</p>
+<h3 id="returns">Returns</h3>
+<p><code>ActionItem</code></p>
+<h3 id="params">Params</h3>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>id</code></td>
+<td><code>number</code></td>
+<td>The index of the menu item to get</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>callback</code></td>
+<td><code>(ev?: Event)=&gt; void</code></td>
+<td>The callback of the onclick listener</td>
+<td>-</td>
+</tr>
+<tr>
+<td></div></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="examples">Examples</h1>
+<div expansion-panel>
+
+<h2 id="method-1-setting-up-the-toolbar-with-the-service">Method 1: Setting up the toolbar with the service</h2>
+<p><code>my-app.component.html</code>:</p>
+<pre class="hljs"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">mat-toolbar</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">app-action-items</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">app-action-items</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">mat-toolbar</span>&gt;</span></code></pre>
+<h2 id="method-2-setting-up-the-toolbar-with-the-service">Method 2: Setting up the toolbar with the service</h2>
+<p>See the source code for <a href="https://github.com/Chan4077/rss-reader/blob/src/app/app.component.html" class="docs-a"><code>app.component.html</code></a>.</p>
+<p>Snippet of code:</p>
+<pre class="hljs"><code class="language-typescript"><span class="hljs-comment">/**
+ * Gets the menu items (getter)
+ * @returns The menu items
+ */</span>
+<span class="hljs-keyword">get</span> actionItems: ActionItem[] {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.actionItemService.getActionItems();
+}</code></pre>
+<pre class="hljs"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"more-btns"</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let actionItem of actionItems"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">mat-icon-button</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"actionItem.showAsAction &amp;&amp; actionItem.href == null"</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"actionItem.onClickListener($event)"</span> [<span class="hljs-attr">matTooltip</span>]=<span class="hljs-string">"actionItem.title"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">mat-icon</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"actionItem.icon"</span>&gt;</span>{{actionItem.icon}}<span class="hljs-tag">&lt;/<span class="hljs-name">mat-icon</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">mat-icon-button</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"actionItem.showAsAction &amp;&amp; actionItem.href"</span> [<span class="hljs-attr">href</span>]=<span class="hljs-string">"actionItem.href"</span> [<span class="hljs-attr">matTooltip</span>]=<span class="hljs-string">"actionItem.title"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">mat-icon</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"actionItem.icon"</span>&gt;</span>{{actionItem.icon}}<span class="hljs-tag">&lt;/<span class="hljs-name">mat-icon</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">mat-icon-button</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"actionItem.showAsAction &amp;&amp; actionItem.routerLink"</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[actionItem.routerLink]"</span> [<span class="hljs-attr">matTooltip</span>]=<span class="hljs-string">"actionItem.title"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">mat-icon</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"actionItem.icon"</span>&gt;</span>{{actionItem.icon}}<span class="hljs-tag">&lt;/<span class="hljs-name">mat-icon</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">mat-icon-button</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"showMoreMenu"</span> [<span class="hljs-attr">matMenuTriggerFor</span>]=<span class="hljs-string">"moreMenu"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">mat-icon</span>&gt;</span>more_vert<span class="hljs-tag">&lt;/<span class="hljs-name">mat-icon</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">mat-menu</span> #<span class="hljs-attr">moreMenu</span>=<span class="hljs-string">"matMenu"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let actionItem of actionItems"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">mat-menu-item</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"!actionItem.showAsAction &amp;&amp; actionItem.href == null"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">mat-icon</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"actionItem.icon"</span>&gt;</span>{{actionItem.icon}}<span class="hljs-tag">&lt;/<span class="hljs-name">mat-icon</span>&gt;</span>
+      {{actionItem.title}}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">mat-menu-item</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"!actionItem.showAsAction &amp;&amp; actionItem.href"</span> [<span class="hljs-attr">href</span>]=<span class="hljs-string">"actionItem.href"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">mat-icon</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"actionItem.icon"</span>&gt;</span>{{actionItem.icon}}<span class="hljs-tag">&lt;/<span class="hljs-name">mat-icon</span>&gt;</span>
+      {{actionItem.title}}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">mat-menu-item</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"!actionItem.showAsAction &amp;&amp; actionItem.routerLink"</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">"[actionItem.routerLink]"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">mat-icon</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"actionItem.icon"</span>&gt;</span>{{actionItem.icon}}<span class="hljs-tag">&lt;/<span class="hljs-name">mat-icon</span>&gt;</span>
+      {{actionItem.title}}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">mat-menu</span>&gt;</span></code></pre>
+<h2 id="adding-menu-items">Adding menu items</h2>
+<pre class="hljs"><code class="language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent <span class="hljs-keyword">implements</span> OnInit {
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> actionItemService: ActionItemService</span>){}
+  ngOnInit() {
+    <span class="hljs-keyword">this</span>.actionItemService.addActionItem({title: <span class="hljs-string">'Reload'</span>, icon: <span class="hljs-string">'refresh'</span>, onClickListener: <span class="hljs-function">(<span class="hljs-params">ev: Event</span>) =&gt;</span> {
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Reload was clicked'</span>);
+      <span class="hljs-built_in">window</span>.location.reload(<span class="hljs-literal">true</span>);
+    }})
+  }
+}</code></pre>
+<h2 id="adding-click-listeners-to-a-menu-item">Adding click listeners to a menu item</h2>
+<pre class="hljs"><code class="language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent <span class="hljs-keyword">implements</span> OnInit {
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> actionItemService: ActionItemService</span>){}
+  ngOnInit() {
+    <span class="hljs-keyword">this</span>.actionItemService.addActionItem({title: <span class="hljs-string">'Open sidenav'</span>, icon: <span class="hljs-string">'menu'</span>});
+    <span class="hljs-keyword">this</span>.actionItemService.addActionItemOnClickListener(<span class="hljs-number">0</span>, <span class="hljs-function">(<span class="hljs-params">ev: Event</span>)=&gt;</span> {
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Clicked'</span>);
+    })
+  }
+}</code></pre>
+</div>

@@ -7,12 +7,12 @@ export interface Release {
   releaseAuthor?: string;
 }
 
-export interface ReleaseNotes {
+export type ReleaseNotes = {
   /** A summary of the release notes. */
   summary: string[] | string;
   /** A detailed version of the release notes. */
   details?: string[] | string;
-}
+} | string;
 
 export interface Releases {
   [key: string]: Release;
