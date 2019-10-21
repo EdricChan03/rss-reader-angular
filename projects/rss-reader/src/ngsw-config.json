@@ -21,9 +21,6 @@
       "resources": {
         "files": [
           "/assets/**"
-        ],
-        "urls": [
-          "https://edricchan03.github.io/res/**"
         ]
       }
     }, {
