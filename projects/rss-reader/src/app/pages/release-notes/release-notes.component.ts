@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ReleaseNotesJSON, ReleaseNotes, Release } from './release-notes';
+import { ReleaseNotesJSON, ReleaseNotes, Release, GitRepo } from './release-notes';
 import releaseNotes from '../../../assets/release-notes.json';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-release-notes',
@@ -20,6 +21,20 @@ export class ReleaseNotesComponent implements OnInit {
   /** Retrieves the list of versions. */
   get versions(): string[] {
     return Object.keys(this.releaseNotes.releases);
+  }
+
+  /** Retrieves metadata of the Git repository, or defaults to the environment. */
+  get gitRepo(): string {
+    return this.releaseNotes.gitRepo ?
+      this.createGitRepoUrl(this.releaseNotes.gitRepo) : this.createGitRepoUrl(environment.gitRepoDefaults);
+  }
+
+  /**
+   * Generates a URL to the specified Git repository.
+   * @param gitRepo The Git repository to be converted to a link.
+   */
+  private createGitRepoUrl(gitRepo: GitRepo): string {
+    return typeof gitRepo === 'object' ? `${gitRepo.host}/${gitRepo.username}/${gitRepo.repo}` : gitRepo;
   }
 
   /**

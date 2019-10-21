@@ -7,9 +7,12 @@
   <h1 id="release-notes" *ngIf="versions?.length > 0">Release notes</h1>
   <ng-container *ngIf="versions; else: noReleaseNotes">
     <ng-container *ngFor="let version of versions">
-      <h2 id="version-{{ version }}">Version {{ version }}</h2>
-      <p>Release date: <em>{{ getReleaseDate(version) | date:'long' }}</em></p>
-      <p>Released by: <em>{{ getReleaseAuthor(version) }}</em></p>
+      <h2 id="version-{{ version }}">
+        Version {{ version }}
+        <mat-chip *ngIf="version === releaseNotes.latestVersion" color="primary">Latest</mat-chip>
+      </h2>
+      <p *ngIf="getReleaseDate(version)">Release date: <em>{{ getReleaseDate(version) | date:'long' }}</em></p>
+      <p *ngIf="getReleaseAuthor(version)">Released by: <em>{{ getReleaseAuthor(version) }}</em></p>
       <ng-container *ngIf="getReleaseNote(version) as releaseNote">
         <ng-container *ngIf="isStr(releaseNote) && isUrl(releaseNote)">
           <p>See this <a [href]="releaseNote">link</a> for the release notes.</p>

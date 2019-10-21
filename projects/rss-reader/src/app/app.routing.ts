@@ -5,15 +5,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { TestpageComponent } from './testpage/testpage.component';
 import { SettingsComponent } from './settings/settings.component';
 import { FeedComponent } from './feed/feed.component';
-import { ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AndroidComponent } from './devices/android/android.component';
 import { IOSComponent } from './devices/ios/ios.component';
 import { ExploreComponent } from './explore/explore.component';
 import { HeadlinesComponent } from './headlines/headlines.component';
-import { ReleaseNotesComponent } from './components/release-notes/release-notes.component';
 
-const APP_ROUTES: Routes = [
+export const routes: Routes = [
   {
     path: 'devices', children: [
       { path: 'android', component: AndroidComponent },
@@ -28,11 +27,19 @@ const APP_ROUTES: Routes = [
   { path: 'feed', component: FeedComponent },
   { path: 'headlines', component: HeadlinesComponent },
   { path: 'home', redirectTo: '/feed' },
-  { path: 'release-notes', component: ReleaseNotesComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'test', component: TestpageComponent },
   { path: '', pathMatch: 'full', redirectTo: '/feed' },
-  { path: '**', component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent },
+  // Lazy-loaded routes
+  {
+    path: 'release-notes',
+    loadChildren: () => import('./pages/release-notes/release-notes.module').then(m => m.ReleaseNotesModule)
+  }
 ];
 
-export const AppRouting: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

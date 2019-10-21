@@ -10,7 +10,7 @@ import {
 import { ActionItemsModule } from './actionitem.service';
 import { AndroidComponent } from './devices/android/android.component';
 import { AppComponent } from './app.component';
-import { AppRouting } from './app.routing';
+import { AppRoutingModule } from './app.routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { DocViewerComponent } from './pages/doc-viewer/doc-viewer.component';
@@ -39,12 +39,8 @@ import {
 import { TestpageComponent } from './testpage/testpage.component';
 import { WebComponent } from './devices/web/web.component';
 import { environment } from '../environments/environment';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireAuthModule } from '@angular/fire/auth';
 import { HeadlinesComponent } from './headlines/headlines.component';
 import { HotkeysModule } from './hotkeys/hotkeys.module';
-import { ComponentsModule } from './components/components.module';
 import { MarkdownModule } from 'ngx-markdown';
 
 const OVERLAYS = [
@@ -87,15 +83,14 @@ const PIPES = [
     MarkdownModule.forRoot(),
     MaterialModule,
     SharedModule,
-    AppRouting,
+    AppRoutingModule,
     ServiceWorkerModule.register(environment.swLocation, { enabled: environment.production }),
     DialogsModule,
     // AngularFireModule.initializeApp(environment.firebase),
     // AngularFirestoreModule.enablePersistence(),
     // AngularFireAuthModule,
     ActionItemsModule,
-    HotkeysModule,
-    ComponentsModule
+    HotkeysModule
   ],
   bootstrap: [AppComponent],
   providers: [
