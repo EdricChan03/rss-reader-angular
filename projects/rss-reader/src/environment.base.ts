@@ -1,4 +1,5 @@
 import { Version } from '@angular/core';
+import { GitRepo } from './app/pages/release-notes/release-notes';
 
 // This file contains the constants that all of the environments
 // that the app defines.
@@ -14,14 +15,16 @@ export interface FirebaseAppConfig {
 }
 /** Environment interface */
 export interface Environment {
+  latestVersion: Version;
   production: boolean;
   swLocation: string;
   firebaseConfig?: FirebaseAppConfig;
-  latestVersion: Version;
+  gitRepoDefaults?: GitRepo;
 }
 
 /** The latest version of the app. */
 export const latestVersion = new Version('1.5.0');
+
 /** The Firebase configuration. */
 export const firebaseConfig: FirebaseAppConfig = {
   apiKey: 'AIzaSyB70FnAVNaxg33vyY4tlPKZ5x00QY80mTc',
@@ -31,11 +34,20 @@ export const firebaseConfig: FirebaseAppConfig = {
   storageBucket: '',
   messagingSenderId: '870397667989'
 };
+
+/** Default configuration for the Git repository. */
+export const gitRepoDefaults: GitRepo = {
+  host: 'https://github.com',
+  username: 'EdricChan03',
+  repo: 'rss-reader-web'
+};
+
 /** Default environment that other enviroments can extend from. */
 export const defaultEnvironment: Environment = {
   production: false,
   swLocation: '',
-  latestVersion
+  latestVersion,
+  gitRepoDefaults
 };
 
 /**
