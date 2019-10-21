@@ -19,7 +19,8 @@
             "showCircularDependencies": false,
             "polyfills": "projects/rss-reader/src/polyfills.ts",
             "assets": [
-              "projects/rss-reader/src/assets"
+              "projects/rss-reader/src/assets",
+              "manifest.webmanifest"
             ],
             "styles": [
               "projects/rss-reader/src/styles.scss"
