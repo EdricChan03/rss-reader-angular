@@ -20,7 +20,7 @@
             "polyfills": "projects/rss-reader/src/polyfills.ts",
             "assets": [
               "projects/rss-reader/src/assets",
-              "manifest.webmanifest"
+              "projects/rss-reader/manifest.webmanifest"
             ],
             "styles": [
               "projects/rss-reader/src/styles.scss"
