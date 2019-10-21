@@ -33,7 +33,7 @@
     "@angular/service-worker": "^8.2.3",
     "@types/highlight.js": "^9.12.3",
     "angular-cli-ghpages": "^0.6.0",
-    "core-js": "^2.6.3",
+    "core-js": "^3.3.2",
     "firebase": "^6.2.2",
     "hammerjs": "^2.0.8",
     "highlight.js": "^9.13.1",
