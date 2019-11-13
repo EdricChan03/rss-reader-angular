@@ -1,0 +1,518 @@
+<h1 id="sharedservice"><code>SharedService</code></h1>
+<h2 id="description">Description</h2>
+<p>This service serves as an utility for all of my project.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ol>
+<li><p>Ensure that <code>SharedModule</code> is imported to your main <code>NgModule</code> under <code>imports</code> (after <code>BrowserModule</code>:</p>
+ <div expansion-panel>
+
+<pre class="hljs"><code class="language-typescript"> <span class="hljs-keyword">import</span> { NgModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+ <span class="hljs-keyword">import</span> { BrowserModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser'</span>;
+ <span class="hljs-keyword">import</span> { SharedModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'./shared.service'</span>;
+ <span class="hljs-meta">@NgModule</span>({
+   imports: [
+     BrowserModule,
+     SharedModule
+   ]
+ })
+ <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppModule {}</code></pre>
+ </div></li>
+<li><p>Add this style to your app&#39;s main style file:</p>
+ <div expansion-panel>
+
+<pre class="hljs"><code class="language-css"> <span class="hljs-selector-tag">selection-dialog</span>&gt;<span class="hljs-selector-tag">mat-dialog-container</span>&gt;<span class="hljs-selector-tag">selection-dialog</span>&gt;<span class="hljs-selector-tag">mat-dialog-content</span> {
+     <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
+ }</code></pre>
+ </div>
+
+</li>
+</ol>
+<hr>
+<h1 id="methods">Methods</h1>
+<p>Here&#39;s a list of all the functions/methods.</p>
+<h2 id="checkforupdates"><code>checkForUpdates</code></h2>
+<pre class="hljs"><code class="language-typescript">checkForUpdates(): <span class="hljs-built_in">void</span>;</code></pre>
+<div expansion-panel>
+
+<h3 id="description">Description</h3>
+<p>Checks for updates to the currently cached app that the user is using. (aka Service Worker functionality)</p>
+</div>
+
+<h2 id="activateupdate"><code>activateUpdate</code></h2>
+<pre class="hljs"><code class="language-typescript">activateUpdate(): <span class="hljs-built_in">void</span>;</code></pre>
+<div expansion-panel>
+
+<h3 id="description">Description</h3>
+<p>Activates the current update available. (aka Service Worker functionality)</p>
+</div>
+
+<h2 id="opensnackbar"><code>openSnackBar</code></h2>
+<pre class="hljs"><code class="language-typescript">openSnackBar(opts: SnackBarConfig): MatSnackBarRef&lt;SimpleSnackBar&gt;;</code></pre>
+<div expansion-panel>
+
+<h3 id="description">Description</h3>
+<p>Opens a snackbar with the specified configuration and return the snackbar&#39;s reference.</p>
+<h3 id="params">Params</h3>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>opts</code></td>
+<td><a href="#SnackBarConfig" class="docs-a"><code>SnackBarConfig</code></a></td>
+<td>The options for the snackbar</td>
+</tr>
+</tbody></table>
+<h3 id="examples">Examples</h3>
+<h4 id="opening-a-simple-snackbar">Opening a simple snackbar</h4>
+<pre class="hljs"><code class="language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> shared: SharedService</span>){}
+  showSnackBar() {
+    <span class="hljs-keyword">this</span>.shared.openSnackBar({msg: <span class="hljs-string">'I\'m a snackbar!'</span>, additionalOpts: {duration: <span class="hljs-number">6000</span>}});
+  }
+}</code></pre>
+</div>
+
+<h2 id="opensnackbarcomponent"><code>openSnackBarComponent</code></h2>
+<div expansion-panel>
+
+<h3 id="description">Description</h3>
+<p>Opens a custom snackbar component. Returns the opened custom snackbar component&#39;s reference.</p>
+<h3 id="parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>opts</code></td>
+<td><a href="#SnackBarConfig" class="docs-a"><code>SnackBarConfig</code></a></td>
+<td>The options for the snackbar</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h3 id="examples">Examples</h3>
+<h4 id="opening-a-custom-snackbar-component-for-a-duration-of-5-seconds">Opening a custom snackbar component for a duration of 5 seconds</h4>
+<pre class="hljs"><code class="language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> shared: SharedService</span>){}
+  showSnackBar() {
+    <span class="hljs-keyword">this</span>.shared.openSnackBarComponent({component: CustomSnackBarComponent, additionalOpts: {duration: <span class="hljs-number">5000</span>}});
+  }
+}</code></pre>
+<p>For more info about custom snackbars, visit the official <a href="https://material.angular.io/components/snackbar/overview" class="docs-a">docs</a>.</p>
+</div>
+
+<h2 id="closesnackbar"><code>closeSnackBar</code></h2>
+<pre class="hljs"><code class="language-typescript">closeSnackBar(): <span class="hljs-built_in">void</span>;</code></pre>
+<div expansion-panel>
+
+<h3 id="description">Description</h3>
+<p>Closes the currently opened snackbar.</p>
+</div>
+
+<h2 id="openalertdialog"><code>openAlertDialog</code></h2>
+<pre class="hljs"><code class="language-typescript">openAlertDialog(opts: AlertDialogConfig): MatDialogRef&lt;AlertDialog&gt;;</code></pre>
+<div expansion-panel>
+
+<h3 id="description">Description</h3>
+<p>Opens an alert dialog with the specified options. Returns the opened dialog&#39;s reference.</p>
+<h3 id="parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>opts</code></td>
+<td><a href="#AlertDialogConfig" class="docs-a"><code>AlertDialogConfig</code></a></td>
+<td>The options for the alert dialog</td>
+</tr>
+</tbody></table>
+<h3 id="examples">Examples</h3>
+<h4 id="standard-dialog">Standard dialog</h4>
+<pre class="hljs"><code class="language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppComponent {
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> shared: SharedService</span>){}
+  openAlertDialog() {
+    <span class="hljs-keyword">this</span>.shared.openAlertDialog({msg: <span class="hljs-string">'I\'m an alert dialog!'</span>, title: <span class="hljs-string">'Alert'</span>});
+  }
+}</code></pre>
+<h4 id="another-alert-dialog-example">Another alert dialog example</h4>
+<pre class="hljs"><code class="language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AppComponent {
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> shared: SharedService</span>){}
+  deleteAll() {
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-comment">// Show a dialog indicating that all files were</span>
+    <span class="hljs-comment">// successfully deleted</span>
+    <span class="hljs-keyword">this</span>.shared.openAlertDialog({msg: <span class="hljs-string">'All files were deleted!'</span>});
+  }
+}</code></pre>
+</div>
+
+<h2 id="openconfirmdialog"><code>openConfirmDialog</code></h2>
+<pre class="hljs"><code class="language-typescript">openConfirmDialog(opts: ConfirmDialogConfig): MatDialogRef&lt;ConfirmDialog&gt;;</code></pre>
+<h3 id="description">Description</h3>
+<p>Opens a confirm dialog with the configuration. Returns the opened confirm dialog&#39;s reference.</p>
+<p><strong>TIP:</strong> You can check whether the user confirmed the dialog by accessing the result of the <code>subscribe</code> method.</p>
+<ul>
+<li>If the result is <code>yes</code>, then the user clicked on the positive button.</li>
+<li>If the result is <code>no</code>, then the user clicked on the negative button.</li>
+<li>If the result is <code>undefined</code>, then the user clicked outside of the dialog.</li>
+</ul>
+<p>Here&#39;s an example:</p>
+<pre class="hljs"><code class="language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> shared: SharedService</span>) { }
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-comment">// Shows a dialog asking the user for the confirmation</span>
+  <span class="hljs-comment">// of a deletion of a file.</span>
+  deleteFile() {
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">let</span> dialogRef = <span class="hljs-keyword">this</span>.shared.openConfirmDialog({msg: <span class="hljs-string">'Are you sure you want to delete the current file? This cannot be undone!'</span>});
+    dialogRef.afterClosed().subscribe(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> {
+      <span class="hljs-comment">// Check if user didn't click outside of the dialog</span>
+      <span class="hljs-keyword">if</span> (result != <span class="hljs-literal">undefined</span>) {
+        <span class="hljs-comment">// Check if user confirmed the deletion</span>
+        <span class="hljs-keyword">if</span> (result === <span class="hljs-string">'yes'</span>) {
+          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Deleting file...'</span>);
+          <span class="hljs-comment">// &lt;Code for deleting file&gt;</span>
+        <span class="hljs-comment">// Check if user denied the deletion</span>
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (result === <span class="hljs-string">'no'</span>) {
+          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'User cancelled deletion.'</span>);
+        }
+      <span class="hljs-comment">// User probably clicked outside</span>
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'User cancelled deletion or clicked outside of the dialog.'</span>);
+      }
+    });
+  }
+}</code></pre>
+<h2 id="openpromptdialog"><code>openPromptDialog</code></h2>
+<pre class="hljs"><code class="language-typescript">openPromptDialog(opts: PromptDialogConfig): MatDialogRef&lt;PromptDialog&gt;;</code></pre>
+<h3 id="description">Description</h3>
+<p>Shows a prompt dialog asking the user for input. This input will then be passed to the result of the <code>afterClosed</code> method of the dialog&#39;s reference.</p>
+<p>Example:</p>
+<pre class="hljs"><code class="language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> shared: SharedService</span>) { }
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-comment">// Renames a file by showing a prompt dialog.</span>
+  <span class="hljs-comment">// The `fileName` parameter is used for showing what the current</span>
+  <span class="hljs-comment">// file name is before the renaming.</span>
+  renameFile(fileName: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">string</span> {
+    <span class="hljs-comment">// Note: Since the `disableClose` config option is set to true,</span>
+    <span class="hljs-comment">// completely negate the possibility of the user</span>
+    <span class="hljs-comment">// clicking outside of the dialog.</span>
+    <span class="hljs-comment">// However, the user can still click on the</span>
+    <span class="hljs-comment">// cancel button. This still needs to be considered.</span>
+    <span class="hljs-keyword">let</span> dialogRef = <span class="hljs-keyword">this</span>.shared.openPromptDialog({title: <span class="hljs-string">`Rename <span class="hljs-subst">${fileName}</span>`</span>, disableClose: <span class="hljs-literal">true</span>});
+    dialogRef.afterClosed().subscribe(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> {
+      <span class="hljs-comment">// Sanity check</span>
+      <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Remove this sanity check since the user *should not* be</span>
+      <span class="hljs-comment">// able to click outside of the dialog.</span>
+      <span class="hljs-keyword">if</span> (result == <span class="hljs-literal">undefined</span>) {
+        <span class="hljs-comment">// User either didn't input anything or clicked outside of the dialog</span>
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'File not renamed.'</span>);
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// Assume input value is valid</span>
+        <span class="hljs-keyword">return</span> result;
+      }
+    })
+  }
+}</code></pre>
+<h2 id="openselectiondialog"><code>openSelectionDialog</code></h2>
+<pre class="hljs"><code class="language-typescript">openSelectionDialog(opts: SelectionDialogConfig): MatDialogRef&lt;SelectionDialog&gt;;</code></pre>
+<h2 id="getdialogs"><code>getDialogs</code></h2>
+<pre class="hljs"><code class="language-typescript">getDialogs(): MatDialogRef&lt;<span class="hljs-built_in">any</span>&gt;;</code></pre>
+<h2 id="closealldialogs"><code>closeAllDialogs</code></h2>
+<pre class="hljs"><code class="language-typescript">closeAllDialogs(): <span class="hljs-built_in">void</span>;</code></pre>
+<h2 id="getdialogbyid"><code>getDialogById</code></h2>
+<pre class="hljs"><code class="language-typescript">getDialogById(id: <span class="hljs-built_in">string</span>): MatDialogRef&lt;<span class="hljs-built_in">any</span>&gt;;</code></pre>
+<h2 id="afterallclosed"><code>afterAllClosed</code></h2>
+<pre class="hljs"><code class="language-typescript">afterAllClosed(): Observable&lt;<span class="hljs-built_in">void</span>&gt;;</code></pre>
+<div expansion-panel>
+<h3 id="description">Description</h3>
+<p>An observable for when after all dialogs are closed</p>
+<h3 id="returns">Returns</h3>
+<p><code>Observable&lt;void&gt;</code></p>
+</div>
+
+<h2 id="ismobile"><code>isMobile</code></h2>
+<pre class="hljs"><code class="language-typescript"><span class="hljs-keyword">get</span> isMobile(): <span class="hljs-built_in">boolean</span>;</code></pre>
+<div expansion-panel>
+
+<h3 id="description">Description</h3>
+<p>Whether the user is using a mobile device</p>
+<h3 id="returns">Returns</h3>
+<p><code>boolean</code></p>
+</div>
+
+<hr>
+<h1 id="getters-setters">Getters &amp; Setters</h1>
+<h2 id="title"><code>title</code></h2>
+<p>Sets or gets the title of the website.</p>
+<div expansion-panel>
+
+<h3 id="examples">Examples</h3>
+<pre class="hljs"><code class="language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
+  <span class="hljs-comment">// Making the service public ensures that it can</span>
+  <span class="hljs-comment">// be accessed from the component's template.</span>
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> shared: SharedService</span>) { }
+}</code></pre>
+<pre class="hljs"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Current document title: {{shared.title}}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></pre>
+</div>
+
+<hr>
+<h1 id="other-classes">Other classes</h1>
+<h2 id="snackbarconfig"><code>SnackBarConfig</code></h2>
+<div expansion-panel>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Type</th>
+<th>Default value(s)</th>
+<th>Required?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>msg</code></td>
+<td>The message for the snackbar.</td>
+<td><code>string</code></td>
+<td>-</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>action</code></td>
+<td>The action for the snackbar.</td>
+<td><code>string</code></td>
+<td>-</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>component</code></td>
+<td>The custom component for the snackbar to open with.</td>
+<td><code>ComponentType&lt;any&gt;</code></td>
+<td>-</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>additionalOpts</code></td>
+<td>Additional options</td>
+<td><code>MatSnackBarConfig</code></td>
+<td>-</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td></div></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="dialogconfig-extends-matdialogconfig"><code>DialogConfig</code> extends <code>MatDialogConfig</code></h2>
+<div expansion-panel>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Type</th>
+<th>Default value(s)</th>
+<th>Required?</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>msg</code></td>
+<td>The message for the dialog.</td>
+<td><code>string,SafeHtml</code></td>
+<td>-</td>
+<td><code>true</code></td>
+<td>If this property is of type <code>SafeHtml</code>, the <code>isHtml</code> property has to be set as <code>true</code>.</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>The title of the dialog.</td>
+<td><code>string</code></td>
+<td><code>Alert</code></td>
+<td><code>false</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>isHtml</code></td>
+<td>Whether the dialog&#39;s message is HTML.</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>false</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td>*Take note that this class extends <code>MatDialogConfig</code>.</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></div></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="alertdialogconfig-extends-dialogconfig"><code>AlertDialogConfig</code> extends <code>DialogConfig</code></h2>
+<div expansion-panel>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Type</th>
+<th>Default value(s)</th>
+<th>Required?</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ok</code></td>
+<td>The ok button text</td>
+<td><code>string</code></td>
+<td><code>OK</code></td>
+<td><code>false</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td></div></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="confirmdialogconfig-extends-dialogconfig"><code>ConfirmDialogConfig</code> extends <code>DialogConfig</code></h2>
+<div expansion-panel>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Type</th>
+<th>Default value(s)</th>
+<th>Required?</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ok</code></td>
+<td>The ok button text</td>
+<td><code>string</code></td>
+<td><code>OK</code></td>
+<td><code>false</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>cancel</code></td>
+<td>The cancel button text</td>
+<td><code>string</code></td>
+<td><code>Cancel</code></td>
+<td><code>false</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td></div></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="promptdialogconfig-sub-sup-extends-dialogconfig-sub-sup-"><code>PromptDialogConfig</code> <sub><sup>EXTENDS <code>DialogConfig</code></sub></sup></h2>
+<div expansion-panel>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Type</th>
+<th>Default value(s)</th>
+<th>Required?</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ok</code></td>
+<td>The ok button text</td>
+<td><code>string</code></td>
+<td><code>OK</code></td>
+<td><code>false</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>cancel</code></td>
+<td>The cancel button text</td>
+<td><code>string</code></td>
+<td><code>Cancel</code></td>
+<td><code>false</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>placeholder</code></td>
+<td>The placeholder for the input</td>
+<td><code>string</code></td>
+<td>-</td>
+<td><code>true</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>inputType</code></td>
+<td>The input type</td>
+<td><code>&quot;text&quot;,&quot;email&quot;,&quot;password&quot;,&quot;number&quot;</code></td>
+<td>-</td>
+<td><code>false</code></td>
+<td>Potential date/time support?</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>The initial value of the input</td>
+<td><code>string,number</code></td>
+<td>-</td>
+<td><code>false</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td>The (divider) color of the input</td>
+<td><code>&quot;primary&quot;,&quot;accent&quot;,&quot;warn&quot;</code></td>
+<td>-</td>
+<td><code>false</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td></div></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<p><a href="https://edricchan03.github.io/rss-reader/test" class="docs-a">Testing page</a></p>
