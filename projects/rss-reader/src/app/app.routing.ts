@@ -13,6 +13,11 @@ import { ExploreComponent } from './explore/explore.component';
 import { HeadlinesComponent } from './headlines/headlines.component';
 
 export const routes: Routes = [
+  // Lazy-loaded routes
+  {
+    path: 'release-notes',
+    loadChildren: () => import('./pages/release-notes/release-notes.module').then(m => m.ReleaseNotesModule)
+  },
   {
     path: 'devices', children: [
       { path: 'android', component: AndroidComponent },
@@ -31,11 +36,6 @@ export const routes: Routes = [
   { path: 'test', component: TestpageComponent },
   { path: '', pathMatch: 'full', redirectTo: '/feed' },
   { path: '**', component: PageNotFoundComponent },
-  // Lazy-loaded routes
-  {
-    path: 'release-notes',
-    loadChildren: () => import('./pages/release-notes/release-notes.module').then(m => m.ReleaseNotesModule)
-  }
 ];
 
 @NgModule({
