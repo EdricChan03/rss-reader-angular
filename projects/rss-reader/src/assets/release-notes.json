@@ -1,6 +1,6 @@
 {
   "$schema": "./release-notes-schema.json",
-  "latestVersion": "1.5.1",
+  "latestVersion": "1.5.2",
   "gitRepo": {
     "host": "https://github.com",
     "repo": "rss-reader-web",
