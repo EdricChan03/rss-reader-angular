@@ -24,38 +24,36 @@ const PRE_PATTERN = /(<pre[^>]*)/g;
 const START_COMMENT_PATTERN = /(<!-- start-enclose-content -->)/g;
 const END_COMMENT_PATTERN = /(<!-- end-enclose-content -->)/g;
 
+const docsAssetsPath = 'projects/rss-reader/src/assets/docs';
 
 task('docs-guides', () => {
   return src('docs/guides/**/!(README.md)')
     .pipe(markdown(markdownOptions))
     .pipe(transform('utf8', transformMarkdownFiles))
     // tslint:disable-next-line:no-shadowed-variable
-    .pipe(rename(function (path: rename.ParsedPath) {
+    .pipe(rename((path: rename.ParsedPath) => {
       path.extname = '.html';
     }))
-    .pipe(dest('src/assets/docs/guides'));
+    .pipe(dest(`${docsAssetsPath}/guides`));
 });
 task('docs-dev', () => {
   return src('docs/dev/**/!(README.md)')
     .pipe(markdown(markdownOptions))
     .pipe(transform('utf8', transformMarkdownFiles))
     // tslint:disable-next-line:no-shadowed-variable
-    .pipe(rename(function (path: rename.ParsedPath) {
+    .pipe(rename((path: rename.ParsedPath) => {
       path.extname = '.html';
     }))
-    .pipe(dest('src/assets/docs/dev'));
+    .pipe(dest(`${docsAssetsPath}/dev`));
 });
 task('docs-img', () => {
   return src('docs/img/**')
-    .pipe(dest('src/assets/docs/img'));
+    .pipe(dest(`${docsAssetsPath}/img`));
 });
 
 task('docs', parallel(['docs-guides', 'docs-dev', 'docs-img']));
 
-/**
- * Transforms the Markdown files
- * @param {Buffer} buffer The buffer of the file
- */
+// TODO(EdricChan03): Understand how this code actually works.
 function transformMarkdownFiles(content: string, file: any): Buffer | string {
 
   // Markdown files can contain links to other markdown files.
