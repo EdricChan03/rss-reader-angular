@@ -23,7 +23,7 @@ export interface Environment {
 }
 
 /** The latest version of the app. */
-export const latestVersion = new Version('1.5.0');
+export const latestVersion = new Version('1.5.1');
 
 /** The Firebase configuration. */
 export const firebaseConfig: FirebaseAppConfig = {
