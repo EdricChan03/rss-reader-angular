@@ -29,7 +29,7 @@ export type ReleaseNotes = {
   summary: string[] | string;
   /** A detailed version of the release notes. */
   details?: string[] | string;
-} | string;
+} | string[] | string;
 
 export type ReleaseType = 'stable' | 'beta' | 'nightly';
 

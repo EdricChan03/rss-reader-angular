@@ -77,30 +77,21 @@ export class ReleaseNotesComponent implements OnInit {
     return notes.join('\n');
   }
 
-  /**
-   * Checks if the specified `val` parameter is an array.
-   * @param val The value to check.
-   */
   isArray(val: any): boolean {
     return Array.isArray(val);
   }
 
-  /**
-   * Checks whether the specified `val` parameter is a URL.
-   * @param val The value to check.
-   *
-   * _See https://stackoverflow.com/a/46296668/6782707 for more info._
-   */
+  // See https://stackoverflow.com/a/46296668/6782707 for more info.
   isUrl(val: string): boolean {
     return /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(val);
   }
 
-  /**
-   * Checks whether the specified `val` parameter is a string.
-   * @param val The value to check.
-   */
   isStr(val: any): boolean {
     return typeof val === 'string';
+  }
+
+  isObj(val: any): boolean {
+    return typeof val === 'object';
   }
 
   ngOnInit() {
