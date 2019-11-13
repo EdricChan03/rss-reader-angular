@@ -27,8 +27,6 @@
       "releaseAuthor": "EdricChan03"
     },
     "1.5.1": {
-      "releaseAuthor": "EdricChan03",
-      "releaseDate": "2019-11-13T08:49:13+0000",
       "releaseNotes": [
         "- Fixed broken release notes page (You should be able to see the release notes now! Yay!)",
         "- Use UTC dates instead of localised time internally. (Yay UTC! Better than localised time zones - and that dreaded DST thingy..)",
@@ -36,7 +34,10 @@
         "- Added more jokes to the release notes. (Gotta spice up the release notes, ya know?)",
         "- That's about it really. No really, that's it.",
         "- Unless you want more release notes? Or you can check out the site's source code revision history if you really want to."
-      ]
+      ],
+      "releaseAuthor": "EdricChan03",
+      "releaseCommitSha": "7736e22",
+      "releaseDate": "2019-11-13T08:49:13+0000"
     }
   }
 }
