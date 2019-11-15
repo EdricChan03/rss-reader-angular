@@ -27,7 +27,12 @@
 
   <h1 id="release-notes" *ngIf="versions?.length > 0">Release notes</h1>
   <ng-container *ngIf="versions; else: noReleaseNotes">
-    <ng-container *ngFor="let version of versions">
+    <!--
+      TODO: Add support for sorting versions by semver.
+      For now, the versions are reversed as the latest version is defined as the
+      last key in the releases JSON object.
+    -->
+    <ng-container *ngFor="let version of versions.slice().reverse()">
       <h2 id="version-{{ version }}">
         Version {{ version }}
         <mat-chip *ngIf="version === releaseNotes.latestVersion" color="primary">Latest</mat-chip>
