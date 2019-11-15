@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ReleaseNotesJSON, ReleaseNotes, Release, GitRepo } from './release-notes';
-import releaseNotes from '../../../assets/release-notes.json';
+import releaseNotes from '../../../assets/release-notes/release-notes.json';
 import { environment } from '../../../environments/environment';
 
 @Component({
