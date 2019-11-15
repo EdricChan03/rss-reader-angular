@@ -1,16 +1,17 @@
-import { WebComponent } from './devices/web/web.component';
-import { GuideViewerComponent } from './pages/guide-viewer/guide-viewer.component';
-import { GuidesListComponent } from './pages/guide-list/guide-list.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { TestpageComponent } from './testpage/testpage.component';
-import { SettingsComponent } from './settings/settings.component';
-import { FeedComponent } from './feed/feed.component';
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes, ExtraOptions } from '@angular/router';
+import { environment } from '../environments/environment';
 import { AndroidComponent } from './devices/android/android.component';
 import { IOSComponent } from './devices/ios/ios.component';
+import { WebComponent } from './devices/web/web.component';
 import { ExploreComponent } from './explore/explore.component';
+import { FeedComponent } from './feed/feed.component';
 import { HeadlinesComponent } from './headlines/headlines.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { GuidesListComponent } from './pages/guide-list/guide-list.component';
+import { GuideViewerComponent } from './pages/guide-viewer/guide-viewer.component';
+import { SettingsComponent } from './settings/settings.component';
+import { TestpageComponent } from './testpage/testpage.component';
 
 export const routes: Routes = [
   // Lazy-loaded routes
@@ -38,8 +39,13 @@ export const routes: Routes = [
   { path: '**', component: PageNotFoundComponent },
 ];
 
+const routerOptions: ExtraOptions = environment.routerOptions ? environment.routerOptions : {
+  enableTracing: !environment.production,
+  anchorScrolling: 'enabled'
+};
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, routerOptions)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

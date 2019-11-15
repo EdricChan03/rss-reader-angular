@@ -1,4 +1,5 @@
 import { Version } from '@angular/core';
+import { ExtraOptions } from '@angular/router';
 import { GitRepo } from './app/pages/release-notes/release-notes';
 
 // This file contains the constants that all of the environments
@@ -15,10 +16,20 @@ export interface FirebaseAppConfig {
 }
 /** Environment interface */
 export interface Environment {
+  /** The app's latest version. */
   latestVersion: Version;
+  /** Whether the environment is in production mode. */
   production: boolean;
+  /** Location of the service worker file. */
   swLocation: string;
+  /**
+   * Router options to be passed to `RouterModule.forRoot` in the main routing
+   * module.
+   */
+  routerOptions?: ExtraOptions;
+  /** Firebase configuration options. (Currently unused) */
   firebaseConfig?: FirebaseAppConfig;
+  /** Default Git repo options to be used in-place for the release notes options. */
   gitRepoDefaults?: GitRepo;
 }
 
