@@ -1,7 +1,28 @@
 <div class="app-content">
   <h1 id="current-version">Current version: {{ releaseNotes.latestVersion }}</h1>
 
-  <p><em><a routerLink="." fragment="version-{{ releaseNotes.latestVersion }}">Jump to release notes</a></em></p>
+  <h2 id="current-version-release-notes">Release notes for {{ releaseNotes.latestVersion }}</h2>
+  <!-- TODO: Convert to template -->
+  <ng-container *ngIf="versions; else: noReleaseNotes">
+    <p *ngIf="getReleaseDate(releaseNotes.latestVersion) as releaseDate">Release date: <em>{{ releaseDate | date:'long' }}</em></p>
+    <p *ngIf="getReleaseAuthor(releaseNotes.latestVersion) as releaseAuthor">Released by: <em>{{ releaseAuthor }}</em></p>
+    <ng-container *ngIf="getReleaseNote(releaseNotes.latestVersion) as releaseNote">
+      <ng-container *ngIf="isStr(releaseNote) && isUrl(releaseNote)">
+        <p>See this <a [href]="releaseNote">link</a> for the release notes.</p>
+      </ng-container>
+      <ng-container *ngIf="!isStr(releaseNote) && isObj(releaseNote)">
+        <ng-container *ngIf="isArray(releaseNote.summary)">
+          <p [innerHTML]="joinReleaseNotes(releaseNote.summary) | markdown"></p>
+        </ng-container>
+        <ng-container *ngIf="!isArray(releaseNote.summary) && isUrl(releaseNote.summary)">
+          <p>See this <a [href]="releaseNote.summary">link</a> for more info.</p>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="!isStr(releaseNote) && isArray(releaseNote)">
+        <p [innerHTML]="joinReleaseNotes(releaseNote) | markdown"></p>
+      </ng-container>
+    </ng-container>
+  </ng-container>
   <hr>
 
   <h1 id="release-notes" *ngIf="versions?.length > 0">Release notes</h1>
@@ -11,8 +32,8 @@
         Version {{ version }}
         <mat-chip *ngIf="version === releaseNotes.latestVersion" color="primary">Latest</mat-chip>
       </h2>
-      <p *ngIf="getReleaseDate(version)">Release date: <em>{{ getReleaseDate(version) | date:'long' }}</em></p>
-      <p *ngIf="getReleaseAuthor(version)">Released by: <em>{{ getReleaseAuthor(version) }}</em></p>
+      <p *ngIf="getReleaseDate(version) as releaseDate">Release date: <em>{{ releaseNotes | date:'long' }}</em></p>
+      <p *ngIf="getReleaseAuthor(version) as releaseAuthor">Released by: <em>{{ releaseAuthor }}</em></p>
       <ng-container *ngIf="getReleaseNote(version) as releaseNote">
         <ng-container *ngIf="isStr(releaseNote) && isUrl(releaseNote)">
           <p>See this <a [href]="releaseNote">link</a> for the release notes.</p>
