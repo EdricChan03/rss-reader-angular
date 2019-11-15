@@ -25,7 +25,7 @@
   </ng-container>
   <hr>
 
-  <h1 id="release-notes" *ngIf="versions?.length > 0">Release notes</h1>
+  <h1 id="all-release-notes" *ngIf="versions?.length > 0">All release notes</h1>
   <ng-container *ngIf="versions; else: noReleaseNotes">
     <!--
       TODO: Add support for sorting versions by semver.
@@ -37,7 +37,7 @@
         Version {{ version }}
         <mat-chip *ngIf="version === releaseNotes.latestVersion" color="primary">Latest</mat-chip>
       </h2>
-      <p *ngIf="getReleaseDate(version) as releaseDate">Release date: <em>{{ releaseNotes | date:'long' }}</em></p>
+      <p *ngIf="getReleaseDate(version) as releaseDate">Release date: <em>{{ releaseDate | date:'long' }}</em></p>
       <p *ngIf="getReleaseAuthor(version) as releaseAuthor">Released by: <em>{{ releaseAuthor }}</em></p>
       <ng-container *ngIf="getReleaseNote(version) as releaseNote">
         <ng-container *ngIf="isStr(releaseNote) && isUrl(releaseNote)">
