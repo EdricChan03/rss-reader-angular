@@ -1,6 +1,6 @@
 {
   "$schema": "./release-notes-schema.json",
-  "latestVersion": "1.5.2",
+  "latestVersion": "1.5.3",
   "gitRepo": {
     "host": "https://github.com",
     "repo": "rss-reader-web",
@@ -47,6 +47,18 @@
       "releaseAuthor": "EdricChan03",
       "releaseCommitSha": "915137d",
       "releaseDate": "2019-11-13T09:32:33+0000"
+    },
+    "1.5.3": {
+      "releaseNotes": [
+        "- Yet another quickfix that reverses the way the current release notes are shown. (This reduces the need for scrolling to see the more recent release notes.)",
+        "- The release notes page now shows the current release notes on the top of the page. (So that you don't have to scroll down. :P)",
+        "- [Internal] Move release notes to a dedicated subdirectory. (Not much to see here for end-users, folks!)",
+        "- We. Need. More. Jokes. In. Release. Notes.",
+        "- We've introduced bugs and squashed them.",
+        "- We've also tried to remove as much jokes as possible - but to no avail. :shrug:"
+      ],
+      "releaseAuthor": "EdricChan03",
+      "releaseDate": "2019-11-16T17:03:10+0000"
     }
   }
 }
