@@ -125,12 +125,12 @@ body {
   width: 350px;
   box-sizing: border-box;
   margin: 16px;
-  .feed-card {
-    @include mat-elevation-transition;
-    &:hover, &:active {
-      @include mat-elevation(8);
-    }
-  }
+  // .feed-card {
+  //   @include mat-elevation-transition;
+  //   &:hover, &:active {
+  //     @include mat-elevation(8);
+  //   }
+  // }
 }
 
 .rss-reader-cards-container {
