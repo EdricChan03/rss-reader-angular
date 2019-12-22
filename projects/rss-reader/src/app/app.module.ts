@@ -84,7 +84,9 @@ const PIPES = [
     MaterialModule,
     SharedModule,
     AppRoutingModule,
-    ServiceWorkerModule.register(environment.swLocation, { enabled: environment.production }),
+    // The scope parameter is specified such that the service worker only
+    // applies to the /rss-reader URL.
+    ServiceWorkerModule.register(environment.swLocation, { enabled: environment.production, scope: './' }),
     DialogsModule,
     // AngularFireModule.initializeApp(environment.firebase),
     // AngularFirestoreModule.enablePersistence(),
