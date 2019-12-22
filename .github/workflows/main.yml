@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Setup NodeJS LTS
       uses: actions/setup-node@v1
       with:
@@ -40,5 +40,5 @@ jobs:
     - name: Deploy site
       run: npm run action:deploy
       env:
-        GH_TOKEN: ${{ secrets.DEPLOY_GH_PAGES_TOKEN }}
-        # GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # GH_TOKEN: ${{ secrets.DEPLOY_GH_PAGES_TOKEN }}
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
