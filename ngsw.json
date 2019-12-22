@@ -1,0 +1,141 @@
+{
+  "configVersion": 1,
+  "timestamp": 1577036694085,
+  "index": "/rss-reader/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/rss-reader/5-es2015.5c11987560efc9da7a92.js",
+        "/rss-reader/5-es5.5c11987560efc9da7a92.js",
+        "/rss-reader/index.html",
+        "/rss-reader/main-es2015.fff950cdfdaa078589c1.js",
+        "/rss-reader/main-es5.fff950cdfdaa078589c1.js",
+        "/rss-reader/manifest.webmanifest",
+        "/rss-reader/polyfills-es2015.4ddeb73791cb6fa9ec79.js",
+        "/rss-reader/polyfills-es5.897a0bf9eb6e42f9d8c5.js",
+        "/rss-reader/runtime-es2015.9eb8e7d71229c938b49f.js",
+        "/rss-reader/runtime-es5.9eb8e7d71229c938b49f.js",
+        "/rss-reader/scripts.df42bf43cef21311bf2d.js",
+        "/rss-reader/styles.1e55f02c00da58fd5356.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/rss-reader/assets/docs/dev/actionitem-service.html",
+        "/rss-reader/assets/docs/dev/coding-standards.html",
+        "/rss-reader/assets/docs/dev/contributing.html",
+        "/rss-reader/assets/docs/dev/overlay-service.html",
+        "/rss-reader/assets/docs/dev/shared-service.html",
+        "/rss-reader/assets/docs/guides/TROUBLESHOOTING.html",
+        "/rss-reader/assets/docs/guides/generate-api-key.html",
+        "/rss-reader/assets/docs/guides/getting-started.html",
+        "/rss-reader/assets/docs/img/generate_api_key/email_verification.jpg",
+        "/rss-reader/assets/docs/img/generate_api_key/login_page.jpg",
+        "/rss-reader/assets/docs/img/generate_api_key/my_account_top.jpg",
+        "/rss-reader/assets/docs/img/generate_api_key/rsstojson_navbar_logged_in.jpg",
+        "/rss-reader/assets/docs/img/generate_api_key/rsstojson_navbar_logged_out.jpg",
+        "/rss-reader/assets/docs/img/troubleshooting/options_btn.jpg",
+        "/rss-reader/assets/docs/img/troubleshooting/rss_feed_not_loading.gif",
+        "/rss-reader/assets/favicon/android-chrome-192x192.png",
+        "/rss-reader/assets/favicon/favicon-16x16.png",
+        "/rss-reader/assets/favicon/favicon-194x194.png",
+        "/rss-reader/assets/favicon/favicon-260x260.png",
+        "/rss-reader/assets/favicon/favicon-32x32.png",
+        "/rss-reader/assets/favicon/favicon-96x96.png",
+        "/rss-reader/assets/favicon/icon-100x100-nocolor.png",
+        "/rss-reader/assets/feedcategories.json",
+        "/rss-reader/assets/feedurls-schema.json",
+        "/rss-reader/assets/feedurls.json",
+        "/rss-reader/assets/icon.svg",
+        "/rss-reader/assets/img/Customizing UI.png",
+        "/rss-reader/assets/img/Explore News Sources.png",
+        "/rss-reader/assets/img/News Article.png",
+        "/rss-reader/assets/onboarding/articles.svg",
+        "/rss-reader/assets/release-notes/release-notes-schema.json",
+        "/rss-reader/assets/release-notes/release-notes.json"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "fonts",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [],
+      "patterns": [
+        "https:\\/\\/fonts\\.googleapis\\.com\\/.*"
+      ]
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/rss-reader/5-es2015.5c11987560efc9da7a92.js": "958f698fffe20cc43338d0f7bff2ad36e6301ad5",
+    "/rss-reader/5-es5.5c11987560efc9da7a92.js": "be525b9ba9760b5c717f1894807af1e20d79c4ba",
+    "/rss-reader/assets/docs/dev/actionitem-service.html": "9c2b3797903c7b1facf7b811a3aa1ace24bb7a08",
+    "/rss-reader/assets/docs/dev/coding-standards.html": "858d59861846100c03430ee4ff447af9cbd969ea",
+    "/rss-reader/assets/docs/dev/contributing.html": "2ba48ceb3d5f4bcddcb570ee84d84c8eadb182f2",
+    "/rss-reader/assets/docs/dev/overlay-service.html": "80f4360c0b11bb0b32dbb967895f74e0251b17cf",
+    "/rss-reader/assets/docs/dev/shared-service.html": "79af914368e806efe07377af5b566f87e0bcf1c9",
+    "/rss-reader/assets/docs/guides/TROUBLESHOOTING.html": "dda4301f4039a029b248b34f3f4d8f28c510fca8",
+    "/rss-reader/assets/docs/guides/generate-api-key.html": "595f7a01429e9b9b8261aa064ce0edc754c3bcf0",
+    "/rss-reader/assets/docs/guides/getting-started.html": "bb1710a46fafc4ca8e183c552e91af51bc38ee9f",
+    "/rss-reader/assets/docs/img/generate_api_key/email_verification.jpg": "a4ca62d0d724aa97fa9b0c1a0ee9e0dee0a4c226",
+    "/rss-reader/assets/docs/img/generate_api_key/login_page.jpg": "dd0e5e76b1bcadfa870235e796b0ccbf3963fd3e",
+    "/rss-reader/assets/docs/img/generate_api_key/my_account_top.jpg": "f3f56c598227206f831e5ea85f4b48b58e05603e",
+    "/rss-reader/assets/docs/img/generate_api_key/rsstojson_navbar_logged_in.jpg": "138a35defa8e785bd3baeed6ff0161e2046f40e8",
+    "/rss-reader/assets/docs/img/generate_api_key/rsstojson_navbar_logged_out.jpg": "f4e6705f49fedbe11bdd52427093a869911df73b",
+    "/rss-reader/assets/docs/img/troubleshooting/options_btn.jpg": "90886a0babb8738bf1d31dde50754508444e3df2",
+    "/rss-reader/assets/docs/img/troubleshooting/rss_feed_not_loading.gif": "b38586fdf4d8a8ba5f1bfa69cf3ff5cb3a7a002b",
+    "/rss-reader/assets/favicon/android-chrome-192x192.png": "8eb1553f82074c699141b87321bf421bca9492d3",
+    "/rss-reader/assets/favicon/favicon-16x16.png": "1ebb17ddb94b816eb19e299c5c7fd8c3060751c4",
+    "/rss-reader/assets/favicon/favicon-194x194.png": "7b286adb5a854441ae16d0ff6930a05f39ed3ac7",
+    "/rss-reader/assets/favicon/favicon-260x260.png": "f503d466aef47d1fd8a4e6753993d2ec0b36accc",
+    "/rss-reader/assets/favicon/favicon-32x32.png": "296c477fe15f3a77ed64fbbadb5ec55bdcf5c4f9",
+    "/rss-reader/assets/favicon/favicon-96x96.png": "1d1589f7d995227be955f9136e40fe78ddc4883d",
+    "/rss-reader/assets/favicon/icon-100x100-nocolor.png": "d8c163319b13850fa354d54fa052f6e58b91ab5d",
+    "/rss-reader/assets/feedcategories.json": "880451ca46290a5567022f52cdd1490ede443cd7",
+    "/rss-reader/assets/feedurls-schema.json": "643a1b8fbe9c0d55c46aed1fe2c085dde8c2848e",
+    "/rss-reader/assets/feedurls.json": "d9981fd8d97b60eefcca7fa2ec7e65bbc37e05f9",
+    "/rss-reader/assets/icon.svg": "18fd15a33f0782996bfffd8c82f0f9c599797527",
+    "/rss-reader/assets/img/Customizing UI.png": "258c30118419a00ad50e72884faddb02ba80f0e7",
+    "/rss-reader/assets/img/Explore News Sources.png": "70eb50d386ae85e5a344c93f08556455e065f2e5",
+    "/rss-reader/assets/img/News Article.png": "123985f0b304117c98e32f29707c180277fc428f",
+    "/rss-reader/assets/onboarding/articles.svg": "099afa8a050d38139505ee3bb933ccd296002738",
+    "/rss-reader/assets/release-notes/release-notes-schema.json": "651b289ba1f4abf789f801012da6ce50e74419d1",
+    "/rss-reader/assets/release-notes/release-notes.json": "2b1320f97e8d89f4cce6fff1901ee01e746595be",
+    "/rss-reader/index.html": "e640c39eff60f4fb7ef09ab3d26ae2e2d7fa672d",
+    "/rss-reader/main-es2015.fff950cdfdaa078589c1.js": "4b46f7214c05340e993cc12e6b9b54889345cfc9",
+    "/rss-reader/main-es5.fff950cdfdaa078589c1.js": "61752521291cb484558e1342bdb4b4de89ba3782",
+    "/rss-reader/manifest.webmanifest": "44eb37ba72a29889fcee4bc71cf98bbf2db8eccf",
+    "/rss-reader/polyfills-es2015.4ddeb73791cb6fa9ec79.js": "18588be685402df9b1ca7dd25ac153eb68bffe8e",
+    "/rss-reader/polyfills-es5.897a0bf9eb6e42f9d8c5.js": "01d88367cbe150de2c38a5adf5ce3d6e32b9c729",
+    "/rss-reader/runtime-es2015.9eb8e7d71229c938b49f.js": "45f723a6efea2313511d1db3063bad781cfc89a6",
+    "/rss-reader/runtime-es5.9eb8e7d71229c938b49f.js": "d3ddbd2bfebbaeaa0e964c096a23c7d1b254018a",
+    "/rss-reader/scripts.df42bf43cef21311bf2d.js": "fd546c119d5644d138deb4da5aa4581e27bf666e",
+    "/rss-reader/styles.1e55f02c00da58fd5356.css": "091429546a42bfe310758033b30cf986e06b4eef"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
