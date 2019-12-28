@@ -15,8 +15,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { DocViewerComponent } from './pages/doc-viewer/doc-viewer.component';
 import { ExpansionPanelComponent } from './pages/expansion-panel/expansion-panel.component';
-import { ExploreComponent } from './explore/explore.component';
-import { FilterOverlayComponent } from './overlays/filter-overlay/filter-overlay.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { GuideItemsService } from './guide-items';
 import { GuideViewerComponent } from './pages/guide-viewer/guide-viewer.component';
@@ -44,7 +42,6 @@ import { HotkeysModule } from './hotkeys/hotkeys.module';
 import { MarkdownModule } from 'ngx-markdown';
 
 const OVERLAYS = [
-  FilterOverlayComponent,
   OnboardingOverlayComponent,
   NotificationsOverlayComponent
 ];
@@ -69,7 +66,6 @@ const PIPES = [
     IOSComponent,
     ExpansionPanelComponent,
     WebComponent,
-    ExploreComponent,
     OVERLAYS,
     HeadlinesComponent
   ],

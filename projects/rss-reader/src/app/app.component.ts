@@ -82,11 +82,6 @@ export class AppComponent implements OnInit, OnDestroy {
       url: 'docs',
       icon: 'book'
     },
-    /*{
-      name: 'Explore',
-      url: 'explore',
-      icon: 'explore'
-    },*/
     {
       name: 'Settings',
       url: 'settings',

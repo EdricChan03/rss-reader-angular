@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes, ExtraOptions } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { environment } from '../environments/environment';
 import { AndroidComponent } from './devices/android/android.component';
 import { IOSComponent } from './devices/ios/ios.component';
 import { WebComponent } from './devices/web/web.component';
-import { ExploreComponent } from './explore/explore.component';
 import { FeedComponent } from './feed/feed.component';
 import { HeadlinesComponent } from './headlines/headlines.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -29,7 +28,6 @@ export const routes: Routes = [
   },
   { path: 'doc/:docTypeId/:docId', component: GuideViewerComponent },
   { path: 'docs', component: GuidesListComponent },
-  { path: 'explore', component: ExploreComponent },
   { path: 'feed', component: FeedComponent },
   { path: 'headlines', component: HeadlinesComponent },
   { path: 'home', redirectTo: '/feed' },
@@ -40,8 +38,10 @@ export const routes: Routes = [
 ];
 
 const routerOptions: ExtraOptions = environment.routerOptions ? environment.routerOptions : {
-  enableTracing: !environment.production,
-  anchorScrolling: 'enabled'
+  anchorScrolling: 'enabled',
+  // TODO: Uncomment once tracing isn't actually enabled on production builds,
+  // which it currently is for some reason.
+  // enableTracing: !environment.production
 };
 
 @NgModule({
