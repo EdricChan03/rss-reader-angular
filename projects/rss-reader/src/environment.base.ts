@@ -50,7 +50,7 @@ export const firebaseConfig: FirebaseAppConfig = {
 export const gitRepoDefaults: GitRepo = {
   host: 'https://github.com',
   username: 'EdricChan03',
-  repo: 'rss-reader-web'
+  repo: 'rss-reader'
 };
 
 /** Default environment that other enviroments can extend from. */
