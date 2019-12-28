@@ -154,7 +154,7 @@ Param | Type | Description | Notes
 
 ## Method 2: Setting up the toolbar with the service
 
-See the source code for [`app.component.html`](https://github.com/Chan4077/rss-reader/blob/src/app/app.component.html).
+See the source code for [`app.component.html`](https://github.com/EdricChan03/rss-reader/blob/src/app/app.component.html).
 
 Snippet of code:
 

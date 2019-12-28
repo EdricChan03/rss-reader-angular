@@ -44,7 +44,7 @@ export class AppComponent implements OnInit, OnDestroy {
           icon: 'shopping_cart'
         },
         {
-          name: 'Chan4077.GitHub.io',
+          name: 'My website',
           url: 'https://edricchan03.github.io',
           icon: 'home'
         },

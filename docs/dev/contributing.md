@@ -12,7 +12,7 @@ It's at the last section of the whole form.
 
 **NOTE:** The following code snippets are for macOS.
 
-1. Click on the fork button at the [app's repo](https://github.com/Chan4077/rss-reader) to make a copy of the repo.
+1. Click on the fork button at the [app's repo](https://github.com/EdricChan03/rss-reader) to make a copy of the repo.
 2. In your terminal, type the following code:
 
     <!-- start-enclose-content -->
