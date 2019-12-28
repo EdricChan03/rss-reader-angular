@@ -24,7 +24,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { IOSComponent } from './devices/ios/ios.component';
 import { MaterialModule } from './material.module';
 import { NgModule } from '@angular/core';
-import { NotificationsOverlayComponent } from './overlays/notifications-overlay/notifications-overlay.component';
 import { OnboardingOverlayComponent } from './overlays/onboarding-overlay/onboarding-overlay.component';
 import { OverlayService } from './overlay.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -42,8 +41,7 @@ import { HotkeysModule } from './hotkeys/hotkeys.module';
 import { MarkdownModule } from 'ngx-markdown';
 
 const OVERLAYS = [
-  OnboardingOverlayComponent,
-  NotificationsOverlayComponent
+  OnboardingOverlayComponent
 ];
 const PIPES = [
   StripHtmlTagsPipe,
