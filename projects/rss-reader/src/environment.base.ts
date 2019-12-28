@@ -1,6 +1,7 @@
 import { Version } from '@angular/core';
 import { ExtraOptions } from '@angular/router';
 import { GitRepo } from './app/pages/release-notes/release-notes';
+import { latestVersion as versionJson } from './assets/release-notes/release-notes.json';
 
 // This file contains the constants that all of the environments
 // that the app defines.
@@ -34,7 +35,7 @@ export interface Environment {
 }
 
 /** The latest version of the app. */
-export const latestVersion = new Version('1.5.3');
+export const latestVersion = new Version(versionJson);
 
 /** The Firebase configuration. */
 export const firebaseConfig: FirebaseAppConfig = {
