@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { environment } from '../environments/environment';
-import { AndroidComponent } from './devices/android/android.component';
-import { IOSComponent } from './devices/ios/ios.component';
-import { WebComponent } from './devices/web/web.component';
 import { FeedComponent } from './feed/feed.component';
 import { HeadlinesComponent } from './headlines/headlines.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -17,14 +14,6 @@ export const routes: Routes = [
   {
     path: 'release-notes',
     loadChildren: () => import('./pages/release-notes/release-notes.module').then(m => m.ReleaseNotesModule)
-  },
-  {
-    path: 'devices', children: [
-      { path: 'android', component: AndroidComponent },
-      { path: 'ios', component: IOSComponent },
-      { path: 'web', component: WebComponent },
-      { path: '**', redirectTo: '/devices/android' }
-    ]
   },
   { path: 'doc/:docTypeId/:docId', component: GuideViewerComponent },
   { path: 'docs', component: GuidesListComponent },

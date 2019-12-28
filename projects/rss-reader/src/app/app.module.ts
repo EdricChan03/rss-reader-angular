@@ -11,9 +11,6 @@ import { environment } from '../environments/environment';
 import { ActionItemsModule } from './actionitem.service';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
-import { AndroidComponent } from './devices/android/android.component';
-import { IOSComponent } from './devices/ios/ios.component';
-import { WebComponent } from './devices/web/web.component';
 import { DialogsModule } from './dialogs/dialogs.module';
 import { FeedCardComponent } from './feed-card/feed-card.component';
 import { FeedComponent } from './feed/feed.component';
@@ -54,10 +51,7 @@ const PIPES = [
     DocViewerComponent,
     GuideViewerComponent,
     GuidesListComponent,
-    AndroidComponent,
-    IOSComponent,
     ExpansionPanelComponent,
-    WebComponent,
     OVERLAYS,
     HeadlinesComponent
   ],
