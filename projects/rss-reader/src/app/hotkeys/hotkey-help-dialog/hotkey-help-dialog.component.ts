@@ -63,7 +63,7 @@ export class HotkeyHelpDialogComponent {
             }
             break;
           default:
-            if (key.startsWith('f') && key.length === 2) {
+            if (key.startsWith('f') && (key.length === 2 || key.length === 3)) {
               tempResult = `F${key[1]}`;
             } else {
               tempResult = key;
