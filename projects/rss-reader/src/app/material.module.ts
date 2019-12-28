@@ -1,5 +1,8 @@
 //#region CDK Module imports
 import { A11yModule } from '@angular/cdk/a11y';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { PortalModule } from '@angular/cdk/portal';
+//#endregion
 //#region Material Module imports
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
@@ -26,10 +29,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 //#endregion
 import { NgModule } from '@angular/core';
-import { OverlayModule } from '@angular/cdk/overlay';
-import { PortalModule } from '@angular/cdk/portal';
 import { DomSanitizer } from '@angular/platform-browser';
-//#endregion
 
 const MATERIAL_MODULES = [
   MatAutocompleteModule,
