@@ -1,44 +1,38 @@
-import 'hammerjs';
-
-import { FeedCardComponent } from './feed-card/feed-card.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  OrderByPipe,
-  StripHtmlTagsPipe,
-  TruncatePipe
-} from './pipe';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import 'hammerjs';
+import { MarkdownModule } from 'ngx-markdown';
+import { environment } from '../environments/environment';
 import { ActionItemsModule } from './actionitem.service';
-import { AndroidComponent } from './devices/android/android.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
-import { DocViewerComponent } from './pages/doc-viewer/doc-viewer.component';
-import { ExpansionPanelComponent } from './pages/expansion-panel/expansion-panel.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { GuideItemsService } from './guide-items';
-import { GuideViewerComponent } from './pages/guide-viewer/guide-viewer.component';
-import { GuidesListComponent } from './pages/guide-list/guide-list.component';
-import { FeedComponent } from './feed/feed.component';
-import { HttpClientModule } from '@angular/common/http';
+import { AndroidComponent } from './devices/android/android.component';
 import { IOSComponent } from './devices/ios/ios.component';
-import { MaterialModule } from './material.module';
-import { NgModule } from '@angular/core';
-import { OnboardingOverlayComponent } from './overlays/onboarding-overlay/onboarding-overlay.component';
-import { OverlayService } from './overlay.service';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { SettingsComponent } from './settings/settings.component';
-import { DialogsModule } from './dialogs/dialogs.module';
-import {
-  SharedModule
-} from './shared.service';
-import { TestpageComponent } from './testpage/testpage.component';
 import { WebComponent } from './devices/web/web.component';
-import { environment } from '../environments/environment';
+import { DialogsModule } from './dialogs/dialogs.module';
+import { FeedCardComponent } from './feed-card/feed-card.component';
+import { FeedComponent } from './feed/feed.component';
+import { GuideItemsService } from './guide-items';
 import { HeadlinesComponent } from './headlines/headlines.component';
 import { HotkeysModule } from './hotkeys/hotkeys.module';
-import { MarkdownModule } from 'ngx-markdown';
+import { MaterialModule } from './material.module';
+import { OverlayService } from './overlay.service';
+import { OnboardingOverlayComponent } from './overlays/onboarding-overlay/onboarding-overlay.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { DocViewerComponent } from './pages/doc-viewer/doc-viewer.component';
+import { ExpansionPanelComponent } from './pages/expansion-panel/expansion-panel.component';
+import { GuidesListComponent } from './pages/guide-list/guide-list.component';
+import { GuideViewerComponent } from './pages/guide-viewer/guide-viewer.component';
+import { OrderByPipe, StripHtmlTagsPipe, TruncatePipe } from './pipe';
+import { SettingsComponent } from './settings/settings.component';
+import { SharedModule } from './shared.service';
+import { TestpageComponent } from './testpage/testpage.component';
+
 
 const OVERLAYS = [
   OnboardingOverlayComponent
