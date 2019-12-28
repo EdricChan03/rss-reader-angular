@@ -19,7 +19,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'doc-viewer',
-  template: 'Loading document...',
+  template: 'Loading document&hellip;',
 })
 export class DocViewerComponent implements OnDestroy {
   private documentFetchSubscription: Subscription;
