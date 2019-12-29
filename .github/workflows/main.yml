@@ -22,10 +22,10 @@ jobs:
       id: node_modules_cache
       with:
         path: node_modules
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
-          ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-
-          ${{ runner.os }}-node-
+          ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}-
+          ${{ runner.os }}-node_modules-
           ${{ runner.os }}-
     - name: Install dependencies
       # Skip this step if a cache hit occurs on the key
@@ -50,10 +50,10 @@ jobs:
       id: node_modules_cache
       with:
         path: node_modules
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
-          ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-
-          ${{ runner.os }}-node-
+          ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}-
+          ${{ runner.os }}-node_modules-
           ${{ runner.os }}-
     - name: Install dependencies
       # Skip this step if a cache hit occurs on the key
