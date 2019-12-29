@@ -55,7 +55,7 @@
     "@types/hammerjs": "^2.0.36",
     "@types/jasmine": "^2.8.16",
     "@types/node": "^10.17.7",
-    "codelyzer": "^5.2.0",
+    "codelyzer": "^5.2.1",
     "copy-webpack-plugin": "^4.6.0",
     "gulp": "^4.0.2",
     "gulp-markdown": "^3.0.0",
