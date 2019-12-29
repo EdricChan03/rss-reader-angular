@@ -19,17 +19,17 @@ jobs:
         node-version: '10.x'
     - name: Cache node modules
       uses: actions/cache@v1
-      id: cache
+      id: node_modules_cache
       with:
-        path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
+        path: node_modules
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
+          ${{ runner.os }}-node-${{ hashFiles('**/packages-lock.json') }}-
+          ${{ runner.os }}-node-
           ${{ runner.os }}-
     - name: Install dependencies
       # Skip this step if a cache hit occurs on the key
-      if: steps.cache.outputs.cache-hit != 'true'
+      if: steps.node_modules_cache.outputs.cache-hit != 'true'
       run: npm ci
     - name: Lint application
       run: npm run lint
@@ -47,17 +47,17 @@ jobs:
         node-version: '10.x'
     - name: Cache node modules
       uses: actions/cache@v1
-      id: cache
+      id: node_modules_cache
       with:
-        path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
+        path: node_modules
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
+          ${{ runner.os }}-node-${{ hashFiles('**/packages-lock.json') }}-
+          ${{ runner.os }}-node-
           ${{ runner.os }}-
     - name: Install dependencies
       # Skip this step if a cache hit occurs on the key
-      if: steps.cache.outputs.cache-hit != 'true'
+      if: steps.node_modules_cache.outputs.cache-hit != 'true'
       run: npm ci
     - name: Generate documentation
       run: npm run genDocs
