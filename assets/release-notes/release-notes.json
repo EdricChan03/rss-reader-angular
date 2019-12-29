@@ -1,6 +1,6 @@
 {
   "$schema": "./release-notes-schema.json",
-  "latestVersion": "1.5.3",
+  "latestVersion": "1.5.4",
   "gitRepo": {
     "host": "https://github.com",
     "repo": "rss-reader-web",
@@ -59,6 +59,18 @@
       ],
       "releaseAuthor": "EdricChan03",
       "releaseDate": "2019-11-16T17:03:10+0000"
+    },
+    "1.5.4": {
+      "releaseNotes": [
+        "- Removed explore page as it wasn't that useful/too bare-bones.",
+        "- bUg FiXeS",
+        "- Minor code refactoring/restructuring",
+        "- Update links to social stuff",
+        "- That's all folks! Make sure you like and subscribe to... Wait, you mean we can't promote our social links here?",
+        "- Merry Christmas everyone!"
+      ],
+      "releaseAuthor": "EdricChan03",
+      "releaseDate": "2019-12-29T17:43:55+0000"
     }
   }
 }
