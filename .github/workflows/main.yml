@@ -54,12 +54,22 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}-
           ${{ runner.os }}-node_modules-
-          ${{ runner.os }}-
     - name: Install dependencies
       # Skip this step if a cache hit occurs on the key
       if: steps.node_modules_cache.outputs.cache-hit != 'true'
       run: npm ci
+    - name: Cache documentation
+      uses: actions/cache@v1
+      id: docs_cache
+      with:
+        path: projects/rss-reader/src/assets/docs
+        key: ${{ runner.os }}-docs-${{ hashFiles('docs/**') }}
+        restore-keys: |
+          ${{ runner.os }}-docs-${{ hashFiles('docs/**' )}}-
+          ${{ runner.os }}-docs-
     - name: Generate documentation
+      # Skip this step if a cache hit occurs on the key
+      if: steps.docs_cache.outputs.cache-hit != 'true'
       run: npm run genDocs
     - name: Deploy site
       run: npm run action:deploy
