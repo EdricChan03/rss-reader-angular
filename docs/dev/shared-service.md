@@ -294,30 +294,6 @@ export class MyComponent {
 openSelectionDialog(opts: SelectionDialogConfig): MatDialogRef<SelectionDialog>;
 ```
 
-## `getDialogs`
-
-```typescript
-getDialogs(): MatDialogRef<any>;
-```
-
-## `closeAllDialogs`
-
-```typescript
-closeAllDialogs(): void;
-```
-
-## `getDialogById`
-
-```typescript
-getDialogById(id: string): MatDialogRef<any>;
-```
-
-## `afterAllClosed`
-
-```typescript
-afterAllClosed(): Observable<void>;
-```
-
 <!-- start-enclose-content -->
 ### Description
 An observable for when after all dialogs are closed
