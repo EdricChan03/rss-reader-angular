@@ -23,32 +23,21 @@ export class FeedCardComponent implements OnInit {
   @Input() feed?: FeedEntry;
   @Input() headline?: NewsAPITopHeadlinesArticle;
   constructor(private dialog: MatDialog, private shared: SharedService, private dom: DomSanitizer) { }
-  /**
-   * Shares the current feed entry or article
-   * @param feed The entry/article to share
-   */
+
   share(feed: FeedEntry | NewsAPITopHeadlinesArticle) {
     const dialogRef = this.dialog.open(ShareDialogComponent);
     dialogRef.componentInstance.feed = feed;
   }
-  /**
-   * Checks if a variable is an empty string
-   */
+
   isEmpty(variable: string): boolean {
     return (!variable || 0 === variable.length);
   }
-  /**
-   * Shows how the object is structured in a dialog
-   * @param feed The feed for the code view
-   */
+
   showCode(feed) {
     const dialogRef = this.dialog.open(CodeViewerDialogComponent);
     dialogRef.componentInstance.feed = feed;
   }
-  /**
-   * Views the current post in a dialog
-   * @param feed The current post
-   */
+
   viewInDialog(feed) {
     // tslint:disable-next-line:max-line-length
     const dialogRef = this.shared.openConfirmDialog({ title: 'Post', msg: this.dom.bypassSecurityTrustHtml(`<iframe src="${feed.link}" width="90%" height="90%"></iframe>`), isHtml: true, panelClass: 'post-dialog' });
@@ -61,17 +50,12 @@ export class FeedCardComponent implements OnInit {
       }
     });
   }
-  /**
-   * Toggles the image changed
-   */
+
   imageChange() {
     this.imageChanged = !this.imageChanged;
     this.hasImage = !this.hasImage;
   }
-  /**
-   * Replaces the image
-   * @param isThumbnail Whether the image is in the thumbnail of `enclosure` object
-   */
+
   replaceImg(isThumbnail?: boolean) {
     this.hasImage = true;
     if (isThumbnail) {
@@ -86,9 +70,7 @@ export class FeedCardComponent implements OnInit {
       }
     }
   }
-  /**
-   * Initialisation
-   */
+
   ngOnInit() {
     if (window.localStorage.getItem('settings')) {
       this.settings = JSON.parse(window.localStorage.getItem('settings')) as Settings;
