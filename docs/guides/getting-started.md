@@ -24,8 +24,7 @@ The sidenav consists of these things:
 
 ### Apps
 
-1. Android (coming soon)
-2. iOS (coming soon)
+(No native apps are being planned at the moment)
 
 ### More
 

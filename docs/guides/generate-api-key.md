@@ -2,7 +2,9 @@
 
 As the RSS dialog requires you to enter an API key, this guide will show you how to generate one.
 
-**UPDATE:** I am currently planning to provide the API key to the `FeedDialog`. The following instructions below will soon be outdated.
+~~**UPDATE:** I am currently planning to provide the API key to the `FeedDialog`. The following instructions below will soon be outdated.~~
+
+**UPDATE #2:** There are no plans to provide the API key due to a limit that the API imposes on users using the API.
 
 ---
 

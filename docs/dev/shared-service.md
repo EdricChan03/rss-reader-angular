@@ -1,5 +1,10 @@
 # `SharedService`
 
+> **DEPRECATED**
+>
+> This document has been marked as deprecated as the service shouldn't be
+> documented to other developers in the first place.
+
 ## Description
 
 This service serves as an utility for all of my project.

@@ -1,5 +1,10 @@
 # `ActionItemService`
 
+> **DEPRECATED**
+>
+> This document has been marked as deprecated as the service shouldn't be
+> documented to other developers in the first place.
+
 ## Description
 
 This service makes it easier to add menu items to a toolbar, similar to like Android.

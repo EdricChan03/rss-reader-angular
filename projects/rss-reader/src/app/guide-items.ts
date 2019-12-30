@@ -29,34 +29,10 @@ const GUIDES: GuideItem[] = [
 ];
 const DEV_GUIDES: GuideItem[] = [
   {
-    id: 'coding-standards',
-    document: 'assets/docs/dev/coding-standards.html',
-    url: 'doc/dev/coding-standards',
-    name: 'Coding standards'
-  },
-  {
     id: 'contributing',
     document: 'assets/docs/dev/contributing.html',
     url: 'doc/dev/contributing',
     name: 'Contributing'
-  },
-  {
-    id: 'shared-service',
-    document: 'assets/docs/dev/shared-service.html',
-    url: 'doc/dev/shared-service',
-    name: 'SharedService (Injectable service)'
-  },
-  {
-    id: 'actionitem-service',
-    document: 'assets/docs/dev/actionitem-service.html',
-    url: 'doc/dev/actionitem-service',
-    name: 'ActionIconService (Injectable service)'
-  },
-  {
-    id: 'overlay-service',
-    document: 'assets/docs/dev/overlay-service.html',
-    url: 'doc/dev/overlay-service',
-    name: 'OverlayService (Injectable service)'
   }
 ];
 

@@ -1,3 +1,0 @@
-# Coding standards
-
-COMING SOON

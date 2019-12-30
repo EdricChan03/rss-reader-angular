@@ -1,5 +1,10 @@
 # `OverlayService`
 
+> **DEPRECATED**
+>
+> This document has been marked as deprecated as the service shouldn't be
+> documented to other developers in the first place.
+
 ## About
 
 It's basically just an easier way of handling `Overlay`s that are currently opened.
