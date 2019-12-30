@@ -475,34 +475,7 @@ export class SharedService {
       this.throwError('opts', 'SelectionDialogConfig');
     }
   }
-  /**
-   * Gets all opened dialogs
-   * @returns The list of opened dialog references
-   */
-  getDialogs(): MatDialogRef<any>[] {
-    return this.dialog.openDialogs;
-  }
-  /**
-   * Closes all dialogs
-   */
-  closeAllDialogs() {
-    this.dialog.closeAll();
-  }
-  /**
-   * Gets a dialog by its id
-   * @param id The ID of the dialog
-   * @returns The dialog reference which has this ID
-   */
-  getDialogById(id: string): MatDialogRef<any> {
-    return this.dialog.getDialogById(id);
-  }
-  /**
-   * Observable for after all dialogs have been closed
-   * @returns An observable
-   */
-  afterAllClosed(): Observable<void> {
-    return this.dialog.afterAllClosed;
-  }
+
   /**
    * Throws an error with the specified parameters
    * @param variable The variable that was not specified
