@@ -14,8 +14,8 @@ export class GuideViewerComponent {
     route.params.subscribe(result => {
       if (result.docTypeId === 'guides') {
         this.docUrl = guideItems.getGuideItemById(result.docId).document;
-      } else if (result.docTypeId === 'dev') {
-        this.docUrl = guideItems.getDevItemById(result.docId).document;
+      /* } else if (result.docTypeId === 'dev') {
+        this.docUrl = guideItems.getDevItemById(result.docId).document; */
       } else {
         console.warn('Invalid URL. Heading back to docs list page..');
         this.router.navigate(['/docs']);
