@@ -8,9 +8,9 @@ import { GuideItem, GuideItemsService } from '../../guide-items';
 export class GuidesListComponent implements OnInit {
   constructor(private itemsService: GuideItemsService) {}
   guideItems: GuideItem[];
-  devItems: GuideItem[];
+  // devItems: GuideItem[];
   ngOnInit() {
     this.guideItems = this.itemsService.getGuideItems();
-    this.devItems = this.itemsService.getDevItems();
+    // this.devItems = this.itemsService.getDevItems();
   }
 }

@@ -27,28 +27,14 @@ const GUIDES: GuideItem[] = [
     name: 'Troubleshooting'
   }
 ];
-const DEV_GUIDES: GuideItem[] = [
-  {
-    id: 'contributing',
-    document: 'assets/docs/dev/contributing.html',
-    url: 'doc/dev/contributing',
-    name: 'Contributing'
-  }
-];
 
 @Injectable()
 export class GuideItemsService {
   getAllItems(): GuideItem[] {
-    return GUIDES.concat(DEV_GUIDES);
+    return this.getGuideItems();
   }
   getGuideItems(): GuideItem[] {
     return GUIDES;
-  }
-  getDevItems(): GuideItem[] {
-    return DEV_GUIDES;
-  }
-  getDevItemById(id: string): GuideItem {
-    return DEV_GUIDES.find(i => i.id === id);
   }
   getGuideItemById(id: string): GuideItem {
     return GUIDES.find(i => i.id === id);
