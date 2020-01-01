@@ -43,6 +43,8 @@ export class HotkeysService {
   hotkeys = new Map<string, string>();
   readonly hotkeyHelpDialogId = 'hotkey-help-dialog';
   defaults: Partial<HotkeyOptions> = {
+    // Specify a default description for hotkeys with no specified desc
+    description: '<No description>',
     element: this.document
   };
 
