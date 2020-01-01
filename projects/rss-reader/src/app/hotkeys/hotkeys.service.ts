@@ -132,7 +132,9 @@ export class HotkeysService {
   }
 
   openHotkeyHelpDialog() {
-    if (this.dialog.getDialogById(this.hotkeyHelpDialogId) != null) {
+    // Interesting tidbit: as it turns out, MatDialog#getDialogById actually
+    // returns undefined, not null if the dialog doesn't exist
+    if (this.dialog.getDialogById(this.hotkeyHelpDialogId) !== undefined) {
       // Close existing dialog
       this.dialog.getDialogById(this.hotkeyHelpDialogId).close();
     } else {
