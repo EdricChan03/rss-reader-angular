@@ -1,6 +1,9 @@
 {
   "configVersion": 1,
-  "timestamp": 1578152552771,
+  "timestamp": 1578156585286,
+  "appData": {
+    "version": "1.5.4"
+  },
   "index": "/rss-reader/index.html",
   "assetGroups": [
     {
@@ -11,8 +14,8 @@
         "/rss-reader/5-es2015.5f477da0ea15749b086e.js",
         "/rss-reader/5-es5.5f477da0ea15749b086e.js",
         "/rss-reader/index.html",
-        "/rss-reader/main-es2015.cf8af392fb7cf87fe8fc.js",
-        "/rss-reader/main-es5.cf8af392fb7cf87fe8fc.js",
+        "/rss-reader/main-es2015.db027a426998051d8a70.js",
+        "/rss-reader/main-es5.db027a426998051d8a70.js",
         "/rss-reader/manifest.webmanifest",
         "/rss-reader/polyfills-es2015.4ddeb73791cb6fa9ec79.js",
         "/rss-reader/polyfills-es5.897a0bf9eb6e42f9d8c5.js",
@@ -72,7 +75,31 @@
       ]
     }
   ],
-  "dataGroups": [],
+  "dataGroups": [
+    {
+      "name": "time-based-apis",
+      "patterns": [
+        "https:\\/\\/newsapi\\.org\\/v2\\/.*",
+        "https:\\/\\/api\\.rss2json\\.com\\/.*"
+      ],
+      "strategy": "freshness",
+      "maxSize": 20,
+      "maxAge": 3600000,
+      "timeoutMs": 5000,
+      "version": 1
+    },
+    {
+      "name": "non-time-based-apis",
+      "patterns": [
+        "https:\\/\\/restcountries\\.eu\\/rest\\/.*"
+      ],
+      "strategy": "performance",
+      "maxSize": 8,
+      "maxAge": 604800000,
+      "timeoutMs": 2000,
+      "version": 1
+    }
+  ],
   "hashTable": {
     "/rss-reader/5-es2015.5f477da0ea15749b086e.js": "0ff0209d6fe791e5f30482a4e8f525b4b78516f2",
     "/rss-reader/5-es5.5f477da0ea15749b086e.js": "76f58dff2d168ac2bae20b2b608a5801e92d4557",
@@ -107,9 +134,9 @@
     "/rss-reader/assets/onboarding/articles.svg": "099afa8a050d38139505ee3bb933ccd296002738",
     "/rss-reader/assets/release-notes/release-notes-schema.json": "651b289ba1f4abf789f801012da6ce50e74419d1",
     "/rss-reader/assets/release-notes/release-notes.json": "c9011f4f4464c7862bb5eb9e372d1e572caa31c8",
-    "/rss-reader/index.html": "d411340962002326834359ddbc790c1cfa55d469",
-    "/rss-reader/main-es2015.cf8af392fb7cf87fe8fc.js": "c751558ff72658981d8ee948219ceec301e3f1ca",
-    "/rss-reader/main-es5.cf8af392fb7cf87fe8fc.js": "44f491e2df037e6c63807f83d953f48365f590e6",
+    "/rss-reader/index.html": "e89de8630952c7e29a73ac46064d511c5966ac27",
+    "/rss-reader/main-es2015.db027a426998051d8a70.js": "6c3fa454776cbee550fa59ec23c600d095e0a74b",
+    "/rss-reader/main-es5.db027a426998051d8a70.js": "0d648c5362957e434b21f7a1705e3da52ee9d74a",
     "/rss-reader/manifest.webmanifest": "44eb37ba72a29889fcee4bc71cf98bbf2db8eccf",
     "/rss-reader/polyfills-es2015.4ddeb73791cb6fa9ec79.js": "18588be685402df9b1ca7dd25ac153eb68bffe8e",
     "/rss-reader/polyfills-es5.897a0bf9eb6e42f9d8c5.js": "01d88367cbe150de2c38a5adf5ce3d6e32b9c729",
