@@ -1,6 +1,35 @@
 {
   "$schema": "../../node_modules/@angular/service-worker/config/schema.json",
   "index": "/index.html",
+  "appData": {
+    "version": "1.5.4"
+  },
+  "dataGroups": [
+    {
+      "name": "time-based-apis",
+      "urls": [
+        "https://newsapi.org/v2/**",
+        "https://api.rss2json.com/**"
+      ],
+      "cacheConfig": {
+        "maxAge": "1h",
+        "timeout": "5s",
+        "strategy": "freshness",
+        "maxSize": 20
+      }
+    },
+    {
+      "name": "non-time-based-apis",
+      "urls": [
+        "https://restcountries.eu/rest/**"
+      ],
+      "cacheConfig": {
+        "maxAge": "7d",
+        "maxSize": 8,
+        "timeout": "2s"
+      }
+    }
+  ],
   "assetGroups": [
     {
       "name": "app",

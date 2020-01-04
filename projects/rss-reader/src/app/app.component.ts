@@ -172,20 +172,71 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.isOffline) {
       console.log('User is offline');
       // tslint:disable-next-line:max-line-length
-      const snackBarRef = this.shared.openSnackBar({ msg: 'You are currently offline. Some features may not be available.', action: 'Retry', additionalOpts: { panelClass: ['mat-elevation-z2'], horizontalPosition: 'start' } });
+      const snackBarRef = this.shared.openSnackBar({
+        msg: 'You are currently offline. Some features may not be available.',
+        action: 'Retry',
+        additionalOpts: {
+          panelClass: ['mat-elevation-z2'],
+          horizontalPosition: 'start'
+        }
+      });
       snackBarRef.onAction().subscribe(() => {
         window.location.reload();
       });
     }
+
+    // SwUpdate functionality
+    console.log('SwUpdate#isEnabled:', this.swUpdate.isEnabled);
+
+    this.swUpdate.checkForUpdate().then(() => {
+      console.log('[AppComponent] Successfully checked for updates.');
+    }, error => {
+      console.error('[AppComponent] Could not check for updates:', error);
+    });
+
+    this.swUpdate.activated.subscribe(event => {
+      console.log('[AppComponent] Successfully activated update!');
+      this.shared.openSnackBar({
+        msg: 'Successfully updated the app!'
+      });
+      console.log('[AppComponent] Current version is:', event.current);
+      console.log('[AppComponent] Previous version is:', event.previous);
+    });
+
     this.swUpdate.available.subscribe(event => {
-      console.log('[App] Update available: current version is', event.current, 'available version is', event.available);
+      console.log('[AppComponent] Update available: current version is', event.current, 'available version is', event.available);
+
+      function hasNewerVer(): boolean {
+        const availableHasVer = 'version' in event.available.appData;
+        const currentHasVer = 'version' in event.current.appData;
+        let returnVal = false;
+
+        if ('version' in event.available.appData && currentHasVer) {
+          // tslint:disable-next-line: no-string-literal
+          returnVal = event.available.appData['version'] !== event.current.appData['version'];
+        }
+
+        return returnVal;
+      }
+
+      const message = hasNewerVer() ?
+        `A newer version (${event.available.appData['version']}) of the app is available!` :
+        'A newer version of the app is available!';
       const snackBarRef = this.shared.openSnackBar({
-        msg: 'A newer version of this app is available!',
-        action: 'Update & Refresh'
+        msg: message,
+        action: 'Update & Refresh',
+        additionalOpts: {
+          // Interesting note: The snackbar code actually checks if the duration is above 0 and only enables auto-hide from that.
+          duration: 0
+        }
       });
 
       snackBarRef.onAction().subscribe(() => {
-        this.shared.activateUpdate();
+        this.swUpdate.activateUpdate().then(() => {
+          window.location.reload();
+        }, error => {
+          console.error('[AppComponent] Could not activate update:', error);
+        });
       });
 
     });

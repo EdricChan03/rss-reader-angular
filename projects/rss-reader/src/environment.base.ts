@@ -57,7 +57,7 @@ export const gitRepoDefaults: GitRepo = {
 /** Default environment that other enviroments can extend from. */
 export const defaultEnvironment: Environment = {
   production: false,
-  swLocation: '',
+  swLocation: '/ngsw-worker.js',
   latestVersion,
   gitRepoDefaults
 };
