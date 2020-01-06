@@ -5,8 +5,7 @@ import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-release-notes',
-  templateUrl: './release-notes.component.html',
-  styles: []
+  templateUrl: './release-notes.component.html'
 })
 export class ReleaseNotesComponent implements OnInit {
   /** Retrieves the release notes JSON file. */
