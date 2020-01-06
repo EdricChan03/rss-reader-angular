@@ -6,7 +6,6 @@ import { HeadlinesComponent } from './headlines/headlines.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { GuidesListComponent } from './pages/guide-list/guide-list.component';
 import { GuideViewerComponent } from './pages/guide-viewer/guide-viewer.component';
-import { SettingsComponent } from './settings/settings.component';
 import { TestpageComponent } from './testpage/testpage.component';
 
 export const routes: Routes = [
@@ -15,12 +14,15 @@ export const routes: Routes = [
     path: 'release-notes',
     loadChildren: () => import('./pages/release-notes/release-notes.module').then(m => m.ReleaseNotesModule)
   },
+  {
+    path: 'settings',
+    loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsModule)
+  },
   { path: 'doc/:docTypeId/:docId', component: GuideViewerComponent },
   { path: 'docs', component: GuidesListComponent },
   { path: 'feed', component: FeedComponent },
   { path: 'headlines', component: HeadlinesComponent },
   { path: 'home', redirectTo: '/feed' },
-  { path: 'settings', component: SettingsComponent },
   { path: 'test', component: TestpageComponent },
   { path: '', pathMatch: 'full', redirectTo: '/feed' },
   { path: '**', component: PageNotFoundComponent },

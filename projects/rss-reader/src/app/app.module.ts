@@ -26,7 +26,6 @@ import { ExpansionPanelComponent } from './pages/expansion-panel/expansion-panel
 import { GuidesListComponent } from './pages/guide-list/guide-list.component';
 import { GuideViewerComponent } from './pages/guide-viewer/guide-viewer.component';
 import { OrderByPipe, StripHtmlTagsPipe, TruncatePipe } from './pipe';
-import { SettingsComponent } from './settings/settings.component';
 import { SharedModule } from './shared.service';
 import { TestpageComponent } from './testpage/testpage.component';
 
@@ -45,7 +44,6 @@ const PIPES = [
     FeedCardComponent,
     PIPES,
     FeedComponent,
-    SettingsComponent,
     TestpageComponent,
     PageNotFoundComponent,
     DocViewerComponent,
