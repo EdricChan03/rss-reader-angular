@@ -30,6 +30,7 @@ export const routes: Routes = [
 
 const routerOptions: ExtraOptions = environment.routerOptions ? environment.routerOptions : {
   anchorScrolling: 'enabled',
+  scrollPositionRestoration: 'enabled'
   // TODO: Uncomment once tracing isn't actually enabled on production builds,
   // which it currently is for some reason.
   // enableTracing: !environment.production
