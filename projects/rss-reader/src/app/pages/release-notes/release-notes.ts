@@ -7,8 +7,10 @@ export interface Release {
   releaseAuthor?: string;
   /** The Git commit SHA of the version. */
   releaseCommitSha?: string;
-  /** The release type. (Currently not supported) */
-  releaseType?: ReleaseType;
+  /** The release's status. */
+  releaseStatus?: ReleaseStatus[] | string;
+  /** Comments about the release, if any. */
+  releaseComments?: string[] | string;
 }
 
 /**
@@ -31,7 +33,7 @@ export type ReleaseNotes = {
   details?: string[] | string;
 } | string[] | string;
 
-export type ReleaseType = 'stable' | 'beta' | 'nightly';
+export type ReleaseStatus = 'draft' | 'wip' | 'deprecated' | 'released' | 'unreleased' | 'other';
 
 export interface Releases {
   [key: string]: Release;
