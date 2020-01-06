@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ReleaseNotesJSON, ReleaseNotes, Release, GitRepo } from './release-notes';
 import releaseNotes from '../../../assets/release-notes/release-notes.json';
 import { environment } from '../../../environments/environment';
@@ -10,9 +9,6 @@ import { environment } from '../../../environments/environment';
   styles: []
 })
 export class ReleaseNotesComponent implements OnInit {
-
-  constructor(private http: HttpClient) { }
-
   /** Retrieves the release notes JSON file. */
   get releaseNotes(): ReleaseNotesJSON {
     return releaseNotes;
