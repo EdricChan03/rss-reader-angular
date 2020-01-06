@@ -113,14 +113,37 @@
           "minLength": 7,
           "maxLength": 40
         },
-        "releaseType": {
-          "$comment": "This isn't really supported at the moment",
-          "description": "The release's type.",
-          "type": "string",
-          "enum": [
-            "stable",
-            "beta",
-            "nightly"
+        "releaseStatus": {
+          "description": "The status of the release.",
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/releaseStatusTypes"
+              }
+            },
+            {
+              "$ref": "#/definitions/releaseStatusTypes",
+              "default": "draft"
+            }
+          ]
+        },
+        "releaseComments": {
+          "description": "Internal comments about the release. (Can be a URL)",
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "string",
+              "format": "uri"
+            },
+            {
+              "type": "string"
+            }
           ]
         }
       },
@@ -178,6 +201,17 @@
         {
           "type": "string"
         }
+      ]
+    },
+    "releaseStatusTypes": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "wip",
+        "deprecated",
+        "released",
+        "unreleased",
+        "other"
       ]
     }
   }
