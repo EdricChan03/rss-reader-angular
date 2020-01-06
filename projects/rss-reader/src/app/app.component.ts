@@ -220,6 +220,7 @@ export class AppComponent implements OnInit, OnDestroy {
       }
 
       const message = hasNewerVer() ?
+        // tslint:disable-next-line: no-string-literal
         `A newer version (${event.available.appData['version']}) of the app is available!` :
         'A newer version of the app is available!';
       const snackBarRef = this.shared.openSnackBar({
