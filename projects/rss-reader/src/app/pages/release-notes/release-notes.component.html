@@ -4,7 +4,7 @@
   <h2 id="current-version-release-notes">Release notes for {{ releaseNotes.latestVersion }}</h2>
   <!-- TODO: Convert to template -->
   <ng-container *ngIf="versions; else: noReleaseNotes">
-    <p *ngIf="getReleaseDate(releaseNotes.latestVersion) as releaseDate">Release date: <em>{{ releaseDate | date:'long' }}</em></p>
+    <p *ngIf="getReleaseDate(releaseNotes.latestVersion) as releaseDate">Release date: <em><time [attr.datetime]="releaseDate">{{ releaseDate | date:'short' }}</time></em></p>
     <p *ngIf="getReleaseAuthor(releaseNotes.latestVersion) as releaseAuthor">Released by: <em>{{ releaseAuthor }}</em></p>
     <ng-container *ngIf="getReleaseNote(releaseNotes.latestVersion) as releaseNote">
       <ng-container *ngIf="isStr(releaseNote) && isUrl(releaseNote)">
