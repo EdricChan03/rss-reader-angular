@@ -20,7 +20,7 @@
         "details": [
           "- Removed settings (_Enable multiple RSS feeds_, _Notifications_)",
           "- Use `<mat-label>`s instead of the `placeholder` attribute for input fields. (This allows users to now see the labels of input fields even when an input is entered)",
-          "- Adds release notes (dialog and a dedicated page) for every release."
+          "- Added a release notes page where new releases for the app will be announced."
         ]
       },
       "releaseDate": "Sat Aug 24 2019 20:24:00 GMT+0800 (Singapore Standard Time)",
