@@ -1,6 +1,6 @@
 {
   "$schema": "./release-notes-schema.json",
-  "latestVersion": "1.5.4",
+  "latestVersion": "1.6.0",
   "gitRepo": {
     "host": "https://github.com",
     "repo": "rss-reader-web",
@@ -71,6 +71,33 @@
       ],
       "releaseAuthor": "EdricChan03",
       "releaseDate": "2019-12-29T17:43:55+0000"
+    },
+    "1.6.0": {
+      "releaseNotes": [
+        "- Add support for caching API requests!",
+        "  - API requests that return timely information (such as news or an RSS feed) will be cached up to 5 minutes",
+        "  - API requests that return non-timely information (such as country data) will be cached up to a week",
+        "  - (Note: This is not final and may be changed in the future)",
+        "- We've spring-cleaned the app to bring in the New Year! What we've done so far:",
+        "  - Improved updating functionality",
+        "  - Removed no longer needed developer guides",
+        "  - Removed unused devices page",
+        "  - Improved GitHub repository README",
+        "  - Updated license to 2020! 🎉",
+        "  - Shortened the dates on the releases page. No one wants such a detailed date anyway!",
+        "  - Moar bug fixes!",
+        "  - Tons of code refactoring!",
+        "- And other changes to the app's internals:",
+        "  - [Internal] Added initial unit tests! Woohoo! (Although this should've been done way earlier)",
+        "  - [Internal] Added support for specifying the status of a release, as well as any additional comments on the release.",
+        "  - [Internal] The settings page is now lazy-loaded!",
+        "  - [Internal] The releases page now uses the HTML `<time>` element for dates.",
+        "  - [CI] Bring back support for unit testing",
+        "  - [CI] Add step to cache node_modules and documentation",
+        "  - [CI] Improve deploying"
+      ],
+      "releaseAuthor": "EdricChan03",
+      "releaseDate": "2020-01-07T18:03:00+0000"
     }
   }
 }
