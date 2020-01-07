@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1578380818560,
+  "timestamp": 1578390337446,
   "appData": {
     "version": "1.5.4"
   },
@@ -16,8 +16,8 @@
         "/rss-reader/6-es2015.a9e9b78297603afd4c71.js",
         "/rss-reader/6-es5.a9e9b78297603afd4c71.js",
         "/rss-reader/index.html",
-        "/rss-reader/main-es2015.4abca922febf18ed3832.js",
-        "/rss-reader/main-es5.4abca922febf18ed3832.js",
+        "/rss-reader/main-es2015.d998ab0395144cdf6c2a.js",
+        "/rss-reader/main-es5.d998ab0395144cdf6c2a.js",
         "/rss-reader/manifest.webmanifest",
         "/rss-reader/polyfills-es2015.4ddeb73791cb6fa9ec79.js",
         "/rss-reader/polyfills-es5.897a0bf9eb6e42f9d8c5.js",
@@ -137,10 +137,10 @@
     "/rss-reader/assets/img/News Article.png": "123985f0b304117c98e32f29707c180277fc428f",
     "/rss-reader/assets/onboarding/articles.svg": "099afa8a050d38139505ee3bb933ccd296002738",
     "/rss-reader/assets/release-notes/release-notes-schema.json": "74be956230a2cb3e0defcf2affc45873a6d55047",
-    "/rss-reader/assets/release-notes/release-notes.json": "20cfd97090dc81d9a5d62ede1e3d3efe99f4c266",
-    "/rss-reader/index.html": "612010ca3bb3343fcf66df872b768b348fa32668",
-    "/rss-reader/main-es2015.4abca922febf18ed3832.js": "5f049cf1ac7176c8e56aa72474a3f317afbe0a7e",
-    "/rss-reader/main-es5.4abca922febf18ed3832.js": "c359ace46ad168e97699cae7f9bf3955215c6c70",
+    "/rss-reader/assets/release-notes/release-notes.json": "2aa044f081174ad05d0ed531cc29cbe5dc36a8e7",
+    "/rss-reader/index.html": "9c257ad92f6ed100cd77047b1facaa77c780c31a",
+    "/rss-reader/main-es2015.d998ab0395144cdf6c2a.js": "c14f56c76872046bef29f252a0b74792e904fbde",
+    "/rss-reader/main-es5.d998ab0395144cdf6c2a.js": "062510849dd97688c5da0521a48455975bc7cbe0",
     "/rss-reader/manifest.webmanifest": "44eb37ba72a29889fcee4bc71cf98bbf2db8eccf",
     "/rss-reader/polyfills-es2015.4ddeb73791cb6fa9ec79.js": "18588be685402df9b1ca7dd25ac153eb68bffe8e",
     "/rss-reader/polyfills-es5.897a0bf9eb6e42f9d8c5.js": "01d88367cbe150de2c38a5adf5ce3d6e32b9c729",

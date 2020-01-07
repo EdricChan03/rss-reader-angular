@@ -75,7 +75,7 @@
     "1.6.0": {
       "releaseNotes": [
         "- Add support for caching API requests!",
-        "  - API requests that return timely information (such as news or an RSS feed) will be cached up to 5 minutes",
+        "  - API requests that return timely information (such as news or an RSS feed) will be cached up to an hour",
         "  - API requests that return non-timely information (such as country data) will be cached up to a week",
         "  - (Note: This is not final and may be changed in the future)",
         "- We've spring-cleaned the app to bring in the New Year! What we've done so far:",
