@@ -13,9 +13,9 @@
       ],
       "cacheConfig": {
         "maxAge": "1h",
+        "maxSize": 20,
         "timeout": "5s",
-        "strategy": "freshness",
-        "maxSize": 20
+        "strategy": "freshness"
       }
     },
     {
@@ -59,6 +59,15 @@
       "resources": {
         "urls": [
           "https://fonts.googleapis.com/**"
+        ]
+      }
+    }, {
+      "name": "site-resources",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "urls": [
+          "https://edricchan03.github.io/res/**"
         ]
       }
     }
