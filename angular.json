@@ -20,7 +20,12 @@
             "polyfills": "projects/rss-reader/src/polyfills.ts",
             "assets": [
               "projects/rss-reader/src/assets",
-              "projects/rss-reader/src/manifest.webmanifest"
+              "projects/rss-reader/src/manifest.webmanifest",
+              {
+                "glob": "mdi.svg",
+                "input": "node_modules/@mdi/angular-material",
+                "output": "./assets"
+              }
             ],
             "styles": [
               "projects/rss-reader/src/styles.scss"
