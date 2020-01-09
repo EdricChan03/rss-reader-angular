@@ -1,8 +1,8 @@
 {
   "configVersion": 1,
-  "timestamp": 1578508017448,
+  "timestamp": 1578552266458,
   "appData": {
-    "version": "1.5.4"
+    "version": "1.6.0"
   },
   "index": "/rss-reader/index.html",
   "assetGroups": [
@@ -74,6 +74,15 @@
       "urls": [],
       "patterns": [
         "https:\\/\\/fonts\\.googleapis\\.com\\/.*"
+      ]
+    },
+    {
+      "name": "site-resources",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [],
+      "patterns": [
+        "https:\\/\\/edricchan03\\.github\\.io\\/res\\/.*"
       ]
     }
   ],
