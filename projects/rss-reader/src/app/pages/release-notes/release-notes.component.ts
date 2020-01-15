@@ -1,16 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, InjectionToken, Inject } from '@angular/core';
 import { ReleaseNotesJSON, ReleaseNotes, Release, GitRepo } from './release-notes';
-import releaseNotes from '../../../assets/release-notes/release-notes.json';
+import releaseNotesJsonFile from '../../../assets/release-notes/release-notes.json';
 import { environment } from '../../../environments/environment';
+
+export const RELEASE_NOTES_JSON = new InjectionToken<ReleaseNotesJSON>('Release notes JSON file', {
+  providedIn: 'root',
+  factory: () => releaseNotesJsonFile
+});
 
 @Component({
   selector: 'app-release-notes',
   templateUrl: './release-notes.component.html'
 })
 export class ReleaseNotesComponent implements OnInit {
+  constructor(@Inject(RELEASE_NOTES_JSON) public releaseNotesJson: ReleaseNotesJSON) {}
+
   /** Retrieves the release notes JSON file. */
   get releaseNotes(): ReleaseNotesJSON {
-    return releaseNotes;
+    return this.releaseNotesJson;
   }
 
   /** Retrieves the list of versions. */
