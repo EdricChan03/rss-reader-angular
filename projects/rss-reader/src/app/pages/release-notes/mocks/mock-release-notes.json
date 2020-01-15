@@ -1,0 +1,31 @@
+{
+  "$schema": "../../../../assets/release-notes/release-notes-schema.json",
+  "gitRepo": {
+    "host": "https://github.com",
+    "username": "EdricChan03",
+    "repo": "rss-reader"
+  },
+  "latestVersion": "0.0.0",
+  "releases": {
+    "0.0.0": {
+      "releaseAuthor": "EdricChan03",
+      "releaseCommitSha": "1234567",
+      "releaseDate": "2000-00-00T00:00:00+0000",
+      "releaseNotes": [
+        "- Initial release"
+      ]
+    },
+    "0.0.1": {
+      "releaseNotes": {
+        "summary": [
+          "- Summary notes #1",
+          "- Another note"
+        ],
+        "details": [
+          "- Detail notes #1",
+          "- Another detail note"
+        ]
+      }
+    }
+  }
+}
