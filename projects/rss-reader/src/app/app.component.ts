@@ -211,7 +211,7 @@ export class AppComponent implements OnInit, OnDestroy {
         const currentHasVer = 'version' in event.current.appData;
         let returnVal = false;
 
-        if ('version' in event.available.appData && currentHasVer) {
+        if (availableHasVer && currentHasVer) {
           // tslint:disable-next-line: no-string-literal
           returnVal = event.available.appData['version'] !== event.current.appData['version'];
         }
