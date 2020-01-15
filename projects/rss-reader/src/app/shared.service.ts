@@ -1,19 +1,16 @@
-import { Component, Injectable, NgModule, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { MatListModule, MatSelectionList } from '@angular/material/list';
-import { MatSnackBar, MatSnackBarConfig, MatSnackBarModule, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
-import { SafeHtml, Title } from '@angular/platform-browser';
-
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { CommonModule } from '@angular/common';
 import { ComponentType } from '@angular/cdk/portal';
+import { CommonModule } from '@angular/common';
+import { Component, Injectable, NgModule, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCommonModule } from '@angular/material/core';
+import { MatDialog, MatDialogConfig, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Observable, Subject } from 'rxjs';
-import { SwUpdate } from '@angular/service-worker';
+import { MatListModule, MatSelectionList } from '@angular/material/list';
+import { MatSnackBar, MatSnackBarConfig, MatSnackBarModule, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
+import { SafeHtml, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'alert-dialog',
@@ -294,8 +291,7 @@ export class SharedService {
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private documentTitle: Title,
-    private breakpointObserver: BreakpointObserver,
-    private swUpdate: SwUpdate
+    private breakpointObserver: BreakpointObserver
   ) { }
   /**
    * Sets the document's title
@@ -313,27 +309,6 @@ export class SharedService {
    */
   get title(): string {
     return this.internalTitle;
-  }
-  /**
-   * Checks for updates (ngsw)
-   */
-  checkForUpdates() {
-    this.swUpdate.checkForUpdate().then(() => {
-      console.log('[App] Done checking for updates');
-    }).catch(err => {
-      console.error(err);
-    });
-  }
-  /**
-   * Activates the update (ngsw)
-   */
-  activateUpdate() {
-    this.swUpdate.activateUpdate().then(() => {
-      console.log('[App] Done activating update.');
-      window.location.reload();
-    }).catch(err => {
-      console.error(err);
-    });
   }
   /**
    * Detects if the user is using a mobile device
