@@ -54,7 +54,4 @@ export class ShareDialogComponent implements OnInit {
       alert('To share natively, please enable the \'Experimental Web Platform Features\' flag in chrome://flags. Otherwise, it might not be supported on your platform right now.');
     }
   }
-  dismiss() {
-    this.dialogRef.close();
-  }
 }
