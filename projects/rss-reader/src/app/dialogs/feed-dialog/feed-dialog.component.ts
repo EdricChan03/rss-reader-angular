@@ -5,7 +5,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-// import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Feed } from '../../model/feed';
 import { SubmitRssDialogComponent } from '../submit-rss-dialog/submit-rss-dialog.component';
 import { FeedChannel } from '../../model/feed-channel';
@@ -29,7 +28,6 @@ export class FeedDialogComponent implements OnInit {
   filteredOptions: Observable<FeedCategory[]>;
   feedUrlValue = '';
   rssFeedForm: FormGroup;
-  // feedData: AngularFirestoreDocument<FeedCategory>;
   constructor(
     private dialogRef: MatDialogRef<FeedDialogComponent>,
     private fb: FormBuilder,
@@ -48,7 +46,6 @@ export class FeedDialogComponent implements OnInit {
       );
   }
   ngOnInit() {
-    // this.feedData = this.afFs.doc('data/feed');
     if (window.localStorage.getItem('feedOptions')) {
       this.rssFeedForm.patchValue(JSON.parse(window.localStorage.getItem('feedOptions')));
     }

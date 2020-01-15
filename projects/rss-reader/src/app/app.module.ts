@@ -69,9 +69,6 @@ const PIPES = [
     // ServiceWorkerModule.register(environment.swLocation, { enabled: environment.production, scope: './' }),
     ServiceWorkerModule.register('./ngsw-worker.js', { enabled: environment.production, scope: './' }),
     DialogsModule,
-    // AngularFireModule.initializeApp(environment.firebase),
-    // AngularFirestoreModule.enablePersistence(),
-    // AngularFireAuthModule,
     ActionItemsModule,
     HotkeysModule
   ],
