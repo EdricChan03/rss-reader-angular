@@ -12,7 +12,7 @@ export const RELEASE_NOTES_JSON = new InjectionToken<ReleaseNotesJSON>('Release 
   selector: 'app-release-notes',
   templateUrl: './release-notes.component.html'
 })
-export class ReleaseNotesComponent implements OnInit {
+export class ReleaseNotesComponent {
   constructor(@Inject(RELEASE_NOTES_JSON) public releaseNotesJson: ReleaseNotesJSON) {}
 
   /** Retrieves the release notes JSON file. */
@@ -95,8 +95,4 @@ export class ReleaseNotesComponent implements OnInit {
   isObj(val: any): boolean {
     return typeof val === 'object';
   }
-
-  ngOnInit() {
-  }
-
 }
