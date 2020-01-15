@@ -15,61 +15,12 @@ import { NewsAPITopHeadlinesArticle } from '../model/news-api/top-headlines-arti
 })
 export class FeedCardComponent implements OnInit {
   hasImage: boolean;
-  imageExts = ['jpg', 'jpeg', 'png', 'gif'];
   imageSrc: string;
   target: string;
-  imageChanged = false;
   settings: Settings;
   @Input() feed?: FeedEntry;
   @Input() headline?: NewsAPITopHeadlinesArticle;
-  constructor(private dialog: MatDialog, private shared: SharedService, private dom: DomSanitizer) { }
-
-  share(feed: FeedEntry | NewsAPITopHeadlinesArticle) {
-    const dialogRef = this.dialog.open(ShareDialogComponent);
-    dialogRef.componentInstance.feed = feed;
-  }
-
-  isEmpty(variable: string): boolean {
-    return (!variable || 0 === variable.length);
-  }
-
-  showCode(feed) {
-    const dialogRef = this.dialog.open(CodeViewerDialogComponent);
-    dialogRef.componentInstance.feed = feed;
-  }
-
-  viewInDialog(feed) {
-    // tslint:disable-next-line:max-line-length
-    const dialogRef = this.shared.openConfirmDialog({ title: 'Post', msg: this.dom.bypassSecurityTrustHtml(`<iframe src="${feed.link}" width="90%" height="90%"></iframe>`), isHtml: true, panelClass: 'post-dialog' });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 'ok') {
-        // Open post in new tab
-        window.open(feed.link);
-      } else {
-
-      }
-    });
-  }
-
-  imageChange() {
-    this.imageChanged = !this.imageChanged;
-    this.hasImage = !this.hasImage;
-  }
-
-  replaceImg(isThumbnail?: boolean) {
-    this.hasImage = true;
-    if (isThumbnail) {
-      if (this.feed) {
-        if (this.feed.enclosure.thumbnail) {
-          this.imageSrc = encodeURI(this.feed.enclosure.thumbnail);
-        } else if (this.feed.thumbnail) {
-          this.imageSrc = encodeURI(this.feed.thumbnail);
-        }
-      } else {
-        this.imageSrc = encodeURI(this.feed.enclosure.link);
-      }
-    }
-  }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit() {
     if (window.localStorage.getItem('settings')) {
@@ -88,6 +39,37 @@ export class FeedCardComponent implements OnInit {
         } else if (this.feed.enclosure.link) {
           this.replaceImg(false);
         }
+      }
+    }
+  }
+
+  share(article: FeedEntry | NewsAPITopHeadlinesArticle) {
+    this.dialog.open(ShareDialogComponent, {
+      data: article
+    });
+  }
+
+  isEmpty(variable: string): boolean {
+    return (!variable || 0 === variable.length);
+  }
+
+  showCode(article) {
+    this.dialog.open(CodeViewerDialogComponent, {
+      data: article
+    });
+  }
+
+  replaceImg(isThumbnail?: boolean) {
+    this.hasImage = true;
+    if (isThumbnail) {
+      if (this.feed) {
+        if (this.feed.enclosure.thumbnail) {
+          this.imageSrc = encodeURI(this.feed.enclosure.thumbnail);
+        } else if (this.feed.thumbnail) {
+          this.imageSrc = encodeURI(this.feed.thumbnail);
+        }
+      } else {
+        this.imageSrc = encodeURI(this.feed.enclosure.link);
       }
     }
   }

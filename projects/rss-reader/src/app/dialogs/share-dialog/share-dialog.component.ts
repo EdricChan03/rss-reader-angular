@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FeedEntry } from '../../model/feed-entry';
 import { NewsAPITopHeadlinesArticle } from '../../model/news-api/top-headlines-article';
 
@@ -12,11 +12,18 @@ import { NewsAPITopHeadlinesArticle } from '../../model/news-api/top-headlines-a
 export class ShareDialogComponent implements OnInit {
   url: string;
   publishedDate: string;
-  feed: FeedEntry | NewsAPITopHeadlinesArticle;
   constructor(
-    private dialogRef: MatDialogRef<ShareDialogComponent>
-  ) {
-    dialogRef.disableClose = true;
+    @Inject(MAT_DIALOG_DATA) public articleData: FeedEntry | NewsAPITopHeadlinesArticle
+  ) {}
+
+  ngOnInit() {
+    if (this.isFeedEntry(this.articleData)) {
+      this.url = this.articleData.link;
+      this.publishedDate = this.articleData.pubDate.toString();
+    } else {
+      this.url = this.articleData.url;
+      this.publishedDate = this.articleData.publishedAt;
+    }
   }
   /**
    * Checks if the `feed` property is of type `FeedEntry`
@@ -24,21 +31,12 @@ export class ShareDialogComponent implements OnInit {
   isFeedEntry(feed: FeedEntry | NewsAPITopHeadlinesArticle): feed is FeedEntry {
     return (feed as FeedEntry).categories !== undefined;
   }
-  ngOnInit() {
-    if (this.isFeedEntry(this.feed)) {
-      this.url = this.feed.link;
-      this.publishedDate = this.feed.pubDate.toString();
-    } else {
-      this.url = this.feed.url;
-      this.publishedDate = this.feed.publishedAt;
-    }
-  }
   shareToFacebook() {
     window.open(`https://www.facebook.com/sharer.php?u=${encodeURI(this.url)}`, '');
   }
   shareToTwitter() {
-    const text = encodeURI(`Check out this blogpost by ${this.feed.author}\
-    published on ${this.publishedDate} titled "${this.feed.title}"!')}`);
+    const text = encodeURI(`Check out this blogpost by ${this.articleData.author}\
+    published on ${this.publishedDate} titled "${this.articleData.title}"!')}`);
     window.open(`https://twitter.com/intent/tweet?url=${encodeURI(this.url)}&text=${text}`);
   }
   shareNative() {

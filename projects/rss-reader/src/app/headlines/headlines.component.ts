@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../shared.service';
 import { ActionItemService } from '../actionitem.service';
-import { MatDialog } from '@angular/material/dialog';
-import { HeadlineOptionsDialogComponent } from '../dialogs';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { HeadlineOptionsDialogComponent, HeadlineOptions } from '../dialogs';
 import { HttpClient } from '@angular/common/http';
 import { NewsAPITopHeadlinesOpts, NewsAPITopHeadlines } from '../model/news-api/top-headlines';
 import { Observable } from 'rxjs';
@@ -35,7 +35,7 @@ export class HeadlinesComponent implements OnInit {
   }
 
   openHeadlineOptsDialog() {
-    const dialogRef = this.dialog.open(HeadlineOptionsDialogComponent);
+    const dialogConfig = new MatDialogConfig<HeadlineOptions>();
     if (window.localStorage.getItem('headlineOpts')) {
       const headlineOpts = JSON.parse(window.localStorage.getItem('headlineOpts'));
 
@@ -43,8 +43,9 @@ export class HeadlinesComponent implements OnInit {
         delete headlineOpts.topic;
         window.localStorage.setItem('headlineOpts', JSON.stringify(headlineOpts));
       }
-      dialogRef.componentInstance.options = JSON.parse(window.localStorage.getItem('headlineOpts'));
+      dialogConfig.data = JSON.parse(window.localStorage.getItem('headlineOpts')) as HeadlineOptions;
     }
+    const dialogRef = this.dialog.open(HeadlineOptionsDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined && result !== 'cancel') {
         const options = dialogRef.componentInstance.headlineOptForm.getRawValue() as NewsAPITopHeadlinesOpts;

@@ -1,4 +1,4 @@
-<h2 matDialogTitle>Share "{{feed.title | slice:0:100}}":</h2>
+<h2 matDialogTitle>Share "{{articleData.title | slice:0:100}}":</h2>
 <mat-dialog-content fxLayout="column" style="min-width: fit-content">
   <mat-form-field>
     <input matInput readonly [(ngModel)]="url" (click)="$event.target.select()" matTooltip="Click to select and copy">
