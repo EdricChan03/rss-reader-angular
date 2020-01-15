@@ -10,8 +10,7 @@
   @if ($is-dark-theme) {
     // Apply highlight.js dark styles available in _hljs.scss
     @include hljs-dark();
-  }
-  @else {
+  } @else {
     // Apply highlight.js light styles available in _hljs.scss
     @include hljs-light();
   } // Shows the current link. Used in the sidenav
@@ -22,13 +21,12 @@
       color: if($is-dark-theme, mat-color($accent), mat-color($primary)) !important;
     } // Note: These colors are based on the Android sidenav selection state
     background-color: if($is-dark-theme, #595959, #DCDCDC) !important;
-  } // Warning icon color
+  }
+  // Warning icon color
   .warning-icon {
     color: mat-color($warn) !important;
-  } // WIP page icon
-  .build-icon {
-    color: mat-color($accent) !important;
-  } // Anchor links
+  }
+  // Anchor links
   .docs-a,
   .docs-anchor {
     color: mat-color($primary) !important;
