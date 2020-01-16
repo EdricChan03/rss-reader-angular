@@ -1,4 +1,4 @@
-import { SharedService, SelectionDialogOptions } from '../shared.service';
+import { SharedService, SelectionDialogOption } from '../shared.service';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBarVerticalPosition, MatSnackBarHorizontalPosition } from '@angular/material/snack-bar';
 import { ThemePalette } from '@angular/material/core';
@@ -46,14 +46,11 @@ export class TestpageComponent implements OnInit {
   ) {
     shared.title = 'Test page';
   }
-  /**
-   * Sets the default value
-   * @param varToSet The variable to set
-   * @param defaultVal Default variable
-   */
+
   private setDefaultValue(varToSet: any, defaultVal: any): any {
     return varToSet ? varToSet : defaultVal;
   }
+
   ngOnInit() {
     this.dialog.dialogType = 'alert';
     this.buttons = [
@@ -156,7 +153,7 @@ export class TestpageComponent implements OnInit {
     this.clearOptions(this.dialog);
   }
   selectionDialog() {
-    const selectionDialogOptions: SelectionDialogOptions[] = [];
+    const selectionDialogOptions: SelectionDialogOption[] = [];
     // for (let i = 0; i < 10; i++) {
     //   if (i === 1) {
     //     tempVar.push({ content: 'Item 1', disabled: true, value: 'item-1' });
@@ -209,7 +206,7 @@ export class TestpageComponent implements OnInit {
   snackBar() {
     this.shared.openSnackBar({
       msg: this.setDefaultValue(this.snackbar.snackBarMsg, 'I\'m a snackbar!'),
-      additionalOpts: {
+      config: {
         horizontalPosition: this.snackbar.horizontalPosition,
         verticalPosition: this.snackbar.verticalPosition,
         panelClass: this.snackbar.panelClass
