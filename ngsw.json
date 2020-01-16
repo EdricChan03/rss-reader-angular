@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1578565496922,
+  "timestamp": 1579157169675,
   "appData": {
     "version": "1.6.0"
   },
@@ -11,20 +11,20 @@
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "urls": [
-        "/rss-reader/5-es2015.c5aa7477f4a15b747266.js",
-        "/rss-reader/5-es5.c5aa7477f4a15b747266.js",
+        "/rss-reader/5-es2015.f2f23fdab649ea49ea23.js",
+        "/rss-reader/5-es5.f2f23fdab649ea49ea23.js",
         "/rss-reader/6-es2015.278c20ef8f7a7c856e59.js",
         "/rss-reader/6-es5.278c20ef8f7a7c856e59.js",
         "/rss-reader/index.html",
-        "/rss-reader/main-es2015.bb3a72a66096b0a8dcbd.js",
-        "/rss-reader/main-es5.bb3a72a66096b0a8dcbd.js",
+        "/rss-reader/main-es2015.eb548aa198dcadf3bc46.js",
+        "/rss-reader/main-es5.eb548aa198dcadf3bc46.js",
         "/rss-reader/manifest.webmanifest",
         "/rss-reader/polyfills-es2015.4ddeb73791cb6fa9ec79.js",
         "/rss-reader/polyfills-es5.897a0bf9eb6e42f9d8c5.js",
-        "/rss-reader/runtime-es2015.5f8f4a1830aa90c0fdfc.js",
-        "/rss-reader/runtime-es5.5f8f4a1830aa90c0fdfc.js",
+        "/rss-reader/runtime-es2015.f3a13605b9fdd1e2f8df.js",
+        "/rss-reader/runtime-es5.f3a13605b9fdd1e2f8df.js",
         "/rss-reader/scripts.df42bf43cef21311bf2d.js",
-        "/rss-reader/styles.dda20f37e947b8041e66.css"
+        "/rss-reader/styles.53478b093a38837e6ebe.css"
       ],
       "patterns": []
     },
@@ -113,8 +113,8 @@
     }
   ],
   "hashTable": {
-    "/rss-reader/5-es2015.c5aa7477f4a15b747266.js": "3254bae6773ef129ba5e32597b725380310240b9",
-    "/rss-reader/5-es5.c5aa7477f4a15b747266.js": "85aad8a0e3fba12fe6fc9ce3c622c8c885214118",
+    "/rss-reader/5-es2015.f2f23fdab649ea49ea23.js": "7ce509493ad6d5d960bca8c920ec91a55a6861a0",
+    "/rss-reader/5-es5.f2f23fdab649ea49ea23.js": "0d60071ee2114b6c11b052e3328d91365df3f2ef",
     "/rss-reader/6-es2015.278c20ef8f7a7c856e59.js": "cb2f42915d0b7c1854861ea8d9b6c89444065423",
     "/rss-reader/6-es5.278c20ef8f7a7c856e59.js": "2d8fb7ebe72bca37313e1c8e8592bfb2aaa02cf7",
     "/rss-reader/assets/docs/dev/actionitem-service.html": "9c6ee6e1b37d5165928310fa65e8e32b2b2e2520",
@@ -149,16 +149,16 @@
     "/rss-reader/assets/onboarding/articles.svg": "099afa8a050d38139505ee3bb933ccd296002738",
     "/rss-reader/assets/release-notes/release-notes-schema.json": "74be956230a2cb3e0defcf2affc45873a6d55047",
     "/rss-reader/assets/release-notes/release-notes.json": "2aa044f081174ad05d0ed531cc29cbe5dc36a8e7",
-    "/rss-reader/index.html": "efd3bd770e865db2ea9cedd354f3e2b7e70be623",
-    "/rss-reader/main-es2015.bb3a72a66096b0a8dcbd.js": "465a02d0ab53aa8ab3a9f8a55479a2a5704df1d4",
-    "/rss-reader/main-es5.bb3a72a66096b0a8dcbd.js": "13ce05d66cf3ed1a362e547eefe476ac07816551",
+    "/rss-reader/index.html": "2e94c36f509c3797fe2c82cccbda1bd8987fb537",
+    "/rss-reader/main-es2015.eb548aa198dcadf3bc46.js": "d399bde6478db9dd0feed99057d418b9ff245092",
+    "/rss-reader/main-es5.eb548aa198dcadf3bc46.js": "cc681ac8ec1c6a993262ab9b105ae193a749be51",
     "/rss-reader/manifest.webmanifest": "44eb37ba72a29889fcee4bc71cf98bbf2db8eccf",
     "/rss-reader/polyfills-es2015.4ddeb73791cb6fa9ec79.js": "18588be685402df9b1ca7dd25ac153eb68bffe8e",
     "/rss-reader/polyfills-es5.897a0bf9eb6e42f9d8c5.js": "01d88367cbe150de2c38a5adf5ce3d6e32b9c729",
-    "/rss-reader/runtime-es2015.5f8f4a1830aa90c0fdfc.js": "e62cb71e850406f5fd13d0b05d28c638874e54fe",
-    "/rss-reader/runtime-es5.5f8f4a1830aa90c0fdfc.js": "2e660b5d873883bff48dfa770dc79d1d68101015",
+    "/rss-reader/runtime-es2015.f3a13605b9fdd1e2f8df.js": "27ad84a42d3a476a4b9fa1a8c79c63434e8d4602",
+    "/rss-reader/runtime-es5.f3a13605b9fdd1e2f8df.js": "68f215a002c62430aeea728f91d34d917e121d8f",
     "/rss-reader/scripts.df42bf43cef21311bf2d.js": "fd546c119d5644d138deb4da5aa4581e27bf666e",
-    "/rss-reader/styles.dda20f37e947b8041e66.css": "2ff96d263c1495ac24427de59d82e40aa8a0da40"
+    "/rss-reader/styles.53478b093a38837e6ebe.css": "246c0fec3e804f1de6180c28258ca4da54769c80"
   },
   "navigationUrls": [
     {
