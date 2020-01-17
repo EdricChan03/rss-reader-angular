@@ -1,4 +1,4 @@
-import { Component, InjectionToken, Inject } from '@angular/core';
+import { Component, InjectionToken, Inject, Optional } from '@angular/core';
 import { ReleaseNotesJSON, ReleaseNotes, Release, GitRepo } from './release-notes';
 import releaseNotesJsonFile from '../../../assets/release-notes/release-notes.json';
 import { environment } from '../../../environments/environment';
@@ -8,12 +8,17 @@ export const RELEASE_NOTES_JSON = new InjectionToken<ReleaseNotesJSON>('Release 
   factory: () => releaseNotesJsonFile
 });
 
+export const GIT_REPO = new InjectionToken<GitRepo>('Custom Git repository');
+
 @Component({
   selector: 'app-release-notes',
   templateUrl: './release-notes.component.html'
 })
 export class ReleaseNotesComponent {
-  constructor(@Inject(RELEASE_NOTES_JSON) public releaseNotesJson: ReleaseNotesJSON) {}
+  constructor(
+    @Inject(RELEASE_NOTES_JSON) public releaseNotesJson: ReleaseNotesJSON,
+    @Optional() @Inject(GIT_REPO) private customGitRepo: GitRepo
+  ) { }
 
   /** Retrieves the release notes JSON file. */
   get releaseNotes(): ReleaseNotesJSON {
@@ -25,9 +30,13 @@ export class ReleaseNotesComponent {
     return Object.keys(this.releaseNotes.releases);
   }
 
-  /** Retrieves metadata of the Git repository, or defaults to the environment. */
+  /**
+   * Retrieves metadata of the Git repository, or defaults to the environment.
+   *
+   * Note: This can be overidden with the {@link GIT_REPO} DI token.
+   */
   get gitRepo(): string {
-    return this.releaseNotes.gitRepo ?
+    return this.customGitRepo ? this.createGitRepoUrl(this.customGitRepo) : this.releaseNotes.gitRepo ?
       this.createGitRepoUrl(this.releaseNotes.gitRepo) : this.createGitRepoUrl(environment.gitRepoDefaults);
   }
 
