@@ -97,9 +97,9 @@ export class ConfirmDialog extends Dialog {
   }
 
   get negativeBtnText(): string {
-    // This is to handle users using the now deprecated `ok` property.
+    // This is to handle users using the now deprecated `cancel` property.
     // tslint:disable-next-line:deprecation
-    return this.opts.cancel ? this.opts.ok : this.opts.positiveBtnText ? this.opts.positiveBtnText : 'Cancel';
+    return this.opts.cancel ? this.opts.cancel : this.opts.negativeBtnText ? this.opts.negativeBtnText : 'Cancel';
   }
 
   get positiveBtnText(): string {
