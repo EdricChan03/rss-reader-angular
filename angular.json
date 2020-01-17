@@ -118,6 +118,12 @@
             ],
             "assets": [
               "projects/rss-reader/src/assets"
+            ],
+            "fileReplacements": [
+              {
+                "replace": "projects/rss-reader/src/environments/environment.ts",
+                "with": "projects/rss-reader/src/environments/environment.test.ts"
+              }
             ]
           }
         },

@@ -1,37 +1,47 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, TestBedStatic, TestModuleMetadata } from '@angular/core/testing';
 import { MatChipsModule } from '@angular/material/chips';
 import { MarkdownModule } from 'ngx-markdown';
-import { GitRepo } from './release-notes';
-import { ReleaseNotesComponent, RELEASE_NOTES_JSON } from './release-notes.component';
+import { environment } from '../../../environments/environment';
 import mockReleaseNotesJson from './mocks/mock-release-notes.json';
+import { GitRepo } from './release-notes';
+import { ReleaseNotesComponent, RELEASE_NOTES_JSON, GIT_REPO } from './release-notes.component';
 
 describe('ReleaseNotesComponent', () => {
   let component: ReleaseNotesComponent;
   let componentEl: HTMLElement;
   let fixture: ComponentFixture<ReleaseNotesComponent>;
 
-  beforeEach(() => {
-    const MATERIAL_MODULES = [
-      MatChipsModule
-    ];
-
-    TestBed.configureTestingModule({
+  function configureTestingModule(moduleDef?: Partial<TestModuleMetadata>): TestBedStatic {
+    const DEFAULT_MODULE_DEF: TestModuleMetadata = {
       declarations: [ReleaseNotesComponent],
       imports: [
         // forRoot returns the needed MarkdownService which allows the tests
         // to pass.
         MarkdownModule.forRoot(),
-        MATERIAL_MODULES
+        MatChipsModule
       ],
       providers: [
         { provide: RELEASE_NOTES_JSON, useFactory: () => mockReleaseNotesJson }
       ]
-    }).compileComponents();
+    };
+
+    return TestBed.configureTestingModule({
+      ...DEFAULT_MODULE_DEF,
+      ...moduleDef
+    });
+  }
+
+  beforeEach(() => {
+    configureTestingModule().compileComponents();
 
     fixture = TestBed.createComponent(ReleaseNotesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
     componentEl = fixture.nativeElement;
+  });
+
+  it('should create', () => {
+    expect(component).toBeDefined();
   });
 
   describe('component code', () => {
@@ -54,6 +64,30 @@ describe('ReleaseNotesComponent', () => {
         const parsedRepo = `${gitRepoObj.host}/${gitRepoObj.username}/${gitRepoObj.repo}`;
 
         expect(component.gitRepo).toEqual(parsedRepo);
+      });
+
+      it('should revert to the environment GitRepo object if it does not exist', () => {
+        const NO_GIT_REPO_MOCK_JSON = { ...mockReleaseNotesJson };
+        delete NO_GIT_REPO_MOCK_JSON.gitRepo;
+
+        const gitRepoObj: any = environment.gitRepoDefaults;
+        const noGitRepoParsedRepo = `${gitRepoObj.host}/${gitRepoObj.username}/${gitRepoObj.repo}`;
+        const mockGitRepoObj = mockReleaseNotesJson.gitRepo;
+        const mockParsedRepo = `${mockGitRepoObj.host}/${mockGitRepoObj.username}/${mockGitRepoObj.repo}`;
+
+        TestBed.resetTestingModule();
+        configureTestingModule({
+          providers: [
+            { provide: RELEASE_NOTES_JSON, useFactory: () => NO_GIT_REPO_MOCK_JSON },
+            { provide: GIT_REPO, useFactory: () => gitRepoObj }
+          ]
+        }).compileComponents();
+
+        const localFixture = TestBed.createComponent(ReleaseNotesComponent);
+        const localComponent = localFixture.componentInstance;
+
+        expect(localComponent.gitRepo).toEqual(noGitRepoParsedRepo, 'Expected Git repository to be from environment');
+        expect(localComponent.gitRepo).not.toEqual(mockParsedRepo, 'Expected Git repository to not be from mock JSON');
       });
     });
 

@@ -2,8 +2,8 @@
   "$schema": "../../../../assets/release-notes/release-notes-schema.json",
   "gitRepo": {
     "host": "https://github.com",
-    "username": "EdricChan03",
-    "repo": "rss-reader"
+    "username": "MockUsername",
+    "repo": "mock-repo"
   },
   "latestVersion": "0.0.0",
   "releases": {
