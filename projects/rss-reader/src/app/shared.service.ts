@@ -14,6 +14,8 @@ import { SafeHtml, Title } from '@angular/platform-browser';
 
 /** An abstract dialog class. */
 export abstract class Dialog {
+  readonly defaultBtnColor = 'primary';
+
   abstract get negativeBtnColor(): ThemePalette;
 
   abstract get neutralBtnColor(): ThemePalette;
@@ -43,15 +45,15 @@ export class AlertDialog extends Dialog {
   }
 
   get negativeBtnColor(): ThemePalette {
-    return this.opts.negativeBtnColor ? this.opts.negativeBtnColor : 'primary';
+    return this.opts.negativeBtnColor ? this.opts.negativeBtnColor : this.defaultBtnColor;
   }
 
   get neutralBtnColor(): ThemePalette {
-    return this.opts.neutralBtnColor ? this.opts.neutralBtnColor : 'primary';
+    return this.opts.neutralBtnColor ? this.opts.neutralBtnColor : this.defaultBtnColor;
   }
 
   get positiveBtnColor(): ThemePalette {
-    return this.opts.positiveBtnColor ? this.opts.positiveBtnColor : 'primary';
+    return this.opts.positiveBtnColor ? this.opts.positiveBtnColor : this.defaultBtnColor;
   }
 
   get positiveBtnText(): string {
@@ -83,15 +85,15 @@ export class ConfirmDialog extends Dialog {
   }
 
   get negativeBtnColor(): ThemePalette {
-    return this.opts.negativeBtnColor ? this.opts.negativeBtnColor : 'primary';
+    return this.opts.negativeBtnColor ? this.opts.negativeBtnColor : this.defaultBtnColor;
   }
 
   get neutralBtnColor(): ThemePalette {
-    return this.opts.neutralBtnColor ? this.opts.neutralBtnColor : 'primary';
+    return this.opts.neutralBtnColor ? this.opts.neutralBtnColor : this.defaultBtnColor;
   }
 
   get positiveBtnColor(): ThemePalette {
-    return this.opts.positiveBtnColor ? this.opts.positiveBtnColor : 'primary';
+    return this.opts.positiveBtnColor ? this.opts.positiveBtnColor : this.defaultBtnColor;
   }
 
   get negativeBtnText(): string {
@@ -142,15 +144,15 @@ export class PromptDialog extends Dialog implements OnInit {
   }
 
   get negativeBtnColor(): ThemePalette {
-    return this.opts.negativeBtnColor ? this.opts.negativeBtnColor : 'primary';
+    return this.opts.negativeBtnColor ? this.opts.negativeBtnColor : this.defaultBtnColor;
   }
 
   get neutralBtnColor(): ThemePalette {
-    return this.opts.neutralBtnColor ? this.opts.neutralBtnColor : 'primary';
+    return this.opts.neutralBtnColor ? this.opts.neutralBtnColor : this.defaultBtnColor;
   }
 
   get positiveBtnColor(): ThemePalette {
-    return this.opts.positiveBtnColor ? this.opts.positiveBtnColor : 'primary';
+    return this.opts.positiveBtnColor ? this.opts.positiveBtnColor : this.defaultBtnColor;
   }
 
   get negativeBtnText(): string {
@@ -164,7 +166,6 @@ export class PromptDialog extends Dialog implements OnInit {
     // tslint:disable-next-line:deprecation
     return this.opts.ok ? this.opts.ok : this.opts.positiveBtnText ? this.opts.positiveBtnText : 'OK';
   }
-
 
   get inputColor(): ThemePalette {
     // This is to handle users using the now deprecated `color` property.
@@ -220,15 +221,15 @@ export class SelectionDialog extends Dialog {
   }
 
   get negativeBtnColor(): ThemePalette {
-    return this.opts.negativeBtnColor ? this.opts.negativeBtnColor : 'primary';
+    return this.opts.negativeBtnColor ? this.opts.negativeBtnColor : this.defaultBtnColor;
   }
 
   get neutralBtnColor(): ThemePalette {
-    return this.opts.neutralBtnColor ? this.opts.neutralBtnColor : 'primary';
+    return this.opts.neutralBtnColor ? this.opts.neutralBtnColor : this.defaultBtnColor;
   }
 
   get positiveBtnColor(): ThemePalette {
-    return this.opts.positiveBtnColor ? this.opts.positiveBtnColor : 'primary';
+    return this.opts.positiveBtnColor ? this.opts.positiveBtnColor : this.defaultBtnColor;
   }
 
   get negativeBtnText(): string {
@@ -345,7 +346,7 @@ export interface PromptDialogOpts extends DialogOpts {
    * The color of the input
    * @deprecated Use {@link PromptDialogInputConfig#color} instead
    */
-  color?: 'primary' | 'accent' | 'warn';
+  color?: ThemePalette;
 }
 
 export interface SelectionDialogOpts extends DialogOpts {
