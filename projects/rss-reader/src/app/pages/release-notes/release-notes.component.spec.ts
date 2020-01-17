@@ -78,8 +78,7 @@ describe('ReleaseNotesComponent', () => {
         TestBed.resetTestingModule();
         configureTestingModule({
           providers: [
-            { provide: RELEASE_NOTES_JSON, useFactory: () => NO_GIT_REPO_MOCK_JSON },
-            { provide: GIT_REPO, useFactory: () => gitRepoObj }
+            { provide: RELEASE_NOTES_JSON, useFactory: () => NO_GIT_REPO_MOCK_JSON }
           ]
         }).compileComponents();
 
