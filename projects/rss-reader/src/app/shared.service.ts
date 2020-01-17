@@ -19,6 +19,12 @@ export abstract class Dialog {
 
   abstract get hasActionBtns(): boolean;
 
+  abstract get hideNegativeBtn(): boolean;
+
+  abstract get hideNeutralBtn(): boolean;
+
+  abstract get hidePositiveBtn(): boolean;
+
   abstract get negativeBtnColor(): ThemePalette;
 
   abstract get neutralBtnColor(): ThemePalette;
@@ -35,9 +41,9 @@ export abstract class Dialog {
     <span *ngIf="opts.isHtml" [innerHTML]="opts.msg"></span>
   </mat-dialog-content>
   <mat-dialog-actions align="end" *ngIf="hasActionBtns">
-    <button mat-button *ngIf="opts?.negativeBtnText" [color]="negativeBtnColor" matDialogClose="cancel">{{ opts.negativeBtnText }}</button>
-    <button mat-button *ngIf="opts?.neutralBtnText" [color]="neutralBtnColor" matDialogClose="neutral">{{ opts.neutralBtnText }}</button>
-    <button mat-button *ngIf="positiveBtnText" [color]="positiveBtnColor" matDialogClose="ok">{{ positiveBtnText }}</button>
+    <button mat-button *ngIf="!hideNegativeBtn" [color]="negativeBtnColor" matDialogClose="cancel">{{ opts.negativeBtnText }}</button>
+    <button mat-button *ngIf="!hideNeutralBtn" [color]="neutralBtnColor" matDialogClose="neutral">{{ opts.neutralBtnText }}</button>
+    <button mat-button *ngIf="!hidePositiveBtn" [color]="positiveBtnColor" matDialogClose="ok">{{ positiveBtnText }}</button>
   </mat-dialog-actions>
   `
 })
@@ -52,10 +58,42 @@ export class AlertDialog extends Dialog {
 
   get hasActionBtns(): boolean {
     if ('hideActionBtns' in this.opts) {
-      return !this.opts.hideActionBtns;
+      if (typeof this.opts.hideActionBtns === 'boolean') {
+        return !this.opts.hideActionBtns;
+      } else if (Array.isArray(this.opts.hideActionBtns)) {
+        // Skip the below logic
+        return true;
+      }
     }
 
     return 'negativeBtnText' in this.opts || 'neutralBtnText' in this.opts || typeof this.positiveBtnText === 'string';
+  }
+
+  get hideNegativeBtn(): boolean {
+    if ('hideActionBtns' in this.opts &&
+      Array.isArray(this.opts.hideActionBtns)) {
+      return this.opts.hideActionBtns.includes('negative');
+    }
+
+    return 'negativeBtnText' in this.opts;
+  }
+
+  get hideNeutralBtn(): boolean {
+    if ('hideActionBtns' in this.opts &&
+      Array.isArray(this.opts.hideActionBtns)) {
+      return this.opts.hideActionBtns.includes('neutral');
+    }
+
+    return 'neutralBtnText' in this.opts;
+  }
+
+  get hidePositiveBtn(): boolean {
+    if ('hideActionBtns' in this.opts &&
+      Array.isArray(this.opts.hideActionBtns)) {
+      return this.opts.hideActionBtns.includes('positive');
+    }
+
+    return 'positiveBtnText' in this.opts;
   }
 
   get negativeBtnColor(): ThemePalette {
@@ -86,9 +124,9 @@ export class AlertDialog extends Dialog {
     <span *ngIf="opts.isHtml" [innerHTML]="opts.msg"></span>
   </mat-dialog-content>
   <mat-dialog-actions align="end" *ngIf="hasActionBtns">
-    <button mat-button *ngIf="negativeBtnText" [color]="negativeBtnColor" matDialogClose="cancel">{{ negativeBtnText }}</button>
-    <button mat-button *ngIf="opts?.neutralBtnText" [color]="neutralBtnColor" matDialogClose="neutral">{{ opts.neutralBtnText }}</button>
-    <button mat-button *ngIf="positiveBtnText" [color]="positiveBtnColor" matDialogClose="ok">{{ positiveBtnText }}</button>
+    <button mat-button *ngIf="!hideNegativeBtn" [color]="negativeBtnColor" matDialogClose="cancel">{{ negativeBtnText }}</button>
+    <button mat-button *ngIf="!hideNeutralBtn" [color]="neutralBtnColor" matDialogClose="neutral">{{ opts.neutralBtnText }}</button>
+    <button mat-button *ngIf="!hidePositiveBtn" [color]="positiveBtnColor" matDialogClose="ok">{{ positiveBtnText }}</button>
   </mat-dialog-actions>
   `
 })
@@ -105,10 +143,42 @@ export class ConfirmDialog extends Dialog {
 
   get hasActionBtns(): boolean {
     if ('hideActionBtns' in this.opts) {
-      return !this.opts.hideActionBtns;
+      if (typeof this.opts.hideActionBtns === 'boolean') {
+        return !this.opts.hideActionBtns;
+      } else if (Array.isArray(this.opts.hideActionBtns)) {
+        // Skip the below logic
+        return true;
+      }
     }
 
     return typeof this.negativeBtnText === 'string' || typeof this.positiveBtnText === 'string' || 'neutralBtnText' in this.opts;
+  }
+
+  get hideNegativeBtn(): boolean {
+    if ('hideActionBtns' in this.opts &&
+      Array.isArray(this.opts.hideActionBtns)) {
+      return this.opts.hideActionBtns.includes('negative');
+    }
+
+    return 'negativeBtnText' in this.opts;
+  }
+
+  get hideNeutralBtn(): boolean {
+    if ('hideActionBtns' in this.opts &&
+      Array.isArray(this.opts.hideActionBtns)) {
+      return this.opts.hideActionBtns.includes('neutral');
+    }
+
+    return 'neutralBtnText' in this.opts;
+  }
+
+  get hidePositiveBtn(): boolean {
+    if ('hideActionBtns' in this.opts &&
+      Array.isArray(this.opts.hideActionBtns)) {
+      return this.opts.hideActionBtns.includes('positive');
+    }
+
+    return 'positiveBtnText' in this.opts;
   }
 
   get negativeBtnColor(): ThemePalette {
@@ -157,9 +227,9 @@ export class ConfirmDialog extends Dialog {
     </form>
   </mat-dialog-content>
   <mat-dialog-actions align="end" *ngIf="hasActionBtns">
-    <button mat-button *ngIf="negativeBtnText" [color]="negativeBtnColor" matDialogClose="cancel">{{ negativeBtnText }}</button>
-    <button mat-button *ngIf="opts?.neutralBtnText" [color]="neutralBtnColor" matDialogClose="neutral">{{ opts.neutralBtnText }}</button>
-    <button mat-button *ngIf="positiveBtnText" [color]="positiveBtnColor" [matDialogClose]="input" [disabled]="form.invalid">{{ positiveBtnText }}</button>
+    <button mat-button *ngIf="!hideNegativeBtn" [color]="negativeBtnColor" matDialogClose="cancel">{{ negativeBtnText }}</button>
+    <button mat-button *ngIf="!hideNeutralBtn" [color]="neutralBtnColor" matDialogClose="neutral">{{ opts.neutralBtnText }}</button>
+    <button mat-button *ngIf="!hidePositiveBtn" [color]="positiveBtnColor" [matDialogClose]="input" [disabled]="form.invalid">{{ positiveBtnText }}</button>
   </mat-dialog-actions>
   `
 })
@@ -179,10 +249,42 @@ export class PromptDialog extends Dialog implements OnInit {
 
   get hasActionBtns(): boolean {
     if ('hideActionBtns' in this.opts) {
-      return !this.opts.hideActionBtns;
+      if (typeof this.opts.hideActionBtns === 'boolean') {
+        return !this.opts.hideActionBtns;
+      } else if (Array.isArray(this.opts.hideActionBtns)) {
+        // Skip the below logic
+        return true;
+      }
     }
 
     return typeof this.negativeBtnText === 'string' || typeof this.positiveBtnText === 'string' || 'neutralBtnText' in this.opts;
+  }
+
+  get hideNegativeBtn(): boolean {
+    if ('hideActionBtns' in this.opts &&
+      Array.isArray(this.opts.hideActionBtns)) {
+      return this.opts.hideActionBtns.includes('negative');
+    }
+
+    return typeof this.negativeBtnText !== 'string';
+  }
+
+  get hideNeutralBtn(): boolean {
+    if ('hideActionBtns' in this.opts &&
+      Array.isArray(this.opts.hideActionBtns)) {
+      return this.opts.hideActionBtns.includes('neutral');
+    }
+
+    return 'neutralBtnText' in this.opts;
+  }
+
+  get hidePositiveBtn(): boolean {
+    if ('hideActionBtns' in this.opts &&
+      Array.isArray(this.opts.hideActionBtns)) {
+      return this.opts.hideActionBtns.includes('positive');
+    }
+
+    return typeof this.positiveBtnText !== 'string';
   }
 
   get negativeBtnColor(): ThemePalette {
@@ -243,11 +345,11 @@ export class PromptDialog extends Dialog implements OnInit {
     </mat-selection-list>
   </mat-dialog-content>
   <mat-dialog-actions align="end" *ngIf="hasActionBtns">
-    <button mat-button *ngIf="negativeBtnText" [color]="negativeBtnColor" matDialogClose="cancel">{{ negativeBtnText }}</button>
-    <button mat-button *ngIf="opts?.neutralBtnText" [color]="neutralBtnColor" matDialogClose="neutral">{{ opts.neutralBtnText }}</button>
+    <button mat-button *ngIf="!hideNegativeBtn" [color]="negativeBtnColor" matDialogClose="cancel">{{ negativeBtnText }}</button>
+    <button mat-button *ngIf="!hideNeutralBtn" [color]="neutralBtnColor" matDialogClose="neutral">{{ opts.neutralBtnText }}</button>
     <button
       mat-button
-      *ngIf="positiveBtnText"
+      *ngIf="!hidePositiveBtn"
       [color]="positiveBtnColor"
       [matDialogClose]="selection.selectedOptions"
       [disabled]="selection.selectedOptions.selected.length < 1">
@@ -269,10 +371,43 @@ export class SelectionDialog extends Dialog {
 
   get hasActionBtns(): boolean {
     if ('hideActionBtns' in this.opts) {
-      return !this.opts.hideActionBtns;
+      if (typeof this.opts.hideActionBtns === 'boolean') {
+        return !this.opts.hideActionBtns;
+      } else if (Array.isArray(this.opts.hideActionBtns)) {
+        // Skip the below logic
+        return true;
+      }
     }
 
     return typeof this.negativeBtnText === 'string' || typeof this.positiveBtnText === 'string' || 'neutralBtnText' in this.opts;
+  }
+
+
+  get hideNegativeBtn(): boolean {
+    if ('hideActionBtns' in this.opts &&
+      Array.isArray(this.opts.hideActionBtns)) {
+      return this.opts.hideActionBtns.includes('negative');
+    }
+
+    return typeof this.negativeBtnText !== 'string';
+  }
+
+  get hideNeutralBtn(): boolean {
+    if ('hideActionBtns' in this.opts &&
+      Array.isArray(this.opts.hideActionBtns)) {
+      return this.opts.hideActionBtns.includes('neutral');
+    }
+
+    return 'neutralBtnText' in this.opts;
+  }
+
+  get hidePositiveBtn(): boolean {
+    if ('hideActionBtns' in this.opts &&
+      Array.isArray(this.opts.hideActionBtns)) {
+      return this.opts.hideActionBtns.includes('positive');
+    }
+
+    return typeof this.positiveBtnText !== 'string';
   }
 
   get negativeBtnColor(): ThemePalette {
@@ -316,6 +451,8 @@ export interface SnackBarOpts<D = any> {
   additionalOpts?: MatSnackBarConfig<D>;
 }
 
+export type HideButtonType = 'negative' | 'neutral' | 'positive';
+
 export interface DialogOpts {
   /** The dialog's message. */
   msg: string | SafeHtml;
@@ -335,8 +472,12 @@ export interface DialogOpts {
   neutralBtnText?: string;
   /** The neutral button's color. */
   neutralBtnColor?: ThemePalette;
-  /** Whether to hide the action buttons. */
-  hideActionBtns?: boolean;
+  /**
+   * Whether to hide the action buttons.
+   *
+   * Optionally, you can specify which buttons to hide.
+   */
+  hideActionBtns?: HideButtonType[] | boolean;
 }
 
 export interface AlertDialogOpts extends DialogOpts {
