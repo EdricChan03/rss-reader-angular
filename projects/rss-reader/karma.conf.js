@@ -18,7 +18,7 @@ module.exports = function (config) {
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, '../../coverage/rss-reader'),
       // See https://istanbul.js.org/docs/advanced/alternative-reporters/ for more info.
-      reports: ['html', 'json-summary', 'text-summary'],
+      reports: ['html', 'json-summary', 'text'],
       fixWebpackSourcePaths: true
     },
     reporters: ['progress', 'kjhtml'],
