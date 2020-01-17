@@ -16,7 +16,7 @@ export const GIT_REPO = new InjectionToken<GitRepo>('Custom Git repository');
 })
 export class ReleaseNotesComponent {
   constructor(
-    @Inject(RELEASE_NOTES_JSON) public releaseNotesJson: ReleaseNotesJSON,
+    @Inject(RELEASE_NOTES_JSON) private releaseNotesJson: ReleaseNotesJSON,
     @Optional() @Inject(GIT_REPO) private customGitRepo: GitRepo
   ) { }
 
