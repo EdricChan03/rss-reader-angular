@@ -13,7 +13,7 @@ export interface Environment {
   /** Whether the environment is in production mode. */
   production: boolean;
   /** Location of the service worker file. */
-  swLocation: string;
+  swLocation?: string;
   /**
    * Router options to be passed to `RouterModule.forRoot` in the main routing
    * module.
