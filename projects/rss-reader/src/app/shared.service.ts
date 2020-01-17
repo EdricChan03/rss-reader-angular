@@ -14,6 +14,7 @@ import { SafeHtml, Title } from '@angular/platform-browser';
 
 /** An abstract dialog class. */
 export abstract class Dialog {
+  /** The default color to be used for the dialog's buttons. */
   readonly defaultBtnColor = 'primary';
 
   abstract get negativeBtnColor(): ThemePalette;
@@ -40,6 +41,9 @@ export abstract class Dialog {
 })
 // tslint:disable-next-line:component-class-suffix
 export class AlertDialog extends Dialog {
+  /** The default text to be used for the positive button. */
+  readonly defaultPositiveBtnText = 'Dismiss';
+
   constructor(@Inject(MAT_DIALOG_DATA) public opts: AlertDialogOpts) {
     super();
   }
@@ -59,7 +63,7 @@ export class AlertDialog extends Dialog {
   get positiveBtnText(): string {
     // This is to handle users using the now deprecated `ok` property.
     // tslint:disable-next-line:deprecation
-    return this.opts.ok ? this.opts.ok : this.opts.positiveBtnText ? this.opts.positiveBtnText : 'Dismiss';
+    return this.opts.ok ? this.opts.ok : this.opts.positiveBtnText ? this.opts.positiveBtnText : this.defaultPositiveBtnText;
   }
 }
 
@@ -80,6 +84,11 @@ export class AlertDialog extends Dialog {
 })
 // tslint:disable-next-line:component-class-suffix
 export class ConfirmDialog extends Dialog {
+  /** The default text to be used for the negative button. */
+  readonly defaultNegativeBtnText = 'Cancel';
+  /** The default text to be used for the positive button. */
+  readonly defaultPositiveBtnText = 'OK';
+
   constructor(@Inject(MAT_DIALOG_DATA) public opts: ConfirmDialogOpts) {
     super();
   }
@@ -99,13 +108,13 @@ export class ConfirmDialog extends Dialog {
   get negativeBtnText(): string {
     // This is to handle users using the now deprecated `cancel` property.
     // tslint:disable-next-line:deprecation
-    return this.opts.cancel ? this.opts.cancel : this.opts.negativeBtnText ? this.opts.negativeBtnText : 'Cancel';
+    return this.opts.cancel ? this.opts.cancel : this.opts.negativeBtnText ? this.opts.negativeBtnText : this.defaultNegativeBtnText;
   }
 
   get positiveBtnText(): string {
     // This is to handle users using the now deprecated `ok` property.
     // tslint:disable-next-line:deprecation
-    return this.opts.ok ? this.opts.ok : this.opts.positiveBtnText ? this.opts.positiveBtnText : 'OK';
+    return this.opts.ok ? this.opts.ok : this.opts.positiveBtnText ? this.opts.positiveBtnText : this.defaultPositiveBtnText;
   }
 }
 
@@ -139,6 +148,13 @@ export class ConfirmDialog extends Dialog {
 // tslint:disable-next-line:component-class-suffix
 export class PromptDialog extends Dialog implements OnInit {
   input: string | number;
+  /** The default text to be used for the negative button. */
+  readonly defaultNegativeBtnText = 'Cancel';
+  /** The default text to be used for the positive button. */
+  readonly defaultPositiveBtnText = 'OK';
+  /** The default color to be used for the input. */
+  readonly defaultInputColor = 'primary';
+
   constructor(@Inject(MAT_DIALOG_DATA) public opts: PromptDialogOpts) {
     super();
   }
@@ -158,19 +174,19 @@ export class PromptDialog extends Dialog implements OnInit {
   get negativeBtnText(): string {
     // This is to handle users using the now deprecated `cancel` property.
     // tslint:disable-next-line:deprecation
-    return this.opts.cancel ? this.opts.cancel : this.opts.negativeBtnText ? this.opts.negativeBtnText : 'Cancel';
+    return this.opts.cancel ? this.opts.cancel : this.opts.negativeBtnText ? this.opts.negativeBtnText : this.defaultNegativeBtnText;
   }
 
   get positiveBtnText(): string {
     // This is to handle users using the now deprecated `ok` property.
     // tslint:disable-next-line:deprecation
-    return this.opts.ok ? this.opts.ok : this.opts.positiveBtnText ? this.opts.positiveBtnText : 'OK';
+    return this.opts.ok ? this.opts.ok : this.opts.positiveBtnText ? this.opts.positiveBtnText : this.defaultPositiveBtnText;
   }
 
   get inputColor(): ThemePalette {
     // This is to handle users using the now deprecated `color` property.
     // tslint:disable-next-line:deprecation
-    return this.opts.color ? this.opts.color : this.opts.inputConfig.color ? this.opts.inputConfig.color : 'primary';
+    return this.opts.color ? this.opts.color : this.opts.inputConfig.color ? this.opts.inputConfig.color : this.defaultInputColor;
   }
 
   ngOnInit() {
@@ -216,6 +232,11 @@ export class PromptDialog extends Dialog implements OnInit {
 })
 // tslint:disable-next-line:component-class-suffix
 export class SelectionDialog extends Dialog {
+  /** The default text to be used for the negative button. */
+  readonly defaultNegativeBtnText = 'Cancel';
+  /** The default text to be used for the positive button. */
+  readonly defaultPositiveBtnText = 'OK';
+
   constructor(@Inject(MAT_DIALOG_DATA) public opts: SelectionDialogOpts) {
     super();
   }
@@ -235,13 +256,13 @@ export class SelectionDialog extends Dialog {
   get negativeBtnText(): string {
     // This is to handle users using the now deprecated `cancel` property.
     // tslint:disable-next-line:deprecation
-    return this.opts.cancel ? this.opts.cancel : this.opts.negativeBtnText ? this.opts.negativeBtnText : 'Cancel';
+    return this.opts.cancel ? this.opts.cancel : this.opts.negativeBtnText ? this.opts.negativeBtnText : this.defaultNegativeBtnText;
   }
 
   get positiveBtnText(): string {
     // This is to handle users using the now deprecated `ok` property.
     // tslint:disable-next-line:deprecation
-    return this.opts.ok ? this.opts.ok : this.opts.positiveBtnText ? this.opts.positiveBtnText : 'OK';
+    return this.opts.ok ? this.opts.ok : this.opts.positiveBtnText ? this.opts.positiveBtnText : this.defaultPositiveBtnText;
   }
 }
 
