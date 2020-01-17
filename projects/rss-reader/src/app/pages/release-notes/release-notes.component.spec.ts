@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, TestBedStatic, TestModuleMetadata } from '@a
 import { MatChipsModule } from '@angular/material/chips';
 import { MarkdownModule } from 'ngx-markdown';
 import { environment } from '../../../environments/environment';
+import prodReleaseNotesJson from '../../../assets/release-notes/release-notes.json';
 import mockReleaseNotesJson from './mocks/mock-release-notes.json';
 import { GitRepo } from './release-notes';
 import { ReleaseNotesComponent, RELEASE_NOTES_JSON, GIT_REPO } from './release-notes.component';
@@ -46,8 +47,30 @@ describe('ReleaseNotesComponent', () => {
 
   describe('component code', () => {
     describe('get releaseNotes', () => {
-      it('should return the release notes JSON', () => {
+      it('should use the default notes if the DI token is not overriden', () => {
+        TestBed.resetTestingModule();
+        const LOCAL_MODULE_DEF: TestModuleMetadata = {
+          declarations: [ReleaseNotesComponent],
+          imports: [
+            // forRoot returns the needed MarkdownService which allows the tests
+            // to pass.
+            MarkdownModule.forRoot(),
+            MatChipsModule
+          ]
+        };
+        TestBed.configureTestingModule(LOCAL_MODULE_DEF)
+        .compileComponents();
+
+        const localFixture = TestBed.createComponent(ReleaseNotesComponent);
+        const localComponent = localFixture.componentInstance;
+
+        expect(localComponent.releaseNotes).toEqual(prodReleaseNotesJson);
+        expect(localComponent.releaseNotes).not.toEqual(mockReleaseNotesJson, 'Expected release notes to not be mocked');
+      });
+
+      it('should allow for the RELEASE_NOTES_JSON DI token to be used', () => {
         expect(component.releaseNotes).toEqual(mockReleaseNotesJson);
+        expect(component.releaseNotes).not.toEqual(prodReleaseNotesJson, 'Expected production release notes to not be used');
       });
     });
 
@@ -64,6 +87,35 @@ describe('ReleaseNotesComponent', () => {
         const parsedRepo = `${gitRepoObj.host}/${gitRepoObj.username}/${gitRepoObj.repo}`;
 
         expect(component.gitRepo).toEqual(parsedRepo);
+      });
+
+      it('should allow for the GIT_REPO DI token to be used', () => {
+        const gitRepoTokenVal: GitRepo = {
+          host: 'https://github.com',
+          username: 'ILoveMockUsernames456',
+          repo: 'mock-repo-from-token'
+        };
+        const parsedRepo = `${gitRepoTokenVal.host}/${gitRepoTokenVal.username}/${gitRepoTokenVal.repo}`;
+
+        const mockJsonGitRepo = mockReleaseNotesJson.gitRepo;
+        const jsonParsedRepo = `${mockJsonGitRepo.host}/${mockJsonGitRepo.username}/${mockJsonGitRepo.repo}`;
+
+        const envGitRepo: any = environment.gitRepoDefaults;
+        const envParsedRepo = `${envGitRepo.host}/${envGitRepo.username}/${envGitRepo.repo}`;
+
+        TestBed.resetTestingModule();
+        configureTestingModule({
+          providers: [
+            { provide: GIT_REPO, useFactory: () => gitRepoTokenVal }
+          ]
+        }).compileComponents();
+
+        const localFixture = TestBed.createComponent(ReleaseNotesComponent);
+        const localComponent = localFixture.componentInstance;
+
+        expect(localComponent.gitRepo).toEqual(parsedRepo, 'Expected Git repository to be from GIT_REPO DI token');
+        expect(localComponent.gitRepo).not.toEqual(jsonParsedRepo, 'Expected Git repository to not be from mock JSON');
+        expect(localComponent.gitRepo).not.toEqual(envParsedRepo, 'Expected Git repository to not be from environment');
       });
 
       it('should revert to the environment GitRepo object if it does not exist', () => {
