@@ -1,7 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ComponentType } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
-import { Component, Injectable, NgModule, OnInit, ViewChild, Inject } from '@angular/core';
+import { Component, Inject, Injectable, NgModule, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCommonModule, ThemePalette } from '@angular/material/core';
@@ -244,7 +244,7 @@ export class SelectionDialog extends Dialog {
   }
 }
 
-export class SnackBarOpts<D = any> {
+export interface SnackBarOpts<D = any> {
   /** The snackbar's message. */
   msg: string;
   /** The snackbar's action. */
@@ -260,7 +260,7 @@ export class SnackBarOpts<D = any> {
   additionalOpts?: MatSnackBarConfig<D>;
 }
 
-export class DialogOpts {
+export interface DialogOpts {
   /** The dialog's message. */
   msg: string | SafeHtml;
   /** The dialog's title. */
@@ -281,7 +281,7 @@ export class DialogOpts {
   neutralBtnColor?: ThemePalette;
 }
 
-export class AlertDialogOpts extends DialogOpts {
+export interface AlertDialogOpts extends DialogOpts {
   /**
    * The ok button's text.
    * @deprecated Use {@link DialogOpts#positiveBtnText} instead
@@ -289,7 +289,7 @@ export class AlertDialogOpts extends DialogOpts {
   ok?: string;
 }
 
-export class ConfirmDialogOpts extends DialogOpts {
+export interface ConfirmDialogOpts extends DialogOpts {
   /**
    * The ok button's text.
    * @deprecated Use {@link DialogOpts#positiveBtnText} instead
@@ -302,7 +302,7 @@ export class ConfirmDialogOpts extends DialogOpts {
   cancel?: string;
 }
 
-export class PromptDialogInputConfig {
+export interface PromptDialogInputConfig {
   /** The input's placeholder. */
   placeholder: string;
   /** The input type. */
@@ -313,7 +313,7 @@ export class PromptDialogInputConfig {
   color?: ThemePalette;
 }
 
-export class PromptDialogOpts extends DialogOpts {
+export interface PromptDialogOpts extends DialogOpts {
   /**
    * The ok button's text.
    * @deprecated Use {@link DialogOpts#positiveBtnText} instead
@@ -348,7 +348,7 @@ export class PromptDialogOpts extends DialogOpts {
   color?: 'primary' | 'accent' | 'warn';
 }
 
-export class SelectionDialogOpts extends DialogOpts {
+export interface SelectionDialogOpts extends DialogOpts {
   /**
    * The ok button's text.
    * @deprecated Use {@link DialogOpts#positiveBtnText} instead
@@ -363,7 +363,7 @@ export class SelectionDialogOpts extends DialogOpts {
   options: SelectionDialogOption[];
 }
 
-export class SelectionDialogOption {
+export interface SelectionDialogOption {
   /**
    * The title of the selection list item
    */
