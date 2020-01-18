@@ -75,7 +75,7 @@ export class AlertDialog extends Dialog {
       return this.opts.hideActionBtns.includes('negative');
     }
 
-    return 'negativeBtnText' in this.opts;
+    return !('negativeBtnText' in this.opts);
   }
 
   get hideNeutralBtn(): boolean {
@@ -84,16 +84,16 @@ export class AlertDialog extends Dialog {
       return this.opts.hideActionBtns.includes('neutral');
     }
 
-    return 'neutralBtnText' in this.opts;
+    return !('neutralBtnText' in this.opts);
   }
 
   get hidePositiveBtn(): boolean {
+    // As the default text will be used if no text was specified,
+    // the button will always be shown unless explicitly hidden.
     if ('hideActionBtns' in this.opts &&
       Array.isArray(this.opts.hideActionBtns)) {
       return this.opts.hideActionBtns.includes('positive');
     }
-
-    return 'positiveBtnText' in this.opts;
   }
 
   get negativeBtnColor(): ThemePalette {
@@ -155,12 +155,12 @@ export class ConfirmDialog extends Dialog {
   }
 
   get hideNegativeBtn(): boolean {
+    // As the default text will be used if no text was specified,
+    // the button will always be shown unless explicitly hidden.
     if ('hideActionBtns' in this.opts &&
       Array.isArray(this.opts.hideActionBtns)) {
       return this.opts.hideActionBtns.includes('negative');
     }
-
-    return 'negativeBtnText' in this.opts;
   }
 
   get hideNeutralBtn(): boolean {
@@ -169,16 +169,16 @@ export class ConfirmDialog extends Dialog {
       return this.opts.hideActionBtns.includes('neutral');
     }
 
-    return 'neutralBtnText' in this.opts;
+    return !('neutralBtnText' in this.opts);
   }
 
   get hidePositiveBtn(): boolean {
+    // As the default text will be used if no text was specified,
+    // the button will always be shown unless explicitly hidden.
     if ('hideActionBtns' in this.opts &&
       Array.isArray(this.opts.hideActionBtns)) {
       return this.opts.hideActionBtns.includes('positive');
     }
-
-    return 'positiveBtnText' in this.opts;
   }
 
   get negativeBtnColor(): ThemePalette {
@@ -261,12 +261,12 @@ export class PromptDialog extends Dialog implements OnInit {
   }
 
   get hideNegativeBtn(): boolean {
+    // As the default text will be used if no text was specified,
+    // the button will always be shown unless explicitly hidden.
     if ('hideActionBtns' in this.opts &&
       Array.isArray(this.opts.hideActionBtns)) {
       return this.opts.hideActionBtns.includes('negative');
     }
-
-    return typeof this.negativeBtnText !== 'string';
   }
 
   get hideNeutralBtn(): boolean {
@@ -275,16 +275,16 @@ export class PromptDialog extends Dialog implements OnInit {
       return this.opts.hideActionBtns.includes('neutral');
     }
 
-    return 'neutralBtnText' in this.opts;
+    return !('neutralBtnText' in this.opts);
   }
 
   get hidePositiveBtn(): boolean {
+    // As the default text will be used if no text was specified,
+    // the button will always be shown unless explicitly hidden.
     if ('hideActionBtns' in this.opts &&
       Array.isArray(this.opts.hideActionBtns)) {
       return this.opts.hideActionBtns.includes('positive');
     }
-
-    return typeof this.positiveBtnText !== 'string';
   }
 
   get negativeBtnColor(): ThemePalette {
@@ -314,7 +314,8 @@ export class PromptDialog extends Dialog implements OnInit {
   get inputColor(): ThemePalette {
     // This is to handle users using the now deprecated `color` property.
     // tslint:disable-next-line:deprecation
-    return this.opts.color ? this.opts.color : this.opts.inputConfig.color ? this.opts.inputConfig.color : this.defaultInputColor;
+    return this.opts.color ? this.opts.color :
+      (this.opts.inputConfig && 'color' in this.opts.inputConfig) ? this.opts.inputConfig.color : this.defaultInputColor;
   }
 
   ngOnInit() {
@@ -384,12 +385,12 @@ export class SelectionDialog extends Dialog {
 
 
   get hideNegativeBtn(): boolean {
+    // As the default text will be used if no text was specified,
+    // the button will always be shown unless explicitly hidden.
     if ('hideActionBtns' in this.opts &&
       Array.isArray(this.opts.hideActionBtns)) {
       return this.opts.hideActionBtns.includes('negative');
     }
-
-    return typeof this.negativeBtnText !== 'string';
   }
 
   get hideNeutralBtn(): boolean {
@@ -398,16 +399,16 @@ export class SelectionDialog extends Dialog {
       return this.opts.hideActionBtns.includes('neutral');
     }
 
-    return 'neutralBtnText' in this.opts;
+    return !('neutralBtnText' in this.opts);
   }
 
   get hidePositiveBtn(): boolean {
+    // As the default text will be used if no text was specified,
+    // the button will always be shown unless explicitly hidden.
     if ('hideActionBtns' in this.opts &&
       Array.isArray(this.opts.hideActionBtns)) {
       return this.opts.hideActionBtns.includes('positive');
     }
-
-    return typeof this.positiveBtnText !== 'string';
   }
 
   get negativeBtnColor(): ThemePalette {
