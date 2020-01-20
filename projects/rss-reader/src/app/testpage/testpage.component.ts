@@ -153,7 +153,32 @@ export class TestpageComponent implements OnInit {
     this.clearOptions(this.dialog);
   }
   selectionDialog() {
-    const selectionDialogOptions: SelectionDialogOption[] = [];
+    const selectionDialogOptions: SelectionDialogOption[] = [
+      {
+        content: 'Headline updates',
+        value: 'headline_updates',
+        selected: true
+      },
+      {
+        content: 'RSS feed updates',
+        value: 'rss_updates',
+        disabled: true
+      },
+      {
+        content: 'New features',
+        value: 'new_features'
+      },
+      {
+        content: 'App updates',
+        value: 'app_updates'
+      },
+      {
+        content: 'Uncategorised',
+        value: 'uncategorised',
+        selected: true,
+        disabled: true
+      }
+    ];
     // for (let i = 0; i < 10; i++) {
     //   if (i === 1) {
     //     tempVar.push({ content: 'Item 1', disabled: true, value: 'item-1' });
@@ -163,13 +188,9 @@ export class TestpageComponent implements OnInit {
     //     tempVar.push({ content: `Item ${i}`, value: `item-${i}` });
     //   }
     // }
-    selectionDialogOptions.push({ content: 'Critical alerts', value: 'critical_alerts', selected: true, disabled: true });
-    selectionDialogOptions.push({ content: 'Weekly summary', value: 'weekly_summary' });
-    selectionDialogOptions.push({ content: 'New features', value: 'new_features' });
-    selectionDialogOptions.push({ content: 'Uncategorised', value: 'uncategorised', selected: true, disabled: true });
     const dialogRef = this.shared.openSelectionDialog({
       title: this.setDefaultValue(this.dialog.title, 'Notification preferences'),
-      msg: this.setDefaultValue(this.dialog.message, 'Show preferences for the following'),
+      msg: this.setDefaultValue(this.dialog.message, 'Set the notification channels to be enabled:'),
       ok: this.setDefaultValue(this.dialog.okBtn, 'Save'),
       cancel: this.setDefaultValue(this.dialog.cancelBtn, 'Cancel'),
       options: selectionDialogOptions
