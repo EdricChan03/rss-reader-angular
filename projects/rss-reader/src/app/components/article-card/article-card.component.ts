@@ -6,17 +6,28 @@ import { NewsAPITopHeadlinesArticle } from '../../models/news-api/top-headlines-
 import { Settings } from '../../models/settings';
 
 @Component({
-  selector: 'app-feed-card',
-  templateUrl: './feed-card.component.html',
-  styleUrls: ['./feed-card.component.css']
+  selector: 'app-article-card',
+  templateUrl: './article-card.component.html',
+  styleUrls: ['./article-card.component.css']
 })
-export class FeedCardComponent implements OnInit {
+export class ArticleCardComponent implements OnInit {
   hasImage: boolean;
   imageSrc: string;
   target: string;
   settings: Settings;
+  /**
+   * The feed entry that this card represents.
+   * @deprecated Use {@link ArticleCardComponent#article}.
+   */
   @Input() feed?: FeedEntry;
+  /**
+   * The headline article that this card represents.
+   * @deprecated Use {@link ArticleCardComponent#article}.
+   */
   @Input() headline?: NewsAPITopHeadlinesArticle;
+  /** The article that this card represents. */
+  @Input() article: FeedEntry | NewsAPITopHeadlinesArticle;
+
   constructor(private dialog: MatDialog) { }
 
   ngOnInit() {
@@ -29,14 +40,17 @@ export class FeedCardComponent implements OnInit {
         this.hasImage = this.settings.showImages;
       }
     }
-    if (this.feed) {
-      if ((this.feed.thumbnail || (this.feed.enclosure && this.feed.enclosure.length === undefined)) && this.settings.showImages) {
-        if (this.feed.enclosure.thumbnail || this.feed.thumbnail) {
-          this.replaceImg(true);
-        } else if (this.feed.enclosure.link) {
-          this.replaceImg(false);
-        }
-      }
+
+    if ('pubDate' in this.article) {
+      // Article is of type FeedEntry.
+      // tslint:disable-next-line:deprecation
+      this.feed = this.article as FeedEntry;
+    } else if ('publishedAt' in this.article) {
+      // Article is of type NewsAPITopHeadlinesArticle.
+      // tslint:disable-next-line:deprecation
+      this.headline = this.article as NewsAPITopHeadlinesArticle;
+    } else {
+      throw new Error('The article passed in was not of type "FeedEntry" or "NewsAPITopHeadlinesArticle".');
     }
   }
 
@@ -54,20 +68,5 @@ export class FeedCardComponent implements OnInit {
     this.dialog.open(CodeViewerDialogComponent, {
       data: article
     });
-  }
-
-  replaceImg(isThumbnail?: boolean) {
-    this.hasImage = true;
-    if (isThumbnail) {
-      if (this.feed) {
-        if (this.feed.enclosure.thumbnail) {
-          this.imageSrc = encodeURI(this.feed.enclosure.thumbnail);
-        } else if (this.feed.thumbnail) {
-          this.imageSrc = encodeURI(this.feed.thumbnail);
-        }
-      } else {
-        this.imageSrc = encodeURI(this.feed.enclosure.link);
-      }
-    }
   }
 }

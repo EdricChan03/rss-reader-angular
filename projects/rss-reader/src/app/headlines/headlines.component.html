@@ -1,6 +1,6 @@
 <p *ngIf="getStarted">Customise the headlines by clicking on the <mat-icon>tune</mat-icon> icon.</p>
 <div class="rss-reader-cards-container" *ngIf="headlines$ | async as headlines; else: loading">
-  <app-feed-card *ngFor="let article of headlines?.articles" [headline]="article" class="rss-reader-card"></app-feed-card>
+  <app-article-card *ngFor="let article of headlines?.articles" [article]="article" class="rss-reader-card"></app-article-card>
 </div>
 <ng-template #loading>
   <div class="start">
