@@ -10,7 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { ArticleCardComponent } from './article-card.component';
-import { StripHtmlTagsPipe } from '../../pipe';
+import { PipesModule } from '../../pipe/pipes.module';
 import { SettingsStorageService } from '../../core/settings-storage/settings-storage.service';
 
 const MATERIAL_MODULES = [
@@ -27,11 +27,11 @@ const MATERIAL_MODULES = [
 @NgModule({
   imports: [
     CommonModule,
+    PipesModule,
     MATERIAL_MODULES
   ],
   declarations: [
-    ArticleCardComponent,
-    StripHtmlTagsPipe
+    ArticleCardComponent
   ],
   providers: [
     SettingsStorageService

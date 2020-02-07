@@ -24,23 +24,17 @@ import { DocViewerComponent } from './pages/doc-viewer/doc-viewer.component';
 import { ExpansionPanelComponent } from './components/expansion-panel/expansion-panel.component';
 import { GuidesListComponent } from './pages/guide-list/guide-list.component';
 import { GuideViewerComponent } from './pages/guide-viewer/guide-viewer.component';
-import { OrderByPipe, StripHtmlTagsPipe, TruncatePipe } from './pipe';
 import { SharedModule } from './shared.service';
 import { TestpageComponent } from './testpage/testpage.component';
-
+import { PipesModule } from './pipe/pipes.module';
 
 const OVERLAYS = [
   OnboardingOverlayComponent
 ];
-const PIPES = [
-  StripHtmlTagsPipe,
-  TruncatePipe,
-  OrderByPipe
-];
+
 @NgModule({
   declarations: [
     AppComponent,
-    PIPES,
     FeedComponent,
     TestpageComponent,
     PageNotFoundComponent,
@@ -60,6 +54,7 @@ const PIPES = [
     HttpClientModule,
     MarkdownModule.forRoot(),
     MaterialModule,
+    PipesModule,
     SharedModule,
     AppRoutingModule,
     // The scope parameter is specified such that the service worker only
@@ -69,7 +64,7 @@ const PIPES = [
     DialogsModule,
     ActionItemsModule,
     ArticleCardModule,
-    HotkeysModule
+    HotkeysModule,
   ],
   bootstrap: [AppComponent],
   providers: [
