@@ -2,22 +2,24 @@
   <mat-card>
     <mat-card-title>Settings</mat-card-title>
     <mat-card-content fxLayout="column">
-      <h3 class="mat-subheader">General</h3>
-      <mat-checkbox [(ngModel)]="settings.openNewTab" class="checkbox">Open posts in a new tab</mat-checkbox>
-      <mat-checkbox [(ngModel)]="settings.showImages" class="checkbox">Show images</mat-checkbox>
-      <mat-form-field color="accent">
-        <mat-label>Theme</mat-label>
-        <mat-select [(ngModel)]="settings.theme">
-          <mat-option *ngFor="let theme of themes" [value]="theme">{{theme}}</mat-option>
-        </mat-select>
-        <mat-hint>Changes will be made on reload.</mat-hint>
-      </mat-form-field>
-      <h3 class="mat-subheader">Releases</h3>
-      <mat-checkbox [(ngModel)]="settings.notifyNewReleases" class="checkbox">Notify when new releases are out</mat-checkbox>
+      <form [formGroup]="settingsForm" fxLayout="column">
+        <h3 class="mat-subheader">General</h3>
+        <mat-checkbox formControlName="openNewTab" class="checkbox">Open posts in a new tab</mat-checkbox>
+        <mat-checkbox formControlName="showImages" class="checkbox">Show images</mat-checkbox>
+        <mat-form-field color="accent">
+          <mat-label>Theme</mat-label>
+          <mat-select formControlName="theme">
+            <mat-option *ngFor="let theme of themes" [value]="theme">{{theme}}</mat-option>
+          </mat-select>
+          <mat-hint>Changes will be made on reload.</mat-hint>
+        </mat-form-field>
+        <h3 class="mat-subheader">Releases</h3>
+        <mat-checkbox formControlName="notifyNewReleases" class="checkbox">Notify when new releases are out</mat-checkbox>
+      </form>
     </mat-card-content>
     <mat-card-actions align="end">
       <button mat-button (click)="reset()" color="warn">Reset</button>
-      <button mat-button (click)="save()" color="primary" [disabled]="">Save</button>
+      <button mat-button (click)="save()" color="primary" [disabled]="settingsForm.invalid">Save</button>
     </mat-card-actions>
   </mat-card>
 </div>

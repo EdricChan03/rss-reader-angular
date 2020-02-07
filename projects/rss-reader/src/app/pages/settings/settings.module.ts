@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -24,7 +24,7 @@ const MATERIAL_MODULES = [
   declarations: [SettingsComponent],
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
     FlexLayoutModule,
     MATERIAL_MODULES,
     SettingsRoutingModule
