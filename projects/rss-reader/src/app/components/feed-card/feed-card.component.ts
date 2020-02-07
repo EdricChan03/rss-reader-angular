@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CodeViewerDialogComponent, ShareDialogComponent } from '../dialogs';
+import { CodeViewerDialogComponent, ShareDialogComponent } from '../../dialogs';
 import { FeedEntry } from '../../models/feed-entry';
 import { NewsAPITopHeadlinesArticle } from '../../models/news-api/top-headlines-article';
 import { Settings } from '../../models/settings';
