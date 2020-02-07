@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Settings } from '../../models/settings';
 import { SharedService } from '../../shared.service';
+import { SettingsStorageService } from '../../core/settings-storage/settings-storage.service';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html'
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent {
   settings: Settings;
   themes = [
     'indigo-pink',
@@ -15,37 +16,33 @@ export class SettingsComponent implements OnInit {
     'pink-bluegrey',
     'purple-green'
   ];
-  constructor(private shared: SharedService) { }
+  constructor(
+    private shared: SharedService,
+    private settingsStorage: SettingsStorageService
+  ) { }
 
   reset() {
     const dialogRef = this.shared.openConfirmDialog({ title: 'Reset settings?', msg: 'Do you want to reset your settings?' });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'ok') {
-        const tempSettings: Settings = {
+        const defaultSettings: Settings = {
           multipleRss: false,
           openNewTab: true,
           showImages: true,
           theme: 'indigo-pink',
           notifyNewReleases: true
         };
-        window.localStorage.settings = JSON.stringify(tempSettings);
-        // tslint:disable-next-line:max-line-length
-        this.shared.openSnackBar({ msg: 'Settings successfully reset', additionalOpts: { duration: 4000, horizontalPosition: 'start' } });
+        this.settingsStorage.setSettings(tempSettings);
+        this.shared.openSnackBar({ msg: 'Settings successfully reset' });
       }
     });
   }
   save() {
-    window.localStorage.settings = JSON.stringify(this.settings);
-    // tslint:disable-next-line:max-line-length
-    const snackBarRef = this.shared.openSnackBar({ msg: 'Settings saved', action: 'Reload', additionalOpts: { duration: 4000, horizontalPosition: 'start' } });
+    this.settingsStorage.setSettings(this.settings);
+    const snackBarRef = this.shared.openSnackBar({ msg: 'Settings saved', action: 'Reload' });
     snackBarRef.onAction().subscribe(() => {
       window.location.reload();
     });
-  }
-  ngOnInit() {
-    if (window.localStorage.settings) {
-      this.settings = JSON.parse(window.localStorage.settings) as Settings;
-    }
   }
 
 }
