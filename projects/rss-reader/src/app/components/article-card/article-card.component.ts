@@ -60,10 +60,6 @@ export class ArticleCardComponent implements OnInit {
     });
   }
 
-  isEmpty(variable: string): boolean {
-    return (!variable || 0 === variable.length);
-  }
-
   showCode(article) {
     this.dialog.open(CodeViewerDialogComponent, {
       data: article
