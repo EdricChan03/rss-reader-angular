@@ -1,5 +1,5 @@
 <mat-sidenav-container fullscreen>
-  <mat-sidenav #left class="app-sidenav" [mode]="shared.isMobile ? 'over' : 'side'">
+  <mat-sidenav #left class="app-sidenav" [mode]="shared.isPortraitHandset ? 'over' : 'side'">
     <mat-toolbar>
       Links
       <span fxFlex></span>
@@ -28,7 +28,7 @@
         <mat-icon matListIcon>code</mat-icon>
         <h3 matLine>View source code</h3>
       </a>
-      <mat-list-item (click)="showOnboardingOverlay()" *ngIf="!shared.isMobile">
+      <mat-list-item (click)="showOnboardingOverlay()" *ngIf="!shared.isPortraitHandset">
         <mat-icon matListIcon>open_in_browser</mat-icon>
         <h3 matLine>Show onboarding</h3>
       </mat-list-item>

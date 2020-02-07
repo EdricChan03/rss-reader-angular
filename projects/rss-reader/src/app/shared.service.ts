@@ -1,4 +1,4 @@
-import { BreakpointObserver } from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { ComponentType } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { Component, Inject, Injectable, NgModule, OnInit } from '@angular/core';
@@ -614,13 +614,17 @@ export class SharedService {
   get title(): string {
     return this.internalTitle;
   }
-  /**
-   * Detects if the user is using a mobile device
-   * @returns `true` if the user is using a mobile device, `false` otherwise
-   */
+
+  /** Detects if the user is using a mobile device based on CSS media queries. */
   get isMobile(): boolean {
-    return this.breakpointObserver.isMatched('(max-width: 599px)');
+    return this.breakpointObserver.isMatched(Breakpoints.Handset);
   }
+
+  /** Detects if the user is using a handset in portrait mode based on CSS media queries. */
+  get isPortraitHandset(): boolean {
+    return this.breakpointObserver.isMatched(Breakpoints.HandsetPortrait);
+  }
+
   /**
    * Opens a snackBar with the specified params and no return
    * @param opts The options of the snackBar
