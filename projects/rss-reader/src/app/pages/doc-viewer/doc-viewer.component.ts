@@ -14,7 +14,7 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { DomPortalHost, ComponentPortal } from '@angular/cdk/portal';
-import { ExpansionPanelComponent } from '../expansion-panel/expansion-panel.component';
+import { ExpansionPanelComponent } from '../../components/expansion-panel/expansion-panel.component';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({

@@ -21,7 +21,7 @@ import { OverlayService } from './overlay.service';
 import { OnboardingOverlayComponent } from './overlays/onboarding-overlay/onboarding-overlay.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DocViewerComponent } from './pages/doc-viewer/doc-viewer.component';
-import { ExpansionPanelComponent } from './pages/expansion-panel/expansion-panel.component';
+import { ExpansionPanelComponent } from './components/expansion-panel/expansion-panel.component';
 import { GuidesListComponent } from './pages/guide-list/guide-list.component';
 import { GuideViewerComponent } from './pages/guide-viewer/guide-viewer.component';
 import { OrderByPipe, StripHtmlTagsPipe, TruncatePipe } from './pipe';
