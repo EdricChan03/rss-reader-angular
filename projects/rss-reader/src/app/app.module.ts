@@ -11,7 +11,7 @@ import { ActionItemsModule } from './actionitem.service';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 import { DialogsModule } from './dialogs/dialogs.module';
-import { ArticleCardComponent } from './components/article-card/article-card.component';
+import { ArticleCardModule } from './components/article-card/article-card.module';
 import { FeedComponent } from './feed/feed.component';
 import { GuideItemsService } from './guide-items';
 import { HeadlinesComponent } from './headlines/headlines.component';
@@ -40,7 +40,6 @@ const PIPES = [
 @NgModule({
   declarations: [
     AppComponent,
-    ArticleCardComponent,
     PIPES,
     FeedComponent,
     TestpageComponent,
@@ -69,6 +68,7 @@ const PIPES = [
     ServiceWorkerModule.register('./ngsw-worker.js', { enabled: environment.production, scope: './' }),
     DialogsModule,
     ActionItemsModule,
+    ArticleCardModule,
     HotkeysModule
   ],
   bootstrap: [AppComponent],
