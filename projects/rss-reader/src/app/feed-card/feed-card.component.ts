@@ -1,12 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-
-import { DomSanitizer } from '@angular/platform-browser';
-import { Settings } from '../model/settings';
-import { ShareDialogComponent, CodeViewerDialogComponent } from '../dialogs';
-import { SharedService } from '../shared.service';
+import { CodeViewerDialogComponent, ShareDialogComponent } from '../dialogs';
 import { FeedEntry } from '../model/feed-entry';
 import { NewsAPITopHeadlinesArticle } from '../model/news-api/top-headlines-article';
+import { Settings } from '../model/settings';
 
 @Component({
   selector: 'app-feed-card',
