@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FeedCategory } from '../../model/feed-category';
+import { FeedCategory } from '../../models/feed-category';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { Feed } from '../../model/feed';
+import { Feed } from '../../models/feed';
 import { SubmitRssDialogComponent } from '../submit-rss-dialog/submit-rss-dialog.component';
-import { FeedChannel } from '../../model/feed-channel';
+import { FeedChannel } from '../../models/feed-channel';
 import { feedUrls } from '../../../assets/feedurls.json';
 
 @Component({

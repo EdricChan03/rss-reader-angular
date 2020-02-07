@@ -10,7 +10,7 @@ import { SwUpdate } from '@angular/service-worker';
 import { ActionItemService } from './actionitem.service';
 import { AboutDialogComponent } from './dialogs';
 import { environment } from '../environments/environment';
-import { Settings } from './model/settings';
+import { Settings } from './models/settings';
 import { OverlayService } from './overlay.service';
 import { OnboardingOverlayComponent } from './overlays';
 import { SharedService } from './shared.service';

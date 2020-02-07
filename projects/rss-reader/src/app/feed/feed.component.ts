@@ -9,7 +9,7 @@ import {
   RSSChannelInfoDialogComponent,
 } from '../dialogs';
 import { HotkeysService } from '../hotkeys/hotkeys.service';
-import { FeedEntry } from '../model/feed-entry';
+import { FeedEntry } from '../models/feed-entry';
 import { SharedService } from '../shared.service';
 
 @Component({

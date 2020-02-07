@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { RestCountriesAPICountry } from '../../model/rest-countries-api';
+import { RestCountriesAPICountry } from '../../models/rest-countries-api';
 import { switchMap, debounceTime } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';

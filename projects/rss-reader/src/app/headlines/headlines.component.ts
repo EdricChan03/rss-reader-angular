@@ -4,7 +4,7 @@ import { ActionItemService } from '../actionitem.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { HeadlineOptionsDialogComponent, HeadlineOptions } from '../dialogs';
 import { HttpClient } from '@angular/common/http';
-import { NewsAPITopHeadlinesOpts, NewsAPITopHeadlines } from '../model/news-api/top-headlines';
+import { NewsAPITopHeadlinesOpts, NewsAPITopHeadlines } from '../models/news-api/top-headlines';
 import { Observable } from 'rxjs';
 
 @Component({

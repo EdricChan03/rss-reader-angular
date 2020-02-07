@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FeedEntry } from '../../model/feed-entry';
-import { NewsAPITopHeadlinesArticle } from '../../model/news-api/top-headlines-article';
+import { FeedEntry } from '../../models/feed-entry';
+import { NewsAPITopHeadlinesArticle } from '../../models/news-api/top-headlines-article';
 
 @Component({
   selector: 'app-share-dialog',
