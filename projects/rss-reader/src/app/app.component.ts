@@ -1,9 +1,7 @@
-import { Overlay, OverlayContainer } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
-import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationStart, Router } from '@angular/router';
 import { SwUpdate } from '@angular/service-worker';
 
@@ -15,6 +13,7 @@ import { OverlayService } from './overlay.service';
 import { OnboardingOverlayComponent } from './overlays';
 import { SharedService } from './shared.service';
 import { HotkeysService } from './hotkeys/hotkeys.service';
+import { SettingsStorageService } from './core/settings-storage/settings-storage.service';
 
 @Component({
   selector: 'rss-reader',
@@ -22,7 +21,6 @@ import { HotkeysService } from './hotkeys/hotkeys.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
   @ViewChild('left', { static: true }) sidenav: MatSidenav;
-  settings: Settings;
   environment = environment;
   projects = [
     {
@@ -95,15 +93,13 @@ export class AppComponent implements OnInit, OnDestroy {
   ];
   constructor(
     public shared: SharedService,
-    private dom: DomSanitizer,
-    private overlayContainer: OverlayContainer,
     private overlayService: OverlayService,
     private actionItemService: ActionItemService,
-    private router: Router,
-    private overlay: Overlay,
+    router: Router,
     private dialog: MatDialog,
     private swUpdate: SwUpdate,
-    private hotkeys: HotkeysService
+    private hotkeys: HotkeysService,
+    private settingsStorage: SettingsStorageService
   ) {
     router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
@@ -153,21 +149,17 @@ export class AppComponent implements OnInit, OnDestroy {
         this.showOnboardingOverlay();
       }
     }
-    if (window.localStorage.getItem('settings')) {
-      this.settings = JSON.parse(window.localStorage.getItem('settings')) as Settings;
-      if (this.settings.theme) {
-        document.getElementsByTagName('body')[0].classList.add(this.settings.theme);
-        this.overlayContainer.getContainerElement().classList.add(this.settings.theme);
+    if (this.settingsStorage.settings) {
+      if (this.settingsStorage.settings.theme) {
+        document.body.classList.add(this.settingsStorage.settings.theme);
       } else {
         console.warn('Theme setting was not found. Using default...');
-        document.getElementsByTagName('body')[0].classList.add('indigo-pink');
-        this.overlayContainer.getContainerElement().classList.add('indigo-pink');
+        document.body.classList.add('indigo-pink');
       }
     } else {
       const tempSettings: Settings = { showImages: true, multipleRss: false, openNewTab: true, theme: 'indigo-pink' };
-      document.getElementsByTagName('body')[0].classList.add('indigo-pink');
-      this.overlayContainer.getContainerElement().classList.add('indigo-pink');
-      window.localStorage.setItem('settings', JSON.stringify(tempSettings));
+      document.body.classList.add('indigo-pink');
+      this.settingsStorage.setSettings(tempSettings);
     }
     if (this.isOffline) {
       console.log('User is offline');
