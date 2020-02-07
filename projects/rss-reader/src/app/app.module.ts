@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import 'hammerjs';
 import { MarkdownModule } from 'ngx-markdown';
 import { environment } from '../environments/environment';
 import { ActionItemsModule } from './actionitem.service';

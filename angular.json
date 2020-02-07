@@ -12,6 +12,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist",
             "index": "projects/rss-reader/src/index.html",
             "main": "projects/rss-reader/src/main.ts",
@@ -161,5 +162,8 @@
       }
     }
   },
-  "defaultProject": "rss-reader"
+  "defaultProject": "rss-reader",
+  "cli": {
+    "analytics": "2a31b3aa-e3e3-4fbc-8175-a732c798e30d"
+  }
 }
