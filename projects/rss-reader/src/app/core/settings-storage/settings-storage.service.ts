@@ -58,8 +58,16 @@ export class SettingsStorageService<S = Settings> {
     this.storage.setItem(this.key, JSON.stringify(settings));
   }
 
-  /** Clears the current settings. */
-  clearSettings() {
-    this.storage.removeItem(this.key);
+  /**
+   * Clears the current settings.
+   * @param resetToDefault Whether to reset to the default settings
+   * instead of clearing them. (Default: `true`)
+   */
+  clearSettings(resetToDefault: boolean = true) {
+    if (resetToDefault) {
+      this.setSettings(this.config.defaultSettings);
+    } else {
+      this.storage.removeItem(this.key);
+    }
   }
 }
