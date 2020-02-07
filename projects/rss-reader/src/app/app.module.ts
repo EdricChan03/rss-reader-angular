@@ -11,7 +11,7 @@ import { ActionItemsModule } from './actionitem.service';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 import { DialogsModule } from './dialogs/dialogs.module';
-import { FeedCardComponent } from './feed-card/feed-card.component';
+import { FeedCardComponent } from './components/feed-card/feed-card.component';
 import { FeedComponent } from './feed/feed.component';
 import { GuideItemsService } from './guide-items';
 import { HeadlinesComponent } from './headlines/headlines.component';

@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CodeViewerDialogComponent, ShareDialogComponent } from '../dialogs';
-import { FeedEntry } from '../model/feed-entry';
-import { NewsAPITopHeadlinesArticle } from '../model/news-api/top-headlines-article';
-import { Settings } from '../model/settings';
+import { FeedEntry } from '../../models/feed-entry';
+import { NewsAPITopHeadlinesArticle } from '../../models/news-api/top-headlines-article';
+import { Settings } from '../../models/settings';
 
 @Component({
   selector: 'app-feed-card',
