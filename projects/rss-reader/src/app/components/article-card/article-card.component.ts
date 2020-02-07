@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CodeViewerDialogComponent, ShareDialogComponent } from '../../dialogs';
 import { FeedEntry } from '../../models/feed-entry';
 import { NewsAPITopHeadlinesArticle } from '../../models/news-api/top-headlines-article';
-import { Settings } from '../../models/settings';
+import { SettingsStorageService } from '../../core/settings-storage/settings-storage.service';
 
 @Component({
   selector: 'app-article-card',
@@ -14,7 +14,6 @@ export class ArticleCardComponent implements OnInit {
   hasImage: boolean;
   imageSrc: string;
   target: string;
-  settings: Settings;
   /**
    * The feed entry that this card represents.
    * @deprecated Use {@link ArticleCardComponent#article}.
@@ -28,16 +27,18 @@ export class ArticleCardComponent implements OnInit {
   /** The article that this card represents. */
   @Input() article: FeedEntry | NewsAPITopHeadlinesArticle;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(
+    private dialog: MatDialog,
+    private settingsStorage: SettingsStorageService
+  ) { }
 
   ngOnInit() {
-    if (window.localStorage.getItem('settings')) {
-      this.settings = JSON.parse(window.localStorage.getItem('settings')) as Settings;
-      if (this.settings.hasOwnProperty('openNewTab')) {
-        this.target = this.settings.openNewTab ? '_blank' : '_self';
+    if (this.settingsStorage.settings) {
+      if ('openNewTab' in this.settingsStorage.settings) {
+        this.target = this.settingsStorage.settings.openNewTab ? '_blank' : '_self';
       }
-      if (this.settings.hasOwnProperty('showImages')) {
-        this.hasImage = this.settings.showImages;
+      if ('showImages' in this.settingsStorage.settings) {
+        this.hasImage = this.settingsStorage.settings.showImages;
       }
     }
 
