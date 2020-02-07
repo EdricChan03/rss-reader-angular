@@ -62,9 +62,12 @@ const DIALOG_MATERIAL_MODULES = [
   declarations: [
     DIALOGS
   ],
-  entryComponents: [
+  // From Angular v9 and above, it's no longer required to specify
+  // the entryComponents field with Ivy.
+  // See https://angular.io/guide/deprecations#entryComponents for more info.
+  /* entryComponents: [
     DIALOGS
-  ],
+  ], */
   exports: [
     DIALOGS
   ]

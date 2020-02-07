@@ -13,7 +13,10 @@ import { HotkeysService } from './hotkeys.service';
     MatDialogModule
   ],
   providers: [HotkeysService],
-  entryComponents: [HotkeyHelpDialogComponent],
+  // From Angular v9 and above, it's no longer required to specify
+  // the entryComponents field with Ivy.
+  // See https://angular.io/guide/deprecations#entryComponents for more info.
+  // entryComponents: [HotkeyHelpDialogComponent],
   exports: [HotkeyHelpDialogComponent]
 })
 export class HotkeysModule { }

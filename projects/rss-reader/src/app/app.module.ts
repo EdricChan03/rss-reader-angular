@@ -76,9 +76,12 @@ const PIPES = [
     GuideItemsService,
     OverlayService
   ],
-  entryComponents: [
+  // From Angular v9 and above, it's no longer required to specify
+  // the entryComponents field with Ivy.
+  // See https://angular.io/guide/deprecations#entryComponents for more info.
+  /*entryComponents: [
     OVERLAYS,
     ExpansionPanelComponent
-  ]
+  ]*/
 })
 export class AppModule { }
