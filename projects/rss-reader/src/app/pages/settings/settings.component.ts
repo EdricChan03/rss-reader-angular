@@ -27,6 +27,7 @@ export class SettingsComponent {
       theme: 'indigo-pink',
       notifyNewReleases: false
     });
+    this.settingsForm.patchValue(settingsStorage.settings);
   }
 
   reset() {
