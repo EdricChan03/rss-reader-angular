@@ -58,7 +58,8 @@
       "updateMode": "prefetch",
       "resources": {
         "urls": [
-          "https://fonts.googleapis.com/**"
+          "https://fonts.googleapis.com/**",
+          "https://fonts.gstatic.com/**"
         ]
       }
     }, {
