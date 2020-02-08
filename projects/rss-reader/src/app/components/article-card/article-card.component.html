@@ -51,7 +51,8 @@
         </button>
       </mat-menu>
     </mat-card-header>
-    <img mat-card-image *ngIf="(feed?.thumbnail || feed?.enclosure?.thumbnail) && hasImage" [src]="imageSrc" alt="Feed thumbnail">
+    <img mat-card-image *ngIf="(feed?.thumbnail && !feed?.enclosure?.thumbnail) && hasImage" [src]="feed?.thumbnail" alt="Feed thumbnail">
+    <img mat-card-image *ngIf="(!feed?.thumbnail && feed?.enclosure?.thumbnail) && hasImage" [src]="feed?.enclosure?.thumbnail" alt="Feed thumbnail">
     <mat-card-title class="feed-title">{{feed?.title}}</mat-card-title>
     <mat-card-content>
       <p>{{feed?.description | stripHtmlTags | slice:0:300}}&#8230;</p>
