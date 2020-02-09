@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1581164272749,
+  "timestamp": 1581251953544,
   "appData": {
     "version": "1.6.0"
   },
@@ -70,7 +70,8 @@
       "updateMode": "prefetch",
       "urls": [],
       "patterns": [
-        "https:\\/\\/fonts\\.googleapis\\.com\\/.*"
+        "https:\\/\\/fonts\\.googleapis\\.com\\/.*",
+        "https:\\/\\/fonts\\.gstatic\\.com\\/.*"
       ]
     },
     {
