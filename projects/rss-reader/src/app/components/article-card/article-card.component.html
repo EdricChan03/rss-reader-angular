@@ -12,7 +12,7 @@
       </button>
     </mat-menu>
   </mat-card-header>
-  <img mat-card-image *ngIf="hasImage" [src]="articleImg" alt="Article thumbnail">
+  <img mat-card-image *ngIf="articleImg && hasImage" [src]="articleImg" alt="Article thumbnail">
   <mat-card-title class="article-card-title">{{ articleTitle }}</mat-card-title>
   <mat-card-content>
     <p>{{ articleDesc | slice:0:300 }}</p>
