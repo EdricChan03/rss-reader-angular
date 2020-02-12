@@ -12,6 +12,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { ArticleCardComponent } from './article-card.component';
 import { PipesModule } from '../../pipe/pipes.module';
+import { StripHtmlTagsPipe } from '../../pipe';
 import { SettingsStorageService } from '../../core/settings-storage/settings-storage.service';
 
 const MATERIAL_MODULES = [
@@ -36,7 +37,8 @@ const MATERIAL_MODULES = [
     ArticleCardComponent
   ],
   providers: [
-    SettingsStorageService
+    SettingsStorageService,
+    StripHtmlTagsPipe
   ],
   exports: [ArticleCardComponent]
 })
