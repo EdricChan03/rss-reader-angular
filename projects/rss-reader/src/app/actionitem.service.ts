@@ -190,7 +190,7 @@ export interface ActionItemToggle extends ActionItem {
 		<mat-icon>more_vert</mat-icon>
 	</button>
 	<mat-menu #moreMenu="matMenu">
-		<ng-container *ngFor="let actionItem of actionItems">
+		<ng-container *ngFor="let actionItem of overflowActionItems">
 			<button mat-menu-item *ngIf="actionItem.onClickListener" (click)="actionItem.onClickListener($event)" [disabled]="actionItem.disabled">
 				<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
 				{{actionItem.title}}
