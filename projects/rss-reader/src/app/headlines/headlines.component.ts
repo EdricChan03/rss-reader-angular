@@ -46,7 +46,7 @@ export class HeadlinesComponent implements OnDestroy, OnInit {
     actionItemService.addActionItem({
       title: 'Refresh headlines',
       icon: 'sync',
-      showAsAction: false,
+      showAsAction: true,
       onClickListener: () => {
         this.reloadHeadlines();
       }
