@@ -13,11 +13,13 @@
           </mat-option>
         </mat-optgroup>
       </mat-autocomplete>
+      <mat-error>This is required.</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>API key</mat-label>
       <input matInput formControlName="api_key">
-      <mat-error>This is required</mat-error>
+      <mat-error *ngIf="rssFeedForm.get('api_key')?.hasError('required')">This is required.</mat-error>
+      <mat-error *ngIf="rssFeedForm.get('api_key')?.hasError('minlength') || rssFeedForm.get('api_key')?.hasError('maxlength')">Please enter a valid API key.</mat-error>
       <a mat-icon-button matSuffix routerLink="/doc/guides/generate-api-key" matTooltip="How to generate a key" target="_blank">
         <mat-icon>help</mat-icon>
       </a>
@@ -37,7 +39,7 @@
     <mat-form-field>
       <mat-label>Max. number of posts</mat-label>
       <input matInput formControlName="count" type="number" min="1" max="100">
-      <mat-error>This is required.</mat-error>
+      <mat-hint>(Default: 10)</mat-hint>
     </mat-form-field>
   </form>
 </mat-dialog-content>
