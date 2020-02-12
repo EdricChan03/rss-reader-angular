@@ -48,7 +48,7 @@ export class FeedDialogComponent implements OnInit {
   ];
   orderDirOptions = [
     {
-      title: 'Default',
+      title: 'Default (Descending order)',
       value: ''
     },
     {
