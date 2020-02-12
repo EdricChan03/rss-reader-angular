@@ -1,10 +1,17 @@
-<p *ngIf="getStarted">Customise the headlines by clicking on the <mat-icon>tune</mat-icon> icon.</p>
-<div class="rss-reader-cards-container" *ngIf="headlines$ | async as headlines; else: loading">
+<div class="rss-reader-cards-container" *ngIf="headlines$ | async as headlines; else: errorOrLoading">
   <app-article-card *ngFor="let article of headlines?.articles" [article]="article" class="rss-reader-card"></app-article-card>
 </div>
-<ng-template #loading>
-  <div class="start">
-    <p>{{refreshStatus}}</p>
-    <mat-spinner class="start-indicator"></mat-spinner>
+<ng-template #errorOrLoading>
+  <div class="center">
+    <ng-container *ngIf="errorObject | async as error; else: loading">
+      <p>An error occurred:</p>
+      <p><code>{{ error?.error?.message }}</code></p>
+      <p>Status code: {{ error?.status }}</p>
+    </ng-container>
+    <ng-template #loading>
+      <p>Loading&#8320;</p>
+      <mat-spinner class="start-indicator"></mat-spinner>
+    </ng-template>
   </div>
 </ng-template>
+

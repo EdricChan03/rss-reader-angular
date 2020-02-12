@@ -37,5 +37,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button color="primary" matDialogClose="cancel">Cancel</button>
-  <button mat-button color="primary" matDialogClose="save" [disabled]="headlineOptForm.invalid">Save</button>
+  <button mat-button color="primary" [matDialogClose]="headlineOptForm.value" [disabled]="headlineOptForm.invalid">Save</button>
 </mat-dialog-actions>

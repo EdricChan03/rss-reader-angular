@@ -1,35 +1,54 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
+import { Observable, Subject, throwError, Subscription } from 'rxjs';
 import { ActionItemService } from '../actionitem.service';
 import { HeadlineOptions, HeadlineOptionsDialogComponent, CodeViewerDialogComponent } from '../dialogs';
 import { NewsAPITopHeadlines, NewsAPITopHeadlinesOpts } from '../models/news-api/top-headlines';
 import { SharedService } from '../shared.service';
+import { catchError } from 'rxjs/operators';
+import { HotkeysService } from '../hotkeys/hotkeys.service';
 
 @Component({
   selector: 'app-headlines',
   templateUrl: './headlines.component.html',
 })
-export class HeadlinesComponent implements OnInit {
+export class HeadlinesComponent implements OnDestroy, OnInit {
 
   readonly headlineAPIEndpoint = 'https://newsapi.org/v2/top-headlines';
-  getStarted = false;
+  errorObject = new Subject<HttpErrorResponse>();
   headlines$: Observable<NewsAPITopHeadlines>;
-  refreshStatus = 'Getting headlines...';
+  headlinesOpts: NewsAPITopHeadlinesOpts;
+  shortcutHandlers: Subscription[] = [];
   constructor(
+    hotkeys: HotkeysService,
     shared: SharedService,
     private dialog: MatDialog,
     actionItemService: ActionItemService,
     private http: HttpClient
   ) {
     shared.title = 'Headlines';
+    const refreshShortcut = hotkeys.addShortcut({ keys: 'r',
+    description: 'Refresh headlines',
+    shortcutBlacklistEls: ['input', 'textarea'] })
+      .subscribe(() => {
+        this.reloadHeadlines();
+      });
+    this.shortcutHandlers.push(refreshShortcut);
     actionItemService.addActionItem({
       title: 'Options',
       icon: 'tune',
       showAsAction: true,
       onClickListener: () => {
         this.openHeadlineOptsDialog();
+      }
+    });
+    actionItemService.addActionItem({
+      title: 'Refresh headlines',
+      icon: 'sync',
+      showAsAction: false,
+      onClickListener: () => {
+        this.reloadHeadlines();
       }
     });
     actionItemService.addActionItem({
@@ -44,21 +63,21 @@ export class HeadlinesComponent implements OnInit {
 
   openHeadlineOptsDialog() {
     const dialogConfig = new MatDialogConfig<HeadlineOptions>();
-    if (window.localStorage.getItem('headlineOpts')) {
-      const headlineOpts = JSON.parse(window.localStorage.getItem('headlineOpts'));
+    if (localStorage.getItem('headlineOpts')) {
+      const headlineOpts = JSON.parse(localStorage.getItem('headlineOpts'));
 
-      if ('topic' in JSON.parse(window.localStorage.getItem('headlineOpts'))) {
+      if ('topic' in JSON.parse(localStorage.getItem('headlineOpts'))) {
         delete headlineOpts.topic;
-        window.localStorage.setItem('headlineOpts', JSON.stringify(headlineOpts));
+        localStorage.setItem('headlineOpts', JSON.stringify(headlineOpts));
       }
-      dialogConfig.data = JSON.parse(window.localStorage.getItem('headlineOpts')) as HeadlineOptions;
+      dialogConfig.data = JSON.parse(localStorage.getItem('headlineOpts')) as HeadlineOptions;
     }
     const dialogRef = this.dialog.open(HeadlineOptionsDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
-      if (result !== undefined && result !== 'cancel') {
-        const options = dialogRef.componentInstance.headlineOptForm.getRawValue() as NewsAPITopHeadlinesOpts;
-        window.localStorage.setItem('headlineOpts', JSON.stringify(options));
-        this.reloadHeadlines(options);
+      if (result !== 'cancel' && typeof result === 'object') {
+        this.headlinesOpts = result as NewsAPITopHeadlinesOpts;
+        localStorage.setItem('headlineOpts', JSON.stringify(result));
+        this.reloadHeadlines();
       }
     });
   }
@@ -82,19 +101,20 @@ export class HeadlinesComponent implements OnInit {
     return this.http.get<NewsAPITopHeadlines>(this.headlineAPIEndpoint, { params });
   }
 
-  reloadHeadlines(options: NewsAPITopHeadlinesOpts) {
-    this.headlines$ = this.getHeadlines(options);
+  reloadHeadlines() {
+    this.errorObject.next(null);
+    this.headlines$ = this.getHeadlines(this.headlinesOpts).pipe(catchError(error => {
+      this.errorObject.next(error);
+      console.error('An error occurred:', error);
+      return throwError(error);
+    }));
   }
 
   ngOnInit() {
-    if (window.localStorage.getItem('headlineHasLaunched')) {
-      this.getStarted = true;
-      window.localStorage.setItem('hasLaunched', JSON.stringify(true));
-    }
-    if (window.localStorage.getItem('headlineOpts')) {
+    if (localStorage.getItem('headlineOpts')) {
       try {
-        const options = JSON.parse(window.localStorage.getItem('headlineOpts')) as NewsAPITopHeadlinesOpts;
-        this.headlines$ = this.getHeadlines(options);
+        this.headlinesOpts = JSON.parse(localStorage.getItem('headlineOpts')) as NewsAPITopHeadlinesOpts;
+        this.reloadHeadlines();
       } catch (error) {
         console.warn(`Oops! An error occured while getting settings for headlines! The error: ${error}`);
         this.openHeadlineOptsDialog();
@@ -102,5 +122,9 @@ export class HeadlinesComponent implements OnInit {
     } else {
       this.openHeadlineOptsDialog();
     }
+  }
+
+  ngOnDestroy() {
+    this.shortcutHandlers.forEach(handler => handler.unsubscribe());
   }
 }
