@@ -106,7 +106,6 @@ export class FeedDialogComponent implements OnInit {
         filteredFeedCategories.push(tempFeedCategory);
       }
     }
-    console.log(filteredFeedCategories);
     return filteredFeedCategories;
   }
   openSubmitRssDialog() {
