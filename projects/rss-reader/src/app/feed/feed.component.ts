@@ -1,16 +1,17 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
-
+import { Observable, Subject, Subscription, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { ActionItemService } from '../actionitem.service';
-import {
-  FeedDialogComponent,
-  RSSChannelInfoDialogComponent,
-} from '../dialogs';
+import { CodeViewerDialogComponent, FeedDialogComponent, RSSChannelInfoDialogComponent } from '../dialogs';
 import { HotkeysService } from '../hotkeys/hotkeys.service';
-import { FeedEntry } from '../models/feed-entry';
+import { Rss2JsonResponseItem } from '../models/rss2json-api/item';
+import { migrateKeys } from '../models/rss2json-api/migrate-keys';
+import { Rss2JsonParams } from '../models/rss2json-api/params';
+import { Rss2JsonResponse } from '../models/rss2json-api/response';
 import { SharedService } from '../shared.service';
+
 
 @Component({
   selector: 'app-feed',
@@ -18,11 +19,10 @@ import { SharedService } from '../shared.service';
 })
 export class FeedComponent implements OnDestroy, OnInit {
   getStarted = false;
-  feedOptions: FeedOptions;
-  feeds: FeedEntry[];
-  isRefreshing = false;
-  hasError = false;
-  refreshStatus = 'Getting RSS feed...';
+  isRefreshing = true;
+  errorObject = new Subject<HttpErrorResponse>();
+  rss2JsonResponse$: Observable<Rss2JsonResponse>;
+  feedItems$: Observable<Rss2JsonResponseItem[]>;
   rssToJsonServiceBaseUrl = 'https://api.rss2json.com/v1/api.json';
   // See https://stackoverflow.com/a/12444641 for more info
   shortcutHandlers: Subscription[] = [];
@@ -35,7 +35,7 @@ export class FeedComponent implements OnDestroy, OnInit {
   ) {
     const refreshShortcut = hotkeys.addShortcut({ keys: 'r', description: 'Refresh the feed', shortcutBlacklistEls: ['input', 'textarea'] })
       .subscribe(() => {
-        this.refreshFeed();
+        this.reloadFeed();
       });
     this.shortcutHandlers.push(refreshShortcut);
     this.actionItemService.addActionItem({
@@ -44,14 +44,29 @@ export class FeedComponent implements OnDestroy, OnInit {
       }
     });
     this.actionItemService.addActionItem({
-      title: 'Refresh feed', icon: 'sync', showAsAction: true, onClickListener: () => {
-        this.refreshFeed();
+      title: 'View API response',
+      icon: 'code',
+      onClickListener: () => {
+        this.openCodeViewerDialog();
       }
     });
   }
 
   openRSSInfoDialog() {
     this.dialog.open(RSSChannelInfoDialogComponent);
+  }
+
+  openCodeViewerDialog() {
+    this.rss2JsonResponse$.subscribe(res => {
+      this.dialog.open(CodeViewerDialogComponent, {
+        data: res
+      });
+    }, error => {
+      this.shared.openSnackBar({
+        msg: 'Could not view API response because an error occurred. Please try again later'
+      });
+      console.error('Could not view API response:', error);
+    });
   }
 
   reload() {
@@ -65,78 +80,69 @@ export class FeedComponent implements OnDestroy, OnInit {
     });
   }
 
-  refreshFeed() {
-    // Show that it is getting RSS
-    this.isRefreshing = true;
-    this.getStarted = false;
-    // Set to empty array
-    this.feeds = [];
-    let feedOpts: FeedOptions;
-    if (window.localStorage.feedOptions) {
-      feedOpts = JSON.parse(window.localStorage.feedOptions) as FeedOptions;
-    }
-    if (feedOpts) {
-      this._getFeed(feedOpts);
-    }
-  }
-
-  private _getFeedUrl(): string {
-    let localUrl: string;
-    // Get the feed url from localstorage
-    if (window.localStorage.feedOptions) {
-      localUrl = (JSON.parse(window.localStorage.feedOptions) as FeedOptions).feedUrl;
-    } else if (window.localStorage.feedUrl) {
-      localUrl = window.localStorage.feedUrl;
-    } else {
-      localUrl = 'https://www.blog.google/rss/';
-    }
-    return localUrl;
-  }
-
-  private _getFeed(opts: FeedOptions) {
-    if (opts) {
-      if (opts.hasOwnProperty('amount')) {
-        // TODO: Use rxjs pipes to update API status.
-        // tslint:disable-next-line:max-line-length
-        this.http.get<any>(`${this.rssToJsonServiceBaseUrl}?rss_url=${this._getFeedUrl()}&api_key=${opts.apiKey}&count=${opts.amount}`).subscribe(result => {
-          this.feeds = result.items;
-          this.isRefreshing = false;
-          this.hasError = false;
-        }, error => {
-          this.hasError = true;
-          console.error(error);
-          const snackBarRef = this.shared.openSnackBar({
-            msg: `Error ${error.code}: ${error.message}`,
-            action: 'Retry'
-          });
-          snackBarRef.onAction().subscribe(() => {
-            this.refreshFeed();
-          });
-        });
+  getFeed(options: Rss2JsonParams) {
+    let params = new HttpParams();
+    for (const key in options) {
+      if (options[key] !== null) {
+        // HttpParams is immutable, so we have to manually set the new value
+        params = params.append(key, options[key]);
       }
     }
+    return this.http.get<Rss2JsonResponse>(this.rssToJsonServiceBaseUrl, { params });
+  }
+
+  reloadFeed() {
+    let params: Rss2JsonParams = {
+      rss_url: ''
+    };
+    if (localStorage.feedOptions) {
+      if ('feedUrl' in JSON.parse(localStorage.feedOptions)) {
+        // feedOptions is using the old values - so we migrate the values
+        const migratedOpts: Partial<Rss2JsonParams> = {};
+
+        const opts = JSON.parse(localStorage.feedOptions) as FeedOptions;
+        for (const key in opts) {
+          if (opts[key] !== null) {
+            migratedOpts[migrateKeys[key]] = opts[key];
+          }
+        }
+        console.log('Old feed options:', opts);
+        console.log('Migrated feed options:', migratedOpts);
+        localStorage.feedOptions = JSON.stringify(migratedOpts);
+      }
+      params = JSON.parse(localStorage.feedOptions) as Rss2JsonParams;
+    }
+    this.isRefreshing = true;
+    this.errorObject.next(null);
+    this.rss2JsonResponse$ = this.getFeed(params).pipe(tap(() => {
+      this.isRefreshing = false;
+    }), catchError(error => {
+      this.errorObject.next(error);
+      console.error('An error occurred:', error);
+      return throwError(error);
+    }));
+    this.feedItems$ = this.rss2JsonResponse$.pipe(map(res => res.items));
   }
 
   selectRss() {
     const dialogRef = this.dialog.open(FeedDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
-      const rssFeedForm = dialogRef.componentInstance.rssFeedForm;
-      if (result === 'save') {
-        window.localStorage.feedOptions = JSON.stringify(rssFeedForm.getRawValue());
-        this.refreshFeed();
+      if (result !== 'save' && typeof result === 'object') {
+        localStorage.feedOptions = JSON.stringify(result);
+        this.reloadFeed();
       }
     });
   }
 
   ngOnInit() {
-    if (!window.localStorage.feedOptions) {
+    if (!localStorage.feedOptions) {
       this.selectRss();
     }
-    if (!window.localStorage.hasLaunched) {
+    if (!localStorage.hasLaunched) {
       this.getStarted = true;
       window.localStorage.hasLaunched = JSON.stringify(true);
     }
-    this.refreshFeed();
+    this.reloadFeed();
   }
 
   ngOnDestroy() {

@@ -28,6 +28,39 @@ export class FeedDialogComponent implements OnInit {
   filteredOptions: Observable<FeedCategory[]>;
   feedUrlValue = '';
   rssFeedForm: FormGroup;
+  orderByOptions = [
+    {
+      title: 'None',
+      value: ''
+    },
+    {
+      title: 'Published date',
+      value: 'pubDate'
+    },
+    {
+      title: 'Author',
+      value: 'author'
+    },
+    {
+      title: 'Title',
+      value: 'title'
+    }
+  ];
+  orderDirOptions = [
+    {
+      title: 'Default',
+      value: ''
+    },
+    {
+      title: 'Ascending order',
+      value: 'asc'
+    },
+    {
+      title: 'Descending order',
+      value: 'desc'
+    }
+  ];
+
   constructor(
     private dialogRef: MatDialogRef<FeedDialogComponent>,
     private fb: FormBuilder,
@@ -35,11 +68,13 @@ export class FeedDialogComponent implements OnInit {
   ) {
     dialogRef.disableClose = true;
     this.rssFeedForm = fb.group({
-      feedUrl: ['', Validators.required],
-      apiKey: ['', [Validators.required, Validators.maxLength(40), Validators.minLength(40)]],
-      amount: [30, Validators.required]
+      rss_url: ['', Validators.required],
+      api_key: ['', [Validators.required, Validators.maxLength(40), Validators.minLength(40)]],
+      order_by: '',
+      order_dir: '',
+      count: 30
     });
-    this.filteredOptions = this.rssFeedForm.get('feedUrl').valueChanges
+    this.filteredOptions = this.rssFeedForm.get('rss_url').valueChanges
       .pipe(
         startWith(''),
         map(value => this.filter(value))
