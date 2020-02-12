@@ -5,10 +5,10 @@
 </ng-container>
 <ng-template #errorOrLoading>
   <div class="center">
-    <ng-container *ngIf="errorObject; else: loading">
+    <ng-container *ngIf="errorObject | async as error; else: loading">
       <p>An error occurred:</p>
-      <p><code>{{ (errorObject | async)?.error?.message }}</code></p>
-      <p>Status code: {{ (errorObject | async)?.status }}</p>
+      <p><code>{{ error?.error?.message }}</code></p>
+      <p>Status code: {{ error?.status }}</p>
       <button mat-button [matMenuTriggerFor]="moreMenu">Options
         <mat-icon>arrow_drop_down</mat-icon>
       </button>
