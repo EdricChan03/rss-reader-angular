@@ -21,14 +21,12 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-    <br>
     <mat-form-field>
       <mat-label>Category</mat-label>
       <mat-select formControlName="category">
         <mat-option *ngFor="let category of categories" [value]="category">{{ category | titlecase }}</mat-option>
       </mat-select>
     </mat-form-field>
-    <br>
     <mat-form-field>
       <mat-label>Max. no. of articles</mat-label>
       <input matInput formControlName="pageSize" type="number" min="20" max="100">
