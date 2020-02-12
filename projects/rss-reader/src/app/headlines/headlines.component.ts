@@ -1,11 +1,11 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { SharedService } from '../shared.service';
-import { ActionItemService } from '../actionitem.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { HeadlineOptionsDialogComponent, HeadlineOptions } from '../dialogs';
-import { HttpClient } from '@angular/common/http';
-import { NewsAPITopHeadlinesOpts, NewsAPITopHeadlines } from '../models/news-api/top-headlines';
 import { Observable } from 'rxjs';
+import { ActionItemService } from '../actionitem.service';
+import { HeadlineOptions, HeadlineOptionsDialogComponent, CodeViewerDialogComponent } from '../dialogs';
+import { NewsAPITopHeadlines, NewsAPITopHeadlinesOpts } from '../models/news-api/top-headlines';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-headlines',
@@ -18,9 +18,9 @@ export class HeadlinesComponent implements OnInit {
   headlines$: Observable<NewsAPITopHeadlines>;
   refreshStatus = 'Getting headlines...';
   constructor(
-    private shared: SharedService,
+    shared: SharedService,
     private dialog: MatDialog,
-    private actionItemService: ActionItemService,
+    actionItemService: ActionItemService,
     private http: HttpClient
   ) {
     shared.title = 'Headlines';
@@ -30,6 +30,14 @@ export class HeadlinesComponent implements OnInit {
       showAsAction: true,
       onClickListener: () => {
         this.openHeadlineOptsDialog();
+      }
+    });
+    actionItemService.addActionItem({
+      title: 'View API response',
+      icon: 'code',
+      showAsAction: false,
+      onClickListener: () => {
+        this.openCodeViewerDialog();
       }
     });
   }
@@ -54,13 +62,30 @@ export class HeadlinesComponent implements OnInit {
       }
     });
   }
-  getHeadlines(options: NewsAPITopHeadlinesOpts): Observable<NewsAPITopHeadlines> {
-    const apiEndpoint = `${this.headlineAPIEndpoint}?apiKey=${options.apiKey}&country=${options.country}&topic=${options.topic}`;
-    return this.http.get<NewsAPITopHeadlines>(apiEndpoint);
+
+  openCodeViewerDialog() {
+    this.headlines$.subscribe(headlines => {
+      this.dialog.open(CodeViewerDialogComponent, {
+        data: headlines
+      });
+    });
   }
+
+  getHeadlines(options: NewsAPITopHeadlinesOpts): Observable<NewsAPITopHeadlines> {
+    let params = new HttpParams();
+    for (const key in options) {
+      if (options[key] !== null) {
+        // HttpParams is immutable, so we have to manually set the new value
+        params = params.append(key, options[key]);
+      }
+    }
+    return this.http.get<NewsAPITopHeadlines>(this.headlineAPIEndpoint, { params });
+  }
+
   reloadHeadlines(options: NewsAPITopHeadlinesOpts) {
     this.headlines$ = this.getHeadlines(options);
   }
+
   ngOnInit() {
     if (window.localStorage.getItem('headlineHasLaunched')) {
       this.getStarted = true;
@@ -78,5 +103,4 @@ export class HeadlinesComponent implements OnInit {
       this.openHeadlineOptsDialog();
     }
   }
-
 }

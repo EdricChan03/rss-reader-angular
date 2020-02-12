@@ -20,14 +20,21 @@ export interface NewsAPITopHeadlinesOpts {
    * The API key
    * Go to https://newsapi.org/register to get an API key
    */
-  apiKey: string;
+  apiKey?: string;
+  /** The category to get headlines for. */
+  category?: string;
+  /** Keywords or a phrase to search for. */
+  q?: string;
   /**
-   * The topic to get headlines for
+   * A list/comma-separated string of identifiers for the news sources/
+   * blogs to get headlines from.
    */
-  topic: string;
+  sources?: string | string[];
   /**
    * The country to get headlines from
    * Note: This parameter only accepts a 2-letter country code.
    */
-  country: string;
+  country?: string;
+  /** The number of results to return per page. (Default: 20, Max: 100) */
+  pageSize?: number;
 }

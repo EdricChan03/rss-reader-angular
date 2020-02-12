@@ -8,6 +8,10 @@
       <mat-error>This is required.</mat-error>
     </mat-form-field>
     <mat-form-field>
+      <mat-label>Query</mat-label>
+      <input matInput formControlName="q">
+    </mat-form-field>
+    <mat-form-field>
       <mat-label>Country</mat-label>
       <input matInput formControlName="country" [matAutocomplete]="countryAutocomplete">
       <mat-autocomplete #countryAutocomplete="matAutocomplete">
@@ -16,8 +20,6 @@
           <span>{{country?.name}}</span>
         </mat-option>
       </mat-autocomplete>
-      <mat-error *ngIf="headlineOptForm.get('country')?.hasError('required')">This is required.</mat-error>
-      <!-- <mat-error *ngIf="headlineOptForm.get('country')?.hasError('minLength') || headlineOptForm.get('country')?.hasError('maxLength')">Please enter a valid country code.</mat-error> -->
     </mat-form-field>
     <br>
     <mat-form-field>
@@ -25,13 +27,11 @@
       <mat-select formControlName="category">
         <mat-option *ngFor="let category of categories" [value]="category">{{ category | titlecase }}</mat-option>
       </mat-select>
-      <mat-error>This is required.</mat-error>
     </mat-form-field>
     <br>
     <mat-form-field>
       <mat-label>Max. no. of articles</mat-label>
       <input matInput formControlName="pageSize" type="number" min="20" max="100">
-      <mat-error>This is required.</mat-error>
     </mat-form-field>
   </form>
 </mat-dialog-content>

@@ -41,10 +41,11 @@ export class HeadlineOptionsDialogComponent implements OnInit {
   ) {
     this.headlineOptForm = fb.group({
       apiKey: ['', Validators.required],
-      country: ['', Validators.required],
+      q: '',
+      country: '',
       // country: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
-      category: ['', Validators.required],
-      pageSize: [20, Validators.required]
+      category: '',
+      pageSize: 20
     });
   }
 
