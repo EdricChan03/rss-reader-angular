@@ -1,11 +1,11 @@
-import { RouterModule } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Injectable, Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
+import { Component, Injectable, NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 
 /** ID used to generate new action items with no explicitly-defined ID. */
 let nextKeyId = 0;
@@ -114,7 +114,7 @@ export class ActionItemService {
 /**
  * An action item
  */
-export class ActionItem {
+export interface ActionItem {
   /**
    * The title of the action item
    */
@@ -134,6 +134,8 @@ export class ActionItem {
    * Similar to what Android does.
    */
   showAsAction?: boolean;
+  /** Whether the action item should be disabled. */
+  disabled?: boolean;
   /**
    * The router link of the action item
    * NOTE: If `href` is specified, don't use `routerLink`.
@@ -148,20 +150,15 @@ export class ActionItem {
    * The submenu of the action item
    */
   subMenu?: ActionItem[];
-  // tslint:disable-next-line:max-line-length
-  constructor(title: string, icon?: string, href?: string, showAsAction?: boolean, routerLink?: string, onClickListener?: (ev?: Event) => void, subMenu?: ActionItem[]) { }
 }
 /**
  * An action item toggle
  */
-export class ActionItemToggle extends ActionItem {
+export interface ActionItemToggle extends ActionItem {
   /**
    * The toggle boolean to bind to
    */
   toggleBind: boolean;
-
-  // tslint:disable-next-line:max-line-length
-  constructor(title: string, toggleBind: boolean, icon?: string, showAsAction?: boolean) { super(title, icon, null, showAsAction); }
 }
 
 @Component({
@@ -170,19 +167,21 @@ export class ActionItemToggle extends ActionItem {
 	<ng-container *ngFor="let actionItem of actionItems">
     <button
     mat-icon-button
-    *ngIf="actionItem.showAsAction && actionItem.href == null"
+    *ngIf="actionItem.onClickListener"
     (click)="actionItem.onClickListener($event)"
-    [matTooltip]="actionItem.title">
+    [matTooltip]="actionItem.title"
+    [disabled]="actionItem.disabled">
       <mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
     </button>
-    <a mat-icon-button *ngIf="actionItem.showAsAction && actionItem.href" [href]="actionItem.href" [matTooltip]="actionItem.title">
+    <a mat-icon-button *ngIf="actionItem.href" [href]="actionItem.href" [matTooltip]="actionItem.title" [disabled]="actionItem.disabled">
     <mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
     </a>
     <a
       mat-icon-button
-      *ngIf="actionItem.showAsAction && actionItem.routerLink"
+      *ngIf="actionItem.routerLink"
       [routerLink]="[actionItem.routerLink]"
-      [matTooltip]="actionItem.title">
+      [matTooltip]="actionItem.title"
+      [disabled]="actionItem.disabled">
 			<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
 		</a>
 	</ng-container>
@@ -192,15 +191,15 @@ export class ActionItemToggle extends ActionItem {
 	</button>
 	<mat-menu #moreMenu="matMenu">
 		<ng-container *ngFor="let actionItem of actionItems">
-			<button mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.href == null" (click)="actionItem.onClickListener($event)">
+			<button mat-menu-item *ngIf="actionItem.onClickListener" (click)="actionItem.onClickListener($event)" [disabled]="actionItem.disabled">
 				<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
 				{{actionItem.title}}
 			</button>
-			<a mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.href" [href]="actionItem.href">
+			<a mat-menu-item *ngIf="actionItem.href" [href]="actionItem.href" [disabled]="actionItem.disabled">
 				<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
 				{{actionItem.title}}
 			</a>
-			<a mat-menu-item *ngIf="!actionItem.showAsAction && actionItem.routerLink" [routerLink]="[actionItem.routerLink]">
+			<a mat-menu-item *ngIf="actionItem.routerLink" [routerLink]="[actionItem.routerLink]" [disabled]="actionItem.disabled">
 				<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
 				{{actionItem.title}}
 			</a>
@@ -211,7 +210,10 @@ export class ActionItemToggle extends ActionItem {
 export class ActionItemsComponent {
   constructor(private actionItemService: ActionItemService) { }
   get actionItems(): ActionItem[] {
-    return this.actionItemService.getActionItems();
+    return this.actionItemService.getActionItems().filter(item => item.showAsAction);
+  }
+  get overflowActionItems(): ActionItem[] {
+    return this.actionItemService.getActionItems().filter(item => !item.showAsAction);
   }
   get showMoreMenu() {
     return this.actionItemService.getActionItems().find((actionItem: ActionItem): boolean => {
