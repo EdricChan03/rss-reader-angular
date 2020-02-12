@@ -6,8 +6,13 @@
 <ng-template #errorOrLoading>
   <div class="center">
     <ng-container *ngIf="errorObject | async as error; else: loading">
-      <p>An error occurred:</p>
-      <p><code>{{ error?.error?.message }}</code></p>
+      <ng-container *ngIf="error?.error?.message">
+        <p>An error occurred:</p>
+        <p><code>{{ error?.error?.message }}</code></p>
+      </ng-container>
+      <ng-container *ngIf="!error?.error || !error?.error?.message">
+        <p>An unknown error occurred.</p>
+      </ng-container>
       <p>Status code: {{ error?.status }}</p>
       <button mat-button [matMenuTriggerFor]="moreMenu">Options
         <mat-icon>arrow_drop_down</mat-icon>

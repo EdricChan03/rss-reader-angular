@@ -4,8 +4,13 @@
 <ng-template #errorOrLoading>
   <div class="center">
     <ng-container *ngIf="errorObject | async as error; else: loading">
-      <p>An error occurred:</p>
-      <p><code>{{ error?.error?.message }}</code></p>
+      <ng-container *ngIf="error?.error?.message">
+        <p>An error occurred:</p>
+        <p><code>{{ error?.error?.message }}</code></p>
+      </ng-container>
+      <ng-container *ngIf="!error?.error || !error?.error?.message">
+        <p>An unknown error occurred.</p>
+      </ng-container>
       <p>Status code: {{ error?.status }}</p>
     </ng-container>
     <ng-template #loading>
