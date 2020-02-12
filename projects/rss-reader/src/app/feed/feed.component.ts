@@ -43,6 +43,14 @@ export class FeedComponent implements OnDestroy, OnInit {
       }
     });
     this.actionItemService.addActionItem({
+      title: 'Refresh feed',
+      icon: 'sync',
+      showAsAction: true,
+      onClickListener: () => {
+        this.reloadFeed();
+      }
+    })
+    this.actionItemService.addActionItem({
       title: 'View API response',
       icon: 'code',
       onClickListener: () => {
