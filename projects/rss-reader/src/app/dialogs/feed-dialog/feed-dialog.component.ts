@@ -72,7 +72,7 @@ export class FeedDialogComponent implements OnInit {
       api_key: ['', [Validators.required, Validators.maxLength(40), Validators.minLength(40)]],
       order_by: '',
       order_dir: '',
-      count: 30
+      count: 10 // The default value
     });
     this.filteredOptions = this.rssFeedForm.get('rss_url').valueChanges
       .pipe(
