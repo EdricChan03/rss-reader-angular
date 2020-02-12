@@ -22,7 +22,7 @@ export class HeadlinesComponent implements OnDestroy, OnInit {
   shortcutHandlers: Subscription[] = [];
   constructor(
     hotkeys: HotkeysService,
-    shared: SharedService,
+    private shared: SharedService,
     private dialog: MatDialog,
     actionItemService: ActionItemService,
     private http: HttpClient
@@ -87,6 +87,11 @@ export class HeadlinesComponent implements OnDestroy, OnInit {
       this.dialog.open(CodeViewerDialogComponent, {
         data: headlines
       });
+    }, error => {
+      this.shared.openSnackBar({
+        msg: 'Could not view API response because an error occurred. Please try again later'
+      });
+      console.error('Could not view API response:', error);
     });
   }
 
