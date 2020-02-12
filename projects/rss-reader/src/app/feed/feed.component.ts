@@ -18,7 +18,6 @@ import { SharedService } from '../shared.service';
   templateUrl: './feed.component.html'
 })
 export class FeedComponent implements OnDestroy, OnInit {
-  getStarted = false;
   isRefreshing = true;
   errorObject = new Subject<HttpErrorResponse>();
   rss2JsonResponse$: Observable<Rss2JsonResponse>;
@@ -137,10 +136,6 @@ export class FeedComponent implements OnDestroy, OnInit {
   ngOnInit() {
     if (!localStorage.feedOptions) {
       this.selectRss();
-    }
-    if (!localStorage.hasLaunched) {
-      this.getStarted = true;
-      window.localStorage.hasLaunched = JSON.stringify(true);
     }
     this.reloadFeed();
   }
