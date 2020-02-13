@@ -100,6 +100,27 @@ export class ArticleCardComponent implements OnInit {
     return;
   }
 
+  get enclosureIsAudioType(): boolean {
+    if ('enclosure' in this.article && 'type' in this.article.enclosure) {
+      return this.article.enclosure.type.startsWith('audio');
+    }
+    return false;
+  }
+
+  get enclosureIsVideoType(): boolean {
+    if ('enclosure' in this.article && 'type' in this.article.enclosure) {
+      return this.article.enclosure.type.startsWith('video');
+    }
+    return false;
+  }
+
+  get enclosureLink(): string {
+    if ('enclosure' in this.article && 'link' in this.article.enclosure) {
+      return this.article.enclosure.link;
+    }
+    return;
+  }
+
   ngOnInit() {
     if (this.settingsStorage.settings) {
       if ('openNewTab' in this.settingsStorage.settings) {

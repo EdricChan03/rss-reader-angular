@@ -19,6 +19,8 @@
     <mat-chip-list *ngIf="articleCategories.length > 0">
       <mat-chip *ngFor="let category of articleCategories" [innerHTML]="category"></mat-chip>
     </mat-chip-list>
+    <audio *ngIf="enclosureLink && enclosureIsAudioType" [src]="enclosureLink" controls preload="metadata"></audio>
+    <video *ngIf="enclosureLink && enclosureIsVideoType" [src]="enclosureLink" controls preload="metadata"></video>
   </mat-card-content>
   <mat-divider></mat-divider>
   <mat-card-actions align="end">
