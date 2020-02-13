@@ -29,5 +29,11 @@ export interface FeedEntry {
    */
   description?: string;
   content?: string;
-  enclosure?: any;
+  enclosure?: {
+    link?: string;
+    length?: number;
+    type?: string;
+  } | {
+    [key: string]: string;
+  };
 }
