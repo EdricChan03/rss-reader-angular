@@ -49,7 +49,7 @@ export class FeedComponent implements OnDestroy, OnInit {
       onClickListener: () => {
         this.reloadFeed();
       }
-    })
+    });
     this.actionItemService.addActionItem({
       title: 'View API response',
       icon: 'code',
