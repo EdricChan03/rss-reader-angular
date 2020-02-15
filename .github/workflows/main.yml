@@ -78,7 +78,7 @@ jobs:
     - name: Deploy site
       run: npm run action:deploy
       env:
-        GH_TOKEN: ${{ secrets.DEPLOY_GH_PAGES_TOKEN }}
+        # GH_TOKEN: ${{ secrets.DEPLOY_GH_PAGES_TOKEN }}
         # Interesting note: The GITHUB_TOKEN secret has the deployments scope
         # w/ read/write access for repositories.
         # See https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token#permissions-for-the-github_token
@@ -87,4 +87,4 @@ jobs:
         # the deployed results (a la GitHub Pages + Jekyll) arrives.
         # See https://github.community/t5/GitHub-Actions/Github-action-not-triggering-gh-pages-upon-push/m-p/26869
         # for more info.
-        # GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
