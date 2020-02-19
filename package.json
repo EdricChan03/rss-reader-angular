@@ -50,7 +50,7 @@
     "@types/gulp-rename": "0.0.33",
     "@types/hammerjs": "^2.0.36",
     "@types/jasmine": "^2.8.16",
-    "@types/node": "^12.11.1",
+    "@types/node": "^13.7.4",
     "angular-cli-ghpages": "^0.6.2",
     "codelyzer": "^5.1.2",
     "copy-webpack-plugin": "^4.6.0",
