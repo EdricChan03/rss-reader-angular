@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1585254231868,
+  "timestamp": 1585254296059,
   "appData": {
     "version": "1.6.0"
   },
@@ -140,7 +140,7 @@
     "/rss-reader/assets/img/News Article.png": "123985f0b304117c98e32f29707c180277fc428f",
     "/rss-reader/assets/mdi.svg": "07b4afc9cb6e599fe4b66170720484df4c4e9b06",
     "/rss-reader/assets/onboarding/articles.svg": "099afa8a050d38139505ee3bb933ccd296002738",
-    "/rss-reader/assets/release-notes/release-notes-schema.json": "74be956230a2cb3e0defcf2affc45873a6d55047",
+    "/rss-reader/assets/release-notes/release-notes-schema.json": "a83e725012c1d0fdb486fb26c962661b8b076ebe",
     "/rss-reader/assets/release-notes/release-notes.json": "af21657903f1d2f40b51fd0f3196b13ec0f8cf67",
     "/rss-reader/index.html": "875f12c430399309705860d6da28c451ae1e7cff",
     "/rss-reader/main-es2015.df5addd9e58fcb469622.js": "dda947fbab9ab14545631780d2676d84dce1f3b8",

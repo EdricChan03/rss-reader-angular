@@ -76,6 +76,10 @@
     "release": {
       "type": "object",
       "properties": {
+        "releaseName": {
+          "description": "A unique release name.",
+          "type": "string"
+        },
         "releaseNotes": {
           "$ref": "#/definitions/releaseNotes"
         },
