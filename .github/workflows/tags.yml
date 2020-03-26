@@ -1,0 +1,42 @@
+name: Tag workflow
+
+on:
+  push:
+    tags:
+    # Matches all created tags with a `v` prefix
+    - 'v*'
+
+jobs:
+  create-release:
+    name: Create release
+    runs-on: ubuntu-latest
+
+    steps:
+    # From https://github.community/t5/GitHub-Actions/How-to-get-just-the-tag-name/m-p/32167/highlight/true#M1027
+    # Modified to include removing the `v` prefix
+    - name: Get the version
+      id: get_version
+      run: |
+        echo ::set-output name=VERSION_TAG::${GITHUB_REF/refs\/tags\/}
+        echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\/v/}
+    - uses: actions/checkout@v2
+    - name: Parse release notes JSON
+      id: parse_release_notes
+      env:
+        VERSION: ${{ steps.get_version.outputs.VERSION }}
+        VERSION_TAG: ${{ steps.get_version.outputs.VERSION_TAG }}
+      run: |
+        RELEASE_NOTES=$(jq --arg version $VERSION -r '.releases[$version].releaseNotes | .[]' projects/rss-reader/src/assets/release-notes/release-notes.json)
+        echo ::set-output name=RELEASE_NOTES::"$RELEASE_NOTES"
+        RELEASE_NAME=$(jq --arg version $VERSION --arg versionTag $VERSION_TAG -r '.releases[$version].releaseName // $versionTag' projects/rss-reader/src/assets/release-notes/release-notes.json)
+        echo ::set-output name=RELEASE_NAME::"$RELEASE_NAME"
+    - name: Create release
+      uses: actions/create-release@latest
+      id: create_release
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: ${{ steps.parse_release_notes.outputs.RELEASE_NAME }}
+        body: ${{ steps.parse_release_notes.outputs.RELEASE_NOTES }}
+        draft: 'true' # In case we want to modify the results
