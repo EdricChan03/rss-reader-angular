@@ -4,18 +4,18 @@
   </button>
   <mat-card
     class="onboarding-card mat-elevation-z3">
-    <img mat-card-image [src]="content[index].imgSrc" *ngIf="content[index].imgSrc">
+    <img mat-card-image [src]="content[index].imgSrc" *ngIf="content[index].imgSrc" alt="Feature image thumbnail">
     <mat-card-content
       class="onboarding-card-content"
-      [class.onboarding-card-content-center]="content[index].imgSrc == ''">
+      [class.onboarding-card-content-center]="content[index].imgSrc === ''">
       <div *ngIf="index == 0" class="app-div">
         <img src="assets/favicon/icon-100x100-nocolor.png" width="100px" height="100px">
         <div>
           <p class="app-title">RSS Reader</p>
         </div>
       </div>
-      <br *ngIf="index == 0">
-      <p *ngIf="index == 0">The news reader that you will need</p>
+      <br *ngIf="index === 0">
+      <p *ngIf="index === 0">The news reader that you will need</p>
       <p>{{content[index].content}}</p>
     </mat-card-content>
     <mat-card-actions fxLayout="row" class="onboarding-card-actions">
@@ -24,10 +24,10 @@
       <span fxFlex></span>
     </mat-card-actions>
   </mat-card>
-  <button mat-fab matTooltip="Next" class="onboarding-fab onboarding-right-fab" (click)="nextIndex()" aria-label="Next" [@enterAnimation]="index == 3 ? 'leave' : 'enter'" [class.no-visible]="index == 3" color>
+  <button mat-fab matTooltip="Next" class="onboarding-fab onboarding-right-fab" (click)="nextIndex()" aria-label="Next" [@enterAnimation]="index === 3 ? 'leave' : 'enter'" [class.no-visible]="index === 3" color>
     <mat-icon>arrow_forward</mat-icon>
   </button>
 </div>
 <div class="indicators">
-  <span class="indicator" [class.indicator-active]="item === index" *ngFor="let item of [0, 1, 2, 3]" (click)="goToIndex(item)"></span>
+  <span class="indicator" [class.indicator-active]="item === index" *ngFor="let item of content.length" (click)="goToIndex(item)"></span>
 </div>
