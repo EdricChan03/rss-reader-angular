@@ -38,13 +38,13 @@ export class ArticleCardComponent implements OnInit {
     if ('publishedAt' in this.article) {
       if ('author' in this.article && this.article.author !== null) {
         if ('author' in this.article && 'source' in this.article &&
-        'name' in this.article.source && this.article.source.name !== null) {
+          'name' in this.article.source && this.article.source.name !== null) {
           return `${this.article.author} | ${this.article.source.name}`;
         } else {
           return this.article.author;
         }
       } else if ('source' in this.article &&
-      'name' in this.article.source && this.article.source.name !== null) {
+        'name' in this.article.source && this.article.source.name !== null) {
         return this.article.source.name;
       } else {
         return;
