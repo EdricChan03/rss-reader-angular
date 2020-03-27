@@ -11,6 +11,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { ArticleCardComponent } from './article-card.component';
+import { MediaSessionService } from '../../core/media-session/media-session.service';
 import { PipesModule } from '../../pipe/pipes.module';
 import { StripHtmlTagsPipe } from '../../pipe';
 import { SettingsStorageService } from '../../core/settings-storage/settings-storage.service';
@@ -37,6 +38,7 @@ const MATERIAL_MODULES = [
     ArticleCardComponent
   ],
   providers: [
+    MediaSessionService,
     SettingsStorageService,
     StripHtmlTagsPipe
   ],

@@ -1,6 +1,6 @@
 <ng-container *ngIf="feedItems$ | async as feedItems; else: errorOrLoading">
   <div class="rss-reader-cards-container">
-    <app-article-card [article]="feed" *ngFor="let feed of feedItems" class="rss-reader-card"></app-article-card>
+    <app-article-card [rss2JsonRes]="rss2JsonResponse$ | async" [article]="feed" *ngFor="let feed of feedItems" class="rss-reader-card"></app-article-card>
   </div>
 </ng-container>
 <ng-template #errorOrLoading>

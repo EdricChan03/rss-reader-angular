@@ -19,11 +19,14 @@
     <mat-chip-list *ngIf="articleCategories.length > 0">
       <mat-chip *ngFor="let category of articleCategories" [innerHTML]="category"></mat-chip>
     </mat-chip-list>
-    <audio *ngIf="enclosureLink && enclosureIsAudioType" [src]="enclosureLink" controls preload="metadata"></audio>
-    <video *ngIf="enclosureLink && enclosureIsVideoType" [src]="enclosureLink" controls preload="metadata"></video>
+    <audio [src]="enclosureLink" preload="metadata" #audioPlayer></audio>
+    <video *ngIf="enclosureLink && enclosureIsVideoType" [src]="enclosureLink" preload="metadata" #videoPlayer></video>
   </mat-card-content>
   <mat-divider></mat-divider>
   <mat-card-actions align="end">
+    <button mat-icon-button *ngIf="enclosureLink && (enclosureIsAudioType || enclosureIsVideoType)" (click)="togglePlaybackState()" matTooltip="Play/pause enclosure" color="accent">
+      <mat-icon>{{ playbackIsPaused ? 'play_circle_filled' : 'pause_circle_filled' }}</mat-icon>
+    </button>
     <button mat-icon-button (click)="share()" matTooltip="Share post" color="primary" aria-label="Share post">
       <mat-icon>share</mat-icon>
     </button>

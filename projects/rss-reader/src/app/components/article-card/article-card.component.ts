@@ -1,10 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CodeViewerDialogComponent, ShareDialogComponent } from '../../dialogs';
 import { FeedEntry } from '../../models/feed-entry';
 import { NewsAPITopHeadlinesArticle } from '../../models/news-api/top-headlines-article';
 import { SettingsStorageService } from '../../core/settings-storage/settings-storage.service';
 import { StripHtmlTagsPipe } from '../../pipe';
+import { MediaSessionService } from '../../core/media-session/media-session.service';
+import { Rss2JsonResponse } from '../../models/rss2json-api/response';
 
 @Component({
   selector: 'app-article-card',
@@ -28,8 +30,15 @@ export class ArticleCardComponent implements OnInit {
   /** The article that this card represents. */
   @Input() article: FeedEntry | NewsAPITopHeadlinesArticle;
 
+  /** The response from the Rss2Json API. */
+  @Input() rss2JsonRes?: Rss2JsonResponse;
+
+  @ViewChild('audioPlayer') audioPlayer: ElementRef<HTMLMediaElement>;
+  @ViewChild('videoPlayer') videoPlayer: ElementRef<HTMLMediaElement>;
+
   constructor(
     private dialog: MatDialog,
+    private mediaSession: MediaSessionService,
     private settingsStorage: SettingsStorageService,
     private stripHtmlTags: StripHtmlTagsPipe
   ) { }
@@ -119,6 +128,67 @@ export class ArticleCardComponent implements OnInit {
       return this.article.enclosure.link;
     }
     return;
+  }
+
+  get playbackState(): MediaSessionPlaybackState {
+    return navigator.mediaSession.playbackState;
+  }
+
+  get playbackIsPaused(): boolean {
+    if ('mediaSession' in navigator) {
+      return ['none', 'paused'].includes(navigator.mediaSession.playbackState);
+    }
+    return true;
+  }
+
+  updateMetadata() {
+    const mediaMetadata = new MediaMetadata();
+    if (this.rss2JsonRes) {
+      mediaMetadata.album = this.rss2JsonRes.feed.title;
+      mediaMetadata.artist = this.rss2JsonRes.feed.author;
+      if (this.rss2JsonRes.feed.image) {
+        mediaMetadata.artwork = [
+          { src: this.rss2JsonRes.feed.image }
+        ];
+      }
+    } else {
+      mediaMetadata.artist = this.article.author;
+    }
+    if (this.article) {
+      mediaMetadata.title = this.article.title;
+      if ('thumbnail' in this.article && this.article.thumbnail !== '') {
+        mediaMetadata.artwork = [
+          { src: this.article.thumbnail }
+        ];
+      }
+    }
+    console.log(mediaMetadata);
+    let player: HTMLMediaElement = null;
+    if (this.audioPlayer) {
+      player = this.audioPlayer.nativeElement;
+    } else if (this.videoPlayer) {
+      player = this.videoPlayer.nativeElement;
+    }
+
+    if (player) {
+      this.mediaSession.setMediaSession(mediaMetadata, player);
+    }
+  }
+
+  togglePlaybackState() {
+    if (this.audioPlayer) {
+      if (this.audioPlayer.nativeElement.paused) {
+        this.audioPlayer.nativeElement.play().then(() => this.updateMetadata());
+      } else {
+        this.audioPlayer.nativeElement.pause();
+      }
+    } else if (this.videoPlayer) {
+      if (this.videoPlayer.nativeElement.paused) {
+        this.videoPlayer.nativeElement.play().then(() => this.updateMetadata());
+      } else {
+        this.videoPlayer.nativeElement.pause();
+      }
+    }
   }
 
   ngOnInit() {
