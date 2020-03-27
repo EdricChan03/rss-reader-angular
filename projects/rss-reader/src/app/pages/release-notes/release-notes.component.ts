@@ -88,7 +88,7 @@ export class ReleaseNotesComponent {
     return notes.join('\n');
   }
 
-  isArray(val: any): boolean {
+  isArray<T = any>(val: any): val is T[] {
     return Array.isArray(val);
   }
 
@@ -97,11 +97,11 @@ export class ReleaseNotesComponent {
     return /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(val);
   }
 
-  isStr(val: any): boolean {
+  isStr(val: any): val is string {
     return typeof val === 'string';
   }
 
-  isObj(val: any): boolean {
+  isObj(val: any): val is object {
     return typeof val === 'object';
   }
 }
