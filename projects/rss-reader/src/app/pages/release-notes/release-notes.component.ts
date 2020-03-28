@@ -1,5 +1,5 @@
 import { Component, InjectionToken, Inject, Optional } from '@angular/core';
-import { ReleaseNotesJSON, ReleaseNotes, Release, GitRepo } from './release-notes';
+import { ReleaseNotesJSON, ReleaseNotes, ReleaseNotesObj, Release, GitRepo } from './release-notes';
 import releaseNotesJsonFile from '../../../assets/release-notes/release-notes.json';
 import { environment } from '../../../environments/environment';
 
@@ -101,7 +101,11 @@ export class ReleaseNotesComponent {
     return typeof val === 'string';
   }
 
-  isObj(val: any): val is object {
+  isObj<ObjType = object>(val: any): val is ObjType {
     return typeof val === 'object';
+  }
+
+  isReleaseNotesObj(val: any): val is ReleaseNotesObj {
+    return this.isObj<ReleaseNotesObj>(val);
   }
 }

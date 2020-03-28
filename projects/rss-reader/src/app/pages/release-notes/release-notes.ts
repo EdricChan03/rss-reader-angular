@@ -1,6 +1,6 @@
 export interface Release {
   /** Release notes for the version. */
-  releaseNotes: ReleaseNotes;
+  releaseNotes: string[] | string | ReleaseNotesObj;
   /** Release name for the version. */
   releaseName?: string;
   /** Release date for the version. */
@@ -15,6 +15,13 @@ export interface Release {
   releaseComments?: string[] | string;
 }
 
+export interface ReleaseNotesObj {
+  /** A summary of the release notes. */
+  summary: string[] | string;
+  /** A detailed version of the release notes. */
+  details?: string[] | string;
+}
+
 /**
  * Contains either a string representing a link to the repository, or an
  * object containing metadata of the repository.
@@ -27,13 +34,6 @@ export type GitRepo = {
   /** The name of the repository. */
   repo: string;
 } | string;
-
-export type ReleaseNotes = {
-  /** A summary of the release notes. */
-  summary: string[] | string;
-  /** A detailed version of the release notes. */
-  details?: string[] | string;
-} | string[] | string;
 
 export type ReleaseStatus = 'draft' | 'wip' | 'deprecated' | 'released' | 'unreleased' | 'other';
 

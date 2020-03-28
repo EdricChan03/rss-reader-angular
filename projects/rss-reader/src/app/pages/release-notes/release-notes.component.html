@@ -11,7 +11,7 @@
       <ng-container *ngIf="isStr(releaseNote) && isUrl(releaseNote)">
         <p>See this <a [href]="releaseNote">link</a> for the release notes.</p>
       </ng-container>
-      <ng-container *ngIf="!isStr(releaseNote) && isObj(releaseNote)">
+      <ng-container *ngIf="!isStr(releaseNote) && isReleaseNotesObj(releaseNote)">
         <ng-container *ngIf="isArray(releaseNote.summary)">
           <p [innerHTML]="joinReleaseNotes(releaseNote.summary) | markdown"></p>
         </ng-container>
@@ -44,7 +44,7 @@
         <ng-container *ngIf="isStr(releaseNote) && isUrl(releaseNote)">
           <p>See this <a [href]="releaseNote">link</a> for the release notes.</p>
         </ng-container>
-        <ng-container *ngIf="!isStr(releaseNote) && isObj(releaseNote)">
+        <ng-container *ngIf="!isStr(releaseNote) && isReleaseNotesObj(releaseNote)">
           <ng-container *ngIf="isArray(releaseNote.summary)">
             <p [innerHTML]="joinReleaseNotes(releaseNote.summary) | markdown"></p>
           </ng-container>
