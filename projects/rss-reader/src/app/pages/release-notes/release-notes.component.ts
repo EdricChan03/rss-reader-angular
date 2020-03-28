@@ -1,5 +1,5 @@
 import { Component, InjectionToken, Inject, Optional } from '@angular/core';
-import { ReleaseNotesJSON, ReleaseNotes, ReleaseNotesObj, Release, GitRepo } from './release-notes';
+import { ReleaseNotesJSON, ReleaseNotesObj, Release, GitRepo } from './release-notes';
 import releaseNotesJsonFile from '../../../assets/release-notes/release-notes.json';
 import { environment } from '../../../environments/environment';
 
