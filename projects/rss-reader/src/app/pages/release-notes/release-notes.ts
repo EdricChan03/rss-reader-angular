@@ -1,6 +1,6 @@
 export interface Release {
   /** Release notes for the version. */
-  releaseNotes: string[] | string | ReleaseNotesObj;
+  releaseNotes: ReleaseNotes;
   /** Release name for the version. */
   releaseName?: string;
   /** Release date for the version. */
@@ -14,6 +14,8 @@ export interface Release {
   /** Comments about the release, if any. */
   releaseComments?: string[] | string;
 }
+
+export type ReleaseNotes = string | string[] | ReleaseNotesObj;
 
 export interface ReleaseNotesObj {
   /** A summary of the release notes. */
