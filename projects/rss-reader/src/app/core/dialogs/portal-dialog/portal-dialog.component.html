@@ -1,0 +1,12 @@
+<h2 matDialogTitle *ngIf="opts?.title">{{ opts.title }}</h2>
+<mat-dialog-content fxLayout="column" class="mat-typography">
+  <ng-template [cdkPortalOutlet]="opts.portal" *ngIf="opts.portal"></ng-template>
+</mat-dialog-content>
+<mat-dialog-actions align="end" *ngIf="hasActionBtns">
+  <button mat-button *ngIf="!hideNegativeBtn" [color]="negativeBtnColor"
+    matDialogClose="cancel">{{ opts.negativeBtnText }}</button>
+  <button mat-button *ngIf="!hideNeutralBtn" [color]="neutralBtnColor"
+    matDialogClose="neutral">{{ opts.neutralBtnText }}</button>
+  <button mat-button *ngIf="!hidePositiveBtn" [color]="positiveBtnColor"
+    matDialogClose="ok">{{ opts.positiveBtnText }}</button>
+</mat-dialog-actions>

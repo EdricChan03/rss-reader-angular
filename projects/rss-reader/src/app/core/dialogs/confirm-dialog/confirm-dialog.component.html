@@ -1,0 +1,13 @@
+<h2 matDialogTitle *ngIf="opts?.title">{{ opts.title }}</h2>
+<mat-dialog-content fxLayout="column" class="mat-typography">
+  <p class="mat-body" *ngIf="!opts.isHtml">{{ opts.msg }}</p>
+  <span *ngIf="opts.isHtml" [innerHTML]="opts.msg"></span>
+</mat-dialog-content>
+<mat-dialog-actions align="end" *ngIf="hasActionBtns">
+  <button mat-button *ngIf="!hideNegativeBtn" [color]="negativeBtnColor"
+    matDialogClose="cancel">{{ negativeBtnText }}</button>
+  <button mat-button *ngIf="!hideNeutralBtn" [color]="neutralBtnColor"
+    matDialogClose="neutral">{{ opts.neutralBtnText }}</button>
+  <button mat-button *ngIf="!hidePositiveBtn" [color]="positiveBtnColor"
+    matDialogClose="ok">{{ positiveBtnText }}</button>
+</mat-dialog-actions>
