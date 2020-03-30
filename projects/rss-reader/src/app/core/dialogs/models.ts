@@ -41,9 +41,12 @@ export interface DialogOptsWithMsg {
 
 export interface DialogOpts extends BaseDialogOpts, DialogBtnOpts, DialogOptsWithMsg { }
 
+// TODO: Remove the interfaces that extend DialogOpts with no additional options
+// tslint:disable:no-empty-interface
 export interface AlertDialogOpts extends DialogOpts { }
 
 export interface ConfirmDialogOpts extends DialogOpts { }
+// tslint:enable:no-empty-interface
 
 export interface PromptDialogInputConfig {
   /** The input's placeholder. */
