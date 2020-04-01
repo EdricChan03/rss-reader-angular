@@ -4,7 +4,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import { environment } from '../../../environments/environment';
 import prodReleaseNotesJson from '../../../assets/release-notes/release-notes.json';
 import mockReleaseNotesJson from './mocks/mock-release-notes.json';
-import { GitRepo } from './release-notes';
+import { GitRepo } from './models/release-notes';
 import { ReleaseNotesComponent, RELEASE_NOTES_JSON, GIT_REPO } from './release-notes.component';
 
 describe('ReleaseNotesComponent', () => {
@@ -267,95 +267,6 @@ describe('ReleaseNotesComponent', () => {
 
         for (const spec of specs) {
           expect(component.isUrl(spec.value)).toBe(spec.expected, spec.failOutput);
-        }
-      });
-    });
-
-    describe('#isObj', () => {
-      it('should return whether argument is an object', () => {
-        const specs: { value: any, expected: any, failOutput?: string }[] = [
-          {
-            value: {
-              first: 'hello'
-            },
-            expected: true,
-            failOutput: 'Expected valid object to return true'
-          },
-          {
-            value: 'Hello world!',
-            expected: false,
-            failOutput: 'Expected string to return false'
-          },
-          {
-            value: true,
-            expected: false,
-            failOutput: 'Expected boolean to return false'
-          },
-          {
-            value: 12,
-            expected: false,
-            failOutput: 'Expected number to return false'
-          },
-          {
-            value: 62.3,
-            expected: false,
-            failOutput: 'Expected double to return false'
-          },
-          {
-            value: undefined,
-            expected: false,
-            failOutput: 'Expected undefined to return false'
-          }
-        ];
-
-        for (const spec of specs) {
-          expect(component.isObj(spec.value)).toBe(spec.expected, spec.failOutput);
-        }
-      });
-    });
-
-    describe('#isStr', () => {
-      it('should return whether argument is a string', () => {
-        const specs: { value: any, expected: any, failOutput?: string }[] = [
-          {
-            value: '',
-            expected: true,
-            failOutput: 'Expected empty string to return true'
-          },
-          {
-            value: 'Hello world!',
-            expected: true,
-            failOutput: 'Expected string to return true'
-          },
-          {
-            value: true,
-            expected: false,
-            failOutput: 'Expected boolean to return false'
-          },
-          {
-            value: 12,
-            expected: false,
-            failOutput: 'Expected number to return false'
-          },
-          {
-            value: 62.3,
-            expected: false,
-            failOutput: 'Expected double to return false'
-          },
-          {
-            value: undefined,
-            expected: false,
-            failOutput: 'Expected undefined to return false'
-          },
-          {
-            value: null,
-            expected: false,
-            failOutput: 'Expected null to return false'
-          }
-        ];
-
-        for (const spec of specs) {
-          expect(component.isStr(spec.value)).toBe(spec.expected, spec.failOutput);
         }
       });
     });
