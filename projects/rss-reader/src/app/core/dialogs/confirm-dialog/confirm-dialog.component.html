@@ -5,9 +5,9 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end" *ngIf="hasActionBtns">
   <button mat-button *ngIf="!hideNegativeBtn" [color]="negativeBtnColor"
-    matDialogClose="cancel">{{ negativeBtnText }}</button>
+    matDialogClose="cancel">{{ opts.negativeBtnText }}</button>
   <button mat-button *ngIf="!hideNeutralBtn" [color]="neutralBtnColor"
     matDialogClose="neutral">{{ opts.neutralBtnText }}</button>
   <button mat-button *ngIf="!hidePositiveBtn" [color]="positiveBtnColor"
-    matDialogClose="ok">{{ positiveBtnText }}</button>
+    matDialogClose="ok">{{ opts.positiveBtnText }}</button>
 </mat-dialog-actions>
