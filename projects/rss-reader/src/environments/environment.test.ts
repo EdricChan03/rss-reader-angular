@@ -1,7 +1,7 @@
 import { Environment } from '../environment.base';
 import { Version } from '@angular/core';
 import { latestVersion as mockVersionJson } from '../app/pages/release-notes/mocks/mock-release-notes.json';
-import { GitRepo } from '../app/pages/release-notes/release-notes';
+import { GitRepo } from '../app/pages/release-notes/models/release-notes';
 
 export const mockGitRepoDefaults: GitRepo = {
   host: 'https://github.com',
