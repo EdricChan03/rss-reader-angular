@@ -81,7 +81,8 @@
           "type": "string"
         },
         "releaseNotes": {
-          "$ref": "#/definitions/releaseNotes"
+          "description": "Release notes for the specified version. (Allows for an external URI to be specified)",
+          "$ref": "#/definitions/releaseNotesTypes"
         },
         "releaseDate": {
           "description": "The date the release was released at.",
@@ -155,37 +156,6 @@
         "releaseNotes"
       ]
     },
-    "releaseNotes": {
-      "description": "Release notes for the specified version. (Allows for an external URI to be specified)",
-      "oneOf": [
-        {
-          "type": "object",
-          "properties": {
-            "summary": {
-              "description": "A summary of the release notes. Supports Markdown.",
-              "$ref": "#/definitions/releaseNotesTypes"
-            },
-            "details": {
-              "description": "A descriptive version of the release notes. Supports Markdown.",
-              "$ref": "#/definitions/releaseNotesTypes"
-            }
-          },
-          "required": [
-            "summary"
-          ]
-        },
-        {
-          "type": "string",
-          "format": "uri"
-        },
-        {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      ]
-    },
     "releaseNotesTypes": {
       "oneOf": [
         {
@@ -197,13 +167,6 @@
         {
           "type": "string",
           "format": "uri"
-        },
-        {
-          "type": "string",
-          "contentMediaType": "text/html"
-        },
-        {
-          "type": "string"
         }
       ]
     },

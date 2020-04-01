@@ -1,5 +1,5 @@
 import { Component, InjectionToken, Inject, Optional } from '@angular/core';
-import { GitRepo, Release, ReleaseNotes, ReleaseNotesJSON, ReleaseNotesObj } from './release-notes';
+import { GitRepo, Release, ReleaseNotesJSON } from './models/release-notes';
 import releaseNotesJsonFile from '../../../assets/release-notes/release-notes.json';
 import { environment } from '../../../environments/environment';
 
@@ -52,7 +52,7 @@ export class ReleaseNotesComponent {
    * Retrieves the release notes for the specified `version`.
    * @param version The version
    */
-  getReleaseNote(version: string): ReleaseNotes {
+  getReleaseNote(version: string): string[] {
     return this.releaseNotes.releases[version].releaseNotes;
   }
 
@@ -95,17 +95,5 @@ export class ReleaseNotesComponent {
   // See https://stackoverflow.com/a/46296668/6782707 for more info.
   isUrl(val: string): boolean {
     return /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(val);
-  }
-
-  isStr(val: any): val is string {
-    return typeof val === 'string';
-  }
-
-  isObj<ObjType = object>(val: any): val is ObjType {
-    return typeof val === 'object';
-  }
-
-  isReleaseNotesObj(val: any): val is ReleaseNotesObj {
-    return this.isObj<ReleaseNotesObj>(val);
   }
 }

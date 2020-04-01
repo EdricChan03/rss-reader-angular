@@ -16,16 +16,7 @@
       ]
     },
     "0.0.1": {
-      "releaseNotes": {
-        "summary": [
-          "- Summary notes #1",
-          "- Another note"
-        ],
-        "details": [
-          "- Detail notes #1",
-          "- Another detail note"
-        ]
-      }
+      "releaseNotes": "https://example.com"
     }
   }
 }
