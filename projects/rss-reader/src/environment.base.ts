@@ -1,6 +1,6 @@
 import { Version } from '@angular/core';
 import { ExtraOptions } from '@angular/router';
-import { GitRepo } from './app/pages/release-notes/release-notes';
+import { GitRepo } from './app/pages/release-notes/models/release-notes';
 import { latestVersion as versionJson } from './assets/release-notes/release-notes.json';
 
 // This file contains the constants that all of the environments
