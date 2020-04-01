@@ -1,6 +1,6 @@
 {
   "$schema": "./release-notes-schema.json",
-  "latestVersion": "1.6.0",
+  "latestVersion": "1.6.1",
   "gitRepo": {
     "host": "https://github.com",
     "repo": "rss-reader",
@@ -91,6 +91,23 @@
       ],
       "releaseAuthor": "EdricChan03",
       "releaseDate": "2020-01-07T18:03:00+0000"
+    },
+    "1.6.1": {
+      "releaseName": "The Toilet Paper Update",
+      "releaseNotes": [
+        "- (P.S. Wow we can't believe that it's been 3 months since the last update.)",
+        "- Updated time for caching API requests in `v1.6.0`'s release notes",
+        "- Cleared off the bugs with programming soap and water. Remember to wash your hands!",
+        "- Added support for caching requests from the `/res` subpath",
+        "- Updated MDI icons to use the [`@mdi/angular-material`](https://www.npmjs.com/package/@mdi/angular-material) NPM library",
+        "- Added unit tests",
+        "- Under-the-hood improvements",
+        "- Increased social distancing by 150%",
+        "- Added support for purchasing digital toilet paper",
+        "- (For a full list of changes, view the diff between `v1.6.0` and this release [here](https://github.com/EdricChan03/rss-reader/compare/v1.6.0...v1.6.1))"
+      ],
+      "releaseAuthor": "EdricChan03",
+      "releaseDate": "2020-03-27T20:38:00+0000"
     }
   }
 }

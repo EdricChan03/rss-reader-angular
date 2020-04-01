@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1585736853841,
+  "timestamp": 1585748076406,
   "appData": {
     "version": "1.6.0"
   },
@@ -16,8 +16,8 @@
         "/rss-reader/6-es2015.064c3800397ad2d4d2a0.js",
         "/rss-reader/6-es5.064c3800397ad2d4d2a0.js",
         "/rss-reader/index.html",
-        "/rss-reader/main-es2015.7dbea9340c928acce3e0.js",
-        "/rss-reader/main-es5.7dbea9340c928acce3e0.js",
+        "/rss-reader/main-es2015.93b44beeb889676b2288.js",
+        "/rss-reader/main-es5.93b44beeb889676b2288.js",
         "/rss-reader/manifest.webmanifest",
         "/rss-reader/polyfills-es2015.971fc06feff42873e5ce.js",
         "/rss-reader/polyfills-es5.ec0729a9ff3228ee28a6.js",
@@ -141,10 +141,10 @@
     "/rss-reader/assets/mdi.svg": "07b4afc9cb6e599fe4b66170720484df4c4e9b06",
     "/rss-reader/assets/onboarding/articles.svg": "099afa8a050d38139505ee3bb933ccd296002738",
     "/rss-reader/assets/release-notes/release-notes-schema.json": "c3219cddf1584ee6bbfe4abb00108e12e0059794",
-    "/rss-reader/assets/release-notes/release-notes.json": "a64c8097008683af4df175c0c9e339c49d65c6b6",
-    "/rss-reader/index.html": "b6fb1abb375244fa61377736339b72f0c0ea02e3",
-    "/rss-reader/main-es2015.7dbea9340c928acce3e0.js": "e92b144fc56ec016a4d97c11c1ad8fdfb1bb248b",
-    "/rss-reader/main-es5.7dbea9340c928acce3e0.js": "dba643e802ec01a9782c4617e3116d8927cf18cd",
+    "/rss-reader/assets/release-notes/release-notes.json": "2d2a6b11b9bf4aaa543a965b7d6429001c682757",
+    "/rss-reader/index.html": "d2d4019a89dfa8b2e6b28bec129dca1644644b9b",
+    "/rss-reader/main-es2015.93b44beeb889676b2288.js": "7fe6bd92e1c12bd1361f30bda521c25db132db49",
+    "/rss-reader/main-es5.93b44beeb889676b2288.js": "a6ff697af41ee20f1f4f9310fdfa409fd9b40cda",
     "/rss-reader/manifest.webmanifest": "44eb37ba72a29889fcee4bc71cf98bbf2db8eccf",
     "/rss-reader/polyfills-es2015.971fc06feff42873e5ce.js": "ba68f4f816ecf7320005a50ff38165d480561428",
     "/rss-reader/polyfills-es5.ec0729a9ff3228ee28a6.js": "0466c4fde65b6f01520e0c99d289d6792074f9db",
