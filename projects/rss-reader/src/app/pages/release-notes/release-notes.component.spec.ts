@@ -300,7 +300,12 @@ describe('ReleaseNotesComponent', () => {
 
       it('should have a header for release notes', () => {
         const currentVersionNotesEl: HTMLHeadingElement = componentEl.querySelector('#current-version-release-notes');
-        const expectedText = `Release notes for ${mockReleaseNotesJson.latestVersion}`;
+
+        const currentVersionReleaseNotes = mockReleaseNotesJson.releases[mockReleaseNotesJson.latestVersion];
+        let expectedText = `Release notes for ${mockReleaseNotesJson.latestVersion}`;
+        if ('releaseName' in currentVersionReleaseNotes) {
+          expectedText += ` - ${currentVersionReleaseNotes.releaseName}`;
+        }
 
         expect(currentVersionNotesEl.tagName).toEqual('H3', 'Expected current version notes header tag to be <h3>');
         expect(currentVersionNotesEl.textContent).toEqual(expectedText);
