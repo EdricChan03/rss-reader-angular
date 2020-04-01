@@ -1,6 +1,6 @@
 export interface Release {
   /** Release notes for the version. */
-  releaseNotes: string[];
+  releaseNotes: string[] | string;
   /** Release name for the version. */
   releaseName?: string;
   /** Release date for the version. */

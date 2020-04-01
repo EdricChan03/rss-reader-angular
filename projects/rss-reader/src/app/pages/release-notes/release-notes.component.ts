@@ -60,7 +60,7 @@ export class ReleaseNotesComponent {
    * Retrieves the release notes for the specified `version`.
    * @param version The version
    */
-  getReleaseNote(version: string): string[] {
+  getReleaseNote(version: string): string[] | string {
     return this.releaseNotes.releases[version].releaseNotes;
   }
 
