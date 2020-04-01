@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { MarkdownModule } from 'ngx-markdown';
+
 import { environment } from '../environments/environment';
 import { ActionItemsModule } from './actionitem.service';
 import { AppComponent } from './app.component';
@@ -25,7 +26,6 @@ import { ExpansionPanelComponent } from './components/expansion-panel/expansion-
 import { GuidesListComponent } from './pages/guide-list/guide-list.component';
 import { GuideViewerComponent } from './pages/guide-viewer/guide-viewer.component';
 import { SharedModule } from './shared.service';
-import { TestpageComponent } from './testpage/testpage.component';
 import { PipesModule } from './pipe/pipes.module';
 
 const OVERLAYS = [
@@ -36,7 +36,6 @@ const OVERLAYS = [
   declarations: [
     AppComponent,
     FeedComponent,
-    TestpageComponent,
     PageNotFoundComponent,
     DocViewerComponent,
     GuideViewerComponent,

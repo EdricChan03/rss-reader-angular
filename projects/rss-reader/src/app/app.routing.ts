@@ -6,7 +6,6 @@ import { HeadlinesComponent } from './headlines/headlines.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { GuidesListComponent } from './pages/guide-list/guide-list.component';
 import { GuideViewerComponent } from './pages/guide-viewer/guide-viewer.component';
-import { TestpageComponent } from './testpage/testpage.component';
 
 export const routes: Routes = [
   // Lazy-loaded routes
@@ -23,7 +22,6 @@ export const routes: Routes = [
   { path: 'feed', component: FeedComponent },
   { path: 'headlines', component: HeadlinesComponent },
   { path: 'home', redirectTo: '/feed' },
-  { path: 'test', component: TestpageComponent },
   { path: '', pathMatch: 'full', redirectTo: '/feed' },
   { path: '**', component: PageNotFoundComponent },
 ];
