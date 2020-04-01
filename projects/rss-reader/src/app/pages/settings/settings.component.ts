@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
+import { DialogsService } from '../../core/dialogs/dialogs.service';
 import { SharedService } from '../../shared.service';
 import { SettingsStorageService } from '../../core/settings-storage/settings-storage.service';
 
@@ -17,6 +18,7 @@ export class SettingsComponent {
     'purple-green'
   ];
   constructor(
+    private dialog: DialogsService,
     fb: FormBuilder,
     private shared: SharedService,
     private settingsStorage: SettingsStorageService
@@ -31,7 +33,7 @@ export class SettingsComponent {
   }
 
   reset() {
-    const dialogRef = this.shared.openConfirmDialog({ title: 'Reset settings?', msg: 'Do you want to reset your settings?' });
+    const dialogRef = this.dialog.openConfirmDialog({ title: 'Reset settings?', msg: 'Are you sure you want to reset the settings?' });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'ok') {
         this.settingsStorage.clearSettings(/* resetToDefault = true */);

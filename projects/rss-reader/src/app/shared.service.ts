@@ -3,13 +3,8 @@ import { ComponentType } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { Injectable, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarConfig, MatSnackBarModule, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
 import { Title } from '@angular/platform-browser';
-
-import { DialogsModule } from './core/dialogs/dialogs.module';
-import * as dialogModels from './core/dialogs/models';
-import { DialogsService } from './core/dialogs/dialogs.service';
 
 export interface SnackBarOpts<D = any> {
   /** The snackbar's message. */
@@ -34,7 +29,6 @@ export class SharedService {
   private internalTitle = '';
   constructor(
     private snackBar: MatSnackBar,
-    private dialog: DialogsService,
     private documentTitle: Title,
     private breakpointObserver: BreakpointObserver
   ) { }
@@ -98,53 +92,6 @@ export class SharedService {
   closeSnackBar() {
     this.snackBar.dismiss();
   }
-
-  private createOrGetDialogConfig<D = any>(config?: MatDialogConfig<D>): MatDialogConfig<D> {
-    return config ? config : new MatDialogConfig<D>();
-  }
-
-  /**
-   * Opens an alert dialog with the specified parameters
-   * @param opts The options for the dialog.
-   * @param config Additional configurations for the dialog.
-   * @returns The dialog reference
-   * @deprecated Use {@link DialogsService#openAlertDialog}
-   */
-  openAlertDialog(opts: dialogModels.AlertDialogOpts, config?: MatDialogConfig<dialogModels.AlertDialogOpts>) {
-    return this.dialog.openAlertDialog(opts, config);
-  }
-
-  /**
-   * Opens a confirm dialog with the specified parameters
-   * @param opts The options for the dialog
-   * @param config Additional configurations for the dialog.
-   * @returns The dialog reference
-   * @deprecated Use {@link DialogsService#openConfirmDialog}
-   */
-  openConfirmDialog(opts: dialogModels.ConfirmDialogOpts, config?: MatDialogConfig<dialogModels.ConfirmDialogOpts>) {
-    return this.dialog.openConfirmDialog(opts, config);
-  }
-
-  /**
-   * Opens a prompt dialog with the specified parameters
-   * @param opts The options for the dialog
-   * @param config Additional configurations for the dialog.
-   * @returns The dialog reference
-   * @deprecated Use {@link DialogsService#openPromptDialog}
-   */
-  openPromptDialog(opts: dialogModels.PromptDialogOpts, config?: MatDialogConfig<dialogModels.PromptDialogOpts>) {
-    return this.dialog.openPromptDialog(opts, config);
-  }
-  /**
-   * Opens a selection dialog with the configured options
-   * @param opts The options for the dialog
-   * @param config Additional configurations for the dialog.
-   * @returns The dialog reference
-   * @deprecated Use {@link DialogsService#openSelectionDialog}
-   */
-  openSelectionDialog(opts: dialogModels.SelectionDialogOpts, config?: MatDialogConfig<dialogModels.SelectionDialogOpts>) {
-    return this.dialog.openSelectionDialog(opts, config);
-  }
 }
 
 @NgModule({
@@ -154,8 +101,7 @@ export class SharedService {
   imports: [
     CommonModule,
     FormsModule,
-    MatSnackBarModule,
-    DialogsModule
+    MatSnackBarModule
   ]
 })
 export class SharedModule { }

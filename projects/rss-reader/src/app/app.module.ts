@@ -11,8 +11,10 @@ import { environment } from '../environments/environment';
 import { ActionItemsModule } from './actionitem.service';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
-import { DialogsModule } from './dialogs/dialogs.module';
 import { ArticleCardModule } from './components/article-card/article-card.module';
+import { ExpansionPanelComponent } from './components/expansion-panel/expansion-panel.component';
+import { DialogsModule as CoreDialogsModule } from './core/dialogs/dialogs.module';
+import { DialogsModule } from './dialogs/dialogs.module';
 import { FeedComponent } from './feed/feed.component';
 import { GuideItemsService } from './guide-items';
 import { HeadlinesComponent } from './headlines/headlines.component';
@@ -22,11 +24,10 @@ import { OverlayService } from './overlay.service';
 import { OnboardingOverlayComponent } from './overlays/onboarding-overlay/onboarding-overlay.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DocViewerComponent } from './pages/doc-viewer/doc-viewer.component';
-import { ExpansionPanelComponent } from './components/expansion-panel/expansion-panel.component';
 import { GuidesListComponent } from './pages/guide-list/guide-list.component';
 import { GuideViewerComponent } from './pages/guide-viewer/guide-viewer.component';
-import { SharedModule } from './shared.service';
 import { PipesModule } from './pipe/pipes.module';
+import { SharedModule } from './shared.service';
 
 const OVERLAYS = [
   OnboardingOverlayComponent
@@ -61,6 +62,7 @@ const OVERLAYS = [
     // ServiceWorkerModule.register(environment.swLocation, { enabled: environment.production, scope: './' }),
     ServiceWorkerModule.register('./ngsw-worker.js', { enabled: environment.production, scope: './' }),
     DialogsModule,
+    CoreDialogsModule,
     ActionItemsModule,
     ArticleCardModule,
     HotkeysModule,

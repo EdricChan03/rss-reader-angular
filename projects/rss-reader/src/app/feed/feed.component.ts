@@ -3,7 +3,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, Subject, Subscription, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+
 import { ActionItemService } from '../actionitem.service';
+import { DialogsService } from '../core/dialogs/dialogs.service';
 import { CodeViewerDialogComponent, FeedDialogComponent, RSSChannelInfoDialogComponent } from '../dialogs';
 import { HotkeysService } from '../hotkeys/hotkeys.service';
 import { Rss2JsonResponseItem } from '../models/rss2json-api/item';
@@ -26,6 +28,7 @@ export class FeedComponent implements OnDestroy, OnInit {
   // See https://stackoverflow.com/a/12444641 for more info
   shortcutHandlers: Subscription[] = [];
   constructor(
+    private coreDialogs: DialogsService,
     private dialog: MatDialog,
     private http: HttpClient,
     private shared: SharedService,
@@ -77,7 +80,7 @@ export class FeedComponent implements OnDestroy, OnInit {
   }
 
   reload() {
-    this.shared.openConfirmDialog({
+    this.coreDialogs.openConfirmDialog({
       msg: 'Are you sure you want to refresh? Changes will not be saved!',
       title: 'Reload?'
     }).afterClosed().subscribe(result => {
