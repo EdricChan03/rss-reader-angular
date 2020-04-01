@@ -49,6 +49,14 @@ export class ReleaseNotesComponent {
   }
 
   /**
+   * Retrieves the release name for the specified `version`.
+   * @param version The version
+   */
+  getReleaseName(version: string): string {
+    return this.releaseNotes.releases[version].releaseName;
+  }
+
+  /**
    * Retrieves the release notes for the specified `version`.
    * @param version The version
    */

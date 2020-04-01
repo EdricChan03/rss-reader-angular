@@ -2,7 +2,7 @@
   <h1 id="app-header">Release notes</h1>
   <h2 id="current-version">Current version: {{ releaseNotes.latestVersion }}</h2>
 
-  <h3 id="current-version-release-notes">Release notes for {{ releaseNotes.latestVersion }}</h3>
+  <h3 id="current-version-release-notes">Release notes for {{ releaseNotes.latestVersion }}<span *ngIf="getReleaseName(releaseNotes.latestVersion) as releaseName">- {{ releaseName }}</span></h3>
   <!-- TODO: Convert to template -->
   <ng-container *ngIf="versions; else: noReleaseNotes">
     <p *ngIf="getReleaseDate(releaseNotes.latestVersion) as releaseDate">Release date: <em><time [dateTime]="releaseDate">{{ releaseDate | date:'short' }}</time></em></p>
@@ -27,7 +27,7 @@
     -->
     <ng-container *ngFor="let version of versions.slice().reverse()">
       <h3 id="version-{{ version }}">
-        Version {{ version }}
+        Version {{ version }}<span *ngIf="getReleaseName(version) as releaseName"> - {{ releaseName }}</span>
         <mat-chip *ngIf="version === releaseNotes.latestVersion" color="primary">Latest</mat-chip>
       </h3>
       <p *ngIf="getReleaseDate(version) as releaseDate">Release date: <em><time [dateTime]="releaseDate">{{ releaseDate | date:'short' }}</time></em></p>
