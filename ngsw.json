@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1586359526645,
+  "timestamp": 1589221656441,
   "appData": {
     "version": "1.6.0"
   },
@@ -114,8 +114,8 @@
     "/rss-reader/5-es5.1c82c570beb49d35f6b8.js": "2f3328ba980d371a72a399991dc48226e677c73a",
     "/rss-reader/6-es2015.064c3800397ad2d4d2a0.js": "c05842b7d822109652ecee2bb63d7e7c896827a8",
     "/rss-reader/6-es5.064c3800397ad2d4d2a0.js": "bc427b6772c8996951b2955f85e4ca47bd4473d4",
-    "/rss-reader/assets/docs/guides/TROUBLESHOOTING.html": "dda4301f4039a029b248b34f3f4d8f28c510fca8",
-    "/rss-reader/assets/docs/guides/generate-api-key.html": "01fc32df8934b15fcb0d7048fb243c19fbf3bc20",
+    "/rss-reader/assets/docs/guides/TROUBLESHOOTING.html": "a694ec25735ce86f08ed95b96f84bf18b795ffa4",
+    "/rss-reader/assets/docs/guides/generate-api-key.html": "6c0f0edb5dd5cef83ef9f1029fdcf85274a7b387",
     "/rss-reader/assets/docs/guides/getting-started.html": "bfc38244a763b2b45e7d5fb86e559d2198335b26",
     "/rss-reader/assets/docs/img/generate_api_key/email_verification.jpg": "a4ca62d0d724aa97fa9b0c1a0ee9e0dee0a4c226",
     "/rss-reader/assets/docs/img/generate_api_key/login_page.jpg": "dd0e5e76b1bcadfa870235e796b0ccbf3963fd3e",
