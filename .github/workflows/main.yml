@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Setup NodeJS LTS
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2.0.0
       with:
         node-version: '10.x'
     - name: Setup Angular problem matchers
@@ -44,7 +44,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Setup NodeJS LTS
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2.0.0
       with:
         node-version: '10.x'
     - name: Setup Angular problem matchers
