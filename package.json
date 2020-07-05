@@ -3,18 +3,16 @@
   "private": true,
   "license": "MIT",
   "scripts": {
+    "postinstall": "ngcc",
     "action:deploy": "ng deploy --name $GITHUB_ACTOR --email $GITHUB_ACTOR@users.noreply.github.com --no-silent",
     "action:deployDryRun": "ng deploy --name=$GITHUB_ACTOR --email=$GITHUB_ACTOR@users.noreply.github.com --no-silent --no-build",
     "action:e2e": "ng e2e --protractor-config=projects/rss-reader/e2e/protractor-ci.conf.js",
     "action:test": "ng test --no-watch --no-progress --code-coverage --browsers=ChromeHeadlessCI",
-    "build": "ng build --prod --base-href /rss-reader/ --deploy-url /rss-reader/",
-    "build-prod-local": "ng build -c=httpserver --prod && cd dist && http-server",
     "deploy": "ng deploy",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor",
     "genDocs": "gulp docs",
     "githubPages": "npm run genDocs && ng deploy --base-href=/rss-reader/ && rm -rf dist/",
-    "githubPages2": "npm run build && ngh && rm -rf dist/",
     "lint": "ng lint",
     "start": "ng serve",
     "test": "ng test"
@@ -71,7 +69,7 @@
     "protractor": "~5.4.4",
     "ts-node": "~8.10.1",
     "tsconfig-paths": "^3.9.0",
-    "tslint": "~6.1.2",
+    "tslint": "~6.1.1",
     "typescript": "^3.7.5"
   }
 }
