@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1593935189063,
+  "timestamp": 1593939672891,
   "appData": {
     "version": "1.6.0"
   },
@@ -10,21 +10,24 @@
       "name": "app",
       "installMode": "prefetch",
       "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
       "urls": [
-        "/rss-reader/5-es2015.aabef26024b4bcaedda4.js",
-        "/rss-reader/5-es5.aabef26024b4bcaedda4.js",
-        "/rss-reader/6-es2015.a1ec881e8bc61c1d8ba8.js",
-        "/rss-reader/6-es5.a1ec881e8bc61c1d8ba8.js",
+        "/rss-reader/5-es2015.41e40c9c908ad2b8cb05.js",
+        "/rss-reader/5-es5.41e40c9c908ad2b8cb05.js",
+        "/rss-reader/6-es2015.1b13794265c94fa35fe5.js",
+        "/rss-reader/6-es5.1b13794265c94fa35fe5.js",
         "/rss-reader/index.html",
-        "/rss-reader/main-es2015.bdac98d0c8e05935afa9.js",
-        "/rss-reader/main-es5.bdac98d0c8e05935afa9.js",
+        "/rss-reader/main-es2015.0908e68c9909e0aa4cf6.js",
+        "/rss-reader/main-es5.0908e68c9909e0aa4cf6.js",
         "/rss-reader/manifest.webmanifest",
-        "/rss-reader/polyfills-es2015.84d9b7409a062aa037a4.js",
-        "/rss-reader/polyfills-es5.349ff589ea1278cb3009.js",
-        "/rss-reader/runtime-es2015.0e3d30c328d1b9b4523f.js",
-        "/rss-reader/runtime-es5.0e3d30c328d1b9b4523f.js",
+        "/rss-reader/polyfills-es2015.1cd7459c71460f032f3a.js",
+        "/rss-reader/polyfills-es5.91f47ff2748ae7e8977f.js",
+        "/rss-reader/runtime-es2015.62d0093fad4c20eda209.js",
+        "/rss-reader/runtime-es5.62d0093fad4c20eda209.js",
         "/rss-reader/scripts.85c71a8249570d1d4480.js",
-        "/rss-reader/styles.68e55e42637b64c17c3b.css"
+        "/rss-reader/styles.c9f5aaba8c577ebc0952.css"
       ],
       "patterns": []
     },
@@ -32,6 +35,9 @@
       "name": "assets",
       "installMode": "lazy",
       "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
       "urls": [
         "/rss-reader/assets/docs/guides/TROUBLESHOOTING.html",
         "/rss-reader/assets/docs/guides/generate-api-key.html",
@@ -68,6 +74,9 @@
       "name": "fonts",
       "installMode": "lazy",
       "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
       "urls": [],
       "patterns": [
         "https:\\/\\/fonts\\.googleapis\\.com\\/.*",
@@ -78,6 +87,9 @@
       "name": "site-resources",
       "installMode": "lazy",
       "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
       "urls": [],
       "patterns": [
         "https:\\/\\/edricchan03\\.github\\.io\\/res\\/.*"
@@ -95,6 +107,9 @@
       "maxSize": 20,
       "maxAge": 3600000,
       "timeoutMs": 5000,
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
       "version": 1
     },
     {
@@ -106,14 +121,17 @@
       "maxSize": 8,
       "maxAge": 604800000,
       "timeoutMs": 2000,
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
       "version": 1
     }
   ],
   "hashTable": {
-    "/rss-reader/5-es2015.aabef26024b4bcaedda4.js": "d41ba72351bd80220edbdc357ffe37bfa2688eb7",
-    "/rss-reader/5-es5.aabef26024b4bcaedda4.js": "2f3328ba980d371a72a399991dc48226e677c73a",
-    "/rss-reader/6-es2015.a1ec881e8bc61c1d8ba8.js": "c05842b7d822109652ecee2bb63d7e7c896827a8",
-    "/rss-reader/6-es5.a1ec881e8bc61c1d8ba8.js": "bc427b6772c8996951b2955f85e4ca47bd4473d4",
+    "/rss-reader/5-es2015.41e40c9c908ad2b8cb05.js": "d45a2c708325ab2a1652d2d0121f6f5ba9258849",
+    "/rss-reader/5-es5.41e40c9c908ad2b8cb05.js": "3a5a02a1b30653a324b5e8b0bdbe8b4f03f9f21d",
+    "/rss-reader/6-es2015.1b13794265c94fa35fe5.js": "d64f2023f6242f6f585d5408b9606afa547fdae0",
+    "/rss-reader/6-es5.1b13794265c94fa35fe5.js": "e3caafa5a6d000997043e997db00c59b41711f3d",
     "/rss-reader/assets/docs/guides/TROUBLESHOOTING.html": "a694ec25735ce86f08ed95b96f84bf18b795ffa4",
     "/rss-reader/assets/docs/guides/generate-api-key.html": "6c0f0edb5dd5cef83ef9f1029fdcf85274a7b387",
     "/rss-reader/assets/docs/guides/getting-started.html": "bfc38244a763b2b45e7d5fb86e559d2198335b26",
@@ -142,16 +160,16 @@
     "/rss-reader/assets/onboarding/articles.svg": "099afa8a050d38139505ee3bb933ccd296002738",
     "/rss-reader/assets/release-notes/release-notes-schema.json": "c3219cddf1584ee6bbfe4abb00108e12e0059794",
     "/rss-reader/assets/release-notes/release-notes.json": "2d2a6b11b9bf4aaa543a965b7d6429001c682757",
-    "/rss-reader/index.html": "b4f06c9da1d59e6f5badf32f64b3bd13a3cace07",
-    "/rss-reader/main-es2015.bdac98d0c8e05935afa9.js": "d4d4391b26c05e04f4fec8db6b3dfd96c88d3c0d",
-    "/rss-reader/main-es5.bdac98d0c8e05935afa9.js": "dd8ca1bbf3aad1be0eb551faf2d0be1355a3bad1",
+    "/rss-reader/index.html": "2ea9bfb38d16058982fdfc10eb3eef12cc515b56",
+    "/rss-reader/main-es2015.0908e68c9909e0aa4cf6.js": "258f2596219f04559b7187c4285584f34932f89f",
+    "/rss-reader/main-es5.0908e68c9909e0aa4cf6.js": "84d27821724b3b14c8a57a8e316728bccdfedcb8",
     "/rss-reader/manifest.webmanifest": "44eb37ba72a29889fcee4bc71cf98bbf2db8eccf",
-    "/rss-reader/polyfills-es2015.84d9b7409a062aa037a4.js": "c390c01ffbc2fe4ed798c2cdf9c887116ec0f6e1",
-    "/rss-reader/polyfills-es5.349ff589ea1278cb3009.js": "0561a2bd1be45d87eba371037109c1b4b2b1271d",
-    "/rss-reader/runtime-es2015.0e3d30c328d1b9b4523f.js": "3c33921ed7af299ef7adc0a67b9756c97a2cce86",
-    "/rss-reader/runtime-es5.0e3d30c328d1b9b4523f.js": "c9ee0caebc980861ba0145ea7cd77829d555af8f",
+    "/rss-reader/polyfills-es2015.1cd7459c71460f032f3a.js": "c390c01ffbc2fe4ed798c2cdf9c887116ec0f6e1",
+    "/rss-reader/polyfills-es5.91f47ff2748ae7e8977f.js": "da13b1a6ab1af1bc1252f3515a3ab83b6e0b1591",
+    "/rss-reader/runtime-es2015.62d0093fad4c20eda209.js": "3896b36fae8cc61ff219df6502a4f39a87181672",
+    "/rss-reader/runtime-es5.62d0093fad4c20eda209.js": "1c9db5b59d1393bd9038366506ad410dbb0af057",
     "/rss-reader/scripts.85c71a8249570d1d4480.js": "5503778299891d9764282e320e0658a92ce88d78",
-    "/rss-reader/styles.68e55e42637b64c17c3b.css": "997ce04837fe07d6f0c6391003746afa95d5cc5b"
+    "/rss-reader/styles.c9f5aaba8c577ebc0952.css": "2c36bed4db82f000ed240681b5897326246c2424"
   },
   "navigationUrls": [
     {
