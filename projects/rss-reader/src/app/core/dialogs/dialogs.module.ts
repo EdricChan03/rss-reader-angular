@@ -21,7 +21,7 @@ const DIALOGS = [
   ConfirmDialogComponent,
   PromptDialogComponent,
   SelectionDialogComponent
-]
+];
 
 const MATERIAL_MODULES = [
   MatButtonModule,
@@ -29,7 +29,7 @@ const MATERIAL_MODULES = [
   MatFormFieldModule,
   MatInputModule,
   MatListModule
-]
+];
 
 @NgModule({
   declarations: [DIALOGS, PortalDialogComponent],

@@ -19,8 +19,9 @@ export abstract class Dialog {
       }
     }
 
-    return 'negativeBtnText' in this.opts || 'positiveBtnText' in this.opts || 'neutralBtnText' in this.opts;
-  };
+    return 'negativeBtnText' in this.opts || 'positiveBtnText' in this.opts ||
+      'neutralBtnText' in this.opts;
+  }
 
   /** Whether the negative button should be hidden. */
   abstract get hideNegativeBtn(): boolean;
@@ -34,15 +35,15 @@ export abstract class Dialog {
   /** The negative button's colour. */
   get negativeBtnColor(): ThemePalette {
     return 'negativeBtnColor' in this.opts ? this.opts.negativeBtnColor : this.defaultBtnColor;
-  };
+  }
 
   /** The neutral button's colour. */
   get neutralBtnColor(): ThemePalette {
     return 'neutralBtnColor' in this.opts ? this.opts.neutralBtnColor : this.defaultBtnColor;
-  };
+  }
 
   /** The positive button's colour. */
   get positiveBtnColor(): ThemePalette {
     return 'positiveBtnColor' in this.opts ? this.opts.positiveBtnColor : this.defaultBtnColor;
-  };
+  }
 }

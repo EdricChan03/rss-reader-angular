@@ -8,12 +8,12 @@ import {
   Input,
   OnDestroy,
   ViewContainerRef,
-  Output,
-  Type
+  SecurityContext,
+  Output
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
-import { DomPortalHost, ComponentPortal } from '@angular/cdk/portal';
+import { ComponentPortal, DomPortalOutlet } from '@angular/cdk/portal';
 import { ExpansionPanelComponent } from '../../components/expansion-panel/expansion-panel.component';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -73,7 +73,7 @@ export class DocViewerComponent implements OnDestroy {
     // Loop between all the elements
     for (let i = 0; i < elements.length; i++) {
       // Creates a new portal host
-      const portalHost = new DomPortalHost(
+      const portalHost = new DomPortalOutlet(
         elements[i], this.componentFactoryResolver, this.appRef, this.injector);
       // Creates a new component portal
       const expansionPanelPortal = new ComponentPortal(ExpansionPanelComponent);
@@ -82,7 +82,7 @@ export class DocViewerComponent implements OnDestroy {
       // Attaches the portal to the portal host declared earlier
       const expansionPanel = portalHost.attach(expansionPanelPortal);
       // Sets the `html` instance to be a `SafeHtml` of the original element's HTML
-      expansionPanel.instance.html = this.dom.bypassSecurityTrustHtml(tempElements[i].innerHTML);
+      expansionPanel.instance.html = this.dom.sanitize(SecurityContext.HTML, tempElements[i].innerHTML);
     }
   }
   ngOnDestroy() {
