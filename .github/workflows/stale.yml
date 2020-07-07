@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/stale@v1
+    - uses: actions/stale@v3
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         # TODO: Add a link to learn more about why it should be closed
@@ -21,6 +21,8 @@ jobs:
           This pull request will be closed in 7 days as it has been open for 30 days with no activity.
           To prevent the pull request from being closed, either comment on this pull request or remove the "status: stable" label.
         stale-issue-label: 'status: stale'
+        exempt-issue-labels: 'in progress,pinned,status: awaiting-approval,status:needs-triage'
         stale-pr-label: 'status: stale'
+        exempt-pr-labels: 'in progress,pinned,status: awaiting-approval,status:needs-triage'
         days-before-stale: 30
         days-before-close: 7
