@@ -53,7 +53,7 @@
     "codelyzer": "^5.2.2",
     "copy-webpack-plugin": "^4.6.0",
     "gulp": "^4.0.2",
-    "gulp-markdown": "^5.0.1",
+    "gulp-markdown": "^5.1.0",
     "gulp-rename": "^1.4.0",
     "gulp-transform": "^3.0.5",
     "jasmine-core": "~3.5.0",
