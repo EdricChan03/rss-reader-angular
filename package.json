@@ -50,7 +50,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "angular-cli-ghpages": "^0.6.2",
-    "codelyzer": "^5.2.2",
+    "codelyzer": "^6.0.0",
     "copy-webpack-plugin": "^4.6.0",
     "gulp": "^4.0.2",
     "gulp-markdown": "^5.1.0",
