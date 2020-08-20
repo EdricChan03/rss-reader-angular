@@ -30,7 +30,7 @@
               {
                 "glob": "**/*",
                 "input": "storybook",
-                "output": "./"
+                "output": "./storybook"
               }
             ],
             "styles": [
