@@ -11,6 +11,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { ArticleCardComponent } from './article-card.component';
+import { DialogsModule } from '../../dialogs/dialogs.module';
 import { PipesModule } from '../../pipe/pipes.module';
 import { StripHtmlTagsPipe } from '../../pipe';
 import { SettingsStorageService } from '../../core/settings-storage/settings-storage.service';
@@ -31,7 +32,8 @@ const MATERIAL_MODULES = [
     CommonModule,
     PipesModule,
     FlexLayoutModule,
-    MATERIAL_MODULES
+    MATERIAL_MODULES,
+    DialogsModule
   ],
   declarations: [
     ArticleCardComponent
