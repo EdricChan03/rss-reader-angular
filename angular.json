@@ -27,7 +27,11 @@
                 "input": "node_modules/@mdi/angular-material",
                 "output": "./assets"
               },
-              "storybook"
+              {
+                "glob": "**/*",
+                "input": "storybook",
+                "output": "./"
+              }
             ],
             "styles": [
               "projects/rss-reader/src/styles.scss"
