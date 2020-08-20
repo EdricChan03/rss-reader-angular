@@ -3,8 +3,8 @@ import { Meta, Story } from '@storybook/angular/types-6-0';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { ArticleCardModule } from '../src/app/components/article-card/article-card.module';
-import { ArticleCardComponent } from '../src/app/components/article-card/article-card.component';
+import { ArticleCardModule } from './article-card.module';
+import { ArticleCardComponent } from './article-card.component';
 
 export default {
   title: 'Components/Article Card',
