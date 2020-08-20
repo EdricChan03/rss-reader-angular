@@ -38,3 +38,7 @@ projects/rss-reader/src/assets/docs
 # AngularDoc config
 .angulardoc.json
 .vscode/settings.json
+
+# Storybook
+documentation.json
+/storybook-static

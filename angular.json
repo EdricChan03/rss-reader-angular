@@ -26,7 +26,8 @@
                 "glob": "mdi.svg",
                 "input": "node_modules/@mdi/angular-material",
                 "output": "./assets"
-              }
+              },
+              "storybook"
             ],
             "styles": [
               "projects/rss-reader/src/styles.scss"
