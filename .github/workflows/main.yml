@@ -75,18 +75,7 @@ jobs:
       # Skip this step if a cache hit occurs on the key
       if: steps.docs_cache.outputs.cache-hit != 'true'
       run: npm run genDocs
-    - name: Cache Storybook output
-      uses: actions/cache@v2
-      id: storybook_cache
-      with:
-        path: storybook
-        key: ${{ runner.os }}-storybook-${{ hashFiles('storybook/**') }}
-        restore-keys: |
-          ${{ runner.os }}-storybook-${{ hashFiles('storybook/**') }}
-          ${{ runner.os }}-storybook-
     - name: Generate Storybook
-      # Skip this step if a cache hit occurs on the key
-      if: steps.storybook_cache.outputs.cache-hit != 'true'
       run: npm run build-storybook
     - name: Deploy site
       run: npm run action:deploy
