@@ -18,7 +18,7 @@
     "test": "ng test",
     "docs:json": "compodoc -p ./tsconfig.base.json -e json -d .",
     "storybook": "npm run docs:json && start-storybook -p 6006",
-    "build-storybook": "npm run docs:json && build-storybook -o storybook"
+    "build-storybook": "npm run docs:json && build-storybook"
   },
   "dependencies": {
     "@angular/animations": "^10.0.2",
