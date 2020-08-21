@@ -3,8 +3,11 @@ import { setCompodocJson } from '@storybook/addon-docs/angular';
 import docJson from '../documentation.json';
 setCompodocJson(docJson);
 
+import { themes } from '@storybook/theming';
+
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
+  docs: { theme: themes.dark },
   themes: [
     {
       name: 'indigo-pink',
