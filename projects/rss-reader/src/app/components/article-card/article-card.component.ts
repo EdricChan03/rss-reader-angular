@@ -6,6 +6,7 @@ import { NewsAPITopHeadlinesArticle } from '../../models/news-api/top-headlines-
 import { SettingsStorageService } from '../../core/settings-storage/settings-storage.service';
 import { StripHtmlTagsPipe } from '../../pipe';
 
+/** Card used to represent an article entry (`FeedEntry` or `NewsAPITopHeadlinesArticle`). */
 @Component({
   selector: 'app-article-card',
   templateUrl: './article-card.component.html',
