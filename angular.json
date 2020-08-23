@@ -60,6 +60,13 @@
                 }
               ],
               "assets": [
+                "projects/rss-reader/src/assets",
+                "projects/rss-reader/src/manifest.webmanifest",
+                {
+                  "glob": "mdi.svg",
+                  "input": "node_modules/@mdi/angular-material",
+                  "output": "./assets"
+                },
                 "projects/rss-reader/src/.nojekyll",
                 {
                   "glob": "**/*",
