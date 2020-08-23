@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json.schemastore.org/web-manifest",
+  "name": "RSS Reader",
+  "short_name": "RSS Reader",
+  "theme_color": "#3f51b5",
+  "background_color": "#fafafa",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "categories": ["news"],
+  "description": "News and RSS reader application that provides the latest news and headlines.",
+  "dir": "auto",
+  "lang": "en",
+  "serviceworker": {
+    "src": "/rss-reader/ngsw-worker.js",
+    "scope": "/rss-reader/"
+  },
+  "icons": [
+    {
+      "src": "assets/favicon/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/favicon/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/favicon/favicon-194x194.png",
+      "sizes": "194x194",
+      "type": "image/png"
+    }
+  ]
+}
