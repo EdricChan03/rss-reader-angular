@@ -71,7 +71,12 @@
   }</script><link href="https://fonts.googleapis.com/css2?family=Material+Icons&family=Merriweather:wght@300;400;500" rel="stylesheet"><style>/* Set the body's box-sizing */
   body {
     box-sizing: border-box;
-  }</style><style>#root[hidden],
+  }</style><script>setTimeout(() => {
+    // Add the needed Angular Material background and typography classes.
+    // (See https://github.com/storybookjs/storybook/issues/1672#issuecomment-455621938
+    // for more info on this workaround)
+    document.body.classList.add('mat-app-background', 'mat-typography');
+  }, 0);</script><style>#root[hidden],
       #docs-root[hidden] {
         display: none !important;
-      }</style></head><body><div class="sb-nopreview sb-wrapper"><div class="sb-nopreview_main"><h1 class="sb-nopreview_heading sb-heading">No Preview</h1><p>Sorry, but you either have no stories or none are selected somehow.</p><ul><li>Please check the Storybook config.</li><li>Try reloading the page.</li></ul><p>If the problem persists, check the browser console, or the terminal you've run Storybook from.</p></div></div><div class="sb-errordisplay sb-wrapper"><pre id="error-message" class="sb-heading"></pre><pre class="sb-errordisplay_code"><code id="error-stack"></code></pre></div><div id="root"></div><div id="docs-root"></div><script>window['LOGLEVEL'] = "info";</script><script src="./sb_dll/storybook_docs_dll.js"></script><script src="runtime~main.a3556cc7566272db7560.bundle.js"></script><script src="vendors~main.a3556cc7566272db7560.bundle.js"></script><script src="main.a3556cc7566272db7560.bundle.js"></script><script src="scripts.js"></script></body></html>
+      }</style></head><body><div class="sb-nopreview sb-wrapper"><div class="sb-nopreview_main"><h1 class="sb-nopreview_heading sb-heading">No Preview</h1><p>Sorry, but you either have no stories or none are selected somehow.</p><ul><li>Please check the Storybook config.</li><li>Try reloading the page.</li></ul><p>If the problem persists, check the browser console, or the terminal you've run Storybook from.</p></div></div><div class="sb-errordisplay sb-wrapper"><pre id="error-message" class="sb-heading"></pre><pre class="sb-errordisplay_code"><code id="error-stack"></code></pre></div><div id="root"></div><div id="docs-root"></div><script>window['LOGLEVEL'] = "info";</script><script src="./sb_dll/storybook_docs_dll.js"></script><script src="runtime~main.d64bbf00d60dc1b68c02.bundle.js"></script><script src="vendors~main.d64bbf00d60dc1b68c02.bundle.js"></script><script src="main.d64bbf00d60dc1b68c02.bundle.js"></script><script src="scripts.js"></script></body></html>
