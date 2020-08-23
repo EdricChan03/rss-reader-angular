@@ -15,12 +15,20 @@ export default {
         BrowserAnimationsModule,
         ArticleCardModule
       ]
+    }),
+    story => ({
+      ...story(),
+      template: `<div style="width: 350px">${story().template}</div>`
     })
-  ]
+  ],
+  parameters: {
+    layout: 'centered'
+  }
 } as Meta;
 
 const Template: Story<ArticleCardComponent> = (args: ArticleCardComponent) => ({
   component: ArticleCardComponent,
+  template: `<app-article-card [article]="article"></app-article-card>`,
   props: args
 });
 
