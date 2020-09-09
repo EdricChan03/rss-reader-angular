@@ -49,7 +49,7 @@
     "@babel/core": "^7.11.1",
     "@compodoc/compodoc": "^1.1.11",
     "@storybook/addon-actions": "^6.0.15",
-    "@storybook/addon-essentials": "^6.0.15",
+    "@storybook/addon-essentials": "^6.0.21",
     "@storybook/addon-links": "^6.0.15",
     "@storybook/addons": "^6.0.16",
     "@storybook/angular": "^6.0.15",
