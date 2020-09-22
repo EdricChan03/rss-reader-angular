@@ -1,0 +1,8 @@
+name: "Project CodeQL Config"
+
+queries:
+- uses: security-and-quality
+
+paths-ignore:
+- node_modules
+- '**/*.spec.ts'
