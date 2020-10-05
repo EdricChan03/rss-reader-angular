@@ -16,7 +16,7 @@
     "lint": "ng lint",
     "start": "ng serve",
     "test": "ng test",
-    "docs:json": "compodoc -p ./tsconfig.base.json -e json -d .",
+    "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "storybook": "npm run docs:json && start-storybook -p 6006",
     "build-storybook": "npm run docs:json && build-storybook"
   },
