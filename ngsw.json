@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1601030478691,
+  "timestamp": 1601912062617,
   "appData": {
     "version": "1.6.0"
   },
@@ -14,20 +14,20 @@
         "ignoreVary": true
       },
       "urls": [
-        "/rss-reader/5-es2015.41e40c9c908ad2b8cb05.js",
-        "/rss-reader/5-es5.41e40c9c908ad2b8cb05.js",
-        "/rss-reader/6-es2015.1b13794265c94fa35fe5.js",
-        "/rss-reader/6-es5.1b13794265c94fa35fe5.js",
+        "/rss-reader/5-es2015.426ddd999dc4e6f45f0f.js",
+        "/rss-reader/5-es5.426ddd999dc4e6f45f0f.js",
+        "/rss-reader/6-es2015.c278f0028eaa6fb82649.js",
+        "/rss-reader/6-es5.c278f0028eaa6fb82649.js",
         "/rss-reader/index.html",
-        "/rss-reader/main-es2015.a1899b4d77269aaa11fd.js",
-        "/rss-reader/main-es5.a1899b4d77269aaa11fd.js",
+        "/rss-reader/main-es2015.2c9c82ac446348c8667b.js",
+        "/rss-reader/main-es5.2c9c82ac446348c8667b.js",
         "/rss-reader/manifest.webmanifest",
-        "/rss-reader/polyfills-es2015.1cd7459c71460f032f3a.js",
-        "/rss-reader/polyfills-es5.91f47ff2748ae7e8977f.js",
-        "/rss-reader/runtime-es2015.62d0093fad4c20eda209.js",
-        "/rss-reader/runtime-es5.62d0093fad4c20eda209.js",
+        "/rss-reader/polyfills-es2015.add54c2931c744a8e8b7.js",
+        "/rss-reader/polyfills-es5.7a05a2ba7e9711ef0df7.js",
+        "/rss-reader/runtime-es2015.df81e9cd854752e0755c.js",
+        "/rss-reader/runtime-es5.df81e9cd854752e0755c.js",
         "/rss-reader/scripts.9933d0d258633dcaf1fc.js",
-        "/rss-reader/styles.c9f5aaba8c577ebc0952.css"
+        "/rss-reader/styles.4f8e593d59be0ff39fa0.css"
       ],
       "patterns": []
     },
@@ -128,10 +128,10 @@
     }
   ],
   "hashTable": {
-    "/rss-reader/5-es2015.41e40c9c908ad2b8cb05.js": "d45a2c708325ab2a1652d2d0121f6f5ba9258849",
-    "/rss-reader/5-es5.41e40c9c908ad2b8cb05.js": "3a5a02a1b30653a324b5e8b0bdbe8b4f03f9f21d",
-    "/rss-reader/6-es2015.1b13794265c94fa35fe5.js": "d64f2023f6242f6f585d5408b9606afa547fdae0",
-    "/rss-reader/6-es5.1b13794265c94fa35fe5.js": "e3caafa5a6d000997043e997db00c59b41711f3d",
+    "/rss-reader/5-es2015.426ddd999dc4e6f45f0f.js": "8c5a55fad5486d108c85119e9cff3ce15f360982",
+    "/rss-reader/5-es5.426ddd999dc4e6f45f0f.js": "fd2d6bfb2a73df46c6a500ea519f0a6bf8e35365",
+    "/rss-reader/6-es2015.c278f0028eaa6fb82649.js": "73ad318c2d1d320838f0488e5f85f987b2de031c",
+    "/rss-reader/6-es5.c278f0028eaa6fb82649.js": "a23cf92bf504a3206af3f6173756deb4e064ff14",
     "/rss-reader/assets/docs/guides/TROUBLESHOOTING.html": "a694ec25735ce86f08ed95b96f84bf18b795ffa4",
     "/rss-reader/assets/docs/guides/generate-api-key.html": "6c0f0edb5dd5cef83ef9f1029fdcf85274a7b387",
     "/rss-reader/assets/docs/guides/getting-started.html": "bfc38244a763b2b45e7d5fb86e559d2198335b26",
@@ -160,16 +160,16 @@
     "/rss-reader/assets/onboarding/articles.svg": "099afa8a050d38139505ee3bb933ccd296002738",
     "/rss-reader/assets/release-notes/release-notes-schema.json": "c3219cddf1584ee6bbfe4abb00108e12e0059794",
     "/rss-reader/assets/release-notes/release-notes.json": "2d2a6b11b9bf4aaa543a965b7d6429001c682757",
-    "/rss-reader/index.html": "2179657321769c4b72835c101dfb5e73cf6dbcd5",
-    "/rss-reader/main-es2015.a1899b4d77269aaa11fd.js": "fa1292f712eebb2b7d8c4e06864613e2b6cf5c03",
-    "/rss-reader/main-es5.a1899b4d77269aaa11fd.js": "6b587987e3d86c6bb4f7672491b09ea09953afa6",
+    "/rss-reader/index.html": "df11b2a54972cc80395187a505f7d46940377d3d",
+    "/rss-reader/main-es2015.2c9c82ac446348c8667b.js": "26084a9a17d2dfa83dbf99f3f47203aa2a8d3d37",
+    "/rss-reader/main-es5.2c9c82ac446348c8667b.js": "3a229e46a3fa13274898c1b120a8ff7d733de0c5",
     "/rss-reader/manifest.webmanifest": "44eb37ba72a29889fcee4bc71cf98bbf2db8eccf",
-    "/rss-reader/polyfills-es2015.1cd7459c71460f032f3a.js": "c390c01ffbc2fe4ed798c2cdf9c887116ec0f6e1",
-    "/rss-reader/polyfills-es5.91f47ff2748ae7e8977f.js": "da13b1a6ab1af1bc1252f3515a3ab83b6e0b1591",
-    "/rss-reader/runtime-es2015.62d0093fad4c20eda209.js": "3896b36fae8cc61ff219df6502a4f39a87181672",
-    "/rss-reader/runtime-es5.62d0093fad4c20eda209.js": "1c9db5b59d1393bd9038366506ad410dbb0af057",
-    "/rss-reader/scripts.9933d0d258633dcaf1fc.js": "1360509b684380ec01bfb0be5a9b84ec39a23cd7",
-    "/rss-reader/styles.c9f5aaba8c577ebc0952.css": "2c36bed4db82f000ed240681b5897326246c2424"
+    "/rss-reader/polyfills-es2015.add54c2931c744a8e8b7.js": "65fc1545e50d7022e5c223f97a941c5c043bc2bc",
+    "/rss-reader/polyfills-es5.7a05a2ba7e9711ef0df7.js": "fde377ffcfd20ff4320ac337314c0f2da62f8232",
+    "/rss-reader/runtime-es2015.df81e9cd854752e0755c.js": "dab4957a3f602b127210e137e5482e2132fc2275",
+    "/rss-reader/runtime-es5.df81e9cd854752e0755c.js": "62d658a998c983feeb3b026e8eb1dd09977ae9f0",
+    "/rss-reader/scripts.9933d0d258633dcaf1fc.js": "41bc509a75697005aace37b6bdaba06aea17068d",
+    "/rss-reader/styles.4f8e593d59be0ff39fa0.css": "b66995c559450a1d0ad7f3b243faf7655de2cff2"
   },
   "navigationUrls": [
     {
