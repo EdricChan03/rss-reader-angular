@@ -35,3 +35,9 @@ jobs:
       run: npm run lint
     - name: Test application
       run: npm run action:test
+    - name: Upload Codecov coverage report
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_ACTION }}
+        file: ./coverage/rss-reader/coverage-final.json
+        name: codecov-action
