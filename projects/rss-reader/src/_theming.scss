@@ -58,13 +58,13 @@
   $foreground: map-get($theme, foreground);
   $is-dark-theme: map-get($theme, is-dark);
   $tableBorderOpacity: if($is-dark-theme, 0.08, 0.03);
-  table {
+  table.app-table {
     color: mat-color($foreground, text);
-  }
-  th {
-    background: mat-color($background, app-bar);
-  }
-  td {
-    border: 1px solid rgba(mat-color($foreground, secondary-text), $tableBorderOpacity);
+    th {
+      background: mat-color($background, app-bar);
+    }
+    td {
+      border: 1px solid rgba(mat-color($foreground, secondary-text), $tableBorderOpacity);
+    }
   }
 }
