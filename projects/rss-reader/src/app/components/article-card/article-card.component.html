@@ -1,7 +1,7 @@
 <mat-card class="article-card">
-  <mat-card-header>
-    <mat-card-title *ngIf="articleAuthor">{{ articleAuthor }}</mat-card-title>
-    <mat-card-subtitle *ngIf="articlePubDate">{{ articlePubDate | date:'short' }}</mat-card-subtitle>
+  <mat-card-header class="article-card--header">
+    <mat-card-title *ngIf="articleAuthor" class="article-card--author">{{ articleAuthor }}</mat-card-title>
+    <mat-card-subtitle *ngIf="articlePubDate" class="article-card--pub-date">{{ articlePubDate | date:'short' }}</mat-card-subtitle>
     <span fxFlex></span>
     <button mat-icon-button [matMenuTriggerFor]="feedMenu">
       <mat-icon class="icon">more_vert</mat-icon>
@@ -12,18 +12,18 @@
       </button>
     </mat-menu>
   </mat-card-header>
-  <img mat-card-image *ngIf="articleImg && hasImage" [src]="articleImg" alt="Article thumbnail">
-  <mat-card-title class="article-card-title">{{ articleTitle }}</mat-card-title>
-  <mat-card-content>
-    <p>{{ articleDesc | slice:0:300 }}</p>
-    <mat-chip-list *ngIf="articleCategories.length > 0">
+  <img mat-card-image class="article-card--image" *ngIf="articleImg && hasImage" [src]="articleImg" alt="Article thumbnail">
+  <mat-card-title class="article-card--title">{{ articleTitle }}</mat-card-title>
+  <mat-card-content class="article-card--content">
+    <p class="article-card--description">{{ articleDesc | slice:0:300 }}</p>
+    <mat-chip-list *ngIf="articleCategories.length > 0" class="article-card--categories">
       <mat-chip *ngFor="let category of articleCategories" [innerHTML]="category"></mat-chip>
     </mat-chip-list>
-    <audio *ngIf="enclosureLink && enclosureIsAudioType" [src]="enclosureLink" controls preload="metadata"></audio>
-    <video *ngIf="enclosureLink && enclosureIsVideoType" [src]="enclosureLink" controls preload="metadata"></video>
+    <audio *ngIf="enclosureLink && enclosureIsAudioType" [src]="enclosureLink" class="article-card--media-player" controls preload="metadata"></audio>
+    <video *ngIf="enclosureLink && enclosureIsVideoType" [src]="enclosureLink" class="article-card--media-player" controls preload="metadata"></video>
   </mat-card-content>
-  <mat-divider></mat-divider>
-  <mat-card-actions align="end">
+  <mat-divider class="article-card--divider"></mat-divider>
+  <mat-card-actions align="end" class="article-card--actions">
     <button mat-icon-button (click)="share()" matTooltip="Share post" color="primary" aria-label="Share post">
       <mat-icon>share</mat-icon>
     </button>

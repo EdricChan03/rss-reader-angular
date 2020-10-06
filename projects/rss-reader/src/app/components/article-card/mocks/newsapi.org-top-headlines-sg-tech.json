@@ -1,0 +1,266 @@
+{
+  "status": "ok",
+  "totalResults": 70,
+  "articles": [
+    {
+      "source": {
+        "id": null,
+        "name": "Geek Culture"
+      },
+      "author": "Jake Su",
+      "title": "Cyberpunk 2077 Has Officially Gone Gold, No Delay For 19 November Launch - Geek Culture",
+      "description": "No more delays in sight, as CD Projekt Red's Cyberpunk 2077 has now officially gone gold ahead of its 19 November release date.",
+      "url": "https://geekculture.co/cyberpunk-2077-has-officially-gone-gold-no-delay-for-19-november-launch/",
+      "urlToImage": "https://geekculture.co/wp-content/uploads/2020/10/cyberpunk2077-gone-gold.jpg",
+      "publishedAt": "2020-10-05T12:41:48Z",
+      "content": "This November will see two next-gen consoles duke it out as the PlayStation 5 go up against the Xbox Series X/S. However, as great as the machines are, they are nothing without games. One of the bloc… [+941 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "HITC - Football, Gaming, Movies, TV, Music"
+      },
+      "author": "Callum Smith",
+      "title": "Will Call Of Duty Black Ops Cold War have a battle royale mode? - HITC - Football, Gaming, Movies, TV, Music",
+      "description": "Call Of Duty Black Ops Cold War is the next instalment in the never-ending first-person shooter series, and there will be Early Access and Open...",
+      "url": "https://www.hitc.com/en-gb/2020/10/05/will-call-of-duty-black-ops-cold-war-have-battle-royale/",
+      "urlToImage": "https://www.hitc.com/static/uploads/2020/10/Will-Call-Of-Duty-Black-Ops-Cold-have-a-battle-royale-mode.jpg",
+      "publishedAt": "2020-10-05T12:32:00Z",
+      "content": "Activision \r\nCall Of Duty Black Ops Cold War is the next instalment in the never-ending first-person shooter series, and there will be Early Access and Open betas shortly in October. While fans will … [+1682 chars]"
+    },
+    {
+      "source": {
+        "id": "ign",
+        "name": "IGN"
+      },
+      "author": "Jordan Oloman",
+      "title": "Payday 3 in Development on Unreal Engine - IGN Southeast Asia",
+      "description": "It's Payday fellas!",
+      "url": "https://sea.ign.com/news/164519/payday-3-in-development-on-unreal-engine",
+      "urlToImage": "https://sm.ign.com/t/ign_ap/news/p/payday-3-i/payday-3-in-development-on-unreal-engine_v794.1200.jpg",
+      "publishedAt": "2020-10-05T11:46:29Z",
+      "content": "Overkill Software has confirmed that Payday 3 is currently in development on the Unreal Engine.\r\nIn a celebratory tweet to mark 100 thousand followers, the Payday Twitter account revealed the news wi… [+1513 chars]"
+    },
+    {
+      "source": {
+        "id": "techradar",
+        "name": "TechRadar"
+      },
+      "author": "Darren Allan",
+      "title": "Nvidia RTX 3090 is such a monster it can have Crysis 3 installed in VRAM – and run it smoothly at 4K - TechRadar Singapore",
+      "description": "GPU identity Crysis…",
+      "url": "https://www.techradar.com/news/nvidia-rtx-3090-is-such-a-monster-it-can-have-crysis-3-installed-in-vram-and-run-it-smoothly-at-4k",
+      "urlToImage": "https://cdn.mos.cms.futurecdn.net/9mHD9iWmjggmSK64ov2KSQ-1200-80.jpg",
+      "publishedAt": "2020-10-05T11:43:00Z",
+      "content": "Weve seen the original Crysis running entirely on a CPU (with no graphics card needed at all), and heres another interesting feat along similar (kind of) lines: Crysis 3 running directly from a GPU, … [+1791 chars]"
+    },
+    {
+      "source": {
+        "id": "techradar",
+        "name": "TechRadar"
+      },
+      "author": "Barclay Ballard",
+      "title": "Windows 10 antivirus is getting another useful update - TechRadar Singapore",
+      "description": "Microsoft hopes to plug a protection gap affecting the deployment of Windows installation images",
+      "url": "https://www.techradar.com/news/windows-10-antivirus-is-getting-another-useful-update",
+      "urlToImage": "https://cdn.mos.cms.futurecdn.net/isoopje9LKofpDmB78HMLV-1200-80.jpg",
+      "publishedAt": "2020-10-05T11:42:00Z",
+      "content": "Microsoft has released a new tool that should pug a security gap found to be affecting Windows 10, Windows Server 2019 and Windows Server 2016 installation images. \r\nThe patch works by allowing syste… [+2086 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "SoraNews24"
+      },
+      "author": "https://soranews24.com/author/casey-baseel/",
+      "title": "Sony switches X button to confirm for PlayStation 5 worldwide, gamers in Japan freak out - SoraNews24",
+      "description": "26 years of muscle memory training are going to need to be undone once the PS5 launches.",
+      "url": "https://soranews24.com/2020/10/05/sony-switches-x-button-to-confirm-for-playstation-5-worldwide-gamers-in-japan-freak-out/",
+      "urlToImage": "https://soranews24.com/wp-content/uploads/sites/3/2020/10/XB-1.jpg?w=1000&h=525&crop=1",
+      "publishedAt": "2020-10-05T11:07:39Z",
+      "content": "26 years of muscle memory training are going to need to be undone once the PS5 launches.\r\nPretty much every time a next-generation of video game console launches, its makers promise that its going to… [+5198 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "BBC News"
+      },
+      "author": "https://www.facebook.com/bbcnews",
+      "title": "Grindr accounts could be easily hacked with email address - BBC News",
+      "description": "The vulnerability was fixed before being exploited by any malicious parties, the LGBT dating app says.",
+      "url": "https://www.bbc.com/news/technology-54418933",
+      "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/E21D/production/_114758875_grindrheader.jpg",
+      "publishedAt": "2020-10-05T10:57:00Z",
+      "content": "A hack on Grindr allowed anyone with the email address linked to a valid account to reset the user's password and take over their profile.\r\nSecurity experts revealed the vulnerability online - and re… [+1552 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "PCMag.com"
+      },
+      "author": "Matthew Humphries",
+      "title": "Godfall on PS5 and PC Requires an Internet Connection to Play - PCMag",
+      "description": "Not even the single-player campaign will function without a persistent online connection.",
+      "url": "https://www.pcmag.com/news/godfall-on-ps5-and-pc-requires-an-internet-connection-to-play",
+      "urlToImage": "https://i.pcmag.com/imagery/articles/033SPwuRbFGlNS6ksBP2bOK-1.1601888005.fit_lim.size_1200x630.jpg",
+      "publishedAt": "2020-10-05T10:30:15Z",
+      "content": "(Image: Counterplay Games/Gearbox)\r\nOver the weekend, Sony updated the Godfall page on Playstation.com to reveal that Counterplay Games' PS5 launch title requires an online connection to play, even i… [+1170 chars]"
+    },
+    {
+      "source": {
+        "id": "google-news",
+        "name": "Google News"
+      },
+      "author": null,
+      "title": "Super Mario Bros. 35 Review - The Final Verdict - GamingBolt",
+      "description": null,
+      "url": "https://news.google.com/__i/rss/rd/articles/CBMiK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9b3diUmhRWlVGaHfSAQA?oc=5",
+      "urlToImage": null,
+      "publishedAt": "2020-10-05T10:30:02Z",
+      "content": null
+    },
+    {
+      "source": {
+        "id": "techradar",
+        "name": "TechRadar"
+      },
+      "author": "Mark Wilson",
+      "title": "Canon EOS M50 Mark II rumors point to 32.5MP sensor and a surprising omission - TechRadar Singapore",
+      "description": "Shaping up to be (almost) the perfect travel hybrid...",
+      "url": "https://www.techradar.com/news/canon-eos-m50-mark-ii-rumors-point-to-325mp-sensor-and-a-surprising-omission",
+      "urlToImage": "https://cdn.mos.cms.futurecdn.net/nk7X4WeJHTQUqhVagQvxTA-1200-80.jpg",
+      "publishedAt": "2020-10-05T10:15:00Z",
+      "content": "If you've been looking for a small, hybrid mirrorless camera, then some potentially leaked specs for the rumored Canon EOS M50 should have you pretty excited apart from one possible omission.\r\nThe ev… [+2955 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "HITC - Football, Gaming, Movies, TV, Music"
+      },
+      "author": "Matthew Loffhagen",
+      "title": "Nickelodeon Kart Racers 2 release time and price on all platforms - HITC - Football, Gaming, Movies, TV, Music",
+      "description": "Nickelodeon Kart Racers 2: Grand Prix has finally reached its release time. The game, a sequel to the popular cartoon racing title, has been hotly...",
+      "url": "https://www.hitc.com/en-gb/2020/10/05/nickelodeon-kart-racers-2-release-time-price/",
+      "urlToImage": "https://www.hitc.com/static/uploads/2020/10/Nickelodeon-Kart-Racers-2-Release-Time-Price.jpg",
+      "publishedAt": "2020-10-05T10:10:00Z",
+      "content": "Nickelodeon Kart Racers 2: Grand Prix has finally reached its release time. The game, a sequel to the popular cartoon racing title, has been hotly anticipated by fans of the original since its releas… [+1827 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Channelasia.tech"
+      },
+      "author": null,
+      "title": "John Breeden II - Author - Channel Asia Singapore",
+      "description": "Latest news, features, slideshows, and reviews by John Breeden II",
+      "url": "https://sg.channelasia.tech/author/2147447607/john-breeden-ii/articles",
+      "urlToImage": null,
+      "publishedAt": "2020-10-05T10:02:23Z",
+      "content": null
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Highsnobiety"
+      },
+      "author": null,
+      "title": "SBTG x Limited EDT x New Balance 327: Official Release Information - Highsnobiety",
+      "description": "The SBTG x Limited EDT x New Balance 327 and 900 Sandal are a tale of two aesthetics, mixing military uniforms with mismatched patterns.",
+      "url": "https://www.highsnobiety.com/p/sbtg-new-balance-327-release-date-price/",
+      "urlToImage": "https://static.highsnobiety.com/thumbor/UFXJcXGs4yQqQQsMxm_QqiN8R0o=/1200x720/static.highsnobiety.com/wp-content/uploads/2020/10/05112355/sbtg-new-balance-327-release-date-price-07.jpg",
+      "publishedAt": "2020-10-05T09:55:25Z",
+      "content": "Brand:SBTG x Limited EDT x New Balance\r\nModel: 327 and Sandal 900\r\nKey Features: The New Balance 327 Highsnobietys sneaker of the summer features a split color block design, as seen on the model prev… [+1235 chars]"
+    },
+    {
+      "source": {
+        "id": "techradar",
+        "name": "TechRadar"
+      },
+      "author": "Joel Khalili",
+      "title": "Windows 10 update finally lets you disable Bing for good - TechRadar Singapore",
+      "description": "This Windows 10 update could make for much faster local search.",
+      "url": "https://www.techradar.com/news/windows-10-update-finally-lets-you-disable-bing-for-good",
+      "urlToImage": "https://cdn.mos.cms.futurecdn.net/DcKuYVXQ3qDf6TXZgmkYcS-1200-80.jpg",
+      "publishedAt": "2020-10-05T09:50:00Z",
+      "content": "Microsoft has delivered a new Windows 10 update that allows users to disable the integrated Bing search feature by tweaking the registry settings.\r\nAlso owned by Microsoft, the Bing search engine is … [+1615 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Nintendo Life"
+      },
+      "author": "Nintendo Life",
+      "title": "A Look At Minecraft Steve's Smash Ultimate Moveset, Stage And Final Smash - Nintendo Life",
+      "description": "One of Smash's more unique characters",
+      "url": "https://www.nintendolife.com/news/2020/10/a_look_at_minecraft_steves_smash_ultimate_moveset_stage_and_final_smash",
+      "urlToImage": "https://images.nintendolife.com/81927e6ef3c2a/1280x720.jpg",
+      "publishedAt": "2020-10-05T09:45:00Z",
+      "content": "Over the weekend, Super Smash Bros. Ultimate director Masahiro Sakurai hosted a presentation which explored everything you need to know about the game's newest inclusion, Steve and Alex from Minecraf… [+3452 chars]"
+    },
+    {
+      "source": {
+        "id": "techradar",
+        "name": "TechRadar"
+      },
+      "author": "Gerald Lynch",
+      "title": "Apple TV finally gets 4K YouTube support - TechRadar Singapore",
+      "description": "But it's still not got all the features it should",
+      "url": "https://www.techradar.com/news/apple-tv-finally-gets-4k-youtube-support",
+      "urlToImage": "https://cdn.mos.cms.futurecdn.net/k8CWuyMK6NhQCuByXR8ds7-1200-80.jpg",
+      "publishedAt": "2020-10-05T09:27:00Z",
+      "content": "Here's the good news first if you're an Apple TV 4K owner, you can finally watch YouTube videos in glorious UHD 4K resolution? The bad news? You'll still get a better experience using other devices.\r… [+1103 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "HITC - Football, Gaming, Movies, TV, Music"
+      },
+      "author": "Callum Smith",
+      "title": "Baldur’s Gate 3 Early Access release time: Steam price and how to buy - HITC - Football, Gaming, Movies, TV, Music",
+      "description": "Baldur’s Gate 3 enters Early Access and there will be plenty of races and classes to play as. The game has been massively anticipated since...",
+      "url": "https://www.hitc.com/en-gb/2020/10/05/baldurs-gate-3-early-access-release-time-steam-price/",
+      "urlToImage": "https://www.hitc.com/static/uploads/2020/10/Baldurs-Gate-3-Early-Access-release-time-Steam-price-and-how-to-buy.jpg",
+      "publishedAt": "2020-10-05T09:02:00Z",
+      "content": "Baldurs Gate 3 enters Early Access and there will be plenty of races and classes to play as. The game has been massively anticipated since its surprise announcement at E3 2019, and this excitement st… [+2184 chars]"
+    },
+    {
+      "source": {
+        "id": "techradar",
+        "name": "TechRadar"
+      },
+      "author": "Henry St Leger",
+      "title": "LG's rollable OLED TV is so much more expensive than we thought - TechRadar Singapore",
+      "description": "It's only available in South Korea for now",
+      "url": "https://www.techradar.com/news/lgs-rollable-oled-tv-is-so-much-more-expensive-than-we-thought",
+      "urlToImage": "https://cdn.mos.cms.futurecdn.net/7iWbnXyn5CoYuxkyyj3c9a-1200-80.jpg",
+      "publishedAt": "2020-10-05T09:01:00Z",
+      "content": "The LG Signature Series OLED R a rollable OLED TV designed to roll up into a discreet box when not in use is finally going on sale.\r\nThe set is initially launching in South Korea, the home of LG Elec… [+2133 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Notebookcheck.net"
+      },
+      "author": "Daniel R Deakin",
+      "title": "Xiaomi Mi 10T and Mi 10T Pro differences are blurry, but thanks to the Pro's OIS, photos are not - Notebookcheck.net",
+      "description": "At a first glance, the new Xiaomi Mi 10T and Mi 10T Pro smartphones seem to be practically identical. However, there are a number of differences that help justify the currently €50 difference between the 8 GB + 128 GB variant of the Mi 10T and the Mi 10T Pro …",
+      "url": "https://www.notebookcheck.net/Xiaomi-Mi-10T-and-Mi-10T-Pro-differences-are-blurry-but-thanks-to-the-Pro-s-OIS-photos-are-not.496720.0.html",
+      "urlToImage": "https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/Mi_10T_Mi_10T_Pro.jpg",
+      "publishedAt": "2020-10-05T08:43:43Z",
+      "content": "The Xiaomi Mi 10T and Mi 10T Pro are the two new flagships on the block from the popular Chinese OEM, and although the latter device enjoys the suffix Pro there might be some initial detective work r… [+1869 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Yahoo Entertainment"
+      },
+      "author": "Steve Dent",
+      "title": "Zeiss' full-frame compact camera finally available to pre-order for $6,000 - Yahoo Singapore News",
+      "description": "Zeiss’ full-frame compact ZX1 compact full-frame camera debuted in 2018 with built-in Lightroom CC and other unusual features, but we’ve barely heard a peep about it since. Now, the camera has suddenly gone on pre-order for $6,000 at B&H Photo, nearly two yea…",
+      "url": "https://sg.news.yahoo.com/zeiss-fullframe-compact-camera-goes-on-preorder-for-6000-083055670.html",
+      "urlToImage": "https://s.yimg.com/uu/api/res/1.2/UyVkhaFTpTZwbXwxROfnyw--~B/aD05MDU7dz0xNDQyO3NtPTE7YXBwaWQ9eXRhY2h5b24-/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2020-10/9673e260-0705-11eb-bf7f-4db6bd645377",
+      "publishedAt": "2020-10-05T08:30:00Z",
+      "content": "Zeiss full-frame compact ZX1 compact full-frame camera debuted in 2018 with built-in Lightroom CC and other unusual features, but weve barely heard a peep about it since. Now, the camera has suddenly… [+1231 chars]"
+    }
+  ]
+}

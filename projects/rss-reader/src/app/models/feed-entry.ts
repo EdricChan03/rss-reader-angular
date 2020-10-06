@@ -11,7 +11,7 @@ export interface FeedEntry {
   /**
    * The date that the entry was published on
    */
-  pubDate?: Date;
+  pubDate?: string;
   /**
    * An array of categories/tags assigned to the entry
    */

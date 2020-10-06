@@ -36,88 +36,104 @@ export class ArticleCardComponent implements OnInit {
   ) { }
 
   get articleAuthor(): string {
-    if ('publishedAt' in this.article) {
-      if ('author' in this.article && this.article.author !== null) {
-        if ('author' in this.article && 'source' in this.article &&
-          'name' in this.article.source && this.article.source.name !== null) {
-          return `${this.article.author} | ${this.article.source.name}`;
+    if (this.article !== undefined) {
+      if ('publishedAt' in this.article) {
+        if ('author' in this.article && this.article.author !== undefined) {
+          if ('author' in this.article && 'source' in this.article &&
+            'name' in this.article.source && this.article.source.name !== undefined) {
+            return `${this.article.author} | ${this.article.source.name}`;
+          } else {
+            return this.article.author;
+          }
+        } else if ('source' in this.article &&
+          'name' in this.article.source && this.article.source.name !== undefined) {
+          return this.article.source.name;
         } else {
-          return this.article.author;
+          return;
         }
-      } else if ('source' in this.article &&
-        'name' in this.article.source && this.article.source.name !== null) {
-        return this.article.source.name;
-      } else {
-        return;
+      } else if ('pubDate' in this.article) {
+        return this.article.author;
       }
-    } else if ('pubDate' in this.article) {
-      return this.article.author;
     }
     return;
   }
 
-  get articlePubDate(): string | Date {
-    if ('publishedAt' in this.article) {
-      return this.article.publishedAt;
-    } else if ('pubDate' in this.article) {
-      return this.article.pubDate;
+  get articlePubDate(): string {
+    if (this.article !== undefined) {
+      if ('publishedAt' in this.article) {
+        return this.article.publishedAt;
+      } else if ('pubDate' in this.article) {
+        return this.article.pubDate;
+      }
     }
     return;
   }
 
   get articleImg(): string {
-    if ('urlToImage' in this.article) {
-      return this.article.urlToImage;
-    } else if ('thumbnail' in this.article) {
-      return this.article.thumbnail;
-    } else if ('enclosure' in this.article && 'thumbnail' in this.article.enclosure) {
-      return this.article.enclosure.thumbnail;
-    } else {
-      return;
+    if (this.article !== undefined) {
+      if ('urlToImage' in this.article) {
+        return this.article.urlToImage;
+      } else if ('thumbnail' in this.article) {
+        return this.article.thumbnail;
+      } else if ('enclosure' in this.article && 'thumbnail' in this.article.enclosure) {
+        return this.article.enclosure.thumbnail;
+      } else {
+        return;
+      }
     }
   }
 
   get articleTitle(): string {
-    return this.article.title;
+    return this.article?.title;
   }
 
   get articleDesc(): string {
-    return this.stripHtmlTags.transform(this.article.description || '');
+    return this.stripHtmlTags.transform(this.article?.description ?? '');
   }
 
   get articleCategories(): string[] {
-    if ('categories' in this.article) {
-      return this.article.categories;
+    if (this.article !== undefined) {
+      if ('categories' in this.article) {
+        return this.article.categories;
+      }
     }
     return [];
   }
 
   get articleLink(): string {
-    if ('url' in this.article) {
-      return this.article.url;
-    } else if ('link' in this.article) {
-      return this.article.link;
+    if (this.article !== undefined) {
+      if ('url' in this.article) {
+        return this.article.url;
+      } else if ('link' in this.article) {
+        return this.article.link;
+      }
     }
     return;
   }
 
   get enclosureIsAudioType(): boolean {
-    if ('enclosure' in this.article && 'type' in this.article.enclosure) {
-      return this.article.enclosure.type.startsWith('audio');
+    if (this.article !== undefined) {
+      if ('enclosure' in this.article && 'type' in this.article.enclosure) {
+        return this.article.enclosure.type.startsWith('audio');
+      }
     }
     return false;
   }
 
   get enclosureIsVideoType(): boolean {
-    if ('enclosure' in this.article && 'type' in this.article.enclosure) {
-      return this.article.enclosure.type.startsWith('video');
+    if (this.article !== undefined) {
+      if ('enclosure' in this.article && 'type' in this.article.enclosure) {
+        return this.article.enclosure.type.startsWith('video');
+      }
     }
     return false;
   }
 
   get enclosureLink(): string {
-    if ('enclosure' in this.article && 'link' in this.article.enclosure) {
-      return this.article.enclosure.link;
+    if (this.article !== undefined) {
+      if ('enclosure' in this.article && 'link' in this.article.enclosure) {
+        return this.article.enclosure.link;
+      }
     }
     return;
   }
