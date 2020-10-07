@@ -1,6 +1,8 @@
-import { ComponentHarness } from '@angular/cdk/testing';
+import { ComponentHarness, HarnessPredicate } from '@angular/cdk/testing';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { MatChipListHarness } from '@angular/material/chips/testing';
+
+import { ArticleCardComponentHarnessFilters } from './article-card-harness-filters';
 
 /** Harness for interacting with a standard `app-article-card` in tests. */
 export class ArticleCardComponentHarness extends ComponentHarness {
@@ -30,6 +32,21 @@ export class ArticleCardComponentHarness extends ComponentHarness {
   /** Gets the view/open action button. */
   getOpenActionBtnLoader = this.locatorFor(MatButtonHarness.with({ text: 'open_in_new' }));
 
+  /** Creates a `HarnessPredicate` used to locate a particular `ArticleCardComponentHarness`. */
+  static with(options: ArticleCardComponentHarnessFilters): HarnessPredicate<ArticleCardComponentHarness> {
+    return new HarnessPredicate(ArticleCardComponentHarness, options)
+      .addOption('author', options.author,
+        (harness, text) => HarnessPredicate.stringMatches(harness.getHeaderAuthorText(), text))
+      .addOption('published date', options.pubDate,
+        (harness, text) => HarnessPredicate.stringMatches(harness.getHeaderPubDateText(), text))
+      .addOption('title', options.title,
+        (harness, text) => HarnessPredicate.stringMatches(harness.getTitleText(), text))
+      .addOption('image source', options.imgSrc,
+        (harness, src) => HarnessPredicate.stringMatches(harness.getImageSrc(), src))
+      .addOption('description', options.desc,
+        (harness, text) => HarnessPredicate.stringMatches(harness.getDescText(), text));
+  }
+
   /** Gets the header author text. */
   async getHeaderAuthorText() {
     return (await this.getHeaderAuthorEl())?.text() ?? '';
@@ -38,6 +55,11 @@ export class ArticleCardComponentHarness extends ComponentHarness {
   /** Gets the header published date text. */
   async getHeaderPubDateText() {
     return (await this.getHeaderPubDateEl())?.text() ?? '';
+  }
+
+  /** Gets the header published date as a `Date` object. */
+  async getHeaderPubDate() {
+    return new Date((await this.getHeaderPubDateText()));
   }
 
   /** Gets the title text. */
