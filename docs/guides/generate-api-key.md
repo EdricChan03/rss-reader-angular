@@ -2,9 +2,9 @@
 
 As the RSS dialog requires you to enter an API key, this guide will show you how to generate one.
 
-~~**UPDATE:** I am currently planning to provide the API key to the `FeedDialog`. The following instructions below will soon be outdated.~~
-
-**UPDATE #2:** There are no plans to provide the API key due to a limit that the API imposes on users using the API.
+**(NOTE: There are currently no plans to provide an existing API key as Rss2Json
+currently imposes a limit on the amount of RSS feeds you can request to be parsed
+as JSON.)**
 
 ---
 
@@ -21,7 +21,7 @@ As the RSS dialog requires you to enter an API key, this guide will show you how
 3. On the page, fill in the input fields with your email address and password and click `Register` once you are done filling up.
 4. After registering, check your email for the verification for your account. It should look something like this (with the subject header **Welcome to Rss2Json! Please Confirm Your Account**):
 
-   ![Email verification](../img/generate_api_key/email_verification.jpg)
+   <img src="../img/generate_api_key/email_verification.jpg" alt="Email verification" width="400">
 
 5. Click on the `Confirm Email` button to continue. It should redirect you to the login page. If the button doesm't work, click on the manual link as stated in the email.
 6. Fill up the form fields with the same particulars you filled up on Step 3.
@@ -40,7 +40,6 @@ You're done!
 <!-- begin end links -->
 
 ---
-[:arrow_left: Back to website](https://edricchan03.github.io/rss-reader)
 
 - [Generating an API Key **(You are here)**](./generate-api-key.md)
 - [Getting Started](./getting-started.md)

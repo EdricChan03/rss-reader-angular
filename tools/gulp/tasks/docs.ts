@@ -72,7 +72,6 @@ function transformMarkdownFiles(content: string, file: any): Buffer | string {
     // If the head is not prepended to the replaced value, then the first match will be lost.
     `${head} src="${fixMarkdownDocImgs(link)}"`
   );
-  content = content.replace(':arrow_left:', '⬅️');
   content = content.replace(PRE_PATTERN, (_match: string, head: string) =>
     `${head} class="hljs"`
   );
@@ -87,7 +86,6 @@ function fixMarkdownDocLinks(link: string, filePath: string): string {
   if (!filePath.includes(path.normalize('guides/')) || link.startsWith('http')) {
     return link;
   }
-
 
   const baseName = path.basename(link, path.extname(link));
 

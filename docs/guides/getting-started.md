@@ -1,6 +1,7 @@
 # Getting started
 
 The following guide below shows you all the features and what certain functions do in the app.
+
 **This guide will be coming soon. Stay tuned!**
 
 ## Feed selection
@@ -42,7 +43,6 @@ To access the settings, follow these steps:
 <!-- begin end links -->
 
 ---
-[:arrow_left: Back to website](https://edricchan03.github.io/rss-reader)
 
 - [Generating an API Key](./generate-api-key.md)
 - [Getting Started **(You are here)**](./getting-started.md)
