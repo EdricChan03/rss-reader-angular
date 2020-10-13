@@ -13,7 +13,9 @@
   } @else {
     // Apply highlight.js light styles available in _hljs.scss
     @include hljs-light();
-  } // Shows the current link. Used in the sidenav
+  }
+
+  // Shows the current link. Used in the sidenav
   .active-link {
     // Since it's a bit hard to actually see the text in the dark theme, it'll use the accent color if it's dark and primary if it's not. Same applies for mat-icon
     color: if($is-dark-theme, mat-color($accent), mat-color($primary)) !important;
@@ -22,25 +24,32 @@
     } // Note: These colors are based on the Android sidenav selection state
     background-color: if($is-dark-theme, #595959, #DCDCDC) !important;
   }
+
   // Warning icon color
   .warning-icon {
     color: mat-color($warn) !important;
   }
-  // Anchor links
-  .docs-a,
-  .docs-anchor {
-    color: mat-color($primary) !important;
+
+  a.anchor-link {
+    color: mat-color($primary, if($is-dark-theme, 200, default));
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
   }
+
   .mat-list-item-content mat-icon,
   .icon {
     color: map-get($foreground, icon);
   }
+
   .onboarding-content {
     color: if($is-dark-theme, #FFF, #000);
   }
   .onboarding-card {
     background-color: if($is-dark-theme, #303030, #FAFAFA);
   }
+
   .indicator-active {
     background-color: mat-color($accent) !important;
   }
@@ -58,11 +67,14 @@
   $foreground: map-get($theme, foreground);
   $is-dark-theme: map-get($theme, is-dark);
   $tableBorderOpacity: if($is-dark-theme, 0.08, 0.03);
+
   table.app-table {
     color: mat-color($foreground, text);
+
     th {
       background: mat-color($background, app-bar);
     }
+
     td {
       border: 1px solid rgba(mat-color($foreground, secondary-text), $tableBorderOpacity);
     }

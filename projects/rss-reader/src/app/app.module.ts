@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { MarkdownModule } from 'ngx-markdown';
+import { MarkedOptions, MarkedRenderer, MarkdownModule } from 'ngx-markdown';
 
 import { environment } from '../environments/environment';
 import { ActionItemsModule } from './actionitem.service';
@@ -28,6 +28,20 @@ import { GuidesListComponent } from './pages/guide-list/guide-list.component';
 import { GuideViewerComponent } from './pages/guide-viewer/guide-viewer.component';
 import { PipesModule } from './pipe/pipes.module';
 import { SharedModule } from './shared.service';
+
+function markedOptionsFactory(): MarkedOptions {
+  const renderer = new MarkedRenderer();
+
+  renderer.link = (href, title, text) => {
+    return `<a class="anchor-link" href="${href}"${typeof title !== 'undefined' ?
+      ` title=${title}` : ''}>${text}</a>`;
+  };
+
+  return {
+    renderer,
+    gfm: true
+  };
+}
 
 const OVERLAYS = [
   OnboardingOverlayComponent
@@ -52,7 +66,12 @@ const OVERLAYS = [
     FormsModule,
     FlexLayoutModule,
     HttpClientModule,
-    MarkdownModule.forRoot(),
+    MarkdownModule.forRoot({
+      markedOptions: {
+        provide: MarkedOptions,
+        useFactory: markedOptionsFactory
+      }
+    }),
     MaterialModule,
     PipesModule,
     SharedModule,
