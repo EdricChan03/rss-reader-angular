@@ -64,7 +64,7 @@ function transformMarkdownFiles(content: string, file: any): Buffer | string {
     // The head is the first match of the RegExp and is necessary to ensure that the RegExp matches
     // an anchor element. The head will be then used to re-create the existing anchor element.
     // If the head is not prepended to the replaced value, then the first match will be lost.
-    `${head} href="${fixMarkdownDocLinks(link, file.path)}" class="docs-a"`
+    `${head} href="${fixMarkdownDocLinks(link, file.path)}" class="anchor-link"`
   );
   content = content.replace(IMG_PATTERN, (_match: string, head: string, link: string) =>
     // The head is the first match of the RegExp and is necessary to ensure that the RegExp matches
