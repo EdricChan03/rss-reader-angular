@@ -22,9 +22,9 @@
   <ng-container *ngIf="versions; else: noReleaseNotes">
     <!-- TODO: Add support for sorting versions by semver. -->
     <ng-container *ngFor="let version of versions">
-      <h3 id="version-{{ version }}">
+      <h3 id="version-{{ version }}" class="version-header">
         Version {{ version }}<span *ngIf="getReleaseName(version) as releaseName"> - {{ releaseName }}</span>
-        <mat-chip *ngIf="version === releaseNotes.latestVersion" color="primary">Latest</mat-chip>
+        <span class="badge badge--colored" *ngIf="version === releaseNotes.latestVersion">Latest</span>
       </h3>
       <p *ngIf="getReleaseDate(version) as releaseDate">Release date: <em><time [dateTime]="releaseDate">{{ releaseDate | date:'short' }}</time></em></p>
       <p *ngIf="getReleaseAuthor(version) as releaseAuthor">Released by: <em>{{ releaseAuthor }}</em></p>

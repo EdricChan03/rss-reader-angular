@@ -12,7 +12,8 @@ export const GIT_REPO = new InjectionToken<GitRepo>('Custom Git repository');
 
 @Component({
   selector: 'app-release-notes',
-  templateUrl: './release-notes.component.html'
+  templateUrl: './release-notes.component.html',
+  styleUrls: ['./release-notes.component.css']
 })
 export class ReleaseNotesComponent {
   constructor(

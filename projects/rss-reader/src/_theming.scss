@@ -2,6 +2,7 @@
 // Dedicated file for theming the app
 @mixin rss-reader-theme($theme) {
   @include tables-theme($theme);
+  $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
@@ -55,6 +56,31 @@
   }
   .indicator {
     background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  // Adapted from
+  // https://github.com/EdricChan03/StudyBuddy-web/blob/3b1e7709c8954fc73fc934cbf6f882de3ed25e2e/src/styles.scss#L64-L86
+  .badge {
+    color: mat-color($foreground, text);
+    background-color: mat-color($background, unselected-chip);
+
+    &.badge--colored {
+      background-color: if($is-dark-theme, mat-color($accent), mat-color($primary));
+      color: if($is-dark-theme, map-get($accent, 'default-contrast'), map-get($primary, 'default-contrast'));
+    }
+
+    $palettes-list: (
+      primary: $primary,
+      accent: $accent,
+      warn: $warn
+    );
+
+    @each $key, $val in $palettes-list {
+      &.badge--#{$key} {
+        background-color: mat-color($val);
+        color: map-get($val, 'default-contrast');
+      }
+    }
   }
 }
 

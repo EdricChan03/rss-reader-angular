@@ -366,4 +366,14 @@ kbd {
   white-space: nowrap;
 }
 
+// Adapted from
+// https://github.com/EdricChan03/StudyBuddy-web/blob/3b1e7709c8954fc73fc934cbf6f882de3ed25e2e/src/styles.scss#L244-L250
+.badge {
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  font-size: 0.8em;
+  padding: 2px 8px;
+  border-radius: 16px;
+}
+
 /* End styles */
