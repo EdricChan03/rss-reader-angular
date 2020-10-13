@@ -151,14 +151,12 @@ describe('ReleaseNotesComponent', () => {
         };
         const expectedVal = 'https://github.com/EdricChan03/rss-reader';
 
-        // tslint:disable-next-line: no-string-literal
         expect(component['createGitRepoUrl'](gitRepoObj)).toEqual(expectedVal);
       });
 
       it('should accept a string', () => {
         const gitRepoStr: GitRepo = 'https://github.com/EdricChan03/rss-reader';
 
-        // tslint:disable-next-line: no-string-literal
         expect(component['createGitRepoUrl'](gitRepoStr)).toEqual(gitRepoStr);
       });
     });

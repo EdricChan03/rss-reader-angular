@@ -100,6 +100,7 @@
     "no-output-on-prefix": true,
     "no-output-rename": true,
     "no-outputs-metadata-property": true,
+    "no-string-literal": false,
     "template-banana-in-box": true,
     "template-no-negated-async": true,
     "typedef-whitespace": {
@@ -121,8 +122,8 @@
       ]
     },
     "use-lifecycle-interface": true,
-    "use-pipe-transform-interface": true
-  ,    "variable-name": {
+    "use-pipe-transform-interface": true,
+    "variable-name": {
       "options": [
         "ban-keywords",
         "check-format",
@@ -139,5 +140,5 @@
         "check-typecast"
       ]
     }
-}
+  }
 }
