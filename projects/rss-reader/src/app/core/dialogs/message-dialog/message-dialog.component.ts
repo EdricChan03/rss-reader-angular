@@ -1,21 +1,20 @@
 import { Component, Inject } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { Dialog } from '../dialog';
-import { ConfirmDialogOpts } from '../models';
+import { DialogOpts } from '../models';
 
 @Component({
-  selector: 'app-confirm-dialog',
-  templateUrl: './confirm-dialog.component.html'
+  selector: 'app-message-dialog',
+  templateUrl: './message-dialog.component.html'
 })
-export class ConfirmDialogComponent extends Dialog {
+export class MessageDialogComponent extends Dialog {
   /** The default text to be used for the negative button. */
   readonly defaultNegativeBtnText = 'Cancel';
   /** The default text to be used for the positive button. */
   readonly defaultPositiveBtnText = 'OK';
 
-  constructor(@Inject(MAT_DIALOG_DATA) public opts: ConfirmDialogOpts) {
+  constructor(@Inject(MAT_DIALOG_DATA) public opts: DialogOpts) {
     super(opts);
   }
 

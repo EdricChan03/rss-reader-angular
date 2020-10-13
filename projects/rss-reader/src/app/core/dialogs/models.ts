@@ -2,7 +2,10 @@ import { Portal } from '@angular/cdk/portal';
 import { ThemePalette } from '@angular/material/core';
 import { SafeHtml } from '@angular/platform-browser';
 
-export type HideButtonType = 'negative' | 'neutral' | 'positive';
+export type ButtonType = 'negative' | 'neutral' | 'positive';
+
+export type DialogType = 'alert' | 'confirm' | 'message' | 'prompt' | 'portal'
+  | 'selection';
 
 export interface BaseDialogOpts {
   /** The dialog's title. */
@@ -27,30 +30,28 @@ export interface DialogBtnOpts {
    *
    * Optionally, you can specify which buttons to hide.
    */
-  hideActionBtns?: HideButtonType[] | boolean;
+  hideActionBtns?: ButtonType[] | boolean;
+  /** The initial button to focus on. */
+  initialActionBtnFocus?: ButtonType;
 }
 
 export interface DialogOptsWithMsg {
   /** The dialog's message. */
-  msg: string | SafeHtml;
+  msg?: string | SafeHtml;
   /** The dialog's title. */
   title?: string;
   /** Whether the dialog's message is in HTML. */
   isHtml?: boolean;
 }
 
-export interface DialogOpts extends BaseDialogOpts, DialogBtnOpts, DialogOptsWithMsg { }
-
-// TODO: Remove the interfaces that extend DialogOpts with no additional options
-// tslint:disable:no-empty-interface
-export interface AlertDialogOpts extends DialogOpts { }
-
-export interface ConfirmDialogOpts extends DialogOpts { }
-// tslint:enable:no-empty-interface
+export interface DialogOpts extends BaseDialogOpts, DialogBtnOpts,
+  DialogOptsWithMsg { }
 
 export interface PromptDialogInputConfig {
   /** The input's placeholder. */
-  placeholder: string;
+  placeholder?: string;
+  /** The input's label. */
+  label?: string;
   /** The input type. */
   inputType?: string;
   /** The input's initial value. */
@@ -66,7 +67,7 @@ export interface PromptDialogOpts extends DialogOpts {
    * The input's placeholder.
    * @deprecated Use {@link PromptDialogInputConfig#placeholder} instead
    */
-  placeholder: string;
+  placeholder?: string;
   /**
    * The input type.
    * @deprecated Use {@link PromptDialogInputConfig#inputType} instead
@@ -90,26 +91,18 @@ export interface SelectionDialogOpts extends DialogOpts {
 }
 
 export interface SelectionDialogOption {
-  /**
-   * The title of the selection list item
-   */
-  content: string;
-  /**
-   * Whether the selection list item is disabled
-   */
-  disabled?: boolean;
-  /**
-   * The value of the selection list item
-   */
+  /** The title of the option. */
+  title: string;
+  /** The value of the option. */
   value: any;
-  /**
-   * The checkbox position of the selection list item
-   */
-  checkboxPosition?: 'before' | 'after';
-  /**
-   * Whether the selection list item is initially selected
-   */
+  /** Whether the option is disabled. */
+  disabled?: boolean;
+  /** Whether the option is initially selected. */
   selected?: boolean;
+  /** The checkbox position of the option. */
+  checkboxPosition?: 'before' | 'after';
+  /** The color of the option. */
+  color?: ThemePalette;
 }
 
 export interface PortalDialogOpts<T> extends DialogOpts {
@@ -119,9 +112,14 @@ export interface PortalDialogOpts<T> extends DialogOpts {
 
 /** The result returned by the dialog. */
 export enum DialogResult {
+  /** Indicates that the user clicked the "Cancel" (or negative) button. */
   NEGATIVE = 'cancel',
+  /** Alias for {@link DialogResult#NEGATIVE}. */
   CANCEL = 'cancel',
+  /** Indicates that the user clicked the neutral button. */
   NEUTRAL = 'neutral',
+  /** Indicates that the user clicked the "OK" (or positive) button. */
   POSITIVE = 'ok',
+  /** Alias for {@link DialogResult#POSITIVE}. */
   OK = 'ok'
 }

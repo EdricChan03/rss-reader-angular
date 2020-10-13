@@ -19,8 +19,7 @@ export abstract class Dialog {
       }
     }
 
-    return 'negativeBtnText' in this.opts || 'positiveBtnText' in this.opts ||
-      'neutralBtnText' in this.opts;
+    return 'negativeBtnText' in this.opts || 'positiveBtnText' in this.opts || 'neutralBtnText' in this.opts;
   }
 
   /** Whether the negative button should be hidden. */
