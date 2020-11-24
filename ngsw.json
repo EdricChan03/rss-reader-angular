@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1602685069341,
+  "timestamp": 1606202065411,
   "appData": {
     "version": "1.6.0"
   },
@@ -39,7 +39,6 @@
         "ignoreVary": true
       },
       "urls": [
-        "/rss-reader/assets/docs/guides/TROUBLESHOOTING.html",
         "/rss-reader/assets/docs/guides/generate-api-key.html",
         "/rss-reader/assets/docs/guides/getting-started.html",
         "/rss-reader/assets/docs/guides/troubleshooting.html",
@@ -133,7 +132,6 @@
     "/rss-reader/5-es5.2f8f3076bdb16d292445.js": "ea2677ddda0bb1c48e5b6f6cc43bac2b0d1ff6af",
     "/rss-reader/6-es2015.ab31ba868a01da4ee033.js": "991150a28727f1952475f36db8208126dcba96e3",
     "/rss-reader/6-es5.ab31ba868a01da4ee033.js": "4c2e5395ad73473322b2ac0000418a625e593f8b",
-    "/rss-reader/assets/docs/guides/TROUBLESHOOTING.html": "a694ec25735ce86f08ed95b96f84bf18b795ffa4",
     "/rss-reader/assets/docs/guides/generate-api-key.html": "e74125d4fa0cd00a02dc2f93aa01cdc685854c36",
     "/rss-reader/assets/docs/guides/getting-started.html": "5f0583b1e6ae8442153597273f16a9da79ec8431",
     "/rss-reader/assets/docs/guides/troubleshooting.html": "93b25d15f2f9377e49ed9a74d4d8eb13d45d93f1",
