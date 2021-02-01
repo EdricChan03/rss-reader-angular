@@ -46,7 +46,7 @@
     "@angular-devkit/build-angular": "~0.1001.4",
     "@angular/cli": "^10.1.4",
     "@angular/compiler-cli": "^10.1.4",
-    "@babel/core": "^7.11.1",
+    "@babel/core": "^7.12.10",
     "@compodoc/compodoc": "^1.1.11",
     "@storybook/addon-actions": "^6.0.26",
     "@storybook/addon-essentials": "^6.0.26",
