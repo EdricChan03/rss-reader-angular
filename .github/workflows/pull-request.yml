@@ -18,7 +18,7 @@ jobs:
       with:
         node-version: '10.x'
     - name: Cache node modules
-      uses: actions/cache@v2
+      uses: actions/cache@v2.1.4
       id: node_modules_cache
       with:
         path: node_modules
