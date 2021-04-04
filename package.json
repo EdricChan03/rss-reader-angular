@@ -52,7 +52,7 @@
     "@storybook/addon-essentials": "^6.0.26",
     "@storybook/addon-links": "^6.0.26",
     "@storybook/addons": "^6.0.26",
-    "@storybook/angular": "^6.0.26",
+    "@storybook/angular": "^6.2.2",
     "@storybook/theming": "^6.0.26",
     "@types/gulp": "^4.0.7",
     "@types/gulp-rename": "0.0.33",
