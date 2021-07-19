@@ -36,7 +36,7 @@ jobs:
     - name: Test application
       run: npm run action:test
     - name: Upload Codecov coverage report
-      uses: codecov/codecov-action@v1
+      uses: codecov/codecov-action@v2.0.1
       with:
         token: ${{ secrets.CODECOV_ACTION }}
         file: ./coverage/rss-reader/coverage-final.json
