@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1641440940913,
+  "timestamp": 1641567800667,
   "appData": {
     "version": "1.6.0"
   },
@@ -160,7 +160,7 @@
     "/rss-reader/assets/onboarding/articles.svg": "099afa8a050d38139505ee3bb933ccd296002738",
     "/rss-reader/assets/release-notes/release-notes-schema.json": "c3219cddf1584ee6bbfe4abb00108e12e0059794",
     "/rss-reader/assets/release-notes/release-notes.json": "04b295e63b662090209631dca5716ad91a3454cf",
-    "/rss-reader/index.html": "f7bfd5ad71d4cfc2547c8c225200ac29c808bb8b",
+    "/rss-reader/index.html": "ebe985f3855bed75ae92c98eea9a08ed9af750c0",
     "/rss-reader/main-es2015.6445656e58cbf84bc757.js": "328631559443d290443a908649de6101aa4d8cda",
     "/rss-reader/main-es5.6445656e58cbf84bc757.js": "9a07ff91641354cdfa334d9424cc1a3185bf0621",
     "/rss-reader/manifest.webmanifest": "44eb37ba72a29889fcee4bc71cf98bbf2db8eccf",
