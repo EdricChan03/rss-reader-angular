@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "http://edricchan03.github.io/rss-reader/schemas/release-notes-schema.json",
+  "$id": "http://edricchan03.github.io/rss-reader-angular/schemas/release-notes-schema.json",
   "title": "Release notes JSON schema",
   "type": "object",
   "properties": {
