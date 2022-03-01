@@ -169,7 +169,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "/rss-reader/"
+            "baseHref": "/rss-reader-angular/"
           }
         }
       }
