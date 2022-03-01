@@ -5,15 +5,15 @@
   "theme_color": "#3f51b5",
   "background_color": "#fafafa",
   "display": "standalone",
-  "scope": "/",
-  "start_url": "/",
+  "scope": "/rss-reader-angular",
+  "start_url": "/rss-reader-angular",
   "categories": ["news"],
   "description": "News and RSS reader application that provides the latest news and headlines.",
   "dir": "auto",
   "lang": "en",
   "serviceworker": {
-    "src": "/rss-reader/ngsw-worker.js",
-    "scope": "/rss-reader/"
+    "src": "/rss-reader-angular/ngsw-worker.js",
+    "scope": "/rss-reader-angular/"
   },
   "icons": [
     {
