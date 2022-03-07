@@ -157,6 +157,19 @@
             }
           }
         },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "browserTarget": "rss-reader:build",
+            "port": 6006
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "browserTarget": "rss-reader:build"
+          }
+        },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
