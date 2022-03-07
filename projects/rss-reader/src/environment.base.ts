@@ -1,7 +1,7 @@
 import { Version } from '@angular/core';
 import { ExtraOptions } from '@angular/router';
 import { GitRepo } from './app/pages/release-notes/models/release-notes';
-import { latestVersion as versionJson } from './assets/release-notes/release-notes.json';
+import releaseNotesJson from './assets/release-notes/release-notes.json';
 
 // This file contains the constants that all of the environments
 // that the app defines.
@@ -24,7 +24,7 @@ export interface Environment {
 }
 
 /** The latest version of the app. */
-export const latestVersion = new Version(versionJson);
+export const latestVersion = new Version(releaseNotesJson.latestVersion);
 
 /** Default configuration for the Git repository. */
 export const gitRepoDefaults: GitRepo = {
