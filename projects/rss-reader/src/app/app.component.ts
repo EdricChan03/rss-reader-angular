@@ -163,7 +163,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
     if (this.isOffline) {
       console.log('User is offline');
-      // tslint:disable-next-line:max-line-length
+      // eslint-disable-next-line max-len
       const snackBarRef = this.shared.openSnackBar({
         msg: 'You are currently offline. Some features may not be available.',
         action: 'Retry',

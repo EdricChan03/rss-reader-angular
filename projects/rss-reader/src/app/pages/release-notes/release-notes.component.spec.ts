@@ -317,7 +317,7 @@ describe('ReleaseNotesComponent', () => {
 
           expect(allReleaseNotesEl.tagName).toEqual('H2', 'Expected all release notes header tag to be <h2>');
         } else {
-          // tslint:disable-next-line: no-console
+          // eslint-disable-next-line no-console
           console.info('Skipping tests for "it should have a header for all release notes" as it is not applicable.');
         }
       });

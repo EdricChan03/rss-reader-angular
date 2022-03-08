@@ -149,13 +149,13 @@ export class ArticleCardComponent implements OnInit {
     }
 
     // Deprecated usages
-    // tslint:disable:deprecation
+    /* eslint-disable import/no-deprecated */
     if (this.feed) {
       this.article = this.feed;
     } else if (this.headline) {
       this.article = this.headline;
     }
-    // tslint:enable:deprecation
+    /* eslint-enable import/no-deprecated */
   }
 
   share() {

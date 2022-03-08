@@ -175,12 +175,22 @@
           "options": {
             "baseHref": "/rss-reader-angular/"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/rss-reader/**/*.ts",
+              "projects/rss-reader/**/*.html"
+            ]
+          }
         }
       }
     }
   },
   "defaultProject": "rss-reader",
   "cli": {
-    "analytics": "2a31b3aa-e3e3-4fbc-8175-a732c798e30d"
+    "analytics": "2a31b3aa-e3e3-4fbc-8175-a732c798e30d",
+    "defaultCollection": "@angular-eslint/schematics"
   }
 }
