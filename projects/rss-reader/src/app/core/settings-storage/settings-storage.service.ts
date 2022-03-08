@@ -19,9 +19,8 @@ export const SETTINGS_STORAGE_KEY: InjectionToken<string> = new InjectionToken('
   factory: () => 'settings'
 });
 
-// Note: Turns out you need a function in order to return an object for a factory.
-function SETTINGS_STORAGE_DEFAULT_CONFIG_FACTORY(): SettingsStorageConfig {
-  return {
+export const SETTINGS_STORAGE_DEFAULT_CONFIG_FACTORY: () => SettingsStorageConfig
+  = () => ({
     canRevertDefault: true,
     defaultSettings: {
       openNewTab: true,
@@ -29,8 +28,7 @@ function SETTINGS_STORAGE_DEFAULT_CONFIG_FACTORY(): SettingsStorageConfig {
       theme: 'indigo-pink',
       notifyNewReleases: true
     }
-  };
-}
+  });
 
 /** Configuration options to change the behavior of {@link SettingsStorageService}. */
 export const SETTINGS_STORAGE_CONFIG: InjectionToken<SettingsStorageConfig> = new InjectionToken('Settings storage config', {
@@ -50,7 +48,7 @@ export class SettingsStorageService<S = Settings> {
   /** Retrieves the current settings (as JSON). */
   get settings(): S {
     return (this.storage.getItem(this.key) && this.config.canRevertDefault) ?
-    JSON.parse(this.storage.getItem(this.key)) as S : this.config.defaultSettings;
+      JSON.parse(this.storage.getItem(this.key)) as S : this.config.defaultSettings;
   }
 
   /** Overrides the current settings. */
@@ -60,6 +58,7 @@ export class SettingsStorageService<S = Settings> {
 
   /**
    * Clears the current settings.
+   *
    * @param resetToDefault Whether to reset to the default settings
    * instead of clearing them. (Default: `true`)
    */

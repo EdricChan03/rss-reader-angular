@@ -12,7 +12,8 @@ describe('SelectionDialogComponent', () => {
   let componentEl: HTMLElement;
   let fixture: ComponentFixture<SelectionDialogComponent>;
 
-  function configureTestingModule(moduleDef?: Partial<TestModuleMetadata>, resetTestingModule: boolean = false): TestBedStatic {
+  const configureTestingModule: (moduleDef?: Partial<TestModuleMetadata>, resetTestingModule?: boolean) => TestBedStatic
+    = (moduleDef = {}, resetTestingModule = true) => {
     if (resetTestingModule) {
       TestBed.resetTestingModule();
     }
@@ -31,7 +32,8 @@ describe('SelectionDialogComponent', () => {
       ...DEFAULT_MODULE_DEF,
       ...moduleDef
     });
-  }
+  };
+
   beforeEach(() => {
     configureTestingModule({
       providers: [

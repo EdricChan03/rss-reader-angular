@@ -48,7 +48,7 @@ export class ShareDialogComponent implements OnInit {
       }).then(() => console.log('Successfully shared current page.'))
         .catch((error) => console.error('Error sharing current page: ', error));
     } else {
-      // tslint:disable-next-line:max-line-length
+      // eslint-disable-next-line max-len
       alert('To share natively, please enable the \'Experimental Web Platform Features\' flag in chrome://flags. Otherwise, it might not be supported on your platform right now.');
     }
   }

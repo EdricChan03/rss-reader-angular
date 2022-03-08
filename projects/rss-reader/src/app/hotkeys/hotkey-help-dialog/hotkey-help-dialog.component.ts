@@ -13,7 +13,7 @@ export class HotkeyHelpDialogComponent {
   getDisplayedShortcut(keys: string): string[] {
     const result = [];
     const keysArray = keys.split('.');
-    // tslint:disable-next-line: forin
+    // eslint-disable-next-line guard-for-in
     for (const key of keysArray) {
       if (keysArray.includes(key)) {
         let tempResult = key;

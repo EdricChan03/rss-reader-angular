@@ -29,19 +29,17 @@ import { GuideViewerComponent } from './pages/guide-viewer/guide-viewer.componen
 import { PipesModule } from './pipe/pipes.module';
 import { SharedModule } from './shared.service';
 
-function markedOptionsFactory(): MarkedOptions {
+const markedOptionsFactory: () => MarkedOptions = () => {
   const renderer = new MarkedRenderer();
 
-  renderer.link = (href, title, text) => {
-    return `<a class="anchor-link" href="${href}"${typeof title !== 'undefined' ?
+  renderer.link = (href, title, text) => `<a class="anchor-link" href="${href}"${typeof title !== 'undefined' ?
       ` title=${title}` : ''}>${text}</a>`;
-  };
 
   return {
     renderer,
     gfm: true
   };
-}
+};
 
 const OVERLAYS = [
   OnboardingOverlayComponent

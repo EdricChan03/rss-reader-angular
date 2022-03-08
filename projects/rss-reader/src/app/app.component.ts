@@ -16,6 +16,7 @@ import { HotkeysService } from './hotkeys/hotkeys.service';
 import { SettingsStorageService } from './core/settings-storage/settings-storage.service';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'rss-reader',
   templateUrl: './app.component.html'
 })
@@ -104,22 +105,15 @@ export class AppComponent implements OnInit, OnDestroy {
     router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.actionItemService.removeActionItems();
-        this._addDefaultActionItems();
+        this.addDefaultActionItems();
       }
     });
   }
-  private _addDefaultActionItems() {
-    this.actionItemService.addActionItem({
-      id: 'keyboard-shortcuts-action-item',
-      title: 'Keyboard shortcuts',
-      icon: 'keyboard',
-      showAsAction: false,
-      onClickListener: () => { this.hotkeys.openHotkeyHelpDialog(); }
-    });
-  }
+
   get isOffline() {
     return !navigator.onLine;
   }
+
   get isSidenavOpen() {
     if (this.sidenav.opened) {
       return true;
@@ -127,21 +121,19 @@ export class AppComponent implements OnInit, OnDestroy {
       return false;
     }
   }
+
   aboutThisApp() {
     this.dialog.open(AboutDialogComponent);
   }
+
   showOnboardingOverlay() {
-    this._createOnboardingOverlay();
+    this.createOnboardingOverlay();
   }
-  private _createOnboardingOverlay() {
-    this.overlayService.createOverlay(new ComponentPortal(OnboardingOverlayComponent), {
-      positionStrategy: this.overlayService.createCenterOverlayPositionStrategy(),
-      hasBackdrop: true
-    }, true);
-  }
+
   ngOnDestroy() {
     this.overlayService.destroyOverlay();
   }
+
   ngOnInit() {
     if (window.localStorage.getItem('hasLaunched')) {
       if (!JSON.parse(window.localStorage.getItem('hasLaunched'))) {
@@ -163,7 +155,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
     if (this.isOffline) {
       console.log('User is offline');
-      // tslint:disable-next-line:max-line-length
+      // eslint-disable-next-line max-len
       const snackBarRef = this.shared.openSnackBar({
         msg: 'You are currently offline. Some features may not be available.',
         action: 'Retry',
@@ -198,7 +190,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.swUpdate.available.subscribe(event => {
       console.log('[AppComponent] Update available: current version is', event.current, 'available version is', event.available);
 
-      function hasNewerVer(): boolean {
+      const hasNewerVer = () => {
         const availableHasVer = 'version' in event.available.appData;
         const currentHasVer = 'version' in event.current.appData;
         let returnVal = false;
@@ -208,7 +200,7 @@ export class AppComponent implements OnInit, OnDestroy {
         }
 
         return returnVal;
-      }
+      };
 
       const message = hasNewerVer() ?
         `A newer version (${event.available.appData['version']}) of the app is available!` :
@@ -231,5 +223,22 @@ export class AppComponent implements OnInit, OnDestroy {
       });
 
     });
+  }
+
+  private addDefaultActionItems() {
+    this.actionItemService.addActionItem({
+      id: 'keyboard-shortcuts-action-item',
+      title: 'Keyboard shortcuts',
+      icon: 'keyboard',
+      showAsAction: false,
+      onClickListener: () => { this.hotkeys.openHotkeyHelpDialog(); }
+    });
+  }
+
+  private createOnboardingOverlay() {
+    this.overlayService.createOverlay(new ComponentPortal(OnboardingOverlayComponent), {
+      positionStrategy: this.overlayService.createCenterOverlayPositionStrategy(),
+      hasBackdrop: true
+    }, true);
   }
 }

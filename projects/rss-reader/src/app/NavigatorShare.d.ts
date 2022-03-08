@@ -1,5 +1,6 @@
 /**
  * The following file is a wrapper for the native {@link Navigator#share} which for some reason isn't included.
+ *
  * @license
  *
  * MIT License

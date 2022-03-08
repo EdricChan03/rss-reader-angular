@@ -10,7 +10,8 @@ describe('PortalDialogComponent', () => {
   let componentEl: HTMLElement;
   let fixture: ComponentFixture<PortalDialogComponent>;
 
-  function configureTestingModule(moduleDef?: Partial<TestModuleMetadata>, resetTestingModule: boolean = false): TestBedStatic {
+  const configureTestingModule: (moduleDef?: Partial<TestModuleMetadata>, resetTestingModule?: boolean) => TestBedStatic
+    = (moduleDef = {}, resetTestingModule = true) => {
     if (resetTestingModule) {
       TestBed.resetTestingModule();
     }
@@ -27,7 +28,8 @@ describe('PortalDialogComponent', () => {
       ...DEFAULT_MODULE_DEF,
       ...moduleDef
     });
-  }
+  };
+
   beforeEach(() => {
     configureTestingModule({
       providers: [

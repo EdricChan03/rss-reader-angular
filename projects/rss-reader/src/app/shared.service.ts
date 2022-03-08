@@ -17,6 +17,7 @@ export interface SnackBarOpts<D = any> {
   config?: MatSnackBarConfig<D>;
   /**
    * Additional options for the snackbar.
+   *
    * @deprecated Use {@link SnackBarOpts#config} instead
    */
   additionalOpts?: MatSnackBarConfig<D>;
@@ -32,23 +33,6 @@ export class SharedService {
     private documentTitle: Title,
     private breakpointObserver: BreakpointObserver
   ) { }
-  /**
-   * Sets the document's title
-   * @param title The title of the document to set
-   */
-  set title(title: string) {
-    this.internalTitle = title;
-    if (title !== '') {
-      title = `${title} | `;
-    }
-    this.documentTitle.setTitle(`${title}Angular RSS Reader`);
-  }
-  /**
-   * Returns the document's title
-   */
-  get title(): string {
-    return this.internalTitle;
-  }
 
   /** Detects if the user is using a mobile device based on CSS media queries. */
   get isMobile(): boolean {
@@ -61,7 +45,28 @@ export class SharedService {
   }
 
   /**
+   * Returns the document's title
+   */
+     get title(): string {
+      return this.internalTitle;
+    }
+
+  /**
+   * Sets the document's title
+   *
+   * @param title The title of the document to set
+   */
+  set title(title: string) {
+    this.internalTitle = title;
+    if (title !== '') {
+      title = `${title} | `;
+    }
+    this.documentTitle.setTitle(`${title}Angular RSS Reader`);
+  }
+
+  /**
    * Opens a snackBar with the specified params and no return
+   *
    * @param opts The options of the snackBar
    */
   openSnackBar(opts: SnackBarOpts): MatSnackBarRef<SimpleSnackBar> {
@@ -69,6 +74,7 @@ export class SharedService {
   }
   /**
    * Opens a snackBar with the specified params and a return of the snackBar's ref (for component)
+   *
    * @param opts The options of the snackBar
    * @returns The snackbar reference
    */
@@ -76,21 +82,21 @@ export class SharedService {
     return this.handleSnackBarWithComponent(opts);
   }
 
+  /** Closes the current snackbar. */
+  closeSnackBar() {
+    this.snackBar.dismiss();
+  }
+
   private handleSnackBar(opts: SnackBarOpts): MatSnackBarRef<SimpleSnackBar> {
-    // tslint:disable-next-line:deprecation
+    // eslint-disable-next-line import/no-deprecated
     const config = opts.config ? opts.config : opts.additionalOpts;
     return this.snackBar.open(opts.msg, opts.action ? opts.action : undefined, config);
   }
 
   private handleSnackBarWithComponent(opts: SnackBarOpts): MatSnackBarRef<any> {
-    // tslint:disable-next-line:deprecation
+    // eslint-disable-next-line import/no-deprecated
     const config = opts.config ? opts.config : opts.additionalOpts;
     return this.snackBar.openFromComponent(opts.component, config);
-  }
-
-  /** Closes the current snackbar. */
-  closeSnackBar() {
-    this.snackBar.dismiss();
   }
 }
 

@@ -61,6 +61,7 @@ export class HotkeysService {
 
   /**
    * Adds a keyboard shortcut which binds to the specified `element`
+   *
    * @param options Options for the shortcut
    * @returns The observable
    */
@@ -147,6 +148,7 @@ export class HotkeysService {
 
   /**
    * Whether the platform matches the specified `platform`.
+   *
    * @param platform The platform to check.
    */
   private isPlatform(platform: Platform): boolean {

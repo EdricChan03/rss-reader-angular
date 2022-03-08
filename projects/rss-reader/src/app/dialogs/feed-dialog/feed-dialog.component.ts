@@ -8,7 +8,7 @@ import { map, startWith } from 'rxjs/operators';
 import { Feed } from '../../models/feed';
 import { SubmitRssDialogComponent } from '../submit-rss-dialog/submit-rss-dialog.component';
 import { FeedChannel } from '../../models/feed-channel';
-import { feedUrls } from '../../../assets/feedurls.json';
+import feedUrlsJson from '../../../assets/feedurls.json';
 
 @Component({
   selector: 'app-feed-dialog',
@@ -19,7 +19,7 @@ export class FeedDialogComponent implements OnInit {
    * The list of feeds
    * Available at {@link `/assets/feedurls.json`}
    */
-  feeds: FeedCategory[] = feedUrls;
+  feeds: FeedCategory[] = feedUrlsJson.feedUrls;
   /**
    * The feed URL channel for the publishing
    */
@@ -67,6 +67,7 @@ export class FeedDialogComponent implements OnInit {
     private dialog: MatDialog
   ) {
     dialogRef.disableClose = true;
+    /* eslint-disable @typescript-eslint/naming-convention */
     this.rssFeedForm = fb.group({
       rss_url: ['', Validators.required],
       api_key: ['', [Validators.required, Validators.maxLength(40), Validators.minLength(40)]],
@@ -74,6 +75,7 @@ export class FeedDialogComponent implements OnInit {
       order_dir: '',
       count: 10 // The default value
     });
+    /* eslint-enable @typescript-eslint/naming-convention */
     this.filteredOptions = this.rssFeedForm.get('rss_url').valueChanges
       .pipe(
         startWith(''),

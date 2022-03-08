@@ -23,6 +23,91 @@ import {
 })
 export class DialogsService {
   constructor(private dialog: MatDialog) { }
+  /**
+   * Opens an alert dialog with the specified parameters
+   *
+   * @param opts The options for the dialog.
+   * @param config Additional configurations for the dialog.
+   * @returns The dialog reference
+   * @deprecated Use `DialogsService#openMessageDialog` instead
+   */
+  openAlertDialog(
+    opts: DialogOpts,
+    config?: MatDialogConfig<DialogOpts>
+  ): MatDialogRef<MessageDialogComponent, DialogResult> {
+    return this.openDialog<DialogOpts, MessageDialogComponent>('alert', opts, config);
+  }
+
+  /**
+   * Opens a confirm dialog with the specified parameters
+   *
+   * @param opts The options for the dialog
+   * @param config Additional configurations for the dialog.
+   * @returns The dialog reference
+   * @deprecated Use `DialogsService#openMessageDialog` instead
+   */
+  openConfirmDialog(
+    opts: DialogOpts,
+    config?: MatDialogConfig<DialogOpts>
+  ): MatDialogRef<MessageDialogComponent, DialogResult> {
+    return this.openDialog<DialogOpts, MessageDialogComponent>('confirm', opts, config);
+  }
+
+  /**
+   * Opens a message dialog with the specified parameters
+   *
+   * @param opts Options for the dialog
+   * @param config Additional configuration for the dialog
+   * @returns The dialog reference
+   */
+  openMessageDialog(
+    opts: DialogOpts,
+    config?: MatDialogConfig<DialogOpts>
+  ): MatDialogRef<MessageDialogComponent, DialogResult> {
+    return this.openDialog<DialogOpts, MessageDialogComponent>('message', opts, config);
+  }
+
+  /**
+   * Opens a prompt dialog with the specified parameters
+   *
+   * @param opts The options for the dialog
+   * @param config Additional configurations for the dialog.
+   * @returns The dialog reference
+   */
+  openPromptDialog(
+    opts: PromptDialogOpts,
+    config?: MatDialogConfig<PromptDialogOpts>
+  ): MatDialogRef<PromptDialogComponent, DialogResult> {
+    return this.openDialog<PromptDialogOpts, PromptDialogComponent>('prompt', opts, config);
+  }
+  /**
+   * Opens a selection dialog with the configured options
+   *
+   * @param opts The options for the dialog
+   * @param config Additional configurations for the dialog.
+   * @returns The dialog reference
+   */
+  openSelectionDialog(
+    opts: SelectionDialogOpts,
+    config?: MatDialogConfig<SelectionDialogOpts>
+  ): MatDialogRef<SelectionDialogComponent, DialogResult> {
+    return this.openDialog<SelectionDialogOpts, SelectionDialogComponent>('selection', opts, config);
+  }
+
+  /**
+   * Opens a portal dialog with the specified parameters
+   *
+   * @param opts The options for the dialog
+   * @param config Additional configurations for the dialog
+   * @template T The portal's type
+   * @returns The dialog reference
+   */
+  openPortalDialog<T>(
+    opts: PortalDialogOpts<T>,
+    config?: MatDialogConfig<PortalDialogOpts<T>>
+  ): MatDialogRef<PortalDialogComponent, DialogResult> {
+    return this.openDialog<PortalDialogOpts<T>, PortalDialogComponent>('portal', opts, config);
+  }
 
   private createOrGetDialogConfig<D = any>(config?: MatDialogConfig<D>): MatDialogConfig<D> {
     return config ? config : new MatDialogConfig<D>();
@@ -81,85 +166,5 @@ export class DialogsService {
         throw new Error(`Unsupported dialog type ${dialogType} was specified! Skipping...`);
     }
     return dialogRef;
-  }
-
-  /**
-   * Opens an alert dialog with the specified parameters
-   * @param opts The options for the dialog.
-   * @param config Additional configurations for the dialog.
-   * @returns The dialog reference
-   * @deprecated Use `DialogsService#openMessageDialog` instead
-   */
-  openAlertDialog(
-    opts: DialogOpts,
-    config?: MatDialogConfig<DialogOpts>
-  ): MatDialogRef<MessageDialogComponent, DialogResult> {
-    return this.openDialog<DialogOpts, MessageDialogComponent>('alert', opts, config);
-  }
-
-  /**
-   * Opens a confirm dialog with the specified parameters
-   * @param opts The options for the dialog
-   * @param config Additional configurations for the dialog.
-   * @returns The dialog reference
-   * @deprecated Use `DialogsService#openMessageDialog` instead
-   */
-  openConfirmDialog(
-    opts: DialogOpts,
-    config?: MatDialogConfig<DialogOpts>
-  ): MatDialogRef<MessageDialogComponent, DialogResult> {
-    return this.openDialog<DialogOpts, MessageDialogComponent>('confirm', opts, config);
-  }
-
-  /**
-   * Opens a message dialog with the specified parameters
-   * @param opts Options for the dialog
-   * @param config Additional configuration for the dialog
-   * @returns The dialog reference
-   */
-  openMessageDialog(
-    opts: DialogOpts,
-    config?: MatDialogConfig<DialogOpts>
-  ): MatDialogRef<MessageDialogComponent, DialogResult> {
-    return this.openDialog<DialogOpts, MessageDialogComponent>('message', opts, config);
-  }
-
-  /**
-   * Opens a prompt dialog with the specified parameters
-   * @param opts The options for the dialog
-   * @param config Additional configurations for the dialog.
-   * @returns The dialog reference
-   */
-  openPromptDialog(
-    opts: PromptDialogOpts,
-    config?: MatDialogConfig<PromptDialogOpts>
-  ): MatDialogRef<PromptDialogComponent, DialogResult> {
-    return this.openDialog<PromptDialogOpts, PromptDialogComponent>('prompt', opts, config);
-  }
-  /**
-   * Opens a selection dialog with the configured options
-   * @param opts The options for the dialog
-   * @param config Additional configurations for the dialog.
-   * @returns The dialog reference
-   */
-  openSelectionDialog(
-    opts: SelectionDialogOpts,
-    config?: MatDialogConfig<SelectionDialogOpts>
-  ): MatDialogRef<SelectionDialogComponent, DialogResult> {
-    return this.openDialog<SelectionDialogOpts, SelectionDialogComponent>('selection', opts, config);
-  }
-
-  /**
-   * Opens a portal dialog with the specified parameters
-   * @param opts The options for the dialog
-   * @param config Additional configurations for the dialog
-   * @template T The portal's type
-   * @returns The dialog reference
-   */
-  openPortalDialog<T>(
-    opts: PortalDialogOpts<T>,
-    config?: MatDialogConfig<PortalDialogOpts<T>>
-  ): MatDialogRef<PortalDialogComponent, DialogResult> {
-    return this.openDialog<PortalDialogOpts<T>, PortalDialogComponent>('portal', opts, config);
   }
 }

@@ -42,15 +42,8 @@ export class ReleaseNotesComponent {
   }
 
   /**
-   * Generates a URL to the specified Git repository.
-   * @param gitRepo The Git repository to be converted to a link.
-   */
-  private createGitRepoUrl(gitRepo: GitRepo): string {
-    return typeof gitRepo === 'object' ? `${gitRepo.host}/${gitRepo.username}/${gitRepo.repo}` : gitRepo;
-  }
-
-  /**
    * Retrieves the release name for the specified `version`.
+   *
    * @param version The version
    */
   getReleaseName(version: string): string {
@@ -59,6 +52,7 @@ export class ReleaseNotesComponent {
 
   /**
    * Retrieves the release notes for the specified `version`.
+   *
    * @param version The version
    */
   getReleaseNote(version: string): string[] | string {
@@ -67,6 +61,7 @@ export class ReleaseNotesComponent {
 
   /**
    * Retrieves the date when the `version` was released.
+   *
    * @param version The version to retrieve.
    */
   getReleaseDate(version: string): string {
@@ -75,6 +70,7 @@ export class ReleaseNotesComponent {
 
   /**
    * Retrieves the author of the release.
+   *
    * @param version The version to retrieve.
    */
   getReleaseAuthor(version: string): string {
@@ -83,6 +79,7 @@ export class ReleaseNotesComponent {
 
   /**
    * Retrieves information about a particular version's release notes.
+   *
    * @param version The version to retrieve.
    */
   getReleaseInfo(version: string): Release {
@@ -91,6 +88,7 @@ export class ReleaseNotesComponent {
 
   /**
    * Joins a list of release notes to a string.
+   *
    * @param notes The notes to join
    */
   joinReleaseNotes(notes: string[]): string {
@@ -104,5 +102,14 @@ export class ReleaseNotesComponent {
   // See https://stackoverflow.com/a/46296668/6782707 for more info.
   isUrl(val: string): boolean {
     return /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(val);
+  }
+
+  /**
+   * Generates a URL to the specified Git repository.
+   *
+   * @param gitRepo The Git repository to be converted to a link.
+   */
+  private createGitRepoUrl(gitRepo: GitRepo): string {
+    return typeof gitRepo === 'object' ? `${gitRepo.host}/${gitRepo.username}/${gitRepo.repo}` : gitRepo;
   }
 }

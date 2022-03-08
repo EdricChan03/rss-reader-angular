@@ -23,10 +23,11 @@ class DialogImpl extends Dialog {
 
 describe('Dialog', () => {
   const btnTypes = ['negative', 'neutral', 'positive'];
-  function createDialogImpl(opts: DialogOpts): DialogImpl {
+  const createDialogImpl: (opts: DialogOpts) => DialogImpl =
+    (opts) => {
     const dialogImpl = new DialogImpl(opts);
     return dialogImpl;
-  }
+  };
 
   describe('get hasActionBtns', () => {
     it('should return the inverse of the hideActionBtns property', () => {

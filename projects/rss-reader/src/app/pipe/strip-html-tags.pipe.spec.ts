@@ -1,12 +1,12 @@
-/* tslint:disable:no-unused-variable */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { StripHtmlTagsPipe } from './strip-html-tags.pipe';
 
 // Adapted from
 // https://github.com/zspecza/common-tags/blob/master/src/oneLine/oneLine.js
-function removeWhitespace(str: string) {
-  return str.replace(/^\s+|\s+$/gm, '').split('\n').join('');
-}
+const removeWhitespace =
+  (str: string) => str.replace(/^\s+|\s+$/gm, '')
+    .split('\n').join('');
 
 describe('StripHtmlTagsPipe', () => {
   it('should create an instance', () => {

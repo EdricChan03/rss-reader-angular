@@ -19,6 +19,7 @@ export class ActionItemService {
   readonly actionItems = new Map<string, ActionItem>();
   /**
    * Adds an action item
+   *
    * @param actionItem The action item
    */
   addActionItem(actionItem: ActionItem) {
@@ -26,6 +27,7 @@ export class ActionItemService {
   }
   /**
    * Adds an action item toggle
+   *
    * @param actionItem The action item
    * @deprecated
    * @experimental Do not use!
@@ -39,6 +41,7 @@ export class ActionItemService {
   }
   /**
    * Updates an action item by its key
+   *
    * @param key The key of the action item
    * @param actionItem The action item
    */
@@ -57,6 +60,7 @@ export class ActionItemService {
   }
   /**
    * Removes an action item
+   *
    * @param key The key of the action item to remove
    */
   removeActionItemByKey(key: string) {
@@ -74,6 +78,7 @@ export class ActionItemService {
   }
   /**
    * Gets a action item by its key
+   *
    * @param key The key of the action item to retrieve
    */
   getActionItemByKey(key: string): ActionItem {
@@ -86,6 +91,7 @@ export class ActionItemService {
   /**
    * Adds a action item on click listener to the specified action item
    * Note: This can also be declared manually
+   *
    * @deprecated Please set the onclick listener in the {@link ActionItem} object itself.
    * @param id The id of the action item
    * @param callback The callback when the action item is clicked (has to be arrow function)
@@ -191,7 +197,8 @@ export interface ActionItemToggle extends ActionItem {
 	</button>
 	<mat-menu #moreMenu="matMenu">
 		<ng-container *ngFor="let actionItem of overflowActionItems">
-			<button mat-menu-item *ngIf="actionItem.onClickListener" (click)="actionItem.onClickListener($event)" [disabled]="actionItem.disabled">
+			<button mat-menu-item *ngIf="actionItem.onClickListener" (click)="actionItem.onClickListener($event)"
+        [disabled]="actionItem.disabled">
 				<mat-icon *ngIf="actionItem.icon">{{actionItem.icon}}</mat-icon>
 				{{actionItem.title}}
 			</button>
@@ -216,9 +223,7 @@ export class ActionItemsComponent {
     return this.actionItemService.getActionItems().filter(item => !item.showAsAction);
   }
   get showMoreMenu() {
-    return this.actionItemService.getActionItems().find((actionItem: ActionItem): boolean => {
-      return actionItem.showAsAction !== true;
-    });
+    return this.actionItemService.getActionItems().find((actionItem: ActionItem): boolean => actionItem.showAsAction !== true);
   }
 }
 

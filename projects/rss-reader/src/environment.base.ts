@@ -1,7 +1,7 @@
 import { Version } from '@angular/core';
 import { ExtraOptions } from '@angular/router';
 import { GitRepo } from './app/pages/release-notes/models/release-notes';
-import { latestVersion as versionJson } from './assets/release-notes/release-notes.json';
+import releaseNotesJson from './assets/release-notes/release-notes.json';
 
 // This file contains the constants that all of the environments
 // that the app defines.
@@ -24,7 +24,7 @@ export interface Environment {
 }
 
 /** The latest version of the app. */
-export const latestVersion = new Version(versionJson);
+export const latestVersion = new Version(releaseNotesJson.latestVersion);
 
 /** Default configuration for the Git repository. */
 export const gitRepoDefaults: GitRepo = {
@@ -44,8 +44,8 @@ export const defaultEnvironment: Environment = {
 /**
  * Merges the specified environment with the default environment
  * and returns the result.
+ *
  * @param env The enviroment to merge
  */
-export function mergeWithDefaultEnv(env: Partial<Environment>): Environment {
-  return { ...defaultEnvironment, ...env };
-}
+export const mergeWithDefaultEnv: (env: Partial<Environment>) => Environment =
+  (env) => ({ ...defaultEnvironment, ...env });

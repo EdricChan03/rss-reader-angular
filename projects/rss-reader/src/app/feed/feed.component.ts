@@ -103,6 +103,7 @@ export class FeedComponent implements OnDestroy, OnInit {
 
   reloadFeed() {
     let params: Rss2JsonParams = {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       rss_url: ''
     };
     if (localStorage.feedOptions) {

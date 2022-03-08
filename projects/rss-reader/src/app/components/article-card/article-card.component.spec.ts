@@ -21,8 +21,8 @@ import { NewsAPITopHeadlinesArticle } from '../../models/news-api/top-headlines-
 import { Settings } from '../../models/settings';
 
 // Mock data
-import { items } from './mocks/notrealnews.net-rss.json';
-import { articles } from './mocks/newsapi.org-top-headlines-sg-tech.json';
+import notRealNewsRss from './mocks/notrealnews.net-rss.json';
+import newsApiTopHeadlines from './mocks/newsapi.org-top-headlines-sg-tech.json';
 
 describe('ArticleCardComponent', () => {
   let fixture: ComponentFixture<ArticleCardComponent>;
@@ -30,8 +30,8 @@ describe('ArticleCardComponent', () => {
   let componentEl: HTMLElement;
   let loader: HarnessLoader;
 
-  const mockEntry: FeedEntry = items[0];
-  const mockArticle: NewsAPITopHeadlinesArticle = articles[0];
+  const mockEntry: FeedEntry = notRealNewsRss.items[0];
+  const mockArticle: NewsAPITopHeadlinesArticle = newsApiTopHeadlines.articles[0];
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
@@ -60,15 +60,9 @@ describe('ArticleCardComponent', () => {
   });
 
   describe('article input', async () => {
-    const transformDatePipe = (...args: [any, string?, string?, string?]) => {
-      return new DatePipe('en-US').transform(...args);
-    };
-    const transformSlicePipe = (...args: [string, number, number?]) => {
-      return new SlicePipe().transform(...args);
-    };
-    const transformStripHtmlPipe = (...args: [string]) => {
-      return new StripHtmlTagsPipe().transform(...args);
-    };
+    const transformDatePipe = (...args: [any, string?, string?, string?]) => new DatePipe('en-US').transform(...args);
+    const transformSlicePipe = (...args: [string, number, number?]) => new SlicePipe().transform(...args);
+    const transformStripHtmlPipe = (...args: [string]) => new StripHtmlTagsPipe().transform(...args);
 
     it('should display a NewsAPI.org article', async () => {
       await compileComponents();

@@ -12,7 +12,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "aot": true,
             "outputPath": "dist",
             "index": "projects/rss-reader/src/index.html",
             "main": "projects/rss-reader/src/main.ts",
@@ -32,8 +31,14 @@
               "projects/rss-reader/src/styles.scss"
             ],
             "scripts": [
-              "node_modules/marked/lib/marked.js"
-            ]
+              "node_modules/marked/marked.min.js"
+            ],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -47,7 +52,6 @@
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -85,7 +89,6 @@
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -97,7 +100,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -141,19 +145,6 @@
             ]
           }
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/rss-reader/tsconfig.app.json",
-              "projects/rss-reader/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "**/*.json"
-            ]
-          }
-        },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
@@ -166,10 +157,32 @@
             }
           }
         },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "browserTarget": "rss-reader:build",
+            "port": 6006
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "browserTarget": "rss-reader:build"
+          }
+        },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
             "baseHref": "/rss-reader-angular/"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/rss-reader/**/*.ts",
+              "projects/rss-reader/**/*.html"
+            ]
           }
         }
       }
@@ -177,6 +190,7 @@
   },
   "defaultProject": "rss-reader",
   "cli": {
-    "analytics": "2a31b3aa-e3e3-4fbc-8175-a732c798e30d"
+    "analytics": "2a31b3aa-e3e3-4fbc-8175-a732c798e30d",
+    "defaultCollection": "@angular-eslint/schematics"
   }
 }

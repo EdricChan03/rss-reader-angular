@@ -78,12 +78,10 @@ describe('SettingsStorageService', () => {
     it('should reset to default settings if no arguments are specified', () => {
       const mockStorage = new MockStorage({ settings: JSON.stringify(baseMockSettings) });
       const mockDefaultSettings: Settings = { openNewTab: false, theme: 'deeppurple-amber' };
-      function customConfigFactory(): SettingsStorageConfig {
-        return {
-          canRevertDefault: true,
-          defaultSettings: mockDefaultSettings
-        };
-      }
+      const customConfigFactory: () => SettingsStorageConfig = () => ({
+        canRevertDefault: true,
+        defaultSettings: mockDefaultSettings
+      });
 
       TestBed.overrideProvider(SETTINGS_STORAGE_PROVIDER, {
         useFactory: () => mockStorage
@@ -122,12 +120,11 @@ describe('SettingsStorageService', () => {
     it('should allow for a custom config to be specified', () => {
       const mockStorage = new MockStorage({ settings: JSON.stringify(baseMockSettings) });
       const defaultMockSettings: Settings = { maxNotifications: 1000, showOfflineSnackBar: true };
-      function customConfigFactory(): SettingsStorageConfig {
-        return {
-          canRevertDefault: false,
-          defaultSettings: defaultMockSettings
-        };
-      }
+
+      const customConfigFactory: () => SettingsStorageConfig = () => ({
+        canRevertDefault: false,
+        defaultSettings: defaultMockSettings
+      });
 
       TestBed.overrideProvider(SETTINGS_STORAGE_CONFIG, {
         useFactory: customConfigFactory
