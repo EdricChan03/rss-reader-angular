@@ -9,17 +9,19 @@ module.exports = function (config) {
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
-      require('karma-coverage-istanbul-reporter'),
+      require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    coverageIstanbulReporter: {
+    jasmineHtmlReporter: {
+      suppressAll: true // removes the duplicated traces
+    },
+    coverageReporter: {
       dir: require('path').join(__dirname, '../../coverage/rss-reader'),
-      // See https://istanbul.js.org/docs/advanced/alternative-reporters/ for more info.
-      reports: ['html', 'json', 'text'],
-      fixWebpackSourcePaths: true
+      // See https://github.com/karma-runner/karma-coverage/blob/master/docs/configuration.md#type
+      reports: ['html', 'json', 'text']
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
