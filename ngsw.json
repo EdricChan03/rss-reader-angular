@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1646646999954,
+  "timestamp": 1646751101541,
   "appData": {
     "version": "1.6.0"
   },
@@ -14,20 +14,15 @@
         "ignoreVary": true
       },
       "urls": [
-        "/rss-reader-angular/5-es2015.36f808050104d766b63e.js",
-        "/rss-reader-angular/5-es5.36f808050104d766b63e.js",
-        "/rss-reader-angular/6-es2015.90e0c5226b303c0d3fb7.js",
-        "/rss-reader-angular/6-es5.90e0c5226b303c0d3fb7.js",
+        "/rss-reader-angular/208.fc5dd8b27d705c0e.js",
+        "/rss-reader-angular/619.5d49d3844c75ee09.js",
         "/rss-reader-angular/index.html",
-        "/rss-reader-angular/main-es2015.a4c3d1027bea87b210d2.js",
-        "/rss-reader-angular/main-es5.a4c3d1027bea87b210d2.js",
+        "/rss-reader-angular/main.9b92e5f4527022ba.js",
         "/rss-reader-angular/manifest.webmanifest",
-        "/rss-reader-angular/polyfills-es2015.5cb089f3721189991124.js",
-        "/rss-reader-angular/polyfills-es5.45139f171378688c7487.js",
-        "/rss-reader-angular/runtime-es2015.5a90df52fd7cb4ece652.js",
-        "/rss-reader-angular/runtime-es5.5a90df52fd7cb4ece652.js",
-        "/rss-reader-angular/scripts.3fd475e64248ef9994dd.js",
-        "/rss-reader-angular/styles.7d470acdede741941f80.css"
+        "/rss-reader-angular/polyfills.46e0aeb09475382d.js",
+        "/rss-reader-angular/runtime.49926a5ff6ceefb8.js",
+        "/rss-reader-angular/scripts.cf159bcad8664349.js",
+        "/rss-reader-angular/styles.cad31e2670ac006e.css"
       ],
       "patterns": []
     },
@@ -128,10 +123,8 @@
     }
   ],
   "hashTable": {
-    "/rss-reader-angular/5-es2015.36f808050104d766b63e.js": "a665c2d08324b84fa1cc1276c3dd6dbee2d1c4fa",
-    "/rss-reader-angular/5-es5.36f808050104d766b63e.js": "c118a9bea0a7b51ac8406ca6891dbe724c8b376d",
-    "/rss-reader-angular/6-es2015.90e0c5226b303c0d3fb7.js": "0ed0729c5586c761f74f72179a4132211838de49",
-    "/rss-reader-angular/6-es5.90e0c5226b303c0d3fb7.js": "1bdd5d88f8f9ac873452016bab43e0953c3bc49c",
+    "/rss-reader-angular/208.fc5dd8b27d705c0e.js": "576f49cc0bd9b01c98575ca7242cdcbfbfa3f056",
+    "/rss-reader-angular/619.5d49d3844c75ee09.js": "64dfabb7490c6c667448265b0a363f9db068eeaf",
     "/rss-reader-angular/assets/docs/guides/generate-api-key.html": "a2791e84e3d707f1176bb90c754e39b269ffa2a9",
     "/rss-reader-angular/assets/docs/guides/getting-started.html": "5f0583b1e6ae8442153597273f16a9da79ec8431",
     "/rss-reader-angular/assets/docs/guides/troubleshooting.html": "93b25d15f2f9377e49ed9a74d4d8eb13d45d93f1",
@@ -156,20 +149,17 @@
     "/rss-reader-angular/assets/img/Customizing UI.png": "258c30118419a00ad50e72884faddb02ba80f0e7",
     "/rss-reader-angular/assets/img/Explore News Sources.png": "70eb50d386ae85e5a344c93f08556455e065f2e5",
     "/rss-reader-angular/assets/img/News Article.png": "123985f0b304117c98e32f29707c180277fc428f",
-    "/rss-reader-angular/assets/mdi.svg": "07b4afc9cb6e599fe4b66170720484df4c4e9b06",
+    "/rss-reader-angular/assets/mdi.svg": "0815225096b01ac2fb4bc7b00ab9351ea1b24d0e",
     "/rss-reader-angular/assets/onboarding/articles.svg": "099afa8a050d38139505ee3bb933ccd296002738",
     "/rss-reader-angular/assets/release-notes/release-notes-schema.json": "f5f285a714ef14de6f9a1539662a6a8a732f4580",
     "/rss-reader-angular/assets/release-notes/release-notes.json": "4ffee11e8fdd202640a55f0ecdce2ff3664f9160",
-    "/rss-reader-angular/index.html": "1e759b3a09a391b1cf5dfb8b3bf2679c9559325c",
-    "/rss-reader-angular/main-es2015.a4c3d1027bea87b210d2.js": "8d4bfa2cb6ac09cf097da4db637337cb86b15500",
-    "/rss-reader-angular/main-es5.a4c3d1027bea87b210d2.js": "0edd789e151655a9684c842eb2bcc6ff4d8ee87a",
+    "/rss-reader-angular/index.html": "68697d2444d5a612e7f792a5f7d202a6bbf8b0ee",
+    "/rss-reader-angular/main.9b92e5f4527022ba.js": "6eb6281b287055eec7d484680a51dcb35ac1c780",
     "/rss-reader-angular/manifest.webmanifest": "1dd153914789635facdb2bcbfb72bd9ae771637a",
-    "/rss-reader-angular/polyfills-es2015.5cb089f3721189991124.js": "2c205ede5dfdc496711fd3824452443c3b9a14cc",
-    "/rss-reader-angular/polyfills-es5.45139f171378688c7487.js": "254c6425de26c23ed4cd399eabd8129b8238d636",
-    "/rss-reader-angular/runtime-es2015.5a90df52fd7cb4ece652.js": "7ef0ed63dd7a4e41d0c22f2bd1a4b00db53a24fa",
-    "/rss-reader-angular/runtime-es5.5a90df52fd7cb4ece652.js": "3d7c4493b299dac7f0693a47563d02dcce8988f1",
-    "/rss-reader-angular/scripts.3fd475e64248ef9994dd.js": "29897a07510ef20204174f7c42f7e85c11c42e4f",
-    "/rss-reader-angular/styles.7d470acdede741941f80.css": "40214176927b0903fd24bc277f269814f45f2455"
+    "/rss-reader-angular/polyfills.46e0aeb09475382d.js": "702d95d129575a35cb8774603e790c1682734da4",
+    "/rss-reader-angular/runtime.49926a5ff6ceefb8.js": "8eacd251d69d7dd3f85700168c27618b4e1ecff4",
+    "/rss-reader-angular/scripts.cf159bcad8664349.js": "bd9a8e0b0fbdf1f9b1a1cdae2dff70991e438a2a",
+    "/rss-reader-angular/styles.cad31e2670ac006e.css": "2205ad0940574f756471dfae41655e13ec3b9cde"
   },
   "navigationUrls": [
     {
