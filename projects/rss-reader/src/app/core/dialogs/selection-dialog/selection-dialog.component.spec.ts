@@ -14,25 +14,25 @@ describe('SelectionDialogComponent', () => {
 
   const configureTestingModule: (moduleDef?: Partial<TestModuleMetadata>, resetTestingModule?: boolean) => TestBedStatic
     = (moduleDef = {}, resetTestingModule = true) => {
-    if (resetTestingModule) {
-      TestBed.resetTestingModule();
-    }
+      if (resetTestingModule) {
+        TestBed.resetTestingModule();
+      }
 
-    const DEFAULT_MODULE_DEF: TestModuleMetadata = {
-      declarations: [SelectionDialogComponent],
-      imports: [
-        NoopAnimationsModule,
-        MatButtonModule,
-        MatDialogModule,
-        MatListModule
-      ]
+      const DEFAULT_MODULE_DEF: TestModuleMetadata = {
+        declarations: [SelectionDialogComponent],
+        imports: [
+          NoopAnimationsModule,
+          MatButtonModule,
+          MatDialogModule,
+          MatListModule
+        ]
+      };
+
+      return TestBed.configureTestingModule({
+        ...DEFAULT_MODULE_DEF,
+        ...moduleDef
+      });
     };
-
-    return TestBed.configureTestingModule({
-      ...DEFAULT_MODULE_DEF,
-      ...moduleDef
-    });
-  };
 
   beforeEach(() => {
     configureTestingModule({

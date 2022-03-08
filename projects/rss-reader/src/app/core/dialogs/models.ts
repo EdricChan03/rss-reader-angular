@@ -5,7 +5,7 @@ import { SafeHtml } from '@angular/platform-browser';
 export type ButtonType = 'negative' | 'neutral' | 'positive';
 
 export type DialogType = 'alert' | 'confirm' | 'message' | 'prompt' | 'portal'
-  | 'selection';
+| 'selection';
 
 export interface BaseDialogOpts {
   /** The dialog's title. */

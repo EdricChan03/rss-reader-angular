@@ -54,7 +54,7 @@ export class PromptDialogComponent extends Dialog implements OnInit {
     // eslint-disable-next-line import/no-deprecated
     return 'color' in this.opts ? this.opts.color :
       (this.opts.inputConfig && 'color' in this.opts.inputConfig) ?
-      this.opts.inputConfig.color : this.defaultInputColor;
+        this.opts.inputConfig.color : this.defaultInputColor;
   }
 
   ngOnInit() {

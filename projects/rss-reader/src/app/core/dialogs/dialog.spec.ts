@@ -25,9 +25,9 @@ describe('Dialog', () => {
   const btnTypes = ['negative', 'neutral', 'positive'];
   const createDialogImpl: (opts: DialogOpts) => DialogImpl =
     (opts) => {
-    const dialogImpl = new DialogImpl(opts);
-    return dialogImpl;
-  };
+      const dialogImpl = new DialogImpl(opts);
+      return dialogImpl;
+    };
 
   describe('get hasActionBtns', () => {
     it('should return the inverse of the hideActionBtns property', () => {

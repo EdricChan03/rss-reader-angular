@@ -160,7 +160,7 @@ describe('SettingsStorageService', () => {
         'Expected settings to match that of the mock settings');
       expect(JSON.parse(baseMockStorage.getItem('settings'))).not
         .toEqual(JSON.parse(mockStorage.getItem('settings')),
-        'Expected the base settings to not match the current mock settings');
+          'Expected the base settings to not match the current mock settings');
     });
   });
 

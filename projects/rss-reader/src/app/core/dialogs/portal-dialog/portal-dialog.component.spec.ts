@@ -12,23 +12,23 @@ describe('PortalDialogComponent', () => {
 
   const configureTestingModule: (moduleDef?: Partial<TestModuleMetadata>, resetTestingModule?: boolean) => TestBedStatic
     = (moduleDef = {}, resetTestingModule = true) => {
-    if (resetTestingModule) {
-      TestBed.resetTestingModule();
-    }
+      if (resetTestingModule) {
+        TestBed.resetTestingModule();
+      }
 
-    const DEFAULT_MODULE_DEF: TestModuleMetadata = {
-      declarations: [PortalDialogComponent],
-      imports: [
-        MatButtonModule,
-        MatDialogModule
-      ]
+      const DEFAULT_MODULE_DEF: TestModuleMetadata = {
+        declarations: [PortalDialogComponent],
+        imports: [
+          MatButtonModule,
+          MatDialogModule
+        ]
+      };
+
+      return TestBed.configureTestingModule({
+        ...DEFAULT_MODULE_DEF,
+        ...moduleDef
+      });
     };
-
-    return TestBed.configureTestingModule({
-      ...DEFAULT_MODULE_DEF,
-      ...moduleDef
-    });
-  };
 
   beforeEach(() => {
     configureTestingModule({

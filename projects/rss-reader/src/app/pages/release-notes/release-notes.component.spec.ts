@@ -14,24 +14,24 @@ describe('ReleaseNotesComponent', () => {
 
   const configureTestingModule: (moduleDef?: Partial<TestModuleMetadata>, resetTestingModule?: boolean) => TestBedStatic
     = (moduleDef = {}, resetTestingModule = true) => {
-    const DEFAULT_MODULE_DEF: TestModuleMetadata = {
-      declarations: [ReleaseNotesComponent],
-      imports: [
+      const DEFAULT_MODULE_DEF: TestModuleMetadata = {
+        declarations: [ReleaseNotesComponent],
+        imports: [
         // forRoot returns the needed MarkdownService which allows the tests
         // to pass.
-        MarkdownModule.forRoot(),
-        MatChipsModule
-      ],
-      providers: [
-        { provide: RELEASE_NOTES_JSON, useFactory: () => mockReleaseNotesJson }
-      ]
-    };
+          MarkdownModule.forRoot(),
+          MatChipsModule
+        ],
+        providers: [
+          { provide: RELEASE_NOTES_JSON, useFactory: () => mockReleaseNotesJson }
+        ]
+      };
 
-    return TestBed.configureTestingModule({
-      ...DEFAULT_MODULE_DEF,
-      ...moduleDef
-    });
-  };
+      return TestBed.configureTestingModule({
+        ...DEFAULT_MODULE_DEF,
+        ...moduleDef
+      });
+    };
 
   beforeEach(() => {
     configureTestingModule().compileComponents();
@@ -60,7 +60,7 @@ describe('ReleaseNotesComponent', () => {
           ]
         };
         TestBed.configureTestingModule(LOCAL_MODULE_DEF)
-        .compileComponents();
+          .compileComponents();
 
         const localFixture = TestBed.createComponent(ReleaseNotesComponent);
         const localComponent = localFixture.componentInstance;

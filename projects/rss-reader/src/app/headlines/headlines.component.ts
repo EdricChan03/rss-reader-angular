@@ -29,8 +29,8 @@ export class HeadlinesComponent implements OnDestroy, OnInit {
   ) {
     shared.title = 'Headlines';
     const refreshShortcut = hotkeys.addShortcut({ keys: 'r',
-    description: 'Refresh headlines',
-    shortcutBlacklistEls: ['input', 'textarea'] })
+      description: 'Refresh headlines',
+      shortcutBlacklistEls: ['input', 'textarea'] })
       .subscribe(() => {
         this.reloadHeadlines();
       });

@@ -47,9 +47,9 @@ export class SharedService {
   /**
    * Returns the document's title
    */
-     get title(): string {
-      return this.internalTitle;
-    }
+  get title(): string {
+    return this.internalTitle;
+  }
 
   /**
    * Sets the document's title

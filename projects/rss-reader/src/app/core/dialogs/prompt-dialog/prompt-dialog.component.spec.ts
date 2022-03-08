@@ -16,27 +16,27 @@ describe('PromptDialogComponent', () => {
 
   const configureTestingModule: (moduleDef?: Partial<TestModuleMetadata>, resetTestingModule?: boolean) => TestBedStatic
     = (moduleDef = {}, resetTestingModule = true) => {
-    if (resetTestingModule) {
-      TestBed.resetTestingModule();
-    }
+      if (resetTestingModule) {
+        TestBed.resetTestingModule();
+      }
 
-    const DEFAULT_MODULE_DEF: TestModuleMetadata = {
-      declarations: [PromptDialogComponent],
-      imports: [
-        NoopAnimationsModule,
-        FormsModule,
-        MatButtonModule,
-        MatDialogModule,
-        MatFormFieldModule,
-        MatInputModule
-      ]
+      const DEFAULT_MODULE_DEF: TestModuleMetadata = {
+        declarations: [PromptDialogComponent],
+        imports: [
+          NoopAnimationsModule,
+          FormsModule,
+          MatButtonModule,
+          MatDialogModule,
+          MatFormFieldModule,
+          MatInputModule
+        ]
+      };
+
+      return TestBed.configureTestingModule({
+        ...DEFAULT_MODULE_DEF,
+        ...moduleDef
+      });
     };
-
-    return TestBed.configureTestingModule({
-      ...DEFAULT_MODULE_DEF,
-      ...moduleDef
-    });
-  };
 
   beforeEach(() => {
     configureTestingModule({

@@ -10,7 +10,7 @@ export class GuideViewerComponent {
 
   docUrl: string;
   constructor(private route: ActivatedRoute,
-              private router: Router, private guideItems: GuideItemsService) {
+    private router: Router, private guideItems: GuideItemsService) {
     route.params.subscribe(result => {
       if (result.docTypeId === 'guides') {
         this.docUrl = guideItems.getGuideItemById(result.docId).document;

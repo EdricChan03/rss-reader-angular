@@ -33,7 +33,7 @@ const markedOptionsFactory: () => MarkedOptions = () => {
   const renderer = new MarkedRenderer();
 
   renderer.link = (href, title, text) => `<a class="anchor-link" href="${href}"${typeof title !== 'undefined' ?
-      ` title=${title}` : ''}>${text}</a>`;
+    ` title=${title}` : ''}>${text}</a>`;
 
   return {
     renderer,

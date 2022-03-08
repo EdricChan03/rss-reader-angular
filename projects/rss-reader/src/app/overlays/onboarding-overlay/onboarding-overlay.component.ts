@@ -49,10 +49,10 @@ export class OnboardingOverlayComponent implements OnDestroy {
     private hotkeys: HotkeysService
   ) {
     const backShortcut = hotkeys.addShortcut({ keys: 'arrowleft',
-    description: 'Go back to previous step' }).subscribe(() => this.prevIndex());
+      description: 'Go back to previous step' }).subscribe(() => this.prevIndex());
     this.shortcutHandlers.push(backShortcut);
     const forwardShortcut = hotkeys.addShortcut({ keys: 'arrowright',
-    description: 'Go forward to next step' }).subscribe(() => this.nextIndex());
+      description: 'Go forward to next step' }).subscribe(() => this.nextIndex());
     this.shortcutHandlers.push(forwardShortcut);
   }
 
