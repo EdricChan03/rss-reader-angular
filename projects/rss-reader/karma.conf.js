@@ -21,7 +21,11 @@ module.exports = function (config) {
     coverageReporter: {
       dir: require('path').join(__dirname, '../../coverage/rss-reader'),
       // See https://github.com/karma-runner/karma-coverage/blob/master/docs/configuration.md#type
-      reports: ['html', 'json', 'text']
+      reports: [
+        'html', 'text',
+        // Used for Codecov
+        'lcovonly'
+      ]
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
