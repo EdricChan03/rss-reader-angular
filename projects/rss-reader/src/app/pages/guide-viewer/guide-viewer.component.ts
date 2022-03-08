@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GuideItemsService } from './../../guide-items';
 
 @Component({
-  selector: 'guide-viewer',
+  selector: 'app-guide-viewer',
   templateUrl: 'guide-viewer.component.html'
 })
 export class GuideViewerComponent {

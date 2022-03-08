@@ -65,21 +65,25 @@ export interface PromptDialogOpts extends DialogOpts {
   inputConfig?: PromptDialogInputConfig;
   /**
    * The input's placeholder.
+   *
    * @deprecated Use {@link PromptDialogInputConfig#placeholder} instead
    */
   placeholder?: string;
   /**
    * The input type.
+   *
    * @deprecated Use {@link PromptDialogInputConfig#inputType} instead
    */
   inputType?: 'text' | 'email' | 'password' | 'number';
   /**
    * The initial value of the input
+   *
    * @deprecated Use {@link PromptDialogInputConfig#value} instead
    */
   value?: string | number;
   /**
    * The color of the input
+   *
    * @deprecated Use {@link PromptDialogInputConfig#color} instead
    */
   color?: ThemePalette;
@@ -111,6 +115,7 @@ export interface PortalDialogOpts<T> extends DialogOpts {
 }
 
 /** The result returned by the dialog. */
+/* eslint-disable @typescript-eslint/naming-convention */
 export enum DialogResult {
   /** Indicates that the user clicked the "Cancel" (or negative) button. */
   NEGATIVE = 'cancel',
@@ -123,3 +128,4 @@ export enum DialogResult {
   /** Alias for {@link DialogResult#POSITIVE}. */
   OK = 'ok'
 }
+/* eslint-enable @typescript-eslint/naming-convention */

@@ -12,7 +12,8 @@ describe('ReleaseNotesComponent', () => {
   let componentEl: HTMLElement;
   let fixture: ComponentFixture<ReleaseNotesComponent>;
 
-  function configureTestingModule(moduleDef?: Partial<TestModuleMetadata>): TestBedStatic {
+  const configureTestingModule: (moduleDef?: Partial<TestModuleMetadata>, resetTestingModule?: boolean) => TestBedStatic
+    = (moduleDef = {}, resetTestingModule = true) => {
     const DEFAULT_MODULE_DEF: TestModuleMetadata = {
       declarations: [ReleaseNotesComponent],
       imports: [
@@ -30,7 +31,7 @@ describe('ReleaseNotesComponent', () => {
       ...DEFAULT_MODULE_DEF,
       ...moduleDef
     });
-  }
+  };
 
   beforeEach(() => {
     configureTestingModule().compileComponents();
@@ -240,7 +241,7 @@ describe('ReleaseNotesComponent', () => {
 
     describe('#isUrl', () => {
       it('should return whether argument is a valid URL', () => {
-        const specs: { value: string, expected: any, failOutput?: string }[] = [
+        const specs: { value: string; expected: any; failOutput?: string }[] = [
           {
             value: 'http://google.com',
             expected: true,

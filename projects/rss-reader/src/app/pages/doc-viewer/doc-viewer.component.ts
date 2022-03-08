@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import {
   ApplicationRef,
   Component,
@@ -18,24 +19,19 @@ import { ExpansionPanelComponent } from '../../components/expansion-panel/expans
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-  selector: 'doc-viewer',
+  selector: 'app-doc-viewer',
   template: 'Loading document&hellip;',
 })
 export class DocViewerComponent implements OnDestroy {
-  private documentFetchSubscription: Subscription;
-
-  /** The URL of the document to display. */
-  @Input()
-  set documentUrl(url: string) {
-    this._fetchDocument(url);
-  }
-
   @Output() contentLoaded = new EventEmitter<void>();
 
   /** The document text. It should not be HTML encoded. */
   textContent = '';
   html: Document;
   parse = new DOMParser();
+
+  private documentFetchSubscription: Subscription;
+
   constructor(
     private appRef: ApplicationRef,
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -44,6 +40,18 @@ export class DocViewerComponent implements OnDestroy {
     private injector: Injector,
     private viewContainerRef: ViewContainerRef,
     private dom: DomSanitizer) { }
+
+  /** The URL of the document to display. */
+  @Input()
+  set documentUrl(url: string) {
+    this._fetchDocument(url);
+  }
+
+  ngOnDestroy() {
+    if (this.documentFetchSubscription) {
+      this.documentFetchSubscription.unsubscribe();
+    }
+  }
 
   /** Fetch a document by URL. */
   private _fetchDocument(url: string) {
@@ -83,11 +91,6 @@ export class DocViewerComponent implements OnDestroy {
       const expansionPanel = portalHost.attach(expansionPanelPortal);
       // Sets the `html` instance to be a `SafeHtml` of the original element's HTML
       expansionPanel.instance.html = this.dom.sanitize(SecurityContext.HTML, tempElements[i].innerHTML);
-    }
-  }
-  ngOnDestroy() {
-    if (this.documentFetchSubscription) {
-      this.documentFetchSubscription.unsubscribe();
     }
   }
 }

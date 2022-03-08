@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 /**
  * @description This TypeScript file includes unofficial interfaces for https://restcountries.eu.
  * Descriptions of each property are provided by me.

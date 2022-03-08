@@ -60,15 +60,9 @@ describe('ArticleCardComponent', () => {
   });
 
   describe('article input', async () => {
-    const transformDatePipe = (...args: [any, string?, string?, string?]) => {
-      return new DatePipe('en-US').transform(...args);
-    };
-    const transformSlicePipe = (...args: [string, number, number?]) => {
-      return new SlicePipe().transform(...args);
-    };
-    const transformStripHtmlPipe = (...args: [string]) => {
-      return new StripHtmlTagsPipe().transform(...args);
-    };
+    const transformDatePipe = (...args: [any, string?, string?, string?]) => new DatePipe('en-US').transform(...args);
+    const transformSlicePipe = (...args: [string, number, number?]) => new SlicePipe().transform(...args);
+    const transformStripHtmlPipe = (...args: [string]) => new StripHtmlTagsPipe().transform(...args);
 
     it('should display a NewsAPI.org article', async () => {
       await compileComponents();

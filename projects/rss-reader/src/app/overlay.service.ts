@@ -15,14 +15,7 @@ export class OverlayService {
   private overlayRef: OverlayRef;
   private componentPortal: ComponentPortal<any>;
   constructor(private overlay: Overlay) { }
-  /**
-   * Attaches a portal to the overlay
-   */
-  private _attachPortal(): void {
-    if (!this.overlayRef.hasAttached() && this.componentPortal) {
-      this.overlayRef.attach(this.componentPortal);
-    }
-  }
+
   /**
    * Destroys the currently opened overlay
    */
@@ -33,6 +26,7 @@ export class OverlayService {
   }
   /**
    * Closes the overlay currently opened (alias of {@link OverlayService#destroyOverlay})
+   *
    * @see {@link OverlayService#destroyOverlay}
    */
   close(): void {
@@ -45,6 +39,7 @@ export class OverlayService {
   }
   /**
    * Creates a center overlay position strategy
+   *
    * @returns The position strategy
    */
   createCenterOverlayPositionStrategy(): GlobalPositionStrategy {
@@ -56,6 +51,7 @@ export class OverlayService {
   }
   /**
    * Creates a below the position of an element position strategy
+   *
    * @param elementRef The element ref
    * @returns The position strategy
    */
@@ -69,6 +65,7 @@ export class OverlayService {
 
   /**
    * Creates an overlay with the specified parameters
+   *
    * @param portal The portal to attach to the overlay's ref. For more info, visit {@link Overlay#create}
    * @param config The configuration of the overlay. See {@link OverlayConfig} for more properties.
    * @param backdropClickClosesOverlay Whether when the overlay's backdrop is clicked and it will close the overlay
@@ -76,12 +73,20 @@ export class OverlayService {
   createOverlay(portal: ComponentPortal<any>, config?: OverlayConfig, backdropClickClosesOverlay?: boolean): OverlayRef {
     this.overlayRef = this.overlay.create(config);
     this.componentPortal = portal;
-    this._attachPortal();
+    this.attachPortal();
     if (backdropClickClosesOverlay && config.hasBackdrop) {
       this.overlayRef.backdropClick().subscribe(() => {
         this.destroyOverlay();
       });
     }
     return this.overlayRef;
+  }
+  /**
+   * Attaches a portal to the overlay
+   */
+  private attachPortal(): void {
+    if (!this.overlayRef.hasAttached() && this.componentPortal) {
+      this.overlayRef.attach(this.componentPortal);
+    }
   }
 }

@@ -37,6 +37,7 @@ export class DialogBuilderService {
 
   /**
    * Sets the dialog's message.
+   *
    * @param message The message to set.
    * @returns The current instance of the builder.
    */
@@ -47,6 +48,7 @@ export class DialogBuilderService {
 
   /**
    * Sets the dialog's title.
+   *
    * @param title The title to set.
    * @returns The current instance of the builder.
    */
@@ -57,6 +59,7 @@ export class DialogBuilderService {
 
   /**
    * Sets the dialog negative button's properties.
+   *
    * @param text The text to set.
    * @param color The colour to set.
    * @returns The current instance of the builder.
@@ -69,6 +72,7 @@ export class DialogBuilderService {
 
   /**
    * Sets the dialog neutral button's properties.
+   *
    * @param text The text to set.
    * @param color The colour to set.
    * @returns The current instance of the builder.
@@ -81,6 +85,7 @@ export class DialogBuilderService {
 
   /**
    * Sets the dialog positive button's properties.
+   *
    * @param text The text to set.
    * @param color The colour to set.
    * @returns The current instance of the builder.

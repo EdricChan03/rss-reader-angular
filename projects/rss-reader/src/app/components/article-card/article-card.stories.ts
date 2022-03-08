@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { moduleMetadata } from '@storybook/angular';
 import { Meta, Story } from '@storybook/angular/types-6-0';
 

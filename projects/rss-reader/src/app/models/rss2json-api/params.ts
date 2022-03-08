@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 export interface Rss2JsonParams {
   /** The RSS feed to be converted to JSON. (Note: The URL has to be escaped) */
   rss_url: string;

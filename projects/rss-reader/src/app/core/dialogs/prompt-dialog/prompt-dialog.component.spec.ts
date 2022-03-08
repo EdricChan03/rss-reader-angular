@@ -14,7 +14,8 @@ describe('PromptDialogComponent', () => {
   let componentEl: HTMLElement;
   let fixture: ComponentFixture<PromptDialogComponent>;
 
-  function configureTestingModule(moduleDef?: Partial<TestModuleMetadata>, resetTestingModule: boolean = false): TestBedStatic {
+  const configureTestingModule: (moduleDef?: Partial<TestModuleMetadata>, resetTestingModule?: boolean) => TestBedStatic
+    = (moduleDef = {}, resetTestingModule = true) => {
     if (resetTestingModule) {
       TestBed.resetTestingModule();
     }
@@ -35,7 +36,8 @@ describe('PromptDialogComponent', () => {
       ...DEFAULT_MODULE_DEF,
       ...moduleDef
     });
-  }
+  };
+
   beforeEach(() => {
     configureTestingModule({
       providers: [

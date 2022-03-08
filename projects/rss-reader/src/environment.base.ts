@@ -44,8 +44,8 @@ export const defaultEnvironment: Environment = {
 /**
  * Merges the specified environment with the default environment
  * and returns the result.
+ *
  * @param env The enviroment to merge
  */
-export function mergeWithDefaultEnv(env: Partial<Environment>): Environment {
-  return { ...defaultEnvironment, ...env };
-}
+export const mergeWithDefaultEnv: (env: Partial<Environment>) => Environment =
+  (env) => ({ ...defaultEnvironment, ...env });

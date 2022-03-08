@@ -10,7 +10,8 @@ describe('MessageDialogComponent', () => {
   let componentEl: HTMLElement;
   let fixture: ComponentFixture<MessageDialogComponent>;
 
-  function configureTestingModule(moduleDef?: Partial<TestModuleMetadata>, resetTestingModule: boolean = false): TestBedStatic {
+  const configureTestingModule: (moduleDef?: Partial<TestModuleMetadata>, resetTestingModule?: boolean) => TestBedStatic
+    = (moduleDef = {}, resetTestingModule = true) => {
     if (resetTestingModule) {
       TestBed.resetTestingModule();
     }
@@ -27,7 +28,8 @@ describe('MessageDialogComponent', () => {
       ...DEFAULT_MODULE_DEF,
       ...moduleDef
     });
-  }
+  };
+
   beforeEach(() => {
     configureTestingModule({
       providers: [

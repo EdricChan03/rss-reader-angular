@@ -67,6 +67,7 @@ export class FeedDialogComponent implements OnInit {
     private dialog: MatDialog
   ) {
     dialogRef.disableClose = true;
+    /* eslint-disable @typescript-eslint/naming-convention */
     this.rssFeedForm = fb.group({
       rss_url: ['', Validators.required],
       api_key: ['', [Validators.required, Validators.maxLength(40), Validators.minLength(40)]],
@@ -74,6 +75,7 @@ export class FeedDialogComponent implements OnInit {
       order_dir: '',
       count: 10 // The default value
     });
+    /* eslint-enable @typescript-eslint/naming-convention */
     this.filteredOptions = this.rssFeedForm.get('rss_url').valueChanges
       .pipe(
         startWith(''),
