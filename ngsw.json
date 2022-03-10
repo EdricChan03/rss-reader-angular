@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1646802519801,
+  "timestamp": 1646905849790,
   "appData": {
     "version": "1.6.0"
   },
@@ -149,11 +149,11 @@
     "/rss-reader-angular/assets/img/Customizing UI.png": "258c30118419a00ad50e72884faddb02ba80f0e7",
     "/rss-reader-angular/assets/img/Explore News Sources.png": "70eb50d386ae85e5a344c93f08556455e065f2e5",
     "/rss-reader-angular/assets/img/News Article.png": "123985f0b304117c98e32f29707c180277fc428f",
-    "/rss-reader-angular/assets/mdi.svg": "0815225096b01ac2fb4bc7b00ab9351ea1b24d0e",
+    "/rss-reader-angular/assets/mdi.svg": "b59e499ead1462e76d4d278319b0ea35f801390e",
     "/rss-reader-angular/assets/onboarding/articles.svg": "099afa8a050d38139505ee3bb933ccd296002738",
     "/rss-reader-angular/assets/release-notes/release-notes-schema.json": "f5f285a714ef14de6f9a1539662a6a8a732f4580",
     "/rss-reader-angular/assets/release-notes/release-notes.json": "4ffee11e8fdd202640a55f0ecdce2ff3664f9160",
-    "/rss-reader-angular/index.html": "68697d2444d5a612e7f792a5f7d202a6bbf8b0ee",
+    "/rss-reader-angular/index.html": "7055ede67c669dea12ea835bc3bbd975bcf45f33",
     "/rss-reader-angular/main.9b92e5f4527022ba.js": "6eb6281b287055eec7d484680a51dcb35ac1c780",
     "/rss-reader-angular/manifest.webmanifest": "1dd153914789635facdb2bcbfb72bd9ae771637a",
     "/rss-reader-angular/polyfills.46e0aeb09475382d.js": "702d95d129575a35cb8774603e790c1682734da4",
