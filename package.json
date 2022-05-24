@@ -37,7 +37,7 @@
     "@angular/service-worker": "^13.2.5",
     "@mdi/angular-material": "^6.5.95",
     "@types/highlight.js": "^9.12.4",
-    "highlight.js": "^10.4.1",
+    "highlight.js": "^11.5.1",
     "markdown-to-html": "0.0.13",
     "ngx-markdown": "^13.1.0",
     "rxjs": "^7.5.4",
