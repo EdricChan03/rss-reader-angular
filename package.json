@@ -54,7 +54,7 @@
     "@angular-eslint/template-parser": "^13.1.0",
     "@angular/cli": "^13.2.5",
     "@angular/compiler-cli": "^13.2.5",
-    "@babel/core": "^7.16.7",
+    "@babel/core": "^7.19.0",
     "@compodoc/compodoc": "^1.1.11",
     "@storybook/addon-actions": "^6.4.19",
     "@storybook/addon-essentials": "^6.4.19",
