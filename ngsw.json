@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1653400461139,
+  "timestamp": 1662627361001,
   "appData": {
     "version": "1.6.0"
   },
@@ -17,9 +17,9 @@
         "/rss-reader-angular/208.fc5dd8b27d705c0e.js",
         "/rss-reader-angular/619.5d49d3844c75ee09.js",
         "/rss-reader-angular/index.html",
-        "/rss-reader-angular/main.9b92e5f4527022ba.js",
+        "/rss-reader-angular/main.4ff0e47d25541910.js",
         "/rss-reader-angular/manifest.webmanifest",
-        "/rss-reader-angular/polyfills.46e0aeb09475382d.js",
+        "/rss-reader-angular/polyfills.7841c57c0cb95fe4.js",
         "/rss-reader-angular/runtime.49926a5ff6ceefb8.js",
         "/rss-reader-angular/scripts.cf159bcad8664349.js",
         "/rss-reader-angular/styles.cad31e2670ac006e.css"
@@ -153,10 +153,10 @@
     "/rss-reader-angular/assets/onboarding/articles.svg": "099afa8a050d38139505ee3bb933ccd296002738",
     "/rss-reader-angular/assets/release-notes/release-notes-schema.json": "f5f285a714ef14de6f9a1539662a6a8a732f4580",
     "/rss-reader-angular/assets/release-notes/release-notes.json": "4ffee11e8fdd202640a55f0ecdce2ff3664f9160",
-    "/rss-reader-angular/index.html": "f3b31d63f6b0be2d4747812b67b678ec80508b8e",
-    "/rss-reader-angular/main.9b92e5f4527022ba.js": "6eb6281b287055eec7d484680a51dcb35ac1c780",
+    "/rss-reader-angular/index.html": "7f210954009ff016faaa9fdd52136d33ae13f3b3",
+    "/rss-reader-angular/main.4ff0e47d25541910.js": "012e2d385f19891151f3d2367950f2bd1507c373",
     "/rss-reader-angular/manifest.webmanifest": "1dd153914789635facdb2bcbfb72bd9ae771637a",
-    "/rss-reader-angular/polyfills.46e0aeb09475382d.js": "702d95d129575a35cb8774603e790c1682734da4",
+    "/rss-reader-angular/polyfills.7841c57c0cb95fe4.js": "a3891cfc651076938968060440d6fd924df06a30",
     "/rss-reader-angular/runtime.49926a5ff6ceefb8.js": "8eacd251d69d7dd3f85700168c27618b4e1ecff4",
     "/rss-reader-angular/scripts.cf159bcad8664349.js": "bd9a8e0b0fbdf1f9b1a1cdae2dff70991e438a2a",
     "/rss-reader-angular/styles.cad31e2670ac006e.css": "2205ad0940574f756471dfae41655e13ec3b9cde"
