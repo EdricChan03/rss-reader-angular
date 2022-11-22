@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 
 import { DialogsService } from '../../core/dialogs/dialogs.service';
 import { SharedService } from '../../shared.service';
@@ -10,7 +10,7 @@ import { SettingsStorageService } from '../../core/settings-storage/settings-sto
   templateUrl: './settings.component.html'
 })
 export class SettingsComponent {
-  settingsForm: FormGroup;
+  settingsForm: UntypedFormGroup;
   themes = [
     'indigo-pink',
     'deeppurple-amber',
@@ -19,7 +19,7 @@ export class SettingsComponent {
   ];
   constructor(
     private dialog: DialogsService,
-    fb: FormBuilder,
+    fb: UntypedFormBuilder,
     private shared: SharedService,
     private settingsStorage: SettingsStorageService
   ) {

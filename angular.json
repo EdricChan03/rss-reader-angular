@@ -16,7 +16,6 @@
             "index": "projects/rss-reader/src/index.html",
             "main": "projects/rss-reader/src/main.ts",
             "tsConfig": "projects/rss-reader/tsconfig.app.json",
-            "showCircularDependencies": false,
             "polyfills": "projects/rss-reader/src/polyfills.ts",
             "assets": [
               "projects/rss-reader/src/assets",
@@ -188,9 +187,10 @@
       }
     }
   },
-  "defaultProject": "rss-reader",
   "cli": {
     "analytics": "2a31b3aa-e3e3-4fbc-8175-a732c798e30d",
-    "defaultCollection": "@angular-eslint/schematics"
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FeedCategory } from '../../models/feed-category';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -27,7 +27,7 @@ export class FeedDialogComponent implements OnInit {
   feedCategory: string;
   filteredOptions: Observable<FeedCategory[]>;
   feedUrlValue = '';
-  rssFeedForm: FormGroup;
+  rssFeedForm: UntypedFormGroup;
   orderByOptions = [
     {
       title: 'None',
@@ -63,7 +63,7 @@ export class FeedDialogComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<FeedDialogComponent>,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private dialog: MatDialog
   ) {
     dialogRef.disableClose = true;

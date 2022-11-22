@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { RestCountriesAPICountry } from '../../models/rest-countries-api';
 import { switchMap, debounceTime } from 'rxjs/operators';
@@ -32,10 +32,10 @@ export interface HeadlineOptions {
 export class HeadlineOptionsDialogComponent implements OnInit {
 
   filteredOptions: Observable<RestCountriesAPICountry[]>;
-  headlineOptForm: FormGroup;
+  headlineOptForm: UntypedFormGroup;
   categories = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'];
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private http: HttpClient,
     @Inject(MAT_DIALOG_DATA) public headlineOpts: HeadlineOptions
   ) {
