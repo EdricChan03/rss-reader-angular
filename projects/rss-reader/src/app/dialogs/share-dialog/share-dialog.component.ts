@@ -31,6 +31,14 @@ export class ShareDialogComponent implements OnInit {
   isFeedEntry(feed: FeedEntry | NewsAPITopHeadlinesArticle): feed is FeedEntry {
     return (feed as FeedEntry).categories !== undefined;
   }
+
+  selectUrl(ev: MouseEvent) {
+    // ev.target is typed as EventTarget, so select() can't be accessed otherwise
+    if (ev.target instanceof HTMLInputElement) {
+      ev.target.select();
+    }
+  }
+
   shareToFacebook() {
     window.open(`https://www.facebook.com/sharer.php?u=${encodeURI(this.url)}`, '');
   }

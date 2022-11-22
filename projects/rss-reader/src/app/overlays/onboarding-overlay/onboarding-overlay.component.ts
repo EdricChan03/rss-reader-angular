@@ -5,6 +5,7 @@ import { trigger, style, animate, transition, state } from '@angular/animations'
 import { HotkeysService } from '../../hotkeys/hotkeys.service';
 import { Subscription } from 'rxjs';
 
+type Index = 0 | 1 | 2 | 3;
 @Component({
   selector: 'app-onboarding-overlay',
   templateUrl: './onboarding-overlay.component.html',
@@ -20,7 +21,8 @@ import { Subscription } from 'rxjs';
   ]
 })
 export class OnboardingOverlayComponent implements OnDestroy {
-  index: 0 | 1 | 2 | 3 = 0;
+  index: Index = 0;
+  items: Index[] = [0, 1, 2, 3];
   content = [
     {
       content: '',
@@ -76,7 +78,7 @@ export class OnboardingOverlayComponent implements OnDestroy {
       this.gettingStarted();
     }
   }
-  goToIndex(index: 0 | 1 | 2 | 3) {
+  goToIndex(index: Index) {
     console.log(index);
     this.index = index;
   }

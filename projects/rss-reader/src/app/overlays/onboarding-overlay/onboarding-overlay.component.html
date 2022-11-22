@@ -29,5 +29,5 @@
   </button>
 </div>
 <div class="indicators">
-  <span class="indicator" [class.indicator-active]="item === index" *ngFor="let item of content.length" (click)="goToIndex(item)"></span>
+  <span class="indicator" [class.indicator-active]="item === index" *ngFor="let item of items" (click)="goToIndex(item)"></span>
 </div>
