@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { RestCountriesAPICountry } from '../../models/rest-countries-api';
 import { switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 
 type HeadlineForm = FormGroup<{
   apiKey: FormControl<string | null>;

@@ -3,7 +3,7 @@ import { ComponentType } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { Injectable, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatSnackBar, MatSnackBarConfig, MatSnackBarModule, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarConfig as MatSnackBarConfig, MatLegacySnackBarModule as MatSnackBarModule, MatLegacySnackBarRef as MatSnackBarRef, LegacySimpleSnackBar as SimpleSnackBar } from '@angular/material/legacy-snack-bar';
 import { Title } from '@angular/platform-browser';
 
 export interface SnackBarOpts<D = any> {

@@ -1,4 +1,4 @@
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

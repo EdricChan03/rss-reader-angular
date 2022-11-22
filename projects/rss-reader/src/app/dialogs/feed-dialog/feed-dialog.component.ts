@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { FeedCategory } from '../../models/feed-category';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialogRef as MatDialogRef, MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { SubmitRssDialogComponent } from '../submit-rss-dialog/submit-rss-dialog.component';

@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog, MatLegacyDialogConfig as MatDialogConfig } from '@angular/material/legacy-dialog';
 import { Observable, Subject, throwError, Subscription } from 'rxjs';
 import { ActionItemService } from '../actionitem.service';
 import { HeadlineOptions, HeadlineOptionsDialogComponent, CodeViewerDialogComponent } from '../dialogs';
