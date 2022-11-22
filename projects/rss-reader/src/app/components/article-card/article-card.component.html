@@ -2,7 +2,7 @@
   <mat-card-header class="article-card--header">
     <mat-card-title *ngIf="articleAuthor" class="article-card--author">{{ articleAuthor }}</mat-card-title>
     <mat-card-subtitle *ngIf="articlePubDate" class="article-card--pub-date">{{ articlePubDate | date:'short' }}</mat-card-subtitle>
-    <span fxFlex></span>
+    <span class="flex--spacer"></span>
     <button mat-icon-button [matMenuTriggerFor]="feedMenu">
       <mat-icon class="icon">more_vert</mat-icon>
     </button>

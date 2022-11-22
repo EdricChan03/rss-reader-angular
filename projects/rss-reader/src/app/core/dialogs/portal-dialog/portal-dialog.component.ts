@@ -1,5 +1,4 @@
 import { Component, Inject } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { Dialog } from '../dialog';
@@ -7,7 +6,13 @@ import { PortalDialogOpts } from '../models';
 
 @Component({
   selector: 'app-portal-dialog',
-  templateUrl: './portal-dialog.component.html'
+  templateUrl: './portal-dialog.component.html',
+  styles: [`
+  .portal-dialog--container {
+    display: flex;
+    flex-direction: column;
+  }
+  `]
 })
 export class PortalDialogComponent<T = any> extends Dialog {
   /** The default text to be used for the negative button. */

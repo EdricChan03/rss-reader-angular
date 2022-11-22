@@ -1,3 +1,9 @@
+.share-dialog--container {
+  display: flex;
+  flex-direction: column;
+  min-width: fit-content;
+}
+
 .share-icon {
   font-size: 30px;
   width: 30px;

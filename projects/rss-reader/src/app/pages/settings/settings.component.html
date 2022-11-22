@@ -1,8 +1,8 @@
 <div class="app-content">
   <mat-card>
     <mat-card-title>Settings</mat-card-title>
-    <mat-card-content fxLayout="column">
-      <form [formGroup]="settingsForm" fxLayout="column">
+    <mat-card-content class="settings-card">
+      <form [formGroup]="settingsForm">
         <h3 class="mat-subheader">General</h3>
         <mat-checkbox formControlName="openNewTab" class="checkbox">Open posts in a new tab</mat-checkbox>
         <mat-checkbox formControlName="showImages" class="checkbox">Show images</mat-checkbox>

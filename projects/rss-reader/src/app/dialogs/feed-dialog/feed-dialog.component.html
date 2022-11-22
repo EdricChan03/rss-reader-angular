@@ -1,6 +1,6 @@
 <h2 matDialogTitle>RSS Config</h2>
-<mat-dialog-content fxLayout="column">
-  <form [formGroup]="rssFeedForm" fxLayout="column">
+<mat-dialog-content class="feed-dialog--container">
+  <form [formGroup]="rssFeedForm">
     <p>Select from one of the options or enter a RSS feed URL:</p>
     <mat-form-field color="accent">
       <mat-label>RSS feed URL</mat-label>
@@ -45,7 +45,7 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button color="accent" (click)="openSubmitRssDialog()">Submit RSS URL</button>
-  <span fxFlex></span>
+  <span class="flex--spacer"></span>
   <button mat-button color="primary" matDialogClose="cancel">Cancel</button>
   <button mat-button color="primary" [matDialogClose]="rssFeedForm.value" [disabled]="rssFeedForm.invalid">Save</button>
 </mat-dialog-actions>

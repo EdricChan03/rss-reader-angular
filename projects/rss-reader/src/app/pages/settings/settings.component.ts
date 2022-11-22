@@ -14,7 +14,8 @@ type SettingsForm = FormGroup<{
 }>;
 @Component({
   selector: 'app-settings',
-  templateUrl: './settings.component.html'
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent {
   settingsForm: SettingsForm = new FormGroup({

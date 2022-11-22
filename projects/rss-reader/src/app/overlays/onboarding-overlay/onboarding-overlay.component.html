@@ -18,10 +18,10 @@
       <p *ngIf="index === 0">The news reader that you will need</p>
       <p>{{content[index].content}}</p>
     </mat-card-content>
-    <mat-card-actions fxLayout="row" class="onboarding-card-actions">
-      <span fxFlex></span>
+    <mat-card-actions class="onboarding-card-actions">
+      <span class="flex--spacer"></span>
       <button mat-raised-button (click)="gettingStarted()" color="primary">Get Started</button>
-      <span fxFlex></span>
+      <span class="flex--spacer"></span>
     </mat-card-actions>
   </mat-card>
   <button mat-fab matTooltip="Next" class="onboarding-fab onboarding-right-fab" (click)="nextIndex()" aria-label="Next" [@enterAnimation]="index === 3 ? 'leave' : 'enter'" [class.no-visible]="index === 3" color>
