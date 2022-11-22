@@ -1,15 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FeedCategory } from '../../models/feed-category';
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { Feed } from '../../models/feed';
 import { SubmitRssDialogComponent } from '../submit-rss-dialog/submit-rss-dialog.component';
-import { FeedChannel } from '../../models/feed-channel';
 import feedUrlsJson from '../../../assets/feedurls.json';
 
+/* eslint-disable @typescript-eslint/naming-convention */
+// TODO: Use camelCase
+type FeedForm = FormGroup<{
+  rss_url: FormControl<string | null>;
+  api_key: FormControl<string | null>;
+  order_by: FormControl<string | null>;
+  order_dir: FormControl<string | null>;
+  count: FormControl<number | null>;
+}>;
+/* eslint-enable @typescript-eslint/naming-convention */
 @Component({
   selector: 'app-feed-dialog',
   templateUrl: './feed-dialog.component.html'
@@ -27,7 +35,7 @@ export class FeedDialogComponent implements OnInit {
   feedCategory: string;
   filteredOptions: Observable<FeedCategory[]>;
   feedUrlValue = '';
-  rssFeedForm: UntypedFormGroup;
+  rssFeedForm: FeedForm;
   orderByOptions = [
     {
       title: 'None',
@@ -62,8 +70,8 @@ export class FeedDialogComponent implements OnInit {
   ];
 
   constructor(
-    private dialogRef: MatDialogRef<FeedDialogComponent>,
-    private fb: UntypedFormBuilder,
+    dialogRef: MatDialogRef<FeedDialogComponent>,
+    fb: FormBuilder,
     private dialog: MatDialog
   ) {
     dialogRef.disableClose = true;
@@ -79,7 +87,7 @@ export class FeedDialogComponent implements OnInit {
     this.filteredOptions = this.rssFeedForm.get('rss_url').valueChanges
       .pipe(
         startWith(''),
-        map(value => this.filter(value))
+        map(value => this.filterFeeds(value))
       );
   }
   ngOnInit() {
@@ -87,29 +95,20 @@ export class FeedDialogComponent implements OnInit {
       this.rssFeedForm.patchValue(JSON.parse(window.localStorage.getItem('feedOptions')));
     }
   }
-  filter(name: string): FeedCategory[] {
-    const filteredFeedCategories: FeedCategory[] = [];
-    for (const feedCategory of this.feeds) {
-      const tempFeedCategory: FeedCategory = {
-        categoryId: null,
-        categoryName: null,
-        channels: []
-      };
-      const tempFeedChannels: FeedChannel[] = [];
-      tempFeedCategory.categoryName = feedCategory.categoryName;
-      tempFeedCategory.categoryId = feedCategory.categoryId;
-      for (const feedChannel of feedCategory.channels) {
-        if (feedChannel.feedName.includes(name) || feedChannel.feedUrl.includes(name)) {
-          tempFeedChannels.push(feedChannel);
-        }
+
+  filterFeeds(name: string): FeedCategory[] {
+    return this.feeds.reduce((feeds, feed) => {
+      const channels = feed.channels.filter(
+        channel => channel.feedName.includes(name) || channel.feedUrl.includes(name)
+      );
+      // Only add the filtered feed channels if there were any results
+      if (channels.length > 0) {
+        feeds.push({ ...feed, channels });
       }
-      if (tempFeedChannels.length >= 1) {
-        tempFeedCategory.channels = tempFeedChannels;
-        filteredFeedCategories.push(tempFeedCategory);
-      }
-    }
-    return filteredFeedCategories;
+      return feeds;
+    }, [] as FeedCategory[]);
   }
+
   openSubmitRssDialog() {
     this.dialog.open(SubmitRssDialogComponent, {
       data: { feedUrl: this.rssFeedForm.get('feedUrl').value }
