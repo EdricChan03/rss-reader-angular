@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 import { ComponentHarness, HarnessPredicate } from '@angular/cdk/testing';
-import { MatButtonHarness } from '@angular/material/button/testing';
-import { MatChipListHarness } from '@angular/material/chips/testing';
+import { MatLegacyButtonHarness as MatButtonHarness } from '@angular/material/legacy-button/testing';
+import { MatLegacyChipListHarness as MatChipListHarness } from '@angular/material/legacy-chips/testing';
 
 import { ArticleCardComponentHarnessFilters } from './article-card-harness-filters';
 

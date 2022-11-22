@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, TestModuleMetadata } from '@angular/core/testing';
-import { MatChipsModule } from '@angular/material/chips';
+import { MatLegacyChipsModule as MatChipsModule } from '@angular/material/legacy-chips';
 import { MarkdownModule } from 'ngx-markdown';
 import { environment } from '../../../environments/environment';
 import prodReleaseNotesJson from '../../../assets/release-notes/release-notes.json';

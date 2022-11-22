@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { Observable, Subject, Subscription, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 import { PortalDialogOpts } from '../models';
 import { Portal } from '@angular/cdk/portal';
