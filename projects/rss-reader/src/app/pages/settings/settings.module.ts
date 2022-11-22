@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -25,7 +24,6 @@ const MATERIAL_MODULES = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FlexLayoutModule,
     MATERIAL_MODULES,
     SettingsRoutingModule
   ]

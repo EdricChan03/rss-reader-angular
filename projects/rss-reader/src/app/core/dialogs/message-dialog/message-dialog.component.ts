@@ -6,7 +6,13 @@ import { DialogOpts } from '../models';
 
 @Component({
   selector: 'app-message-dialog',
-  templateUrl: './message-dialog.component.html'
+  templateUrl: './message-dialog.component.html',
+  styles: [`
+  .msg-dialog--container {
+    display: flex;
+    flex-direction: column;
+  }
+  `]
 })
 export class MessageDialogComponent extends Dialog {
   /** The default text to be used for the negative button. */

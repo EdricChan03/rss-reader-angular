@@ -2,7 +2,7 @@
   <mat-sidenav #left class="app-sidenav" [mode]="shared.isPortraitHandset ? 'over' : 'side'">
     <mat-toolbar>
       Links
-      <span fxFlex></span>
+      <span class="flex--spacer"></span>
       <button mat-icon-button (click)="left.close()" matTooltip="Close Sidenav" matTooltipPosition="left">
         <mat-icon>keyboard_arrow_left</mat-icon>
       </button>
@@ -17,7 +17,7 @@
       <a mat-list-item href="https://goo.gl/forms/hopvyFXOqHfpA1kq2" target="_blank">
         <mat-icon matListIcon>feedback</mat-icon>
         <h3 matLine>Send Feedback</h3>
-        <span fxFlex></span>
+        <span class="flex--spacer"></span>
         <mat-icon class="open-in-new-icon">open_in_new</mat-icon>
       </a>
       <a mat-list-item href="https://github.com/EdricChan03/rss-reader">
@@ -40,7 +40,7 @@
         <mat-icon>menu</mat-icon>
       </button>
       <span id="toolbar-title">RSS Reader</span>
-      <span fxFlex></span>
+      <span class="flex--spacer"></span>
       <app-action-items></app-action-items>
     </mat-toolbar>
     <router-outlet></router-outlet>

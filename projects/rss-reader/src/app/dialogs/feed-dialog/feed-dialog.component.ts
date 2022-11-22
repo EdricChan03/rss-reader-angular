@@ -20,7 +20,8 @@ type FeedForm = FormGroup<{
 /* eslint-enable @typescript-eslint/naming-convention */
 @Component({
   selector: 'app-feed-dialog',
-  templateUrl: './feed-dialog.component.html'
+  templateUrl: './feed-dialog.component.html',
+  styleUrls: ['./feed-dialog.component.scss']
 })
 export class FeedDialogComponent implements OnInit {
   /**

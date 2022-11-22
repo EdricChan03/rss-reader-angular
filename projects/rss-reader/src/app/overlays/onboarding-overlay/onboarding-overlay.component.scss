@@ -16,6 +16,8 @@
     border-top-right-radius: inherit;
   }
   .onboarding-card-actions {
+    display: flex;
+    flex-direction: row;
     margin: 20px !important;
   }
   .onboarding-card-content {

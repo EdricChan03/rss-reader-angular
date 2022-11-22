@@ -35,7 +35,8 @@ export interface HeadlineOptions {
 
 @Component({
   selector: 'app-headline-options-dialog',
-  templateUrl: './headline-options-dialog.component.html'
+  templateUrl: './headline-options-dialog.component.html',
+  styleUrls: ['./headline-options-dialog.component.scss']
 })
 export class HeadlineOptionsDialogComponent implements OnInit {
 

@@ -1,5 +1,4 @@
 import { Component, Inject } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { Dialog } from '../dialog';
@@ -7,7 +6,13 @@ import { SelectionDialogOpts } from '../models';
 
 @Component({
   selector: 'app-selection-dialog',
-  templateUrl: './selection-dialog.component.html'
+  templateUrl: './selection-dialog.component.html',
+  styles: [`
+  .selection-dialog--container {
+    display: flex;
+    flex-direction: column;
+  }
+  `]
 })
 export class SelectionDialogComponent extends Dialog {
   /** The default text to be used for the negative button. */
