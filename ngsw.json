@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1668650734925,
+  "timestamp": 1669094059151,
   "appData": {
     "version": "1.6.0"
   },
@@ -14,15 +14,15 @@
         "ignoreVary": true
       },
       "urls": [
-        "/rss-reader-angular/208.fc5dd8b27d705c0e.js",
-        "/rss-reader-angular/619.5d49d3844c75ee09.js",
+        "/rss-reader-angular/138.ca903d47f53e1c49.js",
+        "/rss-reader-angular/619.ecb02a2264870e6e.js",
         "/rss-reader-angular/index.html",
-        "/rss-reader-angular/main.4ff0e47d25541910.js",
+        "/rss-reader-angular/main.8b86d85584abf12b.js",
         "/rss-reader-angular/manifest.webmanifest",
-        "/rss-reader-angular/polyfills.7841c57c0cb95fe4.js",
-        "/rss-reader-angular/runtime.49926a5ff6ceefb8.js",
-        "/rss-reader-angular/scripts.cf159bcad8664349.js",
-        "/rss-reader-angular/styles.62464c2f1f6f3ef4.css"
+        "/rss-reader-angular/polyfills.d7ab9f75c1edcb61.js",
+        "/rss-reader-angular/runtime.a40eca815c5acafc.js",
+        "/rss-reader-angular/scripts.91baf28149a92f76.js",
+        "/rss-reader-angular/styles.a770c3ba3efc96cd.css"
       ],
       "patterns": []
     },
@@ -123,8 +123,8 @@
     }
   ],
   "hashTable": {
-    "/rss-reader-angular/208.fc5dd8b27d705c0e.js": "576f49cc0bd9b01c98575ca7242cdcbfbfa3f056",
-    "/rss-reader-angular/619.5d49d3844c75ee09.js": "64dfabb7490c6c667448265b0a363f9db068eeaf",
+    "/rss-reader-angular/138.ca903d47f53e1c49.js": "fe3518ddb2c983ff5c5af8885cdd9aff7fbeb309",
+    "/rss-reader-angular/619.ecb02a2264870e6e.js": "ba251076120a034a04bb2e1aa76bf43034b977de",
     "/rss-reader-angular/assets/docs/guides/generate-api-key.html": "a2791e84e3d707f1176bb90c754e39b269ffa2a9",
     "/rss-reader-angular/assets/docs/guides/getting-started.html": "5f0583b1e6ae8442153597273f16a9da79ec8431",
     "/rss-reader-angular/assets/docs/guides/troubleshooting.html": "93b25d15f2f9377e49ed9a74d4d8eb13d45d93f1",
@@ -153,13 +153,13 @@
     "/rss-reader-angular/assets/onboarding/articles.svg": "099afa8a050d38139505ee3bb933ccd296002738",
     "/rss-reader-angular/assets/release-notes/release-notes-schema.json": "f5f285a714ef14de6f9a1539662a6a8a732f4580",
     "/rss-reader-angular/assets/release-notes/release-notes.json": "4ffee11e8fdd202640a55f0ecdce2ff3664f9160",
-    "/rss-reader-angular/index.html": "f841e950f19c8f310cc310bef4d4e1c1a7ed092d",
-    "/rss-reader-angular/main.4ff0e47d25541910.js": "012e2d385f19891151f3d2367950f2bd1507c373",
+    "/rss-reader-angular/index.html": "9fe9ff9d048d53a41fbdccb1f1b127ecce1eca6d",
+    "/rss-reader-angular/main.8b86d85584abf12b.js": "65dde59470468446521de7b8b41acb3419efeb5a",
     "/rss-reader-angular/manifest.webmanifest": "1dd153914789635facdb2bcbfb72bd9ae771637a",
-    "/rss-reader-angular/polyfills.7841c57c0cb95fe4.js": "a3891cfc651076938968060440d6fd924df06a30",
-    "/rss-reader-angular/runtime.49926a5ff6ceefb8.js": "8eacd251d69d7dd3f85700168c27618b4e1ecff4",
-    "/rss-reader-angular/scripts.cf159bcad8664349.js": "bd9a8e0b0fbdf1f9b1a1cdae2dff70991e438a2a",
-    "/rss-reader-angular/styles.62464c2f1f6f3ef4.css": "8cd8db3635121a04765cead3c83c229c3b4ec894"
+    "/rss-reader-angular/polyfills.d7ab9f75c1edcb61.js": "a7600728e3fd76126f6e3e2eaa97e27fd26e3e86",
+    "/rss-reader-angular/runtime.a40eca815c5acafc.js": "b8916be8e2ca23f8306b0673b06750da97844831",
+    "/rss-reader-angular/scripts.91baf28149a92f76.js": "e455167feb71c2c792e7379385ec0e374a050bfd",
+    "/rss-reader-angular/styles.a770c3ba3efc96cd.css": "e35c8da24ccd7c1c59248c0b511568710d8c1bc3"
   },
   "navigationUrls": [
     {

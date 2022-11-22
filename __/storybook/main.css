@@ -15,65 +15,103 @@ Orginal Style from https://github.com/Kelbster/highlightjs-material-dark-theme  
 .mat-badge-large .mat-badge-content {
   font-size: 24px;
 }
-.mat-h1, .mat-headline, .mat-typography h1 {
+.mat-h1,
+.mat-headline,
+.mat-typography .mat-h1,
+.mat-typography .mat-headline,
+.mat-typography h1 {
   font: 400 24px / 32px Merriweather, sans-serif;
   letter-spacing: normal;
   margin: 0 0 16px;
 }
-.mat-h2, .mat-title, .mat-typography h2 {
+.mat-h2,
+.mat-title,
+.mat-typography .mat-h2,
+.mat-typography .mat-title,
+.mat-typography h2 {
   font: 700 20px / 32px Merriweather, sans-serif;
   letter-spacing: normal;
   margin: 0 0 16px;
 }
-.mat-h3, .mat-subheading-2, .mat-typography h3 {
+.mat-h3,
+.mat-subheading-2,
+.mat-typography .mat-h3,
+.mat-typography .mat-subheading-2,
+.mat-typography h3 {
   font: 400 16px / 28px Merriweather, sans-serif;
   letter-spacing: normal;
   margin: 0 0 16px;
 }
-.mat-h4, .mat-subheading-1, .mat-typography h4 {
+.mat-h4,
+.mat-subheading-1,
+.mat-typography .mat-h4,
+.mat-typography .mat-subheading-1,
+.mat-typography h4 {
   font: 400 15px / 24px Merriweather, sans-serif;
   letter-spacing: normal;
   margin: 0 0 16px;
 }
-.mat-h5, .mat-typography h5 {
+.mat-h5,
+.mat-typography .mat-h5,
+.mat-typography h5 {
   font: 400 calc(14px * 0.83) / 20px Merriweather, sans-serif;
   margin: 0 0 12px;
 }
-.mat-h6, .mat-typography h6 {
+.mat-h6,
+.mat-typography .mat-h6,
+.mat-typography h6 {
   font: 400 calc(14px * 0.67) / 20px Merriweather, sans-serif;
   margin: 0 0 12px;
 }
-.mat-body-strong, .mat-body-2 {
+.mat-body-strong,
+.mat-body-2,
+.mat-typography .mat-body-strong,
+.mat-typography .mat-body-2 {
   font: 700 14px / 24px Merriweather, sans-serif;
   letter-spacing: normal;
 }
-.mat-body, .mat-body-1, .mat-typography {
+.mat-body,
+.mat-body-1,
+.mat-typography .mat-body,
+.mat-typography .mat-body-1,
+.mat-typography {
   font: 400 14px / 20px Merriweather, sans-serif;
   letter-spacing: normal;
 }
-.mat-body p, .mat-body-1 p, .mat-typography p {
+.mat-body p,
+.mat-body-1 p,
+.mat-typography .mat-body p,
+.mat-typography .mat-body-1 p,
+.mat-typography p {
   margin: 0 0 12px;
 }
-.mat-small, .mat-caption {
+.mat-small,
+.mat-caption,
+.mat-typography .mat-small,
+.mat-typography .mat-caption {
   font: 400 12px / 20px Merriweather, sans-serif;
   letter-spacing: normal;
 }
-.mat-display-4, .mat-typography .mat-display-4 {
+.mat-display-4,
+.mat-typography .mat-display-4 {
   font: 300 112px / 112px Merriweather, sans-serif;
   letter-spacing: -0.05em;
   margin: 0 0 56px;
 }
-.mat-display-3, .mat-typography .mat-display-3 {
+.mat-display-3,
+.mat-typography .mat-display-3 {
   font: 400 56px / 56px Merriweather, sans-serif;
   letter-spacing: -0.02em;
   margin: 0 0 64px;
 }
-.mat-display-2, .mat-typography .mat-display-2 {
+.mat-display-2,
+.mat-typography .mat-display-2 {
   font: 400 45px / 48px Merriweather, sans-serif;
   letter-spacing: -0.005em;
   margin: 0 0 64px;
 }
-.mat-display-1, .mat-typography .mat-display-1 {
+.mat-display-1,
+.mat-typography .mat-display-1 {
   font: 400 34px / 40px Merriweather, sans-serif;
   letter-spacing: normal;
   margin: 0 0 64px;
@@ -485,7 +523,7 @@ input.mat-input-element {
   border-radius: 50%;
   pointer-events: none;
   transition: opacity, transform 0ms cubic-bezier(0, 0, 0.2, 1);
-  transform: scale(0);
+  transform: scale3d(0, 0, 0);
 }
 .cdk-high-contrast-active .mat-ripple-element {
   display: none;
@@ -503,6 +541,11 @@ input.mat-input-element {
   outline: 0;
   -webkit-appearance: none;
   -moz-appearance: none;
+  left: 0;
+}
+[dir=rtl] .cdk-visually-hidden {
+  left: auto;
+  right: 0;
 }
 .cdk-overlay-container, .cdk-global-overlay-wrapper {
   pointer-events: none;
@@ -553,8 +596,17 @@ input.mat-input-element {
 .cdk-overlay-dark-backdrop {
   background: rgba(0, 0, 0, 0.32);
 }
-.cdk-overlay-transparent-backdrop, .cdk-overlay-transparent-backdrop.cdk-overlay-backdrop-showing {
+.cdk-overlay-transparent-backdrop {
+  transition: visibility 1ms linear, opacity 1ms linear;
+  visibility: hidden;
+  opacity: 1;
+}
+.cdk-overlay-transparent-backdrop.cdk-overlay-backdrop-showing {
   opacity: 0;
+  visibility: visible;
+}
+.cdk-overlay-backdrop-noop-animation {
+  transition: none;
 }
 .cdk-overlay-connected-position-bounding-box {
   position: absolute;
@@ -583,31 +635,61 @@ textarea.cdk-textarea-autosize-measuring-firefox {
   box-sizing: content-box !important;
   height: 0 !important;
 }
-@-webkit-keyframes cdk-text-field-autofill-start {
-  /*!*/
-}
-@keyframes cdk-text-field-autofill-start {
-  /*!*/
-}
-@-webkit-keyframes cdk-text-field-autofill-end {
-  /*!*/
-}
-@keyframes cdk-text-field-autofill-end {
-  /*!*/
-}
+@keyframes cdk-text-field-autofill-start { /*!*/ }
+@keyframes cdk-text-field-autofill-end { /*!*/ }
 .cdk-text-field-autofill-monitored:-webkit-autofill {
-  -webkit-animation: cdk-text-field-autofill-start 0s 1ms;
-          animation: cdk-text-field-autofill-start 0s 1ms;
+  animation: cdk-text-field-autofill-start 0s 1ms;
 }
 .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
-  -webkit-animation: cdk-text-field-autofill-end 0s 1ms;
-          animation: cdk-text-field-autofill-end 0s 1ms;
+  animation: cdk-text-field-autofill-end 0s 1ms;
 }
 .mat-focus-indicator {
   position: relative;
 }
+.mat-focus-indicator::before {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  box-sizing: border-box;
+  pointer-events: none;
+  display: none;
+  display: var(--mat-focus-indicator-display, none);
+  border: 3px solid transparent;
+  border: var(--mat-focus-indicator-border-width, 3px) var(--mat-focus-indicator-border-style, solid) var(--mat-focus-indicator-border-color, transparent);
+  border-radius: 4px;
+  border-radius: var(--mat-focus-indicator-border-radius, 4px);
+}
+.mat-focus-indicator:focus::before {
+  content: "";
+}
+.cdk-high-contrast-active {
+  --mat-focus-indicator-display: block;
+}
 .mat-mdc-focus-indicator {
   position: relative;
+}
+.mat-mdc-focus-indicator::before {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  box-sizing: border-box;
+  pointer-events: none;
+  display: none;
+  display: var(--mat-mdc-focus-indicator-display, none);
+  border: 3px solid transparent;
+  border: var(--mat-mdc-focus-indicator-border-width, 3px) var(--mat-mdc-focus-indicator-border-style, solid) var(--mat-mdc-focus-indicator-border-color, transparent);
+  border-radius: 4px;
+  border-radius: var(--mat-mdc-focus-indicator-border-radius, 4px);
+}
+.mat-mdc-focus-indicator:focus::before {
+  content: "";
+}
+.cdk-high-contrast-active {
+  --mat-mdc-focus-indicator-display: block;
 }
 .deeppurple-amber {
   /** Adapted from https://github.com/atom-material/atom-material-syntax-light */
@@ -912,6 +994,9 @@ textarea.cdk-textarea-autosize-measuring-firefox {
 }
 .deeppurple-amber .mat-badge {
   position: relative;
+}
+.deeppurple-amber .mat-badge.mat-badge {
+  overflow: visible;
 }
 .deeppurple-amber .mat-badge-hidden .mat-badge-content {
   display: none;
@@ -1248,9 +1333,6 @@ textarea.cdk-textarea-autosize-measuring-firefox {
 }
 .deeppurple-amber .mat-checkbox-checkmark {
   fill: #fafafa;
-}
-.deeppurple-amber .mat-checkbox-label {
-  color: rgba(0, 0, 0, 0.87);
 }
 .deeppurple-amber .mat-checkbox-checkmark-path {
   stroke: #fafafa !important;
@@ -2389,7 +2471,6 @@ textarea.cdk-textarea-autosize-measuring-firefox {
   .mat-toolbar-multiple-rows {
     min-height: 56px;
   }
-
   .mat-toolbar-row, .mat-toolbar-single-row {
     height: 56px;
   }
@@ -2816,6 +2897,9 @@ textarea.cdk-textarea-autosize-measuring-firefox {
 .pink-bluegrey .mat-badge {
   position: relative;
 }
+.pink-bluegrey .mat-badge.mat-badge {
+  overflow: visible;
+}
 .pink-bluegrey .mat-badge-hidden .mat-badge-content {
   display: none;
 }
@@ -3148,9 +3232,6 @@ textarea.cdk-textarea-autosize-measuring-firefox {
 }
 .pink-bluegrey .mat-checkbox-checkmark {
   fill: #303030;
-}
-.pink-bluegrey .mat-checkbox-label {
-  color: white;
 }
 .pink-bluegrey .mat-checkbox-checkmark-path {
   stroke: #303030 !important;
@@ -4598,6 +4679,9 @@ textarea.cdk-textarea-autosize-measuring-firefox {
 .purple-green .mat-badge {
   position: relative;
 }
+.purple-green .mat-badge.mat-badge {
+  overflow: visible;
+}
 .purple-green .mat-badge-hidden .mat-badge-content {
   display: none;
 }
@@ -4930,9 +5014,6 @@ textarea.cdk-textarea-autosize-measuring-firefox {
 }
 .purple-green .mat-checkbox-checkmark {
   fill: #303030;
-}
-.purple-green .mat-checkbox-label {
-  color: white;
 }
 .purple-green .mat-checkbox-checkmark-path {
   stroke: #303030 !important;
@@ -6360,6 +6441,9 @@ body .mat-autocomplete-panel .mat-option.mat-selected:not(.mat-active):not(:hove
 body .mat-badge {
   position: relative;
 }
+body .mat-badge.mat-badge {
+  overflow: visible;
+}
 body .mat-badge-hidden .mat-badge-content {
   display: none;
 }
@@ -6692,9 +6776,6 @@ body .mat-checkbox-frame {
 }
 body .mat-checkbox-checkmark {
   fill: #fafafa;
-}
-body .mat-checkbox-label {
-  color: rgba(0, 0, 0, 0.87);
 }
 body .mat-checkbox-checkmark-path {
   stroke: #fafafa !important;
@@ -7912,43 +7993,7 @@ mat-spinner.start-indicator {
   margin: 2.5%;
 }
 .party {
-  -webkit-animation: party 5000ms infinite;
-          animation: party 5000ms infinite;
-}
-@-webkit-keyframes party {
-  0% {
-    background-color: #00f;
-  }
-  10% {
-    background-color: #8e44ad;
-  }
-  20% {
-    background-color: #1abc9c;
-  }
-  30% {
-    background-color: #d35400;
-  }
-  40% {
-    background-color: #00f;
-  }
-  50% {
-    background-color: #34495e;
-  }
-  60% {
-    background-color: #00f;
-  }
-  70% {
-    background-color: #2980b9;
-  }
-  80% {
-    background-color: #f1c40f;
-  }
-  90% {
-    background-color: #2980b9;
-  }
-  100% {
-    background-color: #0ff;
-  }
+  animation: party 5000ms infinite;
 }
 @keyframes party {
   0% {
