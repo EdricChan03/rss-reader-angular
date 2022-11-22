@@ -1,10 +1,18 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { RestCountriesAPICountry } from '../../models/rest-countries-api';
-import { switchMap, debounceTime } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+type HeadlineForm = FormGroup<{
+  apiKey: FormControl<string | null>;
+  q: FormControl<string | null>;
+  country: FormControl<string | null>;
+  category: FormControl<string | null>;
+  pageSize: FormControl<number | null>;
+}>;
 
 export interface HeadlineOptions {
   /**
@@ -32,10 +40,10 @@ export interface HeadlineOptions {
 export class HeadlineOptionsDialogComponent implements OnInit {
 
   filteredOptions: Observable<RestCountriesAPICountry[]>;
-  headlineOptForm: FormGroup;
+  headlineOptForm: HeadlineForm;
   categories = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'];
   constructor(
-    private fb: FormBuilder,
+    fb: FormBuilder,
     private http: HttpClient,
     @Inject(MAT_DIALOG_DATA) public headlineOpts: HeadlineOptions
   ) {
@@ -57,11 +65,11 @@ export class HeadlineOptionsDialogComponent implements OnInit {
       this.filteredOptions = this.headlineOptForm.get('country').valueChanges
         .pipe(
           // debounceTime(150),
-          switchMap(value => this.filter(value))
+          switchMap(value => this.getCountries(value))
         );
     });
   }
-  filter(name: string): Observable<RestCountriesAPICountry[]> {
+  getCountries(name: string): Observable<RestCountriesAPICountry[]> {
     return this.http.get<RestCountriesAPICountry[]>(`https://restcountries.eu/rest/v2/name/${encodeURIComponent(name)}`);
   }
 

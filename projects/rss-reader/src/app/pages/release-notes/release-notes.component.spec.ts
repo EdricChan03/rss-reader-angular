@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, TestBedStatic, TestModuleMetadata } from '@angular/core/testing';
+import { ComponentFixture, TestBed, TestModuleMetadata } from '@angular/core/testing';
 import { MatChipsModule } from '@angular/material/chips';
 import { MarkdownModule } from 'ngx-markdown';
 import { environment } from '../../../environments/environment';
@@ -12,7 +12,7 @@ describe('ReleaseNotesComponent', () => {
   let componentEl: HTMLElement;
   let fixture: ComponentFixture<ReleaseNotesComponent>;
 
-  const configureTestingModule: (moduleDef?: Partial<TestModuleMetadata>, resetTestingModule?: boolean) => TestBedStatic
+  const configureTestingModule: (moduleDef?: Partial<TestModuleMetadata>, resetTestingModule?: boolean) => TestBed
     = (moduleDef = {}, resetTestingModule = true) => {
       const DEFAULT_MODULE_DEF: TestModuleMetadata = {
         declarations: [ReleaseNotesComponent],
