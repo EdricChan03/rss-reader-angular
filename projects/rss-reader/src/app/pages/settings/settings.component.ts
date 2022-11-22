@@ -1,34 +1,34 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { DialogsService } from '../../core/dialogs/dialogs.service';
 import { SharedService } from '../../shared.service';
 import { SettingsStorageService } from '../../core/settings-storage/settings-storage.service';
+import { Theme, themes } from './types';
 
+type SettingsForm = FormGroup<{
+  openNewTab: FormControl<boolean>;
+  showImages: FormControl<boolean>;
+  theme: FormControl<Theme | null>;
+  notifyNewReleases: FormControl<boolean | null>;
+}>;
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html'
 })
 export class SettingsComponent {
-  settingsForm: UntypedFormGroup;
-  themes = [
-    'indigo-pink',
-    'deeppurple-amber',
-    'pink-bluegrey',
-    'purple-green'
-  ];
+  settingsForm: SettingsForm = new FormGroup({
+    openNewTab: new FormControl(false),
+    showImages: new FormControl(false),
+    theme: new FormControl<Theme>('indigo-pink'),
+    notifyNewReleases: new FormControl(false)
+  });
+  themes = themes;
   constructor(
     private dialog: DialogsService,
-    fb: UntypedFormBuilder,
     private shared: SharedService,
     private settingsStorage: SettingsStorageService
   ) {
-    this.settingsForm = fb.group({
-      openNewTab: false,
-      showImages: false,
-      theme: 'indigo-pink',
-      notifyNewReleases: false
-    });
     this.settingsForm.patchValue(settingsStorage.settings);
   }
 
