@@ -1,23 +1,25 @@
 <h2 matDialogTitle>Keyboard shortcuts</h2>
-<table class="app-table">
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Shortcut</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let keys of hotkeys">
-      <td>{{ keys[1] }}</td>
-      <td class="text-right">
-        <ng-container *ngFor="let shortcut of getDisplayedShortcut(keys[0]); last as last">
-          <kbd>{{ shortcut }}</kbd>
-          <span *ngIf="!last">&nbsp;+&nbsp;</span>
-        </ng-container>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<mat-dialog-content>
+  <table class="app-table">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Shortcut</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let keys of hotkeys">
+        <td>{{ keys[1] }}</td>
+        <td class="text-right">
+          <ng-container *ngFor="let shortcut of getDisplayedShortcut(keys[0]); last as last">
+            <kbd>{{ shortcut }}</kbd>
+            <span *ngIf="!last">&nbsp;+&nbsp;</span>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button color="primary" matDialogClose>Dismiss</button>
 </mat-dialog-actions>
