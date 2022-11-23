@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 import { ComponentHarness, HarnessPredicate } from '@angular/cdk/testing';
-import { MatLegacyButtonHarness as MatButtonHarness } from '@angular/material/legacy-button/testing';
-import { MatLegacyChipListHarness as MatChipListHarness } from '@angular/material/legacy-chips/testing';
+import { MatButtonHarness } from '@angular/material/button/testing';
+import { MatChipListboxHarness } from '@angular/material/chips/testing';
 
 import { ArticleCardComponentHarnessFilters } from './article-card-harness-filters';
 
@@ -21,7 +21,7 @@ export class ArticleCardComponentHarness extends ComponentHarness {
   // Content elements
   protected getDescEl = this.locatorFor('.article-card--description');
   /** Gets the list of categories. */
-  getCategoriesLoader = this.locatorForOptional(MatChipListHarness.with(
+  getCategoriesLoader = this.locatorForOptional(MatChipListboxHarness.with(
     { selector: '.article-card--categories' }));
 
   // Actions element

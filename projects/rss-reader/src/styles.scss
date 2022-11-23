@@ -6,20 +6,18 @@
 
 /* Select Angular Material theming. */
 
-// TODO(v15): As of v15 mat.legacy-core no longer includes default typography styles.
-//  The following line adds:
-//    1. Default typography styles for all components
-//    2. Styles for typography hierarchy classes (e.g. .mat-headline-1)
-//  If you specify typography styles for the components you use elsewhere, you should delete this line.
-//  If you don't need the default component typographies but still want the hierarchy styles,
-//  you can delete this line and instead use:
-//    `@include mat.legacy-typography-hierarchy($rss-reader-typography);`
-@include mat.all-legacy-component-typographies($rss-reader-typography);
-@include mat.legacy-core();
+@include mat.core();
+
+// Default theme for the app
+@include mat.all-component-themes($indigo-pink-theme);
+@include mat.typography-hierarchy($rss-reader-typography);
+body {
+  @include rss-reader-theme($indigo-pink-theme);
+}
 
 .deeppurple-amber {
   @include rss-reader-theme($deeppurple-amber-theme);
-  @include mat.all-legacy-component-themes($deeppurple-amber-theme);
+  @include mat.all-component-colors($deeppurple-amber-theme);
   /** Adapted from https://github.com/atom-material/atom-material-syntax-light */
   .hljs {
     display: block;
@@ -100,18 +98,12 @@
 
 .pink-bluegrey {
   @include rss-reader-theme($pink-bluegrey-theme);
-  @include mat.all-legacy-component-themes($pink-bluegrey-theme);
+  @include mat.all-component-colors($pink-bluegrey-theme);
 }
 
 .purple-green {
   @include rss-reader-theme($purple-green-theme);
-  @include mat.all-legacy-component-themes($purple-green-theme);
-}
-
-// Default theme for the app
-body {
-  @include rss-reader-theme($indigo-pink-theme);
-  @include mat.all-legacy-component-themes($indigo-pink-theme);
+  @include mat.all-component-colors($purple-green-theme);
 }
 
 .rss-reader-card {
