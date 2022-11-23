@@ -14,6 +14,7 @@ import {
   SETTINGS_STORAGE_KEY,
   SETTINGS_STORAGE_PROVIDER
 } from './settings-storage.service';
+import { Theme } from '../../pages/settings/types';
 
 
 describe('SettingsStorageService', () => {
@@ -113,6 +114,19 @@ describe('SettingsStorageService', () => {
 
       const settings = mockStorage.getItem('settings');
       expect(settings).toBeNull('Expected settings to be deleted');
+    });
+  });
+
+  describe('#setTheme', () => {
+    it('should set the body theme', () => {
+      const el = document.createElement('div');
+      spyOnProperty(el, 'classList').and.returnValue({
+        add: jasmine.createSpy(),
+        remove: jasmine.createSpy()
+      });
+      const theme: Theme = 'indigo-pink';
+      service.setTheme(theme, el);
+      expect(el.classList.add).toHaveBeenCalledWith(theme);
     });
   });
 

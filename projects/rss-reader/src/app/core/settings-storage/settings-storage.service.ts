@@ -1,5 +1,7 @@
+import { DOCUMENT } from '@angular/common';
 import { Injectable, Inject, InjectionToken, Optional } from '@angular/core';
 import { Settings } from '../../models/settings';
+import { Theme, themes } from '../../pages/settings/types';
 
 /** Configuration options for {@link SettingsStorageService}. */
 export interface SettingsStorageConfig<S = Settings> {
@@ -42,7 +44,8 @@ export class SettingsStorageService<S = Settings> {
   constructor(
     @Inject(SETTINGS_STORAGE_PROVIDER) private storage: Storage,
     @Inject(SETTINGS_STORAGE_KEY) private key: string,
-    @Inject(SETTINGS_STORAGE_CONFIG) @Optional() private config: SettingsStorageConfig<S>
+    @Inject(SETTINGS_STORAGE_CONFIG) @Optional() private config: SettingsStorageConfig<S>,
+    @Inject(DOCUMENT) private document: Document
   ) { }
 
   /** Retrieves the current settings (as JSON). */
@@ -68,5 +71,11 @@ export class SettingsStorageService<S = Settings> {
     } else {
       this.storage.removeItem(this.key);
     }
+  }
+
+  /** Sets the theme. */
+  setTheme(theme: Theme = 'indigo-pink', element = this.document.body) {
+    element.classList.remove(...themes);
+    element.classList.add(theme);
   }
 }

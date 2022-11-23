@@ -5,6 +5,7 @@ import { DialogsService } from '../../core/dialogs/dialogs.service';
 import { SharedService } from '../../shared.service';
 import { SettingsStorageService } from '../../core/settings-storage/settings-storage.service';
 import { Theme, themes } from './types';
+import { filter, map } from 'rxjs';
 
 type SettingsForm = FormGroup<{
   openNewTab: FormControl<boolean>;
@@ -31,6 +32,12 @@ export class SettingsComponent {
     private settingsStorage: SettingsStorageService
   ) {
     this.settingsForm.patchValue(settingsStorage.settings);
+    this.settingsForm.valueChanges.pipe(
+      filter(settings => 'theme' in settings),
+      map(settings => settings.theme)
+    ).subscribe(theme => {
+      this.settingsStorage.setTheme(theme);
+    });
   }
 
   reset() {
