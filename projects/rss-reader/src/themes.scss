@@ -1,0 +1,45 @@
+@use '@angular/material' as mat;
+
+$rss-reader-typography: mat.define-legacy-typography-config(
+  $font-family: 'Merriweather, sans-serif'
+);
+
+$deeppurple-amber-primary: mat.define-palette(mat.$deep-purple-palette);
+$deeppurple-amber-accent: mat.define-palette(mat.$amber-palette, A200, A100, A400);
+$deeppurple-amber-theme: mat.define-light-theme((
+  color: (
+    primary: $deeppurple-amber-primary,
+    accent: $deeppurple-amber-accent,
+  ),
+  typography: $rss-reader-typography
+));
+
+$pink-bluegrey-primary: mat.define-palette(mat.$pink-palette);
+$pink-bluegrey-accent: mat.define-palette(mat.$blue-grey-palette, A200, A100, A400);
+$pink-bluegrey-theme: mat.define-dark-theme((
+  color: (
+    primary: $pink-bluegrey-primary,
+    accent: $pink-bluegrey-accent,
+  ),
+  typography: $rss-reader-typography
+));
+
+$purple-green-primary: mat.define-palette(mat.$purple-palette);
+$purple-green-accent: mat.define-palette(mat.$green-palette, A200, A100, A400);
+$purple-green-theme: mat.define-dark-theme((
+  color: (
+    primary: $purple-green-primary,
+    accent: $purple-green-accent,
+  ),
+  typography: $rss-reader-typography
+));
+
+$indigo-pink-primary: mat.define-palette(mat.$indigo-palette);
+$indigo-pink-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$indigo-pink-theme: mat.define-light-theme((
+  color: (
+    primary: $indigo-pink-primary,
+    accent: $indigo-pink-accent,
+  ),
+  typography: $rss-reader-typography
+));
