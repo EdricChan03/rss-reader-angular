@@ -1,20 +1,26 @@
 <div class="app-content">
-  <mat-card>
-    <mat-card-title>Settings</mat-card-title>
-    <mat-card-content class="settings-card">
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>Settings</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="settings-card mat-typography">
       <form [formGroup]="settingsForm">
-        <h3 class="mat-subheader">General</h3>
-        <mat-checkbox formControlName="openNewTab" class="checkbox">Open posts in a new tab</mat-checkbox>
-        <mat-checkbox formControlName="showImages" class="checkbox">Show images</mat-checkbox>
-        <mat-form-field color="accent">
-          <mat-label>Theme</mat-label>
-          <mat-select formControlName="theme">
-            <mat-option *ngFor="let theme of themes" [value]="theme">{{theme}}</mat-option>
-          </mat-select>
-          <mat-hint>Changes will be made on reload.</mat-hint>
-        </mat-form-field>
-        <h3 class="mat-subheader">Releases</h3>
-        <mat-checkbox formControlName="notifyNewReleases" class="checkbox">Notify when new releases are out</mat-checkbox>
+        <fieldset>
+          <legend>General</legend>
+          <mat-checkbox formControlName="openNewTab" class="checkbox">Open posts in a new tab</mat-checkbox>
+          <mat-checkbox formControlName="showImages" class="checkbox">Show images</mat-checkbox>
+          <mat-form-field color="accent">
+            <mat-label>Theme</mat-label>
+            <mat-select formControlName="theme">
+              <mat-option *ngFor="let theme of themes" [value]="theme">{{theme}}</mat-option>
+            </mat-select>
+            <mat-hint>Changes will be made on reload.</mat-hint>
+          </mat-form-field>
+        </fieldset>
+        <fieldset>
+          <legend>Releases</legend>
+          <mat-checkbox formControlName="notifyNewReleases" class="checkbox">Notify when new releases are out</mat-checkbox>
+        </fieldset>
       </form>
     </mat-card-content>
     <mat-card-actions align="end">
