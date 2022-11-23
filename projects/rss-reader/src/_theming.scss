@@ -40,11 +40,6 @@
     }
   }
 
-  .mat-list-item-content mat-icon,
-  .icon {
-    color: map-get($foreground, icon);
-  }
-
   .onboarding-content {
     color: if($is-dark-theme, #FFF, #000);
   }
