@@ -82,13 +82,8 @@
 
 // Mixin from material docs site
 @mixin tables-theme($theme) {
-  $primary: map-get($theme, primary);
-  $accent: map-get($theme, accent);
-  $warn: map-get($theme, warn);
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
-  $is-dark-theme: map-get($theme, is-dark);
-  $tableBorderOpacity: if($is-dark-theme, 0.08, 0.03);
 
   table.app-table {
     color: mat.get-color-from-palette($foreground, text);
@@ -97,8 +92,8 @@
       background: mat.get-color-from-palette($background, app-bar);
     }
 
-    td {
-      border: 1px solid rgba(mat.get-color-from-palette($foreground, secondary-text), $tableBorderOpacity);
+    td, thead {
+      border: 1px solid mat.get-color-from-palette($foreground, divider);
     }
   }
 }
