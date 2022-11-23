@@ -3,7 +3,12 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-hotkey-help-dialog',
-  templateUrl: './hotkey-help-dialog.component.html'
+  templateUrl: './hotkey-help-dialog.component.html',
+  styles: [`
+  table {
+    font-size: 14px;
+  }
+  `]
 })
 export class HotkeyHelpDialogComponent {
   hotkeys = Array.from(this.data);
