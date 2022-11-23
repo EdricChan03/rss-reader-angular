@@ -4,7 +4,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { EventManager } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { HotkeyHelpDialogComponent } from './hotkey-help-dialog/hotkey-help-dialog.component';
 
 type Platform = 'windows' | 'macos' | 'linux' | 'other';

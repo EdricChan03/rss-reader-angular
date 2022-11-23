@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { CodeViewerDialogComponent, ShareDialogComponent } from '../../dialogs';
 import { FeedEntry } from '../../models/feed-entry';
 import { NewsAPITopHeadlinesArticle } from '../../models/news-api/top-headlines-article';
