@@ -1,3 +1,10 @@
-.article-card--title {
-  line-height: 32px;
+.article-card {
+  .article-card--title {
+    line-height: 32px;
+    margin: 8px 0;
+  }
+
+  .article-card--categories {
+    margin-bottom: 8px;
+  }
 }
