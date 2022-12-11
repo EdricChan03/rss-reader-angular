@@ -61,7 +61,7 @@
     "@storybook/addon-links": "^6.4.19",
     "@storybook/addons": "^6.4.19",
     "@storybook/angular": "^6.4.19",
-    "@storybook/builder-webpack5": "^6.4.19",
+    "@storybook/builder-webpack5": "^6.5.14",
     "@storybook/manager-webpack5": "^6.4.19",
     "@storybook/theming": "^6.4.19",
     "@types/gulp": "^4.0.8",
