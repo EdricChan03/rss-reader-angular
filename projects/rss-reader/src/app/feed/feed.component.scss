@@ -1,0 +1,59 @@
+.feed-drawer-container {
+  height: calc(100% - 64px);
+}
+
+.feed-info {
+  width: 350px;
+  padding: 16px;
+
+  .feed-info--header {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+
+    .feed-info--header__meta {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+
+      .feed-info--header__img {
+        max-width: 40px;
+      }
+
+      .feed-info--header__title {
+        margin: 0;
+      }
+    }
+  }
+
+
+  .feed-info--author {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+}
+
+.rss-empty-state {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+// For mobile devices, where the app bar toolbar is smaller
+@media (max-width: 599px) {
+  .feed-drawer-container {
+    height: calc(100% - 56px);
+  }
+
+  .feed-info {
+    width: 100%;
+  }
+}

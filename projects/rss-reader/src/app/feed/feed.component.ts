@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatDrawer } from '@angular/material/sidenav';
 import { Observable, Subject, Subscription, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -8,6 +9,7 @@ import { ActionItemService } from '../actionitem.service';
 import { DialogsService } from '../core/dialogs/dialogs.service';
 import { CodeViewerDialogComponent, FeedDialogComponent, RSSChannelInfoDialogComponent } from '../dialogs';
 import { HotkeysService } from '../hotkeys/hotkeys.service';
+import { Rss2JsonResponseChannel } from '../models/rss2json-api/channel';
 import { Rss2JsonResponseItem } from '../models/rss2json-api/item';
 import { migrateKeys } from '../models/rss2json-api/migrate-keys';
 import { Rss2JsonParams } from '../models/rss2json-api/params';
@@ -17,12 +19,15 @@ import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-feed',
-  templateUrl: './feed.component.html'
+  templateUrl: './feed.component.html',
+  styleUrls: ['./feed.component.scss']
 })
 export class FeedComponent implements OnDestroy, OnInit {
+  @ViewChild('feedInfoDrawer', { static: true }) feedInfoDrawer: MatDrawer;
   isRefreshing = true;
   errorObject = new Subject<HttpErrorResponse>();
   rss2JsonResponse$: Observable<Rss2JsonResponse>;
+  feed$: Observable<Rss2JsonResponseChannel>;
   feedItems$: Observable<Rss2JsonResponseItem[]>;
   rssToJsonServiceBaseUrl = 'https://api.rss2json.com/v1/api.json';
   // See https://stackoverflow.com/a/12444641 for more info
@@ -31,7 +36,7 @@ export class FeedComponent implements OnDestroy, OnInit {
     private coreDialogs: DialogsService,
     private dialog: MatDialog,
     private http: HttpClient,
-    private shared: SharedService,
+    public shared: SharedService,
     private actionItemService: ActionItemService,
     private hotkeys: HotkeysService
   ) {
@@ -44,6 +49,12 @@ export class FeedComponent implements OnDestroy, OnInit {
       title: 'RSS Options...', icon: 'tune', showAsAction: true, onClickListener: () => {
         this.selectRss();
       }
+    });
+    this.actionItemService.addActionItem({
+      title: 'Feed info',
+      icon: 'info',
+      showAsAction: true,
+      onClickListener: () => { this.feedInfoDrawer.toggle(); }
     });
     this.actionItemService.addActionItem({
       title: 'Refresh feed',
@@ -132,6 +143,7 @@ export class FeedComponent implements OnDestroy, OnInit {
       console.error('An error occurred:', error);
       return throwError(error);
     }));
+    this.feed$ = this.rss2JsonResponse$.pipe(map(res => res.feed));
     this.feedItems$ = this.rss2JsonResponse$.pipe(map(res => res.items));
   }
 

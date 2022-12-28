@@ -1,10 +1,44 @@
-<ng-container *ngIf="feedItems$ | async as feedItems; else: errorOrLoading">
-  <div class="rss-reader-cards-container">
-    <app-article-card [article]="feed" *ngFor="let feed of feedItems" class="rss-reader-card"></app-article-card>
-  </div>
-</ng-container>
+<mat-drawer-container class="feed-drawer-container">
+  <mat-drawer-content>
+    <ng-container *ngIf="feedItems$ | async as feedItems; else: errorOrLoading">
+      <div class="cards-container">
+        <app-article-card [article]="feed" *ngFor="let feed of feedItems" class="cards-container--card"></app-article-card>
+      </div>
+    </ng-container>
+  </mat-drawer-content>
+  <mat-drawer #feedInfoDrawer [mode]="shared.isPortraitHandset ? 'over' : 'side'" position="end" [opened]="!shared.isPortraitHandset" class="feed-info">
+    <ng-container *ngIf="feed$ | async as feed; else: errorOrLoading">
+      <div class="feed-info--header">
+        <div class="feed-info--header__meta">
+          <img *ngIf="feed.image" [src]="feed.image" alt="{{ feed.title }} image"
+            class="feed-info--header__img">
+          <h2 class="feed-info--header__title">{{ feed.title }}</h2>
+        </div>
+        <button mat-icon-button (click)="feedInfoDrawer.close()" matTooltip="Close">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <div class="feed-info--author" *ngIf="feed.author">
+        <mat-icon title="Author" inline>person</mat-icon>
+        <span>{{ feed.author }}</span>
+      </div>
+      <p *ngIf="feed.description">{{ feed.description }}</p>
+      <mat-nav-list>
+        <h3 matSubheader>Links</h3>
+        <a mat-list-item [href]="feed.url">
+          <mat-icon matListItemIcon>rss_feed</mat-icon>
+          RSS feed
+        </a>
+        <a mat-list-item [href]="feed.link">
+          <mat-icon matListItemIcon>link</mat-icon>
+          Website
+        </a>
+      </mat-nav-list>
+    </ng-container>
+  </mat-drawer>
+</mat-drawer-container>
 <ng-template #errorOrLoading>
-  <div class="center">
+  <div class="rss-empty-state">
     <ng-container *ngIf="errorObject | async as error; else: loading">
       <ng-container *ngIf="error?.error?.message">
         <p>An error occurred:</p>

@@ -106,22 +106,16 @@ body {
   @include mat.all-component-colors($purple-green-theme);
 }
 
-.rss-reader-card {
-  width: 350px;
-  box-sizing: border-box;
-  margin: 16px;
-  // .feed-card {
-  //   @include mat-elevation-transition;
-  //   &:hover, &:active {
-  //     @include mat-elevation(8);
-  //   }
-  // }
-}
-
-.rss-reader-cards-container {
+.cards-container {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
+
+  .cards-container--card {
+    width: 350px;
+    box-sizing: border-box;
+    margin: 16px;
+  }
 }
 
 .cdk-overlay-backdrop.cdk-overlay-backdrop-showing.dark-backdrop {

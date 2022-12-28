@@ -1,5 +1,5 @@
-<div class="rss-reader-cards-container" *ngIf="headlines$ | async as headlines; else: errorOrLoading">
-  <app-article-card *ngFor="let article of headlines?.articles" [article]="article" class="rss-reader-card"></app-article-card>
+<div class="cards-container" *ngIf="headlines$ | async as headlines; else: errorOrLoading">
+  <app-article-card *ngFor="let article of headlines?.articles" [article]="article" class="cards-container--card"></app-article-card>
 </div>
 <ng-template #errorOrLoading>
   <div class="center">
