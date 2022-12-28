@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1670731456326,
+  "timestamp": 1672212581608,
   "appData": {
     "version": "1.6.0"
   },
@@ -17,12 +17,12 @@
         "/rss-reader-angular/208.4f5298ac74b90001.js",
         "/rss-reader-angular/619.dffd0120d8968a76.js",
         "/rss-reader-angular/index.html",
-        "/rss-reader-angular/main.6e21e9addf8e437d.js",
+        "/rss-reader-angular/main.43106640d764f264.js",
         "/rss-reader-angular/manifest.webmanifest",
         "/rss-reader-angular/polyfills.d7ab9f75c1edcb61.js",
         "/rss-reader-angular/runtime.e06b2cafe507bb8a.js",
         "/rss-reader-angular/scripts.91baf28149a92f76.js",
-        "/rss-reader-angular/styles.783cc730a139e6c1.css"
+        "/rss-reader-angular/styles.d2e099bc4355186e.css"
       ],
       "patterns": []
     },
@@ -153,13 +153,13 @@
     "/rss-reader-angular/assets/onboarding/articles.svg": "099afa8a050d38139505ee3bb933ccd296002738",
     "/rss-reader-angular/assets/release-notes/release-notes-schema.json": "f5f285a714ef14de6f9a1539662a6a8a732f4580",
     "/rss-reader-angular/assets/release-notes/release-notes.json": "4ffee11e8fdd202640a55f0ecdce2ff3664f9160",
-    "/rss-reader-angular/index.html": "927d210d7ac45b54fa3060d072c4ec68ae9bf46f",
-    "/rss-reader-angular/main.6e21e9addf8e437d.js": "255996f4179077f6c5cf9945a8d98be16af2a6bd",
+    "/rss-reader-angular/index.html": "921636cffa7b43a7d36c84cccbab9b85fc4f54c1",
+    "/rss-reader-angular/main.43106640d764f264.js": "4af0d402b6d96e428d960d3a43934b1cc2cf0c5d",
     "/rss-reader-angular/manifest.webmanifest": "1dd153914789635facdb2bcbfb72bd9ae771637a",
     "/rss-reader-angular/polyfills.d7ab9f75c1edcb61.js": "a7600728e3fd76126f6e3e2eaa97e27fd26e3e86",
     "/rss-reader-angular/runtime.e06b2cafe507bb8a.js": "d62a4f2538b1342d98e0be470cc3446ca1ea8005",
     "/rss-reader-angular/scripts.91baf28149a92f76.js": "e455167feb71c2c792e7379385ec0e374a050bfd",
-    "/rss-reader-angular/styles.783cc730a139e6c1.css": "08a45abc5f60f85dc5c1dfea5a4a6793fd1245d1"
+    "/rss-reader-angular/styles.d2e099bc4355186e.css": "aec43a3f0eb9d0024784b40cf509425f725c7e8f"
   },
   "navigationUrls": [
     {

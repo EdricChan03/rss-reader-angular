@@ -10410,16 +10410,15 @@ body .badge.badge--warn {
   color: white;
 }
 
-.rss-reader-card {
-  width: 350px;
-  box-sizing: border-box;
-  margin: 16px;
-}
-
-.rss-reader-cards-container {
+.cards-container {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
+}
+.cards-container .cards-container--card {
+  width: 350px;
+  box-sizing: border-box;
+  margin: 16px;
 }
 
 .cdk-overlay-backdrop.cdk-overlay-backdrop-showing.dark-backdrop {
