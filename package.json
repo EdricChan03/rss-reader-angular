@@ -34,7 +34,7 @@
     "@angular/platform-browser-dynamic": "^15.0.0",
     "@angular/router": "^15.0.0",
     "@angular/service-worker": "^15.0.0",
-    "@mdi/angular-material": "^6.5.95",
+    "@mdi/angular-material": "^7.2.96",
     "@types/highlight.js": "^9.12.4",
     "highlight.js": "^10.4.1",
     "markdown-to-html": "0.0.13",
