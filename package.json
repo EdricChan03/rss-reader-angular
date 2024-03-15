@@ -39,7 +39,7 @@
     "highlight.js": "^10.4.1",
     "markdown-to-html": "0.0.13",
     "marked": "^4.2.3",
-    "ngx-markdown": "^15.0.0",
+    "ngx-markdown": "^15.1.2",
     "rxjs": "^7.5.4",
     "tslib": "^2.5.0",
     "zone.js": "~0.11.8"
