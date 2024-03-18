@@ -63,7 +63,7 @@
     "@storybook/angular": "^6.4.19",
     "@storybook/builder-webpack5": "^6.4.19",
     "@storybook/manager-webpack5": "^6.4.19",
-    "@storybook/theming": "^6.4.19",
+    "@storybook/theming": "^8.0.1",
     "@types/gulp": "^4.0.8",
     "@types/gulp-rename": "0.0.33",
     "@types/hammerjs": "^2.0.36",
