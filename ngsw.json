@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1710494452806,
+  "timestamp": 1717552517754,
   "appData": {
     "version": "1.6.0"
   },
@@ -153,7 +153,7 @@
     "/rss-reader-angular/assets/onboarding/articles.svg": "099afa8a050d38139505ee3bb933ccd296002738",
     "/rss-reader-angular/assets/release-notes/release-notes-schema.json": "f5f285a714ef14de6f9a1539662a6a8a732f4580",
     "/rss-reader-angular/assets/release-notes/release-notes.json": "4ffee11e8fdd202640a55f0ecdce2ff3664f9160",
-    "/rss-reader-angular/index.html": "3dbc91f227af4c8c63bcf70d6a936aa7fef0d5cf",
+    "/rss-reader-angular/index.html": "97ffebdff2ead26e6220d39447b563d4353f37ea",
     "/rss-reader-angular/main.a22671b9289e8f87.js": "404e070b89cbb395d70d48f54486846872569252",
     "/rss-reader-angular/manifest.webmanifest": "1dd153914789635facdb2bcbfb72bd9ae771637a",
     "/rss-reader-angular/polyfills.d7ab9f75c1edcb61.js": "a7600728e3fd76126f6e3e2eaa97e27fd26e3e86",
