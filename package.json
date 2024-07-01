@@ -94,7 +94,7 @@
     "karma-jasmine": "~4.0.1",
     "karma-jasmine-html-reporter": "^1.7.0",
     "karma-remap-istanbul": "^0.6.0",
-    "postcss": "^8.4.31",
+    "postcss": "^8.4.39",
     "protractor": "~7.0.0",
     "react-is": "^16.13.1",
     "storybook-addon-themes": "^6.1.0",
