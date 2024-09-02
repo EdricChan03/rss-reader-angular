@@ -1,4 +1,4 @@
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
@@ -49,55 +49,41 @@ const markedOptionsFactory: () => MarkedOptions = () => {
 
 const OVERLAYS = [OnboardingOverlayComponent];
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    FeedComponent,
-    PageNotFoundComponent,
-    DocViewerComponent,
-    GuideViewerComponent,
-    GuidesListComponent,
-    ExpansionPanelComponent,
-    OVERLAYS,
-    HeadlinesComponent,
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    MarkdownModule.forRoot({
-      markedOptions: {
-        provide: MARKED_OPTIONS,
-        useFactory: markedOptionsFactory,
-      },
-    }),
-    MaterialModule,
-    PipesModule,
-    SharedModule,
-    AppRoutingModule,
-    // The scope parameter is specified such that the service worker only
-    // applies to the /rss-reader URL.
-    // ServiceWorkerModule.register(environment.swLocation, { enabled: environment.production, scope: './' }),
-    ServiceWorkerModule.register("./ngsw-worker.js", {
-      enabled: environment.production,
-      scope: "./",
-    }),
-    DialogsModule,
-    CoreDialogsModule,
-    ActionItemsModule,
-    ArticleCardModule,
-    HotkeysModule,
-  ],
-  bootstrap: [AppComponent],
-  providers: [GuideItemsService, OverlayService],
-  // From Angular v9 and above, it's no longer required to specify
-  // the entryComponents field with Ivy.
-  // See https://angular.io/guide/deprecations#entryComponents for more info.
-  /*entryComponents: [
-    OVERLAYS,
-    ExpansionPanelComponent
-  ]*/
-})
+@NgModule({ declarations: [
+        AppComponent,
+        FeedComponent,
+        PageNotFoundComponent,
+        DocViewerComponent,
+        GuideViewerComponent,
+        GuidesListComponent,
+        ExpansionPanelComponent,
+        OVERLAYS,
+        HeadlinesComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MarkdownModule.forRoot({
+            markedOptions: {
+                provide: MARKED_OPTIONS,
+                useFactory: markedOptionsFactory,
+            },
+        }),
+        MaterialModule,
+        PipesModule,
+        SharedModule,
+        AppRoutingModule,
+        // The scope parameter is specified such that the service worker only
+        // applies to the /rss-reader URL.
+        // ServiceWorkerModule.register(environment.swLocation, { enabled: environment.production, scope: './' }),
+        ServiceWorkerModule.register("./ngsw-worker.js", {
+            enabled: environment.production,
+            scope: "./",
+        }),
+        DialogsModule,
+        CoreDialogsModule,
+        ActionItemsModule,
+        ArticleCardModule,
+        HotkeysModule], providers: [GuideItemsService, OverlayService, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {}

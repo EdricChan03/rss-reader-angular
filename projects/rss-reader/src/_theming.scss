@@ -20,20 +20,20 @@
   // Shows the current link. Used in the sidenav
   .active-link {
     // Since it's a bit hard to actually see the text in the dark theme, it'll use the accent color if it's dark and primary if it's not. Same applies for mat-icon
-    color: if($is-dark-theme, mat.get-color-from-palette($accent), mat.get-color-from-palette($primary)) !important;
+    color: if($is-dark-theme, mat.m2-get-color-from-palette($accent), mat.m2-get-color-from-palette($primary)) !important;
     mat-icon {
-      color: if($is-dark-theme, mat.get-color-from-palette($accent), mat.get-color-from-palette($primary)) !important;
+      color: if($is-dark-theme, mat.m2-get-color-from-palette($accent), mat.m2-get-color-from-palette($primary)) !important;
     } // Note: These colors are based on the Android sidenav selection state
     background-color: if($is-dark-theme, #595959, #DCDCDC) !important;
   }
 
   // Warning icon color
   .warning-icon {
-    color: mat.get-color-from-palette($warn) !important;
+    color: mat.m2-get-color-from-palette($warn) !important;
   }
 
   a.anchor-link {
-    color: mat.get-color-from-palette($primary, if($is-dark-theme, 200, default));
+    color: mat.m2-get-color-from-palette($primary, if($is-dark-theme, 200, default));
     text-decoration: none;
     &:hover {
       text-decoration: underline;
@@ -48,7 +48,7 @@
   }
 
   .indicator-active {
-    background-color: mat.get-color-from-palette($accent) !important;
+    background-color: mat.m2-get-color-from-palette($accent) !important;
   }
   .indicator {
     background-color: rgba(255, 255, 255, 0.5);
@@ -57,11 +57,11 @@
   // Adapted from
   // https://github.com/EdricChan03/StudyBuddy-web/blob/3b1e7709c8954fc73fc934cbf6f882de3ed25e2e/src/styles.scss#L64-L86
   .badge {
-    color: mat.get-color-from-palette($foreground, text);
-    background-color: mat.get-color-from-palette($background, unselected-chip);
+    color: mat.m2-get-color-from-palette($foreground, text);
+    background-color: mat.m2-get-color-from-palette($background, unselected-chip);
 
     &.badge--colored {
-      background-color: if($is-dark-theme, mat.get-color-from-palette($accent), mat.get-color-from-palette($primary));
+      background-color: if($is-dark-theme, mat.m2-get-color-from-palette($accent), mat.m2-get-color-from-palette($primary));
       color: if($is-dark-theme, map-get($accent, 'default-contrast'), map-get($primary, 'default-contrast'));
     }
 
@@ -73,7 +73,7 @@
 
     @each $key, $val in $palettes-list {
       &.badge--#{$key} {
-        background-color: mat.get-color-from-palette($val);
+        background-color: mat.m2-get-color-from-palette($val);
         color: map-get($val, 'default-contrast');
       }
     }
@@ -86,14 +86,14 @@
   $foreground: map-get($theme, foreground);
 
   table.app-table {
-    color: mat.get-color-from-palette($foreground, text);
+    color: mat.m2-get-color-from-palette($foreground, text);
 
     th {
-      background: mat.get-color-from-palette($background, app-bar);
+      background: mat.m2-get-color-from-palette($background, app-bar);
     }
 
     td, thead {
-      border: 1px solid mat.get-color-from-palette($foreground, divider);
+      border: 1px solid mat.m2-get-color-from-palette($foreground, divider);
     }
   }
 }

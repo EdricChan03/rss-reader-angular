@@ -10,13 +10,16 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist",
+            "outputPath": {
+              "base": "dist"
+            },
             "index": "projects/rss-reader/src/index.html",
-            "main": "projects/rss-reader/src/main.ts",
             "tsConfig": "projects/rss-reader/tsconfig.app.json",
-            "polyfills": "projects/rss-reader/src/polyfills.ts",
+            "polyfills": [
+              "projects/rss-reader/src/polyfills.ts"
+            ],
             "assets": [
               "projects/rss-reader/src/assets",
               "projects/rss-reader/src/manifest.webmanifest",
@@ -32,12 +35,11 @@
             "scripts": [
               "node_modules/marked/marked.min.js"
             ],
-            "vendorChunk": true,
             "extractLicenses": false,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true
+            "namedChunks": true,
+            "browser": "projects/rss-reader/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -52,8 +54,6 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "serviceWorker": true,
               "fileReplacements": [
                 {
@@ -89,8 +89,6 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "serviceWorker": true,
               "fileReplacements": [
                 {
