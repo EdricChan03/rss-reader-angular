@@ -3,8 +3,8 @@ name: Site workflow
 on:
   push:
     branches:
-    # Only accept deploying from the master branch
-    - master
+    # Only accept deploying from the main branch
+    - main
 
 jobs:
   test:

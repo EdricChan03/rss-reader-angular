@@ -3,8 +3,8 @@ name: Pull Request workflow
 on:
   pull_request:
     branches:
-    # Only accept PRs targeting the master branch
-    - master
+    # Only accept PRs targeting the main branch
+    - main
 
 jobs:
   test:
