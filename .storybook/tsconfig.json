@@ -1,9 +1,7 @@
 {
   "extends": "../projects/rss-reader/tsconfig.app.json",
   "compilerOptions": {
-    "types": [
-      "node"
-    ]
+    "types": ["node"]
   },
   "exclude": [
     "../src/test.ts",
@@ -12,10 +10,9 @@
     "../projects/**/*.e2e-spec.ts"
   ],
   "include": [
-    "../src/**/*",
-    "../projects/**/*"
+    "../src/**/*.stories.*",
+    "../projects/**/*.stories.*",
+    "./preview.ts"
   ],
-  "files": [
-    "./typings.d.ts"
-  ]
+  "files": ["./typings.d.ts"]
 }
