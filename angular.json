@@ -48,7 +48,7 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
-              "serviceWorker": true,
+              "serviceWorker": "projects/rss-reader/ngsw-config.json",
               "fileReplacements": [
                 {
                   "replace": "projects/rss-reader/src/environments/environment.ts",
@@ -83,7 +83,7 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
-              "serviceWorker": true,
+              "serviceWorker": "projects/rss-reader/ngsw-config.json",
               "fileReplacements": [
                 {
                   "replace": "projects/rss-reader/src/environments/environment.ts",
