@@ -105,21 +105,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "rss-reader:build"
+            "buildTarget": "rss-reader:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "rss-reader:build:production"
+              "buildTarget": "rss-reader:build:production"
             },
             "httpserver": {
-              "browserTarget": "rss-reader:build:httpserver"
+              "buildTarget": "rss-reader:build:httpserver"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "rss-reader:build"
+            "buildTarget": "rss-reader:build"
           }
         },
         "test": {
