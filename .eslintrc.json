@@ -1,6 +1,8 @@
 {
   "root": true,
-  "plugins": ["editorconfig"],
+  "plugins": [
+    "editorconfig"
+  ],
   "ignorePatterns": [
     "projects/**/*"
   ],
