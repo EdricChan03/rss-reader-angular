@@ -69,7 +69,7 @@
     "@types/node": "^18.11.9",
     "@typescript-eslint/eslint-plugin": "^8.3.0",
     "@typescript-eslint/parser": "^8.3.0",
-    "angular-cli-ghpages": "^2.0.0-beta.1",
+    "angular-cli-ghpages": "^2.0.1",
     "angular-eslint": "^18.3.0",
     "babel-loader": "^8.3.0",
     "copy-webpack-plugin": "^4.6.0",
