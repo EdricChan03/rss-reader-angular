@@ -42,17 +42,18 @@ interface HotkeyOptions {
 export class HotkeysService {
   hotkeys = new Map<string, string>();
   readonly hotkeyHelpDialogId = 'hotkey-help-dialog';
-  defaults: Partial<HotkeyOptions> = {
-    // Specify a default description for hotkeys with no specified desc
-    description: '<No description>',
-    element: this.document
-  };
+  defaults: Partial<HotkeyOptions>;
 
   constructor(
     private eventManager: EventManager,
     private dialog: MatDialog,
     @Inject(DOCUMENT) private document: Document
   ) {
+    this.defaults = {
+      // Specify a default description for hotkeys with no specified desc
+      description: '<No description>',
+      element: this.document
+    };
     this.addShortcut({ keys: 'shift.?', description: 'Show this help dialog', shortcutBlacklistEls: ['input', 'textarea'] })
       .subscribe(() => {
         this.openHotkeyHelpDialog();
