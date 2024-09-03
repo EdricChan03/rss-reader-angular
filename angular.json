@@ -17,7 +17,9 @@
             },
             "index": "projects/rss-reader/src/index.html",
             "tsConfig": "projects/rss-reader/tsconfig.app.json",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js"
+            ],
             "assets": [
               "projects/rss-reader/src/assets",
               "projects/rss-reader/src/manifest.webmanifest",
@@ -27,8 +29,12 @@
                 "output": "./assets"
               }
             ],
-            "styles": ["projects/rss-reader/src/styles.scss"],
-            "scripts": ["node_modules/marked/marked.min.js"],
+            "styles": [
+              "projects/rss-reader/src/styles.scss"
+            ],
+            "scripts": [
+              "node_modules/marked/marked.min.js"
+            ],
             "extractLicenses": false,
             "sourceMap": true,
             "optimization": false,
@@ -119,11 +125,17 @@
           "options": {
             "main": "projects/rss-reader/src/test.ts",
             "karmaConfig": "projects/rss-reader/karma.conf.js",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "projects/rss-reader/tsconfig.spec.json",
             "scripts": [],
-            "styles": ["projects/rss-reader/src/styles.scss"],
-            "assets": ["projects/rss-reader/src/assets"],
+            "styles": [
+              "projects/rss-reader/src/styles.scss"
+            ],
+            "assets": [
+              "projects/rss-reader/src/assets"
+            ],
             "fileReplacements": [
               {
                 "replace": "projects/rss-reader/src/environments/environment.ts",
@@ -162,29 +174,11 @@
           "options": {
             "baseHref": "/rss-reader-angular/"
           }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "projects/rss-reader/**/*.ts",
-              "projects/rss-reader/**/*.html"
-            ]
-          }
         }
       }
     }
   },
   "cli": {
-    "analytics": "2a31b3aa-e3e3-4fbc-8175-a732c798e30d",
-    "schematicCollections": ["@angular-eslint/schematics"]
-  },
-  "schematics": {
-    "@angular-eslint/schematics:application": {
-      "setParserOptionsProject": true
-    },
-    "@angular-eslint/schematics:library": {
-      "setParserOptionsProject": true
-    }
+    "analytics": "2a31b3aa-e3e3-4fbc-8175-a732c798e30d"
   }
 }
