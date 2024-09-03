@@ -20,7 +20,7 @@ export class SelectionDialogComponent extends Dialog {
   /** The default text to be used for the positive button. */
   readonly defaultPositiveBtnText = 'OK';
 
-  constructor(@Inject(MAT_DIALOG_DATA) public opts: SelectionDialogOpts) {
+  constructor(@Inject(MAT_DIALOG_DATA) public override opts: SelectionDialogOpts) {
     super(opts);
   }
 

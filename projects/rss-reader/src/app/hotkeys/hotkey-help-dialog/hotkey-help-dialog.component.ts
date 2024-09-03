@@ -11,9 +11,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   `]
 })
 export class HotkeyHelpDialogComponent {
-  hotkeys = Array.from(this.data);
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Map<string, string>) {}
+  hotkeys: [string, string][];
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Map<string, string>) {
+    this.hotkeys = Array.from(data);
+  }
 
   getDisplayedShortcut(keys: string): string[] {
     const result = [];

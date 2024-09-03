@@ -24,7 +24,7 @@ export class PromptDialogComponent extends Dialog implements OnInit {
   /** The default color to be used for the input. */
   readonly defaultInputColor = 'primary';
 
-  constructor(@Inject(MAT_DIALOG_DATA) public opts: PromptDialogOpts) {
+  constructor(@Inject(MAT_DIALOG_DATA) public override opts: PromptDialogOpts) {
     super(opts);
   }
 

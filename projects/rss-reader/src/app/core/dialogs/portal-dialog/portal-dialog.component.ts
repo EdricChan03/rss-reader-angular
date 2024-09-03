@@ -20,7 +20,7 @@ export class PortalDialogComponent<T = any> extends Dialog {
   /** The default text to be used for the positive button. */
   readonly defaultPositiveBtnText = 'OK';
 
-  constructor(@Inject(MAT_DIALOG_DATA) public opts: PortalDialogOpts<T>) {
+  constructor(@Inject(MAT_DIALOG_DATA) public override opts: PortalDialogOpts<T>) {
     super(opts);
   }
 
