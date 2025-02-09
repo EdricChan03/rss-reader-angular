@@ -58,7 +58,7 @@
     "@storybook/angular": "^8.2.9",
     "@storybook/manager-api": "^8.2.9",
     "@storybook/theming": "^8.2.9",
-    "@stylistic/eslint-plugin": "^2.7.2",
+    "@stylistic/eslint-plugin": "^3.1.0",
     "@types/eslint__js": "^8.42.3",
     "@types/gulp": "^4.0.8",
     "@types/gulp-rename": "0.0.33",
