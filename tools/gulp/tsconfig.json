@@ -17,10 +17,8 @@
     "types": [
       "node"
     ],
-    "paths": {
-      
-    },
-    "baseUrl": "."
+    "baseUrl": ".",
+    "allowSyntheticDefaultImports": true
   },
   "files": [
     "gulpfile.ts"

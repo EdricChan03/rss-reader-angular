@@ -1,10 +1,10 @@
 import { dest, task, parallel, src } from 'gulp';
 import * as path from 'path';
 
-const markdown = require('gulp-markdown');
-const transform = require('gulp-transform');
-const hljs = require('highlight.js');
-import * as rename from 'gulp-rename';
+import markdown from 'gulp-markdown';
+import transform from 'gulp-transform';
+import hljs from 'highlight.js';
+import rename from 'gulp-rename';
 
 const markdownOptions = {
   // Add syntax highlight using highlight.js
