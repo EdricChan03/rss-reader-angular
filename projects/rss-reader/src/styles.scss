@@ -120,14 +120,17 @@ body {
 }
 
 .cards-container {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-evenly;
+  display: grid;
+  margin: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
 
   .cards-container--card {
-    width: 350px;
     box-sizing: border-box;
-    margin: 16px;
+
+    img, audio, video {
+      width: 100%;
+    }
   }
 }
 
