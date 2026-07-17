@@ -22,7 +22,7 @@
           <p>See this <a [href]="releaseNote">link</a> for the release notes.</p>
         </ng-container>
         <ng-container *ngIf="isArray(releaseNote)">
-          <p [innerHTML]="joinReleaseNotes(releaseNote) | markdown"></p>
+          <p [innerHTML]="joinReleaseNotes(releaseNote) | markdown | async"></p>
         </ng-container>
       </ng-container>
     </mat-card-content>
@@ -49,7 +49,7 @@
           <p>See this <a [href]="releaseNote">link</a> for the release notes.</p>
         </ng-container>
         <ng-container *ngIf="isArray(releaseNote)">
-          <p [innerHTML]="joinReleaseNotes(releaseNote) | markdown"></p>
+          <p [innerHTML]="joinReleaseNotes(releaseNote) | markdown | async"></p>
         </ng-container>
       </ng-container>
     </ng-container>
