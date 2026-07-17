@@ -1,14 +1,15 @@
-@use '@angular/material' as mat;
-@import 'hljs';
+@use "@angular/material" as mat;
+@import "hljs";
+
 // Dedicated file for theming the app
 @mixin rss-reader-theme($theme) {
   @include tables-theme($theme);
-  $background: map-get($theme, background);
-  $foreground: map-get($theme, foreground);
-  $primary: map-get($theme, primary);
-  $accent: map-get($theme, accent);
-  $warn: map-get($theme, warn);
-  $is-dark-theme: map-get($theme, is-dark); // Check if the theme is dark
+  $background: mat.get-theme-color($theme, surface);
+  $foreground: mat.get-theme-color($theme, on-surface);
+  $primary: mat.get-theme-color($theme, primary);
+  $secondary: mat.get-theme-color($theme, secondary);
+  $tertiary: mat.get-theme-color($theme, tertiary);
+  $is-dark-theme: mat.get-theme-type($theme) == "dark"; // Check if the theme is dark
   @if ($is-dark-theme) {
     // Apply highlight.js dark styles available in _hljs.scss
     @include hljs-dark();
@@ -20,20 +21,20 @@
   // Shows the current link. Used in the sidenav
   .active-link {
     // Since it's a bit hard to actually see the text in the dark theme, it'll use the accent color if it's dark and primary if it's not. Same applies for mat-icon
-    color: if($is-dark-theme, mat.m2-get-color-from-palette($accent), mat.m2-get-color-from-palette($primary)) !important;
+    color: mat.get-theme-color($theme, on-primary-container) !important;
     mat-icon {
-      color: if($is-dark-theme, mat.m2-get-color-from-palette($accent), mat.m2-get-color-from-palette($primary)) !important;
+      color: mat.get-theme-color($theme, on-primary-container);
     } // Note: These colors are based on the Android sidenav selection state
-    background-color: if($is-dark-theme, #595959, #DCDCDC) !important;
+    background-color: mat.get-theme-color($theme, primary-container) !important;
   }
 
   // Warning icon color
   .warning-icon {
-    color: mat.m2-get-color-from-palette($warn) !important;
+    color: mat.get-theme-color($theme, error) !important;
   }
 
   a.anchor-link {
-    color: mat.m2-get-color-from-palette($primary, if($is-dark-theme, 200, default));
+    color: mat.get-theme-color($theme, primary);
     text-decoration: none;
     &:hover {
       text-decoration: underline;
@@ -41,14 +42,14 @@
   }
 
   .onboarding-content {
-    color: if($is-dark-theme, #FFF, #000);
+    color: if($is-dark-theme, #fff, #000);
   }
   .onboarding-card {
-    background-color: if($is-dark-theme, #303030, #FAFAFA);
+    background-color: if($is-dark-theme, #303030, #fafafa);
   }
 
   .indicator-active {
-    background-color: mat.m2-get-color-from-palette($accent) !important;
+    background-color: mat.get-theme-color($theme, primary) !important;
   }
   .indicator {
     background-color: rgba(255, 255, 255, 0.5);
@@ -57,24 +58,41 @@
   // Adapted from
   // https://github.com/EdricChan03/StudyBuddy-web/blob/3b1e7709c8954fc73fc934cbf6f882de3ed25e2e/src/styles.scss#L64-L86
   .badge {
-    color: mat.m2-get-color-from-palette($foreground, text);
-    background-color: mat.m2-get-color-from-palette($background, unselected-chip);
+    color: mat.get-theme-color($theme, on-primary);
+    background-color: mat.get-theme-color($theme, primary);
 
     &.badge--colored {
-      background-color: if($is-dark-theme, mat.m2-get-color-from-palette($accent), mat.m2-get-color-from-palette($primary));
-      color: if($is-dark-theme, map-get($accent, 'default-contrast'), map-get($primary, 'default-contrast'));
+      background-color: if(
+        $is-dark-theme,
+        mat.get-theme-color($theme, secondary),
+        mat.get-theme-color($theme, primary)
+      );
+      color: if(
+        $is-dark-theme,
+        mat.get-theme-color($theme, on-secondary),
+        mat.get-theme-color($theme, on-primary)
+      );
     }
 
     $palettes-list: (
-      primary: $primary,
-      accent: $accent,
-      warn: $warn
+      primary: (
+        content: $primary,
+        on-content: mat.get-theme-color($theme, on-primary),
+      ),
+      secondary: (
+        content: $secondary,
+        on-content: mat.get-theme-color($theme, on-secondary),
+      ),
+      tertiary: (
+        content: $tertiary,
+        on-content: mat.get-theme-color($theme, on-tertiary),
+      ),
     );
 
     @each $key, $val in $palettes-list {
       &.badge--#{$key} {
-        background-color: mat.m2-get-color-from-palette($val);
-        color: map-get($val, 'default-contrast');
+        background-color: map-get($val, content);
+        color: map-get($val, on-content);
       }
     }
   }
@@ -86,14 +104,16 @@
   $foreground: map-get($theme, foreground);
 
   table.app-table {
-    color: mat.m2-get-color-from-palette($foreground, text);
+    /* color: mat.get-theme-color($foreground, text); */
 
     th {
-      background: mat.m2-get-color-from-palette($background, app-bar);
+      background: mat.get-theme-color($theme, primary-container);
+      color: mat.get-theme-color($theme, on-primary-container);
     }
 
-    td, thead {
-      border: 1px solid mat.m2-get-color-from-palette($foreground, divider);
+    td,
+    thead {
+      border: 1px solid mat.get-theme-color($theme, on-surface);
     }
   }
 }

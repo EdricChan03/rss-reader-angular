@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Injectable, Inject, InjectionToken, Optional } from '@angular/core';
 import { Settings } from '../../models/settings';
-import { Theme, themes } from '../../pages/settings/types';
+import { ThemeEnum, themes } from '../../pages/settings/types';
 
 /** Configuration options for {@link SettingsStorageService}. */
 export interface SettingsStorageConfig<S = Settings> {
@@ -27,7 +27,7 @@ export const SETTINGS_STORAGE_DEFAULT_CONFIG_FACTORY: () => SettingsStorageConfi
     defaultSettings: {
       openNewTab: true,
       showImages: true,
-      theme: 'indigo-pink',
+      theme: ThemeEnum.RoseRed,
       notifyNewReleases: true
     }
   });
@@ -74,7 +74,7 @@ export class SettingsStorageService<S = Settings> {
   }
 
   /** Sets the theme. */
-  setTheme(theme: Theme = 'indigo-pink', element = this.document.body) {
+  setTheme(theme: ThemeEnum = ThemeEnum.RoseRed, element = this.document.body) {
     element.classList.remove(...themes);
     element.classList.add(theme);
   }

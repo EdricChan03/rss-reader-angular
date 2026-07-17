@@ -14,14 +14,14 @@ import {
   SETTINGS_STORAGE_KEY,
   SETTINGS_STORAGE_PROVIDER
 } from './settings-storage.service';
-import { Theme } from '../../pages/settings/types';
+import { Theme, ThemeEnum } from '../../pages/settings/types';
 
 
 describe('SettingsStorageService', () => {
   let service: SettingsStorageService;
   const baseMockSettings: Settings = {
     showImages: true,
-    theme: 'deeppurple-amber',
+    theme: ThemeEnum.RoseRed,
     maxNotifications: 102932
   };
   const baseMockStorage = new MockStorage({ settings: JSON.stringify(baseMockSettings) });
@@ -78,7 +78,7 @@ describe('SettingsStorageService', () => {
   describe('#clearSettings', () => {
     it('should reset to default settings if no arguments are specified', () => {
       const mockStorage = new MockStorage({ settings: JSON.stringify(baseMockSettings) });
-      const mockDefaultSettings: Settings = { openNewTab: false, theme: 'deeppurple-amber' };
+      const mockDefaultSettings: Settings = { openNewTab: false, theme: ThemeEnum.RoseRed };
       const customConfigFactory: () => SettingsStorageConfig = () => ({
         canRevertDefault: true,
         defaultSettings: mockDefaultSettings
@@ -124,7 +124,7 @@ describe('SettingsStorageService', () => {
         add: jasmine.createSpy(),
         remove: jasmine.createSpy()
       });
-      const theme: Theme = 'indigo-pink';
+      const theme = ThemeEnum.RoseRed;
       service.setTheme(theme, el);
       expect(el.classList.add).toHaveBeenCalledWith(theme);
     });

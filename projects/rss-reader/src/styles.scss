@@ -1,41 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 
-@import 'theming';
-@import 'themes';
+@import "theming";
+@import "themes";
 
 /* Select Angular Material theming. */
 
 @include mat.core();
+@include mat.typography-hierarchy($rose-red-theme);
 
 // Default theme for the app
-@include mat.all-component-themes($indigo-pink-theme);
-@include mat.typography-hierarchy($rss-reader-typography);
+:root {
+  @include mat.all-component-themes($rose-red-theme);
+  @include mat.color-variants-backwards-compatibility($rose-red-theme);
+  @include mat.sidenav-overrides(
+    (
+      container-width: 300px,
+    )
+  );
+}
 body {
-  @include rss-reader-theme($indigo-pink-theme);
+  @include rss-reader-theme($rose-red-theme);
 }
 
-.deeppurple-amber {
-  @include rss-reader-theme($deeppurple-amber-theme);
-  @include mat.all-component-colors($deeppurple-amber-theme);
+.azure-blue {
+  @include rss-reader-theme($azure-blue-theme);
+  @include mat.all-component-colors($azure-blue-theme);
+  @include mat.color-variants-backwards-compatibility($azure-blue-theme);
   /** Adapted from https://github.com/atom-material/atom-material-syntax-light */
   .hljs {
     display: block;
     overflow-x: auto;
     padding: 1em;
-    background: #FAFAFA;
+    background: #fafafa;
     color: #37474f;
     -webkit-font-smoothing: antialiased;
     text-size-adjust: 100%;
-    font: 300 100%/1 Roboto Mono, monospace;
+    font:
+      300 100%/1 Roboto Mono,
+      monospace;
     font-size: 14px;
   }
-  .hljs>*::selection,
+  .hljs > *::selection,
   .hljs-section {
-    background-color: #D6EDEA;
+    background-color: #d6edea;
   }
   .hljs-comment {
-    color: #B0BEC5;
+    color: #b0bec5;
     font-style: italic;
   }
   .hljs-tag,
@@ -51,7 +62,7 @@ body {
   .hljs-number,
   .hljs-variable,
   .hljs-template-variable {
-    color: #80CBC4;
+    color: #80cbc4;
   }
   .hljs-name,
   .hljs-keyword,
@@ -60,13 +71,13 @@ body {
     color: #3b78e7;
   }
   .hljs-title,
-  .hljs-function>.hljs-title,
+  .hljs-function > .hljs-title,
   .hljs-symbol,
   .hljs-bullet,
   .hljs-built_in,
   .hljs-builtin-name,
   .hljs-link {
-    color: #6182B8;
+    color: #6182b8;
   }
   .hljs-params {
     color: #d81b60;
@@ -77,13 +88,13 @@ body {
     width: 100%;
   }
   .hljs-deletion {
-    color: #E53935;
+    color: #e53935;
     display: inline-block;
     width: 100%;
   }
   .hljs-selector-id,
   .hljs-selector-class {
-    color: #8796B0;
+    color: #8796b0;
   }
   .hljs-emphasis {
     font-style: italic;
@@ -96,14 +107,16 @@ body {
   }
 }
 
-.pink-bluegrey {
-  @include rss-reader-theme($pink-bluegrey-theme);
-  @include mat.all-component-colors($pink-bluegrey-theme);
+.magenta-violet {
+  @include rss-reader-theme($magenta-violet-theme);
+  @include mat.all-component-colors($magenta-violet-theme);
+  @include mat.color-variants-backwards-compatibility($magenta-violet-theme);
 }
 
-.purple-green {
-  @include rss-reader-theme($purple-green-theme);
-  @include mat.all-component-colors($purple-green-theme);
+.cyan-orange {
+  @include rss-reader-theme($cyan-orange-theme);
+  @include mat.all-component-colors($cyan-orange-theme);
+  @include mat.color-variants-backwards-compatibility($cyan-orange-theme);
 }
 
 .cards-container {
@@ -144,7 +157,7 @@ code.hljs {
   white-space: pre-wrap;
 }
 
-.refreshing>div {
+.refreshing > div {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -196,10 +209,16 @@ mat-spinner.start-indicator {
 }
 
 .app-sidenav {
-  width: 240px; // @include mat-elevation(3);
+  /* width: 200px; // @include mat-elevation(3); */
+  .mat-mdc-nav-list {
+    padding: 16px 8px;
+  }
 }
 
-.selection-dialog>mat-dialog-container>selection-dialog>mat-dialog-content {
+.selection-dialog
+  > mat-dialog-container
+  > selection-dialog
+  > mat-dialog-content {
   padding: 0;
 }
 
@@ -284,13 +303,13 @@ th {
 
 td {
   font-weight: 400;
-  padding: 8px 16px
+  padding: 8px 16px;
 }
 
 .autocomplete-option .autocomplete-option-img {
   vertical-align: middle;
   margin-right: 8px;
-  &[dir=rtl] {
+  &[dir="rtl"] {
     margin-right: 0;
     margin-left: 8px;
   }
@@ -315,8 +334,8 @@ body {
 // Style based from StackOverflow's CSS.
 kbd {
   display: inline-block;
-  margin: 0 .1em;
-  padding: .1em .6em;
+  margin: 0 0.1em;
+  padding: 0.1em 0.6em;
   font-size: 11px;
   line-height: 1.4;
   // color: #242729;

@@ -8,12 +8,12 @@ import { SwUpdate } from "@angular/service-worker";
 import { ActionItemService } from "./actionitem.service";
 import { AboutDialogComponent } from "./dialogs";
 import { environment } from "../environments/environment";
-import { Settings } from "./models/settings";
 import { OverlayService } from "./overlay.service";
 import { OnboardingOverlayComponent } from "./overlays";
 import { SharedService } from "./shared.service";
 import { HotkeysService } from "./hotkeys/hotkeys.service";
 import { SettingsStorageService } from "./core/settings-storage/settings-storage.service";
+import { defaultTheme } from "./pages/settings/types";
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -147,17 +147,11 @@ export class AppComponent implements OnInit, OnDestroy {
         document.body.classList.add(this.settingsStorage.settings.theme);
       } else {
         console.warn("Theme setting was not found. Using default...");
-        document.body.classList.add("indigo-pink");
+        document.body.classList.add(defaultTheme);
       }
     } else {
-      const tempSettings: Settings = {
-        showImages: true,
-        multipleRss: false,
-        openNewTab: true,
-        theme: "indigo-pink",
-      };
-      document.body.classList.add("indigo-pink");
-      this.settingsStorage.setSettings(tempSettings);
+      document.body.classList.add(defaultTheme);
+      this.settingsStorage.clearSettings();
     }
     if (this.isOffline) {
       console.log("User is offline");

@@ -7,10 +7,10 @@ import type { Preview } from "@storybook/angular";
 import { withThemeByClassName } from "@storybook/addon-themes";
 
 const themeClasses = [
-  "indigo-pink",
-  "deeppurple-amber",
-  "pink-bluegrey",
-  "purple-green",
+  "rose-red",
+  "azure-blue",
+  "magenta-violet",
+  "cyan-orange",
 ];
 
 const preview: Preview = {
@@ -24,7 +24,7 @@ const preview: Preview = {
   decorators: [
     withThemeByClassName({
       themes: Object.fromEntries(themeClasses.map((c) => [c, c])),
-      defaultTheme: "indigo-pink",
+      defaultTheme: "rose-red",
     }),
   ],
   tags: ["autodocs"],

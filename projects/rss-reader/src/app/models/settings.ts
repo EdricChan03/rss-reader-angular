@@ -1,3 +1,5 @@
+import type { ThemeEnum } from "../pages/settings/types";
+
 export interface Settings {
   /**
    * Whether to allow multiple RSS feeds
@@ -16,7 +18,7 @@ export interface Settings {
   /**
    * The theme for the app
    */
-  theme?: 'indigo-pink' | 'deeppurple-amber' | 'pink-bluegrey' | 'purple-green';
+  theme?: ThemeEnum;
   /**
    * Whether to show the offline snackbar
    *

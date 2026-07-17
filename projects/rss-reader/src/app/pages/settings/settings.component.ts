@@ -4,7 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { DialogsService } from '../../core/dialogs/dialogs.service';
 import { SharedService } from '../../shared.service';
 import { SettingsStorageService } from '../../core/settings-storage/settings-storage.service';
-import { Theme, themes } from './types';
+import { Theme, defaultTheme, themes } from './types';
 import { filter, map } from 'rxjs';
 
 type SettingsForm = FormGroup<{
@@ -22,7 +22,7 @@ export class SettingsComponent {
   settingsForm: SettingsForm = new FormGroup({
     openNewTab: new FormControl(false),
     showImages: new FormControl(false),
-    theme: new FormControl<Theme>('indigo-pink'),
+    theme: new FormControl<Theme>(defaultTheme),
     notifyNewReleases: new FormControl(false)
   });
   themes = themes;
