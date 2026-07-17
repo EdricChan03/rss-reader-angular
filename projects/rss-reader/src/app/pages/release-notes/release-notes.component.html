@@ -1,28 +1,44 @@
 <main class="app-content mat-typography">
-  <h1 id="app-header">Release notes</h1>
-  <h2 id="current-version">Current version: {{ releaseNotes.latestVersion }}</h2>
+  <h1 id="app-header" class="mat-display-small">Release notes</h1>
+  <h2 id="current-version" class="mat-headline-medium">Current version: {{ releaseNotes.latestVersion }}</h2>
 
-  <h3 id="current-version-release-notes">Release notes for {{ releaseNotes.latestVersion }}<span *ngIf="getReleaseName(releaseNotes.latestVersion) as releaseName"> - {{ releaseName }}</span></h3>
-  <!-- TODO: Convert to template -->
-  <ng-container *ngIf="versions; else: noReleaseNotes">
-    <p *ngIf="getReleaseDate(releaseNotes.latestVersion) as releaseDate">Release date: <em><time [dateTime]="releaseDate">{{ releaseDate | date:'short' }}</time></em></p>
-    <p *ngIf="getReleaseAuthor(releaseNotes.latestVersion) as releaseAuthor">Released by: <em>{{ releaseAuthor }}</em></p>
+  <mat-card *ngIf="versions; else: noReleaseNotes">
+    <mat-card-header>
+      <mat-card-title id="current-version-release-notes">Release notes for {{ releaseNotes.latestVersion }}<span *ngIf="getReleaseName(releaseNotes.latestVersion) as releaseName"> - {{ releaseName }}</span></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <dl>
+        <ng-container *ngIf="getReleaseDate(releaseNotes.latestVersion) as releaseDate">
+          <dt>Release date:</dt>
+          <dd><time [dateTime]="releaseDate">{{ releaseDate | date:'short' }}</time></dd>
+        </ng-container>
+        <ng-container *ngIf="getReleaseAuthor(releaseNotes.latestVersion) as releaseAuthor">
+          <dt>Released by:</dt>
+          <dd>{{ releaseAuthor }}</dd>
+        </ng-container>
+      </dl>
+      <ng-container *ngIf="getReleaseNote(releaseNotes.latestVersion) as releaseNote">
+        <ng-container *ngIf="!isArray(releaseNote) && isUrl(releaseNote)">
+          <p>See this <a [href]="releaseNote">link</a> for the release notes.</p>
+        </ng-container>
+        <ng-container *ngIf="isArray(releaseNote)">
+          <p [innerHTML]="joinReleaseNotes(releaseNote) | markdown"></p>
+        </ng-container>
+      </ng-container>
+    </mat-card-content>
     <ng-container *ngIf="getReleaseNote(releaseNotes.latestVersion) as releaseNote">
-      <ng-container *ngIf="!isArray(releaseNote) && isUrl(releaseNote)">
-        <p>See this <a [href]="releaseNote">link</a> for the release notes.</p>
-      </ng-container>
-      <ng-container *ngIf="isArray(releaseNote)">
-        <p [innerHTML]="joinReleaseNotes(releaseNote) | markdown"></p>
-      </ng-container>
+    <mat-card-actions *ngIf="!isArray(releaseNote) && isUrl(releaseNote)">
+      <a mat-button [href]="releaseNote">View release notes</a>
+    </mat-card-actions>
     </ng-container>
-  </ng-container>
+  </mat-card>
   <hr>
 
-  <h2 id="all-release-notes" *ngIf="versions?.length > 0">All release notes</h2>
+  <h2 id="all-release-notes" *ngIf="versions?.length > 0" class="mat-headline-medium">All release notes</h2>
   <ng-container *ngIf="versions; else: noReleaseNotes">
     <!-- TODO: Add support for sorting versions by semver. -->
     <ng-container *ngFor="let version of versions">
-      <h3 id="version-{{ version }}" class="version-header">
+      <h3 id="version-{{ version }}" class="version-header mat-headline-small">
         Version {{ version }}<span *ngIf="getReleaseName(version) as releaseName"> - {{ releaseName }}</span>
         <span class="badge badge--colored" *ngIf="version === releaseNotes.latestVersion">Latest</span>
       </h3>
