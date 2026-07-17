@@ -8,9 +8,8 @@
 
   .feed-info--header {
     display: flex;
+    flex-direction: column;
     gap: 8px;
-    align-items: center;
-    justify-content: space-between;
     margin-bottom: 8px;
 
     .feed-info--header__meta {
@@ -28,12 +27,10 @@
     }
   }
 
-
   .feed-info--author {
     display: flex;
     gap: 8px;
     align-items: center;
-    margin-bottom: 8px;
   }
 }
 

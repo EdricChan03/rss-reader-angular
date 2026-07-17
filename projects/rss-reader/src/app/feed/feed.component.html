@@ -1,39 +1,41 @@
 <mat-drawer-container class="feed-drawer-container">
   <mat-drawer-content>
     <ng-container *ngIf="feedItems$ | async as feedItems; else: errorOrLoading">
-      <div class="cards-container">
+      <main class="cards-container">
         <app-article-card [article]="feed" *ngFor="let feed of feedItems" class="cards-container--card"></app-article-card>
-      </div>
+      </main>
     </ng-container>
   </mat-drawer-content>
   <mat-drawer #feedInfoDrawer [mode]="shared.isPortraitHandset ? 'over' : 'side'" position="end" [opened]="!shared.isPortraitHandset" class="feed-info">
     <ng-container *ngIf="feed$ | async as feed; else: errorOrLoading">
-      <div class="feed-info--header">
-        <div class="feed-info--header__meta">
+      <header class="feed-info--header">
+        <section class="feed-info--header__meta">
           <img *ngIf="feed.image" [src]="feed.image" alt="{{ feed.title }} image"
             class="feed-info--header__img">
-          <h2 class="feed-info--header__title">{{ feed.title }}</h2>
-        </div>
-        <button mat-icon-button (click)="feedInfoDrawer.close()" matTooltip="Close">
-          <mat-icon>close</mat-icon>
-        </button>
-      </div>
-      <div class="feed-info--author" *ngIf="feed.author">
-        <mat-icon title="Author" inline>person</mat-icon>
-        <span>{{ feed.author }}</span>
-      </div>
-      <p *ngIf="feed.description">{{ feed.description }}</p>
-      <mat-nav-list>
-        <h3 matSubheader>Links</h3>
-        <a mat-list-item [href]="feed.url">
-          <mat-icon matListItemIcon>rss_feed</mat-icon>
-          RSS feed
-        </a>
-        <a mat-list-item [href]="feed.link">
-          <mat-icon matListItemIcon>link</mat-icon>
-          Website
-        </a>
-      </mat-nav-list>
+          <h2 class="feed-info--header__title mat-title-large">{{ feed.title }}</h2>
+          <button mat-icon-button (click)="feedInfoDrawer.close()" matTooltip="Close">
+            <mat-icon>close</mat-icon>
+          </button>
+        </section>
+        <section class="feed-info--author" *ngIf="feed.author">
+          <mat-icon title="Author" inline>person</mat-icon>
+          <span>{{ feed.author }}</span>
+        </section>
+      </header>
+      <main>
+        <p *ngIf="feed.description">{{ feed.description }}</p>
+        <mat-nav-list>
+          <h3 matSubheader class="mat-title-medium">Links</h3>
+          <a mat-list-item [href]="feed.url">
+            <mat-icon matListItemIcon>rss_feed</mat-icon>
+            RSS feed
+          </a>
+          <a mat-list-item [href]="feed.link">
+            <mat-icon matListItemIcon>link</mat-icon>
+            Website
+          </a>
+        </mat-nav-list>
+      </main>
     </ng-container>
   </mat-drawer>
 </mat-drawer-container>
