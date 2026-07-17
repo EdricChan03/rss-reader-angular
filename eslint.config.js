@@ -1,41 +1,41 @@
 // @ts-check
 
 // Allows us to bring in the recommended core rules from eslint itself
-import eslint from "@eslint/js";
+import eslint from '@eslint/js';
 const { configs } = eslint;
 
+import { defineConfig } from 'eslint/config';
 // Allows us to use the typed utility for our config, and to bring in the recommended rules for TypeScript projects from typescript-eslint
-import { config, configs as tsConfigs } from "typescript-eslint";
+import { configs as tsConfigs } from 'typescript-eslint';
 
 // Allows us to bring in the recommended rules for Angular projects from angular-eslint
 import {
   configs as angularConfigs,
   processInlineTemplates,
-} from "angular-eslint";
+} from 'angular-eslint';
 
 // Stylistic rules
-import stylistic from "@stylistic/eslint-plugin";
+import stylistic from '@stylistic/eslint-plugin';
 
 const stylisticConfig = stylistic.configs.customize({
   flat: true,
   indent: 2,
-  quotes: "single",
+  quotes: 'single',
   semi: true,
-
 });
 
 // Export our config array, which is composed together thanks to the typed utility function from typescript-eslint
-export default config(
+export default defineConfig(
   {
-    files: ["**/*.js"],
+    files: ['**/*.js'],
     extends: [
       stylisticConfig,
-      configs.recommended
-    ]
+      configs.recommended,
+    ],
   },
   {
     // Everything in this config object targets our TypeScript files (Components, Directives, Pipes etc)
-    files: ["**/*.ts"],
+    files: ['**/*.ts'],
     extends: [
       stylisticConfig,
       // Apply the recommended core rules
@@ -53,20 +53,20 @@ export default config(
     processor: processInlineTemplates,
     // Override specific rules for TypeScript files (these will take priority over the extended configs above)
     rules: {
-      "@angular-eslint/directive-selector": [
-        "error",
+      '@angular-eslint/directive-selector': [
+        'error',
         {
-          type: "attribute",
-          prefix: "app",
-          style: "camelCase",
+          type: 'attribute',
+          prefix: 'app',
+          style: 'camelCase',
         },
       ],
-      "@angular-eslint/component-selector": [
-        "error",
+      '@angular-eslint/component-selector': [
+        'error',
         {
-          type: "element",
-          prefix: "app",
-          style: "kebab-case",
+          type: 'element',
+          prefix: 'app',
+          style: 'kebab-case',
         },
       ],
     },
@@ -74,12 +74,12 @@ export default config(
   {
     // Everything in this config object targets our HTML files (external templates,
     // and inline templates as long as we have the `processor` set on our TypeScript config above)
-    files: ["**/*.html"],
+    files: ['**/*.html'],
     extends: [
       // Apply the recommended Angular template rules
       ...angularConfigs.templateRecommended,
       // Apply the Angular template rules which focus on accessibility of our apps
-      ...angularConfigs.templateAccessibility
+      ...angularConfigs.templateAccessibility,
     ],
     rules: {},
   },
