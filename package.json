@@ -50,7 +50,7 @@
     "@angular/cli": "^18.2.2",
     "@angular/compiler-cli": "^18.2.2",
     "@babel/core": "^7.19.1",
-    "@compodoc/compodoc": "^1.1.25",
+    "@compodoc/compodoc": "^2.0.0",
     "@storybook/addon-actions": "^8.2.9",
     "@storybook/addon-essentials": "^8.2.9",
     "@storybook/addon-links": "^8.2.9",
